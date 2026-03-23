@@ -1,8 +1,14 @@
 # Interview Doc
 
-技术面试相关文档整理，涵盖数据库、搜索引擎、缓存等核心技术领域。
+技术面试相关文档整理，涵盖数据库、搜索引擎、缓存、编程语言等核心技术领域。
 
 ## 文档列表
+
+### Java
+
+| 文档 | 概述 |
+|------|------|
+| [Java HashMap 扩容机制详解](./Java%20HashMap%20扩容机制详解.md) | 深入解析 HashMap 扩容机制，包括触发条件、元素迁移流程、JDK 1.7 与 1.8 核心差异对比、面试高频问题总结 |
 
 ### MySQL
 
@@ -17,7 +23,6 @@
 |------|------|
 | [PostgreSQL 分区表最佳实践与底层原理](./PostgreSQL%20分区表最佳实践与底层原理.md) | 全面介绍 PostgreSQL 分区表技术，包括声明式分区与继承分区的实现原理、分区策略选择、最佳实践与性能优化建议 |
 | [PostgreSQL 分级锁机制详解](./PostgreSQL%20分级锁机制详解.md) | 深入解析 PostgreSQL 的三级锁体系：Spin Lock、Lightweight Lock、Regular Lock，以及 8 种表级锁的兼容性与应用场景 |
-| [PostgreSQL 锁机制与分区表操作详解](./PostgreSQL%20锁机制与分区表操作详解.md) | 探讨 PostgreSQL 锁机制在分区表操作中的应用，包括分区表上的锁行为、并发操作注意事项与最佳实践 |
 
 ### ElasticSearch
 
@@ -46,13 +51,14 @@
 
 ```
 interview_projects/
+├── Java/
+│   └── Java HashMap 扩容机制详解.md
 ├── MySQL/
 │   ├── MySQL MVCC 多版本并发控制机制详解.md
 │   └── MySQL 多粒度锁机制详解.md
 ├── PostgreSQL/
 │   ├── PostgreSQL 分区表最佳实践与底层原理.md
-│   ├── PostgreSQL 分级锁机制详解.md
-│   └── PostgreSQL 锁机制与分区表操作详解.md
+│   └── PostgreSQL 分级锁机制详解.md
 ├── ElasticSearch/
 │   ├── ElasticSearch 集群部署最佳实践.md
 │   ├── ElasticSearch 集群管理完全指南.md
