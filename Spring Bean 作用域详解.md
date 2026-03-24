@@ -78,68 +78,37 @@ flowchart LR
 
 ### 2.4 Web 作用域
 
-**作用域范围关系**（从大到小）：
-
 ```mermaid
 flowchart TB
-    subgraph ApplicationScope["application<br/>整个 ServletContext 一个实例"]
-        subgraph WebSocketScope["websocket<br/>每个 WebSocket 会话一个实例"]
-            WebSocketInstance["WebSocket 实例"]
-        end
+    subgraph WebScopes["Web 作用域"]
+        direction TB
         
-        subgraph SessionScope["session<br/>每个 HTTP 会话一个实例"]
-            subgraph RequestScope["request<br/>每个 HTTP 请求一个实例"]
-                RequestInstance1["请求实例 1"]
-                RequestInstance2["请求实例 2"]
-            end
-            SessionInstance["会话实例"]
-        end
-        
-        ApplicationInstance["应用实例"]
+        Request["request<br/>每个 HTTP 请求一个实例"]
+        Session["session<br/>每个 HTTP 会话一个实例"]
+        Application["application<br/>每个 ServletContext 一个实例"]
+        WebSocket["websocket<br/>每个 WebSocket 会话一个实例"]
     end
     
-    style ApplicationScope fill:#fff3e0,stroke:#ef6c00
-    style SessionScope fill:#c8e6c9,stroke:#2e7d32
-    style RequestScope fill:#e3f2fd,stroke:#1565c0
-    style WebSocketScope fill:#f3e5f5,stroke:#7b1fa2
+    Request --> Session
+    Session --> Application
+    
+    style Request fill:#e3f2fd,stroke:#1565c0
+    style Session fill:#c8e6c9,stroke:#2e7d32
+    style Application fill:#fff3e0,stroke:#ef6c00
+    style WebSocket fill:#f3e5f5,stroke:#7b1fa2
 ```
 
-**代码示例**：
-
 ```java
-// request 作用域
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class RequestScopedBean {
-    private String requestId = UUID.randomUUID().toString();
-    public String getRequestId() { return requestId; }
+    // 请求级别数据
 }
 
-// session 作用域
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SessionScopedBean {
-    private String userId;  // 用户登录信息
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
-}
-
-// application 作用域
-@Component
-@Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class ApplicationScopedBean {
-    private AtomicInteger visitCount = new AtomicInteger(0);  // 全局访问计数
-    public void increment() { visitCount.incrementAndGet(); }
-    public int getCount() { return visitCount.get(); }
-}
-
-// websocket 作用域
-@Component
-@Scope(value = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class WebSocketScopedBean {
-    private String sessionId;
-    public String getSessionId() { return sessionId; }
-    public void setSessionId(String sessionId) { this.sessionId = sessionId; }
+    // 会话级别数据，如用户信息
 }
 ```
 
@@ -175,32 +144,21 @@ public class SingletonBean {
 ```mermaid
 flowchart TB
     subgraph Container["Spring 容器"]
-        direction TB
-        S["SingletonBean<br/>（单例，只创建一次）"]
-        P["PrototypeBean<br/>（注入时创建一次）"]
-        S -->|"@Autowired"| P
+        S["SingletonBean<br/>（单例）"]
+        P["PrototypeBean<br/>（注入时创建）"]
     end
     
-    subgraph Calls["多次调用"]
-        direction LR
-        C1["调用 1"]
-        C2["调用 2"]
-        C3["调用 3"]
-    end
+    S -->|"依赖注入"| P
     
-    C1 --> S
-    C2 --> S
-    C3 --> S
+    R1["第一次调用"] --> S
+    R2["第二次调用"] --> S
+    R3["第三次调用"] --> S
     
-    S -->|"返回同一个实例"| R1["结果：相同 UUID"]
-    S -->|"返回同一个实例"| R2["结果：相同 UUID"]
-    S -->|"返回同一个实例"| R3["结果：相同 UUID"]
+    P -.->|"每次返回同一实例"| R1
+    P -.->|"每次返回同一实例"| R2
+    P -.->|"每次返回同一实例"| R3
     
-    style S fill:#c8e6c9,stroke:#2e7d32
     style P fill:#ffcdd2,stroke:#c62828
-    style R1 fill:#ffcdd2,stroke:#c62828
-    style R2 fill:#ffcdd2,stroke:#c62828
-    style R3 fill:#ffcdd2,stroke:#c62828
 ```
 
 ### 3.2 解决方案
@@ -226,16 +184,9 @@ public class SingletonBean {
 
 **原理**：Spring 通过 CGLIB 动态代理重写 `@Lookup` 标注的方法，每次调用时从容器获取新的原型实例。
 
-#### 方案二：ObjectFactory / ObjectProvider（推荐）
+#### 方案二：ObjectFactory / ObjectProvider
 
 ```java
-@Component
-@Scope("prototype")
-public class PrototypeBean {
-    private String data = UUID.randomUUID().toString();
-    public String getData() { return data; }
-}
-
 @Component
 public class SingletonBean {
     
@@ -243,27 +194,8 @@ public class SingletonBean {
     private ObjectProvider<PrototypeBean> prototypeBeanProvider;
     
     public void doSomething() {
-        // 每次调用 getObject() 获取新的原型实例
-        PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+        PrototypeBean prototypeBean = prototypeBeanProvider.getObject();  // 每次获取新实例
         System.out.println(prototypeBean.getData());
-    }
-    
-    // 也可以使用 ObjectFactory（功能较少）
-    @Autowired
-    private ObjectFactory<PrototypeBean> prototypeBeanFactory;
-    
-    public void doSomethingWithFactory() {
-        PrototypeBean prototypeBean = prototypeBeanFactory.getObject();
-        System.out.println(prototypeBean.getData());
-    }
-    
-    // ObjectProvider 还支持可选注入和流式操作
-    public void doSomethingOptional() {
-        // 如果不存在返回 null 而不是抛出异常
-        PrototypeBean bean = prototypeBeanProvider.getIfAvailable();
-        if (bean != null) {
-            System.out.println(bean.getData());
-        }
     }
 }
 ```
@@ -272,7 +204,6 @@ public class SingletonBean {
 - 不需要 CGLIB 代理
 - 代码侵入性低
 - 支持延迟获取
-- ObjectProvider 提供更多功能（getIfAvailable、getIfUnique、stream 等）
 
 #### 方案三：Scoped Proxy（作用域代理）
 
