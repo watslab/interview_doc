@@ -80,16 +80,19 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph Application["application（应用级别）"]
-        subgraph Session["session（会话级别）"]
-            subgraph Request["request（请求级别）"]
+    subgraph WebScopes["Web 作用域"]
+        direction TB
+        subgraph Application["application（应用级别）"]
+            subgraph Session["session（会话级别）"]
+                subgraph Request["request（请求级别）"]
+                end
             end
+        end
+        subgraph WebSocket["websocket（WebSocket 会话）"]
         end
     end
     
-    subgraph WebSocket["websocket（WebSocket 会话）"]
-    end
-    
+    style WebScopes fill:#fafafa,stroke:#9e9e9e,stroke-width:1px
     style Application fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
     style Session fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
     style Request fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
