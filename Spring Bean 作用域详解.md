@@ -128,22 +128,22 @@ flowchart TB
 ```
 
 ```java
-// request 作用域
+// request 作用域：每个 HTTP 请求创建一个实例，请求结束后销毁
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class RequestScopedBean {}
 
-// session 作用域
+// session 作用域：每个 HTTP 会话创建一个实例，会话过期后销毁
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SessionScopedBean {}
 
-// application 作用域
+// application 作用域：整个 ServletContext 共享一个实例，应用关闭时销毁
 @Component
 @Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ApplicationScopedBean {}
 
-// websocket 作用域
+// websocket 作用域：每个 WebSocket 会话创建一个实例，会话关闭后销毁
 @Component
 @Scope(value = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class WebSocketScopedBean {}
