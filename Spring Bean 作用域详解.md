@@ -429,7 +429,7 @@ flowchart TB
 | prototype | ✅ 相对安全 | 每次新实例，但需注意实例内部线程安全 |
 | request | ✅ 安全 | 每个请求独立实例 |
 | session | ⚠️ 需注意 | 同一会话可能多线程访问 |
-| application | ⚠️ 需注意 | 全局共享，多线程并发访问 |
+| application | ⚠️ 需注意 | 全局共享，多线程并发访问，需同步控制 |
 | websocket | ⚠️ 需注意 | 同一 WebSocket 会话可能多线程访问 |
 
 ### 4.3 常见陷阱
