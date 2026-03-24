@@ -83,16 +83,11 @@ flowchart TB
     subgraph Application["application（应用级别）"]
         subgraph Session["session（会话级别）"]
             subgraph Request["request（请求级别）"]
-                R1["请求实例1"]
-                R2["请求实例2"]
             end
-            S1["会话实例"]
         end
-        A1["应用实例"]
     end
     
     subgraph WebSocket["websocket（WebSocket 会话）"]
-        W1["WebSocket 实例"]
     end
     
     style Application fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
@@ -153,31 +148,26 @@ public class SingletonBean {
 **问题图解**：
 
 ```mermaid
-flowchart LR
-    subgraph 容器启动阶段
-        direction TB
-        S["SingletonBean<br/>创建一次"]
-        P["PrototypeBean<br/>注入时创建一次"]
-        S -->|"依赖注入"| P
+sequenceDiagram
+    participant Container as Spring 容器
+    participant Singleton as SingletonBean
+    participant Prototype as PrototypeBean
+    
+    Note over Container,Prototype: 容器启动阶段
+    Container->>Singleton: 创建单例实例
+    Container->>Prototype: 创建原型实例（仅一次）
+    Singleton-->>Prototype: 依赖注入
+    
+    Note over Container,Prototype: 运行时阶段
+    rect rgb(255, 235, 238)
+        Note over Singleton,Prototype: 问题：每次调用都返回同一个实例
+        Singleton->>Prototype: 调用1.getData()
+        Prototype-->>Singleton: 实例A
+        Singleton->>Prototype: 调用2.getData()
+        Prototype-->>Singleton: 实例A（相同）
+        Singleton->>Prototype: 调用3.getData()
+        Prototype-->>Singleton: 实例A（相同）
     end
-    
-    subgraph 运行时阶段
-        direction TB
-        C1["调用1.doSomething()"]
-        C2["调用2.doSomething()"]
-        C3["调用3.doSomething()"]
-    end
-    
-    C1 --> S
-    C2 --> S
-    C3 --> S
-    
-    P -.->|"返回同一实例"| C1
-    P -.->|"返回同一实例"| C2
-    P -.->|"返回同一实例"| C3
-    
-    style S fill:#c8e6c9,stroke:#2e7d32
-    style P fill:#ffcdd2,stroke:#c62828
 ```
 
 ### 3.2 解决方案
