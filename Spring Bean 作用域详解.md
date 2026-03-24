@@ -398,13 +398,28 @@ flowchart TB
     
     Q2 -->|"请求级别"| Request["request"]
     Q2 -->|"会话级别"| Session["session"]
+    Q2 -->|"应用级别"| Application["application"]
+    Q2 -->|"WebSocket 会话"| WebSocket["websocket"]
     Q2 -->|"每次使用独立"| Prototype["prototype"]
     
     style Singleton fill:#c8e6c9,stroke:#2e7d32
     style Prototype fill:#e3f2fd,stroke:#1565c0
     style Request fill:#fff3e0,stroke:#ef6c00
     style Session fill:#f3e5f5,stroke:#7b1fa2
+    style Application fill:#ffecb3,stroke:#ff8f00
+    style WebSocket fill:#e1bee7,stroke:#7b1fa2
 ```
+
+**作用域选择速查表**：
+
+| 场景 | 推荐作用域 | 说明 |
+|------|------------|------|
+| 工具类、配置类、无状态服务 | `singleton` | 默认选择，性能最优 |
+| 每次调用需要独立实例 | `prototype` | 有状态对象，需手动管理销毁 |
+| HTTP 请求内共享数据 | `request` | 请求参数、请求上下文 |
+| 用户会话内共享数据 | `session` | 用户登录信息、购物车 |
+| 全局应用级配置 | `application` | 应用级缓存、全局配置 |
+| WebSocket 连接内共享数据 | `websocket` | WebSocket 会话状态 |
 
 ### 4.2 线程安全注意事项
 
