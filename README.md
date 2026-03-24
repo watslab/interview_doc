@@ -11,6 +11,12 @@
 | [Java HashMap 扩容机制详解](./Java%20HashMap%20扩容机制详解.md) | 深入解析 HashMap 扩容机制，包括触发条件、元素迁移流程、JDK 1.7 与 1.8 核心差异对比、面试高频问题总结 |
 | [Java 单例模式详解](./Java%20单例模式详解.md) | 详解单例模式的四种实现方式：饿汉模式、懒汉模式（单线程/多线程/双重检查锁定），分析线程安全与性能权衡 |
 
+### Spring
+
+| 文档 | 概述 |
+|------|------|
+| [Spring Bean 作用域详解](./Spring%20Bean%20作用域详解.md) | 详解 Spring Bean 的六种作用域，重点分析单例 Bean 依赖原型 Bean 的问题与四种解决方案 |
+
 ### MySQL
 
 | 文档 | 概述 |
@@ -55,6 +61,8 @@ interview_projects/
 ├── Java/
 │   ├── Java HashMap 扩容机制详解.md
 │   └── Java 单例模式详解.md
+├── Spring/
+│   └── Spring Bean 作用域详解.md
 ├── MySQL/
 │   ├── MySQL MVCC 多版本并发控制机制详解.md
 │   └── MySQL 多粒度锁机制详解.md
