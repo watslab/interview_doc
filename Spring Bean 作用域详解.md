@@ -80,36 +80,47 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph WebScopes["Web 作用域"]
-        direction TB
-        
-        Request["request<br/>每个 HTTP 请求一个实例"]
-        Session["session<br/>每个 HTTP 会话一个实例"]
-        Application["application<br/>每个 ServletContext 一个实例"]
-        WebSocket["websocket<br/>每个 WebSocket 会话一个实例"]
+    subgraph Application["application（应用级别）"]
+        subgraph Session["session（会话级别）"]
+            subgraph Request["request（请求级别）"]
+                R1["请求实例1"]
+                R2["请求实例2"]
+            end
+            S1["会话实例"]
+        end
+        A1["应用实例"]
     end
     
-    Request --> Session
-    Session --> Application
+    subgraph WebSocket["websocket（WebSocket 会话）"]
+        W1["WebSocket 实例"]
+    end
     
-    style Request fill:#e3f2fd,stroke:#1565c0
-    style Session fill:#c8e6c9,stroke:#2e7d32
-    style Application fill:#fff3e0,stroke:#ef6c00
-    style WebSocket fill:#f3e5f5,stroke:#7b1fa2
+    style Application fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style Session fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style Request fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style WebSocket fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
 ```
 
 ```java
+// request 作用域
 @Component
 @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class RequestScopedBean {
-    // 请求级别数据
-}
+public class RequestScopedBean {}
 
+// session 作用域
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class SessionScopedBean {
-    // 会话级别数据，如用户信息
-}
+public class SessionScopedBean {}
+
+// application 作用域
+@Component
+@Scope(value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class ApplicationScopedBean {}
+
+// websocket 作用域
+@Component
+@Scope(value = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class WebSocketScopedBean {}
 ```
 
 ---
@@ -142,22 +153,30 @@ public class SingletonBean {
 **问题图解**：
 
 ```mermaid
-flowchart TB
-    subgraph Container["Spring 容器"]
-        S["SingletonBean<br/>（单例）"]
-        P["PrototypeBean<br/>（注入时创建）"]
+flowchart LR
+    subgraph 容器启动阶段
+        direction TB
+        S["SingletonBean<br/>创建一次"]
+        P["PrototypeBean<br/>注入时创建一次"]
+        S -->|"依赖注入"| P
     end
     
-    S -->|"依赖注入"| P
+    subgraph 运行时阶段
+        direction TB
+        C1["调用1.doSomething()"]
+        C2["调用2.doSomething()"]
+        C3["调用3.doSomething()"]
+    end
     
-    R1["第一次调用"] --> S
-    R2["第二次调用"] --> S
-    R3["第三次调用"] --> S
+    C1 --> S
+    C2 --> S
+    C3 --> S
     
-    P -.->|"每次返回同一实例"| R1
-    P -.->|"每次返回同一实例"| R2
-    P -.->|"每次返回同一实例"| R3
+    P -.->|"返回同一实例"| C1
+    P -.->|"返回同一实例"| C2
+    P -.->|"返回同一实例"| C3
     
+    style S fill:#c8e6c9,stroke:#2e7d32
     style P fill:#ffcdd2,stroke:#c62828
 ```
 
@@ -186,6 +205,24 @@ public class SingletonBean {
 
 #### 方案二：ObjectFactory / ObjectProvider
 
+**ObjectFactory 方式**：
+
+```java
+@Component
+public class SingletonBean {
+    
+    @Autowired
+    private ObjectFactory<PrototypeBean> prototypeBeanFactory;
+    
+    public void doSomething() {
+        PrototypeBean bean = prototypeBeanFactory.getObject();
+        System.out.println(bean.getData());
+    }
+}
+```
+
+**ObjectProvider 方式**（推荐）：
+
 ```java
 @Component
 public class SingletonBean {
@@ -194,8 +231,8 @@ public class SingletonBean {
     private ObjectProvider<PrototypeBean> prototypeBeanProvider;
     
     public void doSomething() {
-        PrototypeBean prototypeBean = prototypeBeanProvider.getObject();  // 每次获取新实例
-        System.out.println(prototypeBean.getData());
+        PrototypeBean bean = prototypeBeanProvider.getObject();
+        System.out.println(bean.getData());
     }
 }
 ```
@@ -204,6 +241,7 @@ public class SingletonBean {
 - 不需要 CGLIB 代理
 - 代码侵入性低
 - 支持延迟获取
+- `ObjectProvider` 继承 `ObjectFactory`，提供更多便捷方法（如 `getIfAvailable`、`stream`）
 
 #### 方案三：Scoped Proxy（作用域代理）
 
