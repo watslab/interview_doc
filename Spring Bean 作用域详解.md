@@ -38,14 +38,29 @@ public class SingletonBean {
 **生命周期**：
 
 ```mermaid
-flowchart LR
-    A["容器启动"] --> B["创建单例实例"]
-    B --> C["缓存实例"]
-    C --> D["请求获取"]
-    D --> E["返回同一实例"]
-    E --> D
-    C --> F["容器关闭"]
-    F --> G["销毁实例"]
+sequenceDiagram
+    participant Container as Spring 容器
+    participant Cache as 单例缓存
+    participant Client1 as 客户端1
+    participant Client2 as 客户端2
+    participant Client3 as 客户端3
+    
+    Note over Container,Client3: singleton 生命周期
+    Container->>Cache: 容器启动时创建实例并缓存
+    
+    Client1->>Container: 请求获取 Bean
+    Container->>Cache: 从缓存获取
+    Cache-->>Client1: 返回同一实例
+    
+    Client2->>Container: 请求获取 Bean
+    Container->>Cache: 从缓存获取
+    Cache-->>Client2: 返回同一实例
+    
+    Client3->>Container: 请求获取 Bean
+    Container->>Cache: 从缓存获取
+    Cache-->>Client3: 返回同一实例
+    
+    Container->>Cache: 容器关闭时销毁实例
 ```
 
 ### 2.3 prototype（原型作用域）
@@ -66,14 +81,28 @@ public class PrototypeBean {
 **生命周期**：
 
 ```mermaid
-flowchart LR
-    A["请求获取"] --> B["创建新实例"]
-    B --> C["返回实例"]
-    C --> D["客户端使用"]
-    D --> E["由客户端负责销毁"]
+sequenceDiagram
+    participant Client1 as 客户端1
+    participant Client2 as 客户端2
+    participant Container as Spring 容器
+    participant Instance1 as 实例1
+    participant Instance2 as 实例2
     
-    A --> F["再次请求获取"]
-    F --> G["创建另一个新实例"]
+    Note over Client1,Instance2: prototype 生命周期
+    
+    Client1->>Container: 请求获取 Bean
+    Container->>Instance1: 创建新实例
+    Instance1-->>Client1: 返回实例
+    Client1->>Instance1: 使用实例
+    
+    Note right of Client1: 客户端负责销毁
+    
+    Client2->>Container: 再次请求获取 Bean
+    Container->>Instance2: 创建另一个新实例
+    Instance2-->>Client2: 返回实例
+    Client2->>Instance2: 使用实例
+    
+    Note right of Client2: 客户端负责销毁
 ```
 
 ### 2.4 Web 作用域
