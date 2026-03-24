@@ -81,14 +81,13 @@ flowchart LR
 ```mermaid
 flowchart TB
     subgraph WebScopes["Web 作用域"]
-        direction TB
         subgraph Application["application（应用级别）"]
             subgraph Session["session（会话级别）"]
                 subgraph Request["request（请求级别）"]
                 end
             end
         end
-        subgraph WebSocket["websocket（WebSocket 会话）"]
+        subgraph WebSocket["websocket\n（WebSocket 会话）"]
         end
     end
     
@@ -260,22 +259,35 @@ public class SingletonBean {
 **原理**：Spring 注入的是代理对象，每次调用代理方法时，代理会从容器获取真正的原型实例。
 
 ```mermaid
-flowchart LR
-    subgraph SingletonBean
-        Proxy["PrototypeBean 代理"]
+sequenceDiagram
+    participant Singleton as SingletonBean
+    participant Proxy as 代理对象
+    participant Container as Spring 容器
+    participant P1 as 实例1
+    participant P2 as 实例2
+    participant P3 as 实例3
+    
+    Note over Singleton,P3: Scoped Proxy 工作原理
+    rect rgb(232, 245, 233)
+        Note over Singleton,P3: 每次方法调用都获取新实例
+        Singleton->>Proxy: 调用1.getData()
+        Proxy->>Container: getBean()
+        Container->>P1: 创建实例
+        P1-->>Proxy: 返回实例
+        Proxy-->>Singleton: 返回数据
+        
+        Singleton->>Proxy: 调用2.getData()
+        Proxy->>Container: getBean()
+        Container->>P2: 创建实例
+        P2-->>Proxy: 返回实例
+        Proxy-->>Singleton: 返回数据
+        
+        Singleton->>Proxy: 调用3.getData()
+        Proxy->>Container: getBean()
+        Container->>P3: 创建实例
+        P3-->>Proxy: 返回实例
+        Proxy-->>Singleton: 返回数据
     end
-    
-    subgraph Container["Spring 容器"]
-        P1["PrototypeBean 实例1"]
-        P2["PrototypeBean 实例2"]
-        P3["PrototypeBean 实例3"]
-    end
-    
-    Proxy -->|"第1次调用"| P1
-    Proxy -->|"第2次调用"| P2
-    Proxy -->|"第3次调用"| P3
-    
-    style Proxy fill:#fff3e0,stroke:#ef6c00
 ```
 
 #### 方案四：ApplicationContextAware（不推荐）
