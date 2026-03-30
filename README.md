@@ -59,6 +59,13 @@
 | 文档 | 概述 |
 |------|------|
 | [消息中间件 MQ 对比详情](./消息中间件MQ对比详情.md) | 全面对比 ActiveMQ、RabbitMQ、Kafka、RocketMQ、Pulsar 五大消息中间件，包括架构图、工作流程、性能指标、功能对比与选型建议 |
+| [RocketMQ 消息中间件详解](./RocketMQ消息中间件详解.md) | 深入解析 RocketMQ 核心架构、消息模型、消息发送与消费流程、顺序消息、事务消息、延迟消息等高级特性与最佳实践 |
+
+### Docker
+
+| 文档 | 概述 |
+|------|------|
+| [Docker 容器技术详解](./Docker容器技术详解.md) | 全面介绍 Docker 容器技术，包括核心概念、底层原理、常用命令、Dockerfile 编写、Docker Compose 使用与实战案例 |
 
 ## 目录结构
 
@@ -91,7 +98,10 @@ interview_projects/
 │   ├── Redis 抢购票据解决方案.md
 │   └── Redis 批量数据原子性操作解决方案.md
 ├── 消息中间件MQ/
-│   └── 消息中间件MQ对比详情.md
+│   ├── 消息中间件MQ对比详情.md
+│   └── RocketMQ消息中间件详解.md
+├── Docker/
+│   └── Docker容器技术详解.md
 ├── .gitignore
 └── README.md
 ```
