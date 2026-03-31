@@ -2412,9 +2412,897 @@ services:
 
 ---
 
-## 七、Docker 实战案例
+## 七、Docker Swarm 集群管理
 
-### 7.1 部署 Nginx Web 服务
+Docker Swarm 是 Docker 官方提供的容器集群管理和编排工具，它允许将多个 Docker 主机组成一个虚拟的整体，实现容器的集群化部署和管理。Docker 1.12 版本后，Swarm mode 已内嵌到 Docker 引擎中。
+
+### 7.1 Swarm 核心概念
+
+#### 7.1.1 概念层级关系
+
+Swarm 中的核心概念存在明确的层级关系，从应用到底层容器依次为：
+
+```mermaid
+flowchart TB
+    subgraph AppLevel["应用层"]
+        App["应用程序<br/>（Application）"]
+    end
+    
+    subgraph StackLevel["Stack 层"]
+        Stack["Stack（栈）<br/>一组相关服务的集合<br/>通过 docker-compose.yml 定义"]
+    end
+    
+    subgraph ServiceLevel["Service 层"]
+        S1["Service A<br/>服务定义<br/>镜像、端口、副本数"]
+        S2["Service B<br/>服务定义"]
+    end
+    
+    subgraph TaskLevel["Task 层"]
+        T1["Task 1"]
+        T2["Task 2"]
+        T3["Task 3"]
+        T4["Task 4"]
+    end
+    
+    subgraph ContainerLevel["Container 层"]
+        C1["Container<br/>容器实例"]
+        C2["Container<br/>容器实例"]
+        C3["Container<br/>容器实例"]
+        C4["Container<br/>容器实例"]
+    end
+    
+    App --> Stack
+    Stack --> S1
+    Stack --> S2
+    S1 --> T1
+    S1 --> T2
+    S2 --> T3
+    S2 --> T4
+    T1 --> C1
+    T2 --> C2
+    T3 --> C3
+    T4 --> C4
+    
+    style AppLevel fill:#f3e5f5,stroke:#7b1fa2
+    style StackLevel fill:#e8eaf6,stroke:#3f51b5
+    style ServiceLevel fill:#e3f2fd,stroke:#1565c0
+    style TaskLevel fill:#c8e6c9,stroke:#2e7d32
+    style ContainerLevel fill:#fff3e0,stroke:#ef6c00
+```
+
+#### 7.1.2 核心概念详解
+
+| 概念 | 说明 | 对应关系 |
+|------|------|----------|
+| **Swarm** | 由多个 Docker 节点组成的集群，作为一个整体对外提供服务 | 集群级别 |
+| **Node（节点）** | Swarm 集群中的单个 Docker 引擎实例，可以是物理机或虚拟机 | 集群组成单元 |
+| **Stack（栈）** | 一组相关服务的集合，通过 docker-compose.yml 文件定义，用于部署完整应用 | Stack : Service = 1 : N |
+| **Service（服务）** | 在 Swarm 上运行的任务定义，指定镜像、端口、副本数等参数 | Service : Task = 1 : N（副本数） |
+| **Task（任务）** | Swarm 调度的最小单元，每个 Task 对应一个容器实例 | Task : Container = 1 : 1 |
+| **Container（容器）** | 实际运行的容器实例，由 Task 启动和管理 | 最小执行单元 |
+
+#### 7.1.3 Service 与 Stack 的关系
+
+```mermaid
+flowchart LR
+    subgraph StackFile["docker-compose.yml"]
+        Code["services:<br/>  web:<br/>    image: nginx<br/>    replicas: 3<br/>  db:<br/>    image: mysql<br/>    replicas: 1<br/>  redis:<br/>    image: redis<br/>    replicas: 2"]
+    end
+    
+    subgraph Deploy["docker stack deploy"]
+        CMD["部署命令"]
+    end
+    
+    subgraph Stack["myapp Stack"]
+        Web["web Service<br/>3 副本"]
+        DB["db Service<br/>1 副本"]
+        Redis["redis Service<br/>2 副本"]
+    end
+    
+    StackFile --> Deploy
+    Deploy --> Stack
+    
+    style StackFile fill:#f3e5f5,stroke:#7b1fa2
+    style Deploy fill:#e8eaf6,stroke:#3f51b5
+    style Stack fill:#e3f2fd,stroke:#1565c0
+```
+
+**Service 与 Stack 关系说明**：
+
+| 对比项 | Service | Stack |
+|--------|---------|-------|
+| **定义方式** | `docker service create` 命令或 Compose 文件 | docker-compose.yml 文件 |
+| **管理粒度** | 单个服务 | 多个相关服务的集合 |
+| **部署命令** | `docker service create` | `docker stack deploy -c docker-compose.yml` |
+| **适用场景** | 单一服务部署、快速测试 | 完整应用部署、微服务架构 |
+| **服务发现** | 服务名访问 | 服务名访问，同一 Stack 内服务互通 |
+| **依赖管理** | 不支持服务依赖 | 支持 depends_on 定义服务启动顺序 |
+
+**总结**：Stack 是一组 Service 的逻辑集合，用于部署完整的多服务应用。一个 Stack 可以包含多个 Service，每个 Service 可以有多个副本（Task/Container）。
+
+### 7.2 集群架构
+
+#### 7.2.1 整体架构图
+
+```mermaid
+flowchart TB
+    subgraph External["外部访问"]
+        User["用户/客户端"]
+    end
+    
+    subgraph SwarmCluster["Docker Swarm 集群"]
+        subgraph Managers["Manager 节点组（Raft 集群）"]
+            M1["Manager 1<br/>Leader<br/>调度器 + API"]
+            M2["Manager 2<br/>Follower"]
+            M3["Manager 3<br/>Follower"]
+            
+            M1 <-->|"Raft 共识<br/>日志复制"| M2
+            M1 <-->|"Raft 共识<br/>日志复制"| M3
+            M2 <-->|"Raft 共识"| M3
+        end
+        
+        subgraph Workers["Worker 节点组"]
+            W1["Worker 1"]
+            W2["Worker 2"]
+            W3["Worker 3"]
+        end
+        
+        subgraph Containers["容器实例"]
+            subgraph W1Containers["Worker 1 上的容器"]
+                WC1["web-1<br/>容器"]
+                WC2["db-1<br/>容器"]
+            end
+            subgraph W2Containers["Worker 2 上的容器"]
+                WC3["web-2<br/>容器"]
+                WC4["redis-1<br/>容器"]
+            end
+            subgraph W3Containers["Worker 3 上的容器"]
+                WC5["web-3<br/>容器"]
+                WC6["redis-2<br/>容器"]
+            end
+        end
+        
+        subgraph OverlayNet["Overlay 网络"]
+            ONet["跨主机容器通信网络<br/>VXLAN 隧道"]
+        end
+    end
+    
+    User -->|"HTTP 请求<br/>端口 80"| M1
+    M1 -->|"调度 Task"| W1
+    M1 -->|"调度 Task"| W2
+    M1 -->|"调度 Task"| W3
+    
+    W1 --> WC1
+    W1 --> WC2
+    W2 --> WC3
+    W2 --> WC4
+    W3 --> WC5
+    W3 --> WC6
+    
+    WC1 <--> ONet
+    WC2 <--> ONet
+    WC3 <--> ONet
+    WC4 <--> ONet
+    WC5 <--> ONet
+    WC6 <--> ONet
+    
+    style External fill:#fce4ec,stroke:#c2185b
+    style Managers fill:#e3f2fd,stroke:#1565c0
+    style Workers fill:#c8e6c9,stroke:#2e7d32
+    style Containers fill:#fff3e0,stroke:#ef6c00
+    style OverlayNet fill:#f3e5f5,stroke:#7b1fa2
+```
+
+#### 7.2.2 集群工作流程
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant Manager as Manager 节点
+    participant Raft as Raft 集群
+    participant Worker1 as Worker 1
+    participant Worker2 as Worker 2
+    participant Registry as 镜像仓库
+    
+    User->>Manager: docker service create --name web --replicas 2 nginx
+    Manager->>Raft: 提交服务定义到 Raft 日志
+    Raft-->>Manager: 多数节点确认，日志提交
+    Manager->>Manager: 调度器生成 2 个 Task
+    
+    par 调度 Task 1
+        Manager->>Worker1: 分配 Task 1
+        Worker1->>Registry: 拉取 nginx 镜像
+        Registry-->>Worker1: 返回镜像
+        Worker1->>Worker1: 启动容器 web.1
+        Worker1-->>Manager: 上报 Task 状态 Running
+    and 调度 Task 2
+        Manager->>Worker2: 分配 Task 2
+        Worker2->>Registry: 拉取 nginx 镜像
+        Registry-->>Worker2: 返回镜像
+        Worker2->>Worker2: 启动容器 web.2
+        Worker2-->>Manager: 上报 Task 状态 Running
+    end
+    
+    Manager-->>User: 服务创建完成，2/2 副本运行
+```
+
+### 7.3 节点类型
+
+#### 7.3.1 节点角色对比
+
+| 节点类型 | 职责 | 可运行容器 | 数量建议 |
+|----------|------|------------|----------|
+| **Manager 节点** | 集群管理、服务编排、调度、Raft 共识 | 可以，但不推荐 | 奇数个（3、5、7） |
+| **Worker 节点** | 执行任务、运行容器 | 是 | 根据负载需求 |
+
+#### 7.3.2 Manager 节点核心组件
+
+```mermaid
+flowchart TB
+    subgraph ManagerNode["Manager 节点"]
+        subgraph API["API 层"]
+            DockerAPI["Docker API<br/>接收客户端请求"]
+        end
+        
+        subgraph Orchestration["编排层"]
+            Scheduler["调度器<br/>分配 Task 到节点"]
+            Orchestrator["编排器<br/>管理服务期望状态"]
+        end
+        
+        subgraph RaftLayer["Raft 共识层"]
+            RaftNode["Raft 节点<br/>Leader/Follower"]
+            LogStore["日志存储<br/>集群状态日志"]
+        end
+        
+        subgraph Dispatcher["分发器"]
+            TaskDispatch["Task 分发<br/>向 Worker 分配任务"]
+        end
+    end
+    
+    DockerAPI --> Orchestrator
+    Orchestrator --> Scheduler
+    Scheduler --> TaskDispatch
+    Orchestrator <--> RaftNode
+    RaftNode <--> LogStore
+    TaskDispatch -->|"gRPC"| Workers["Worker 节点"]
+    
+    style API fill:#e3f2fd,stroke:#1565c0
+    style Orchestration fill:#c8e6c9,stroke:#2e7d32
+    style RaftLayer fill:#ffcdd2,stroke:#c62828
+    style Dispatcher fill:#fff3e0,stroke:#ef6c00
+```
+
+**Manager 节点职责详解**：
+
+| 组件 | 职责 | 说明 |
+|------|------|------|
+| **API Server** | 接收请求 | 处理 docker service/stack/node 等命令 |
+| **Orchestrator** | 状态管理 | 维护服务的期望状态，确保实际状态与期望一致 |
+| **Scheduler** | 任务调度 | 根据资源、约束、策略选择最优节点运行 Task |
+| **Raft Consensus** | 共识达成 | 多 Manager 之间保持集群状态一致 |
+| **Dispatcher** | 任务分发 | 将 Task 分配给 Worker 节点执行 |
+
+#### 7.3.3 Worker 节点工作流程
+
+```mermaid
+flowchart LR
+    subgraph WorkerNode["Worker 节点"]
+        WorkerAgent["Worker Agent<br/>与 Manager 通信"]
+        DockerEngine["Docker Engine<br/>执行容器操作"]
+        ContainerRuntime["容器运行时<br/>containerd"]
+    end
+    
+    Manager["Manager 节点"] -->|"分配 Task"| WorkerAgent
+    WorkerAgent -->|"创建容器"| DockerEngine
+    DockerEngine -->|"运行容器"| ContainerRuntime
+    ContainerRuntime -->|"状态上报"| WorkerAgent
+    WorkerAgent -->|"心跳 + 状态"| Manager
+    
+    style WorkerNode fill:#c8e6c9,stroke:#2e7d32
+```
+
+### 7.4 Raft 共识算法
+
+#### 7.4.1 Raft 算法原理
+
+Swarm 使用 Raft 算法实现 Manager 节点间的高可用和数据一致性。Raft 是一种分布式共识算法，确保在部分节点故障时集群仍能正常工作。
+
+```mermaid
+stateDiagram-v2
+    [*] --> Follower: 节点启动
+    
+    Follower --> Candidate: 选举超时<br/>未收到 Leader 心跳
+    Candidate --> Leader: 获得多数票
+    Candidate --> Follower: 收到更高任期消息<br/>或选举失败
+    
+    Leader --> Follower: 发现更高任期<br/>或网络分区
+    
+    state Follower {
+        [*] --> 接收日志
+        接收日志 --> 响应心跳
+        响应心跳 --> [*]
+    }
+    
+    state Leader {
+        [*] --> 发送心跳
+        发送心跳 --> 日志复制
+        日志复制 --> 提交日志
+        提交日志 --> [*]
+    }
+    
+    state Candidate {
+        [*] --> 发起选举
+        发起选举 --> 等待投票
+        等待投票 --> [*]
+    }
+```
+
+#### 7.4.2 Raft 日志复制流程
+
+```mermaid
+sequenceDiagram
+    participant Client as 客户端
+    participant Leader as Leader
+    participant F1 as Follower 1
+    participant F2 as Follower 2
+    
+    Client->>Leader: 写请求（创建服务）
+    Leader->>Leader: 追加日志到本地
+    
+    par 日志复制
+        Leader->>F1: AppendEntries RPC
+        F1->>F1: 追加日志
+        F1-->>Leader: 确认
+    and
+        Leader->>F2: AppendEntries RPC
+        F2->>F2: 追加日志
+        F2-->>Leader: 确认
+    end
+    
+    Note over Leader: 收到多数确认<br/>日志提交
+    Leader->>Leader: 应用到状态机
+    Leader-->>Client: 返回成功
+    
+    par 提交通知
+        Leader->>F1: 心跳携带提交索引
+        Leader->>F2: 心跳携带提交索引
+    end
+    
+    F1->>F1: 应用到状态机
+    F2->>F2: 应用到状态机
+```
+
+#### 7.4.3 Raft 关键特性
+
+| 特性 | 说明 | 在 Swarm 中的应用 |
+|------|------|-------------------|
+| **Leader 选举** | 自动选举 Leader 处理所有写请求 | Manager 节点自动选举 Leader |
+| **日志复制** | Leader 将操作日志同步到 Follower | 服务定义、节点信息同步 |
+| **故障恢复** | Leader 故障时自动选举新 Leader | Manager 故障后集群自动恢复 |
+| **多数派确认** | 操作需多数节点确认后才提交 | 确保数据一致性，防止脑裂 |
+
+#### 7.4.4 高可用配置建议
+
+```mermaid
+flowchart LR
+    subgraph Cluster["Manager 节点数量"]
+        N3["3 个节点<br/>容忍 1 个故障"]
+        N5["5 个节点<br/>容忍 2 个故障"]
+        N7["7 个节点<br/>容忍 3 个故障"]
+    end
+    
+    subgraph Formula["计算公式"]
+        F["容忍故障数 = (n-1)/2<br/>n 为 Manager 节点数"]
+    end
+    
+    Cluster --> Formula
+    
+    style N3 fill:#c8e6c9,stroke:#2e7d32
+    style N5 fill:#fff3e0,stroke:#ef6c00
+    style N7 fill:#ffcdd2,stroke:#c62828
+```
+
+**推荐配置**：
+- 生产环境：3 或 5 个 Manager 节点
+- 最大容忍故障：`(n-1)/2` 个节点
+- 节点数量必须为奇数，避免选举平票
+
+### 7.5 服务调度机制
+
+#### 7.5.1 服务创建与调度流程
+
+```mermaid
+flowchart TB
+    subgraph Request["1. 请求阶段"]
+        A["docker service create<br/>--name web --replicas 3 nginx"] --> B["Manager API 接收请求"]
+    end
+    
+    subgraph Orchestration["2. 编排阶段"]
+        B --> C["Orchestrator 创建服务对象"]
+        C --> D["生成期望状态<br/>3 个 Task"]
+        D --> E["写入 Raft 日志"]
+        E --> F["Raft 多数确认"]
+    end
+    
+    subgraph Scheduling["3. 调度阶段"]
+        F --> G["Scheduler 获取待调度 Task"]
+        G --> H["评估所有可用节点"]
+        H --> I["应用调度策略和约束"]
+        I --> J["选择最优节点"]
+    end
+    
+    subgraph Dispatch["4. 分发阶段"]
+        J --> K["Dispatcher 发送 Task 到 Worker"]
+        K --> L["Worker 接收 Task"]
+    end
+    
+    subgraph Execution["5. 执行阶段"]
+        L --> M["拉取镜像"]
+        M --> N["创建容器"]
+        N --> O["启动容器"]
+        O --> P["上报状态到 Manager"]
+    end
+    
+    subgraph Reconcile["6. 调谐阶段"]
+        P --> Q["Manager 更新集群状态"]
+        Q --> R{"实际状态 == 期望状态?"}
+        R -->|"否"| G
+        R -->|"是"| S["服务就绪"]
+    end
+    
+    style Request fill:#f3e5f5,stroke:#7b1fa2
+    style Orchestration fill:#e3f2fd,stroke:#1565c0
+    style Scheduling fill:#c8e6c9,stroke:#2e7d32
+    style Dispatch fill:#fff3e0,stroke:#ef6c00
+    style Execution fill:#fce4ec,stroke:#c2185b
+    style Reconcile fill:#e0e0e0,stroke:#616161
+```
+
+#### 7.5.2 调度策略详解
+
+| 策略 | 说明 | 适用场景 |
+|------|------|----------|
+| **spread** | 默认策略，尽量将任务分散到不同节点 | 高可用场景，避免单点故障 |
+| **binpack** | 尽量将任务集中到少数节点，节省资源 | 资源优化场景，降低成本 |
+| **random** | 随机选择节点 | 测试环境 |
+
+#### 7.5.3 调度约束
+
+```mermaid
+flowchart LR
+    subgraph Constraints["调度约束类型"]
+        NodeID["node.id<br/>指定节点 ID"]
+        NodeName["node.hostname<br/>指定主机名"]
+        NodeLabel["node.labels<br/>节点标签"]
+        EngineLabel["engine.labels<br/>引擎标签"]
+    end
+    
+    subgraph Examples["示例"]
+        E1["--constraint 'node.role==worker'<br/>只在 Worker 节点运行"]
+        E2["--constraint 'node.labels.zone==us-east'<br/>在特定区域运行"]
+        E3["--constraint 'node.hostname!=node1'<br/>排除特定节点"]
+    end
+    
+    Constraints --> Examples
+    
+    style Constraints fill:#e3f2fd,stroke:#1565c0
+    style Examples fill:#c8e6c9,stroke:#2e7d32
+```
+
+### 7.6 Overlay 网络
+
+#### 7.6.1 Overlay 网络架构
+
+Overlay 网络通过 VXLAN 技术实现跨主机的容器通信，在物理网络之上构建虚拟的二层网络。
+
+```mermaid
+flowchart TB
+    subgraph Host1["主机 1 (192.168.1.10)"]
+        subgraph NS1["容器网络命名空间"]
+            C1["容器 A<br/>eth0: 10.0.0.2"]
+        end
+        Veth1["veth pair"]
+        Br1["br0 网桥"]
+        VTEP1["VTEP<br/>VXLAN 隧道端点"]
+    end
+    
+    subgraph Host2["主机 2 (192.168.1.11)"]
+        subgraph NS2["容器网络命名空间"]
+            C2["容器 B<br/>eth0: 10.0.0.3"]
+        end
+        Veth2["veth pair"]
+        Br2["br0 网桥"]
+        VTEP2["VTEP<br/>VXLAN 隧道端点"]
+    end
+    
+    subgraph Underlay["底层物理网络"]
+        Physical["物理交换机/路由器"]
+    end
+    
+    subgraph ControlPlane["控制平面"]
+        Manager["Swarm Manager<br/>网络信息分发"]
+    end
+    
+    C1 -->|"同一子网"| Veth1
+    Veth1 --> Br1
+    Br1 <--> VTEP1
+    
+    C2 -->|"同一子网"| Veth2
+    Veth2 --> Br2
+    Br2 <--> VTEP2
+    
+    VTEP1 <-->|"VXLAN 隧道<br/>UDP 4789"| VTEP2
+    VTEP1 --> Physical
+    VTEP2 --> Physical
+    
+    Manager -->|"分发网络配置"| VTEP1
+    Manager -->|"分发网络配置"| VTEP2
+    
+    style Host1 fill:#e3f2fd,stroke:#1565c0
+    style Host2 fill:#c8e6c9,stroke:#2e7d32
+    style Underlay fill:#fff3e0,stroke:#ef6c00
+    style ControlPlane fill:#f3e5f5,stroke:#7b1fa2
+```
+
+#### 7.6.2 VXLAN 封装过程
+
+```mermaid
+sequenceDiagram
+    participant CA as 容器 A (10.0.0.2)
+    participant VTEP1 as VTEP 主机1
+    participant Network as 物理网络
+    participant VTEP2 as VTEP 主机2
+    participant CB as 容器 B (10.0.0.3)
+    
+    CA->>VTEP1: 原始数据包<br/>Src: 10.0.0.2, Dst: 10.0.0.3
+    VTEP1->>VTEP1: VXLAN 封装<br/>添加 VNI (网络标识)
+    VTEP1->>VTEP1: UDP 封装<br/>Src: 192.168.1.10:4789<br/>Dst: 192.168.1.11:4789
+    VTEP1->>Network: 发送封装后的数据包
+    Network->>VTEP2: 转发数据包
+    VTEP2->>VTEP2: 解封装<br/>移除 UDP 和 VXLAN 头
+    VTEP2->>CB: 原始数据包<br/>Src: 10.0.0.2, Dst: 10.0.0.3
+```
+
+#### 7.6.3 Overlay 网络特点
+
+| 特点 | 说明 |
+|------|------|
+| **跨主机通信** | 不同主机上的容器可以直接通信，如同在同一二层网络 |
+| **服务发现** | 内置 DNS，容器可通过服务名访问其他服务 |
+| **负载均衡** | 自动实现服务的负载均衡 |
+| **加密传输** | 支持 `--opt encrypted` 加密跨节点通信 |
+| **网络隔离** | 不同 Overlay 网络之间相互隔离 |
+
+### 7.7 服务发现与负载均衡
+
+#### 7.7.1 服务发现机制
+
+Swarm 通过内置 DNS 服务器实现服务发现，每个服务自动注册到 DNS 中。
+
+```mermaid
+flowchart TB
+    subgraph ClientContainer["客户端容器"]
+        App["应用程序"]
+        DNSClient["DNS 客户端"]
+    end
+    
+    subgraph SwarmDNS["Swarm 内置 DNS"]
+        DNSResolver["DNS 解析器"]
+        ServiceRegistry["服务注册表<br/>web → VIP: 10.0.0.100<br/>db → VIP: 10.0.0.101"]
+    end
+    
+    subgraph Services["服务实例"]
+        subgraph WebService["web 服务"]
+            WebVIP["VIP: 10.0.0.100"]
+            Web1["Task 1<br/>10.0.0.2"]
+            Web2["Task 2<br/>10.0.0.3"]
+        end
+        
+        subgraph DBService["db 服务"]
+            DBVIP["VIP: 10.0.0.101"]
+            DB1["Task 1<br/>10.0.0.4"]
+        end
+    end
+    
+    App -->|"访问 web"| DNSClient
+    DNSClient -->|"DNS 查询: web"| DNSResolver
+    DNSResolver -->|"查询"| ServiceRegistry
+    ServiceRegistry -->|"返回 VIP"| DNSResolver
+    DNSResolver -->|"10.0.0.100"| DNSClient
+    DNSClient -->|"连接 VIP"| WebVIP
+    WebVIP -->|"负载均衡"| Web1
+    WebVIP -->|"负载均衡"| Web2
+    
+    style ClientContainer fill:#e3f2fd,stroke:#1565c0
+    style SwarmDNS fill:#f3e5f5,stroke:#7b1fa2
+    style Services fill:#c8e6c9,stroke:#2e7d32
+```
+
+#### 7.7.2 负载均衡方式
+
+**方式一：VIP（虚拟 IP）- 默认方式**
+
+```mermaid
+flowchart LR
+    subgraph Client["客户端"]
+        Request["请求 web 服务"]
+    end
+    
+    subgraph VIP["VIP 负载均衡"]
+        DNS["DNS 解析<br/>web → 10.0.0.100"]
+        IPVS["IPVS 负载均衡器<br/>内核级转发"]
+    end
+    
+    subgraph Backends["后端容器"]
+        T1["Task 1<br/>10.0.0.2"]
+        T2["Task 2<br/>10.0.0.3"]
+        T3["Task 3<br/>10.0.0.4"]
+    end
+    
+    Request --> DNS
+    DNS -->|"VIP"| IPVS
+    IPVS -->|"Round-Robin"| T1
+    IPVS -->|"Round-Robin"| T2
+    IPVS -->|"Round-Robin"| T3
+    
+    style Client fill:#fff3e0,stroke:#ef6c00
+    style VIP fill:#e3f2fd,stroke:#1565c0
+    style Backends fill:#c8e6c9,stroke:#2e7d32
+```
+
+**方式二：DNSRR（DNS 轮询）**
+
+```mermaid
+flowchart LR
+    subgraph Client["客户端"]
+        Request["请求 web 服务"]
+    end
+    
+    subgraph DNSRound["DNS 轮询"]
+        DNS["DNS 解析<br/>轮询返回所有 IP"]
+    end
+    
+    subgraph Backends["后端容器"]
+        T1["Task 1<br/>10.0.0.2"]
+        T2["Task 2<br/>10.0.0.3"]
+        T3["Task 3<br/>10.0.0.4"]
+    end
+    
+    Request --> DNS
+    DNS -->|"返回 10.0.0.2"| T1
+    DNS -.->|"下次返回 10.0.0.3"| T2
+    DNS -.->|"下次返回 10.0.0.4"| T3
+    
+    style Client fill:#fff3e0,stroke:#ef6c00
+    style DNSRound fill:#e3f2fd,stroke:#1565c0
+    style Backends fill:#c8e6c9,stroke:#2e7d32
+```
+
+#### 7.7.3 Ingress 路由网格
+
+Ingress 路由网格实现外部流量到服务的负载均衡，任何 Swarm 节点都可以接收外部请求并转发到服务副本。
+
+```mermaid
+flowchart TB
+    subgraph External["外部流量"]
+        User["用户请求<br/>端口 8080"]
+    end
+    
+    subgraph SwarmCluster["Swarm 集群"]
+        subgraph Node1["节点 1"]
+            Ingress1["Ingress 网格<br/>监听 8080"]
+            Web1["web.1<br/>容器"]
+        end
+        
+        subgraph Node2["节点 2"]
+            Ingress2["Ingress 网格<br/>监听 8080"]
+            Web2["web.2<br/>容器"]
+        end
+        
+        subgraph Node3["节点 3"]
+            Ingress3["Ingress 网格<br/>监听 8080"]
+            Web3["web.3<br/>容器"]
+        end
+    end
+    
+    User -->|"访问任意节点"| Ingress1
+    User -.->|"或"| Ingress2
+    User -.->|"或"| Ingress3
+    
+    Ingress1 -->|"转发"| Web1
+    Ingress1 -.->|"转发"| Web2
+    Ingress1 -.->|"转发"| Web3
+    
+    Ingress2 -->|"转发"| Web2
+    Ingress2 -.->|"转发"| Web1
+    Ingress2 -.->|"转发"| Web3
+    
+    Ingress3 -->|"转发"| Web3
+    Ingress3 -.->|"转发"| Web1
+    Ingress3 -.->|"转发"| Web2
+    
+    style External fill:#fce4ec,stroke:#c2185b
+    style Node1 fill:#e3f2fd,stroke:#1565c0
+    style Node2 fill:#c8e6c9,stroke:#2e7d32
+    style Node3 fill:#fff3e0,stroke:#ef6c00
+```
+
+#### 7.7.4 负载均衡方式对比
+
+| 方式 | 工作原理 | 优点 | 缺点 | 适用场景 |
+|------|----------|------|------|----------|
+| **VIP** | DNS 返回虚拟 IP，IPVS 转发 | 客户端无感知，支持连接保持 | 额外的转发层 | 大多数场景（默认） |
+| **DNSRR** | DNS 轮询返回所有后端 IP | 无额外转发层，性能高 | 客户端需支持 DNS 缓存刷新 | 需要高性能的场景 |
+| **Ingress** | 所有节点监听端口，路由网格转发 | 任意节点可接收请求 | 增加一跳延迟 | 外部服务访问 |
+
+**配置示例**：
+
+```yaml
+services:
+  web:
+    image: nginx
+    deploy:
+      endpoint_mode: vip
+      replicas: 3
+    ports:
+      - "8080:80"
+```
+
+### 7.8 常用命令
+
+**集群管理**：
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `docker swarm init` | 初始化集群 | `docker swarm init --advertise-addr 192.168.1.100` |
+| `docker swarm join` | 加入集群 | `docker swarm join --token <token> <manager-ip>:2377` |
+| `docker swarm leave` | 离开集群 | `docker swarm leave --force` |
+| `docker node ls` | 查看节点 | `docker node ls` |
+| `docker node update` | 更新节点 | `docker node update --availability drain node1` |
+
+**服务管理**：
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `docker service create` | 创建服务 | `docker service create --name web -p 80:80 nginx` |
+| `docker service ls` | 查看服务 | `docker service ls` |
+| `docker service ps` | 查看任务 | `docker service ps web` |
+| `docker service scale` | 扩缩容 | `docker service scale web=5` |
+| `docker service update` | 更新服务 | `docker service update --image nginx:latest web` |
+| `docker service rm` | 删除服务 | `docker service rm web` |
+
+**Stack 管理**：
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `docker stack deploy` | 部署 Stack | `docker stack deploy -c docker-compose.yml myapp` |
+| `docker stack ls` | 查看 Stack | `docker stack ls` |
+| `docker stack ps` | 查看任务 | `docker stack ps myapp` |
+| `docker stack rm` | 删除 Stack | `docker stack rm myapp` |
+
+### 7.9 实战：搭建 Swarm 集群
+
+**1. 初始化 Manager 节点**：
+
+```bash
+# 在 Manager 节点上执行
+docker swarm init --advertise-addr 192.168.1.100
+
+# 输出示例：
+# Swarm initialized: current node (xxx) is now a manager.
+# To add a worker to this swarm, run the following command:
+#     docker swarm join --token SWMTKN-1-xxx 192.168.1.100:2377
+```
+
+**2. 添加 Worker 节点**：
+
+```bash
+# 在 Worker 节点上执行
+docker swarm join --token SWMTKN-1-xxx 192.168.1.100:2377
+
+# 获取加入 token（在 Manager 上执行）
+docker swarm join-token worker
+docker swarm join-token manager
+```
+
+**3. 创建 Overlay 网络**：
+
+```bash
+# 创建加密的 overlay 网络
+docker network create --driver overlay --opt encrypted mynet
+
+# 查看网络
+docker network ls
+```
+
+**4. 部署服务**：
+
+```bash
+# 创建服务（3 副本）
+docker service create \
+  --name web \
+  --replicas 3 \
+  --network mynet \
+  --publish 80:80 \
+  nginx:latest
+
+# 查看服务状态
+docker service ls
+docker service ps web
+```
+
+**5. 使用 Stack 部署**：
+
+```yaml
+# docker-compose.yml
+version: "3.8"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+      - mynet
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    deploy:
+      replicas: 1
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: overlay
+```
+
+```bash
+# 部署 Stack
+docker stack deploy -c docker-compose.yml myapp
+
+# 查看服务
+docker stack services myapp
+```
+
+### 7.10 Swarm 与 Kubernetes 对比
+
+| 特性 | Docker Swarm | Kubernetes |
+|------|--------------|------------|
+| **学习曲线** | 简单，易上手 | 复杂，学习成本高 |
+| **部署难度** | 低，Docker 内置 | 高，需要额外部署 |
+| **架构复杂度** | 简单，Manager-Worker | 复杂，多组件 |
+| **服务发现** | 内置 DNS | 内置 DNS + Service |
+| **负载均衡** | 内置 | 需要 Ingress |
+| **存储管理** | 简单 | PVC/PV 机制完善 |
+| **配置管理** | Config/Secret | ConfigMap/Secret |
+| **滚动更新** | 支持 | 支持更灵活 |
+| **社区生态** | 较小 | 庞大 |
+| **适用场景** | 中小规模集群 | 大规模生产环境 |
+
+**选择建议**：
+
+| 场景 | 推荐方案 |
+|------|----------|
+| **中小规模（<100 节点）** | Docker Swarm |
+| **快速原型开发** | Docker Swarm |
+| **大规模生产环境** | Kubernetes |
+| **复杂微服务架构** | Kubernetes |
+| **已有 Docker 基础** | Docker Swarm |
+
+---
+
+## 八、Docker 实战案例
+
+### 8.1 部署 Nginx Web 服务
 
 ```bash
 docker run -d \
@@ -2426,7 +3314,7 @@ docker run -d \
   nginx:latest
 ```
 
-### 7.2 部署 MySQL 数据库
+### 8.2 部署 MySQL 数据库
 
 ```bash
 docker run -d \
@@ -2439,7 +3327,7 @@ docker run -d \
   mysql:8.0
 ```
 
-### 7.3 部署 Redis 缓存
+### 8.3 部署 Redis 缓存
 
 ```bash
 docker run -d \
@@ -2450,7 +3338,7 @@ docker run -d \
   redis:7-alpine redis-server --appendonly yes
 ```
 
-### 7.4 完整 Web 应用栈
+### 8.4 完整 Web 应用栈
 
 ```yaml
 version: '3.8'
@@ -2509,9 +3397,9 @@ networks:
 
 ---
 
-## 八、Docker 常见问题与解决方案
+## 九、Docker 常见问题与解决方案
 
-### 8.1 常见问题
+### 9.1 常见问题
 
 | 问题 | 原因 | 解决方案 |
 |------|------|----------|
@@ -2521,7 +3409,7 @@ networks:
 | 磁盘空间不足 | 镜像/容器/日志堆积 | 定期清理 `docker system prune` |
 | 权限问题 | 用户无 Docker 权限 | 将用户加入 docker 组 |
 
-### 8.2 清理命令
+### 9.2 清理命令
 
 ```bash
 docker system prune -a --volumes
@@ -2535,7 +3423,7 @@ docker system prune -a --volumes
 | `docker image prune` | 清理悬空镜像 |
 | `docker container prune` | 清理已停止容器 |
 
-### 8.3 镜像加速配置
+### 9.3 镜像加速配置
 
 ```json
 {
