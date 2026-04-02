@@ -536,8 +536,11 @@ flowchart TB
 ```sql
 -- 场景 1：范围查询
 SELECT * FROM user WHERE id BETWEEN 5 AND 8 FOR UPDATE;
--- Next-Key Lock 锁定区间：(1, 5]、(5, 8]、(8, 15]
--- 其他事务无法插入 id=6、7、9、10 等数据
+-- Next-Key Lock 锁定区间：(1, 5]、(5, 8]
+-- 说明：
+--   (1, 5]：锁住 id=5 记录及其前面间隙，防止在 (1, 5) 区间插入
+--   (5, 8]：锁住 id=8 记录及其前面间隙，防止在 (5, 8) 区间插入
+-- 其他事务无法插入 id=2,3,4,6,7 等数据
 
 -- 场景 2：等值查询（命中唯一索引）
 SELECT * FROM user WHERE id = 5 FOR UPDATE;
@@ -546,9 +549,87 @@ SELECT * FROM user WHERE id = 5 FOR UPDATE;
 
 -- 场景 3：等值查询（未命中记录）
 SELECT * FROM user WHERE id = 6 FOR UPDATE;
--- 间隙锁：锁定 (5, 8) 区间
+-- 间隙锁：锁定 (5, 8] 区间（左开右闭）
+-- 说明：id=6 不存在，位于 id=5 和 id=8 之间
+--       Next-Key Lock 是左开右闭区间，所以锁定 (5, 8]
 -- 其他事务无法插入 id=6、7 等数据
+-- 注意：id=8 已存在，间隙锁不会阻止读取 id=8，但会阻止在 (5, 8) 区间插入
 ```
+
+##### 为什么范围查询要锁定下界记录前面的间隙？
+
+```mermaid
+flowchart TB
+    subgraph Question["问题：为什么锁定 (1, 5]？"]
+        Q["BETWEEN 5 AND 8 查询范围是 [5, 8]<br/>为什么还要锁定 (1, 5]？"]
+    end
+    
+    subgraph Answer["答案：Next-Key Lock 的加锁规则"]
+        A1["规则：扫描到一条记录<br/>锁定 (前一条记录, 当前记录]"]
+        A2["扫描到 id=5 时<br/>前一条记录是 id=1<br/>所以锁定 (1, 5]"]
+        A3["扫描到 id=8 时<br/>前一条记录是 id=5<br/>所以锁定 (5, 8]"]
+    end
+    
+    subgraph Reason["设计原因"]
+        R1["Next-Key Lock = 记录锁（行锁） + 间隙锁"]
+        R2["锁定记录本身的同时<br/>必须锁定前面的间隙"]
+        R3["这是 Next-Key Lock 的定义<br/>无法只锁记录不锁间隙"]
+    end
+    
+    Question --> Answer --> Reason
+    
+    style Question fill:#ffcdd2,stroke:#c62828
+    style Answer fill:#e3f2fd,stroke:#1565c0
+    style Reason fill:#fff3e0,stroke:#ef6c00
+```
+
+**关键理解**：
+
+| 问题 | 解释 |
+|------|------|
+| **为什么不能只锁 (5, 8]**？ | id=5 是查询下界，必须锁定 id=5 这条记录 |
+| **锁定 id=5 意味着什么** | Next-Key Lock 锁定的是 `(前一条记录, 当前记录]`，即 `(1, 5]` |
+| **(1, 5) 区间需要保护吗** | 不需要，但 Next-Key Lock 的设计无法"只锁记录不锁间隙" |
+
+**总结**：锁定 `(1, 5]` 不是为了保护 `(1, 5)` 区间，而是因为 Next-Key Lock 的机制决定了**锁定 id=5 这条记录就必然锁定 `(1, 5]` 整个区间**。
+
+##### Next-Key Lock 加锁规则详解
+
+```mermaid
+flowchart TB
+    subgraph Rules["Next-Key Lock 加锁规则"]
+        direction TB
+        
+        subgraph Rule1["规则 1：范围查询"]
+            R1A["查询命中多条记录"]
+            R1B["每条记录加 Next-Key Lock<br/>左开右闭区间 (a, b]"]
+            R1C["最后一条记录后加间隙锁"]
+            R1A --> R1B --> R1C
+        end
+        
+        subgraph Rule2["规则 2：等值查询命中唯一索引"]
+            R2A["查询命中唯一索引"]
+            R2B["优化：降级为行锁<br/>只锁该记录"]
+            R2A --> R2B
+        end
+        
+        subgraph Rule3["规则 3：等值查询未命中"]
+            R3A["查询未命中记录"]
+            R3B["加间隙锁<br/>锁定目标值所在区间"]
+            R3A --> R3B
+        end
+    end
+    
+    style Rule1 fill:#e3f2fd,stroke:#1565c0
+    style Rule2 fill:#c8e6c9,stroke:#2e7d32
+    style Rule3 fill:#fff3e0,stroke:#ef6c00
+```
+
+| 查询类型 | 条件 | 加锁方式 | 说明 |
+|---------|------|---------|------|
+| **范围查询** | `WHERE id BETWEEN 5 AND 8` | `(1, 5]` + `(5, 8]` | 每条记录加 Next-Key Lock |
+| **等值查询命中唯一索引** | `WHERE id = 5`（id=5 存在） | 只锁 id=5 这一行 | 优化为行锁 |
+| **等值查询未命中** | `WHERE id = 6`（id=6 不存在） | 间隙锁 `(5, 8]` | 锁定目标值所在区间 |
 
 #### 5.4.4 RR 级别解决幻读的完整机制
 
@@ -678,6 +759,50 @@ UPDATE user SET name = '李四' WHERE id = 1;
 DELETE FROM user WHERE id = 1;
 ```
 
+#### 为什么写操作本质是"当前读 + 修改"？
+
+```mermaid
+flowchart TB
+    subgraph Update["UPDATE 执行过程"]
+        U1["UPDATE user SET name='李四' WHERE id=1"]
+        U2["步骤1：当前读<br/>找到 id=1 的记录<br/>加排他锁，读取最新版本"]
+        U3["步骤2：修改<br/>更新数据为 '李四'"]
+        U1 --> U2 --> U3
+    end
+    
+    subgraph Delete["DELETE 执行过程"]
+        D1["DELETE FROM user WHERE id=1"]
+        D2["步骤1：当前读<br/>找到 id=1 的记录<br/>加排他锁，读取最新版本"]
+        D3["步骤2：删除<br/>标记记录为已删除"]
+        D1 --> D2 --> D3
+    end
+    
+    subgraph Insert["INSERT 执行过程"]
+        I1["INSERT INTO user VALUES (1, '张三')"]
+        I2["步骤1：当前读<br/>检查唯一索引冲突<br/>（需读取最新数据判断）"]
+        I3["步骤2：插入<br/>写入新记录"]
+        I1 --> I2 --> I3
+    end
+    
+    style U2 fill:#fff3e0,stroke:#ef6c00
+    style D2 fill:#fff3e0,stroke:#ef6c00
+    style I2 fill:#fff3e0,stroke:#ef6c00
+```
+
+| 操作 | 当前读阶段 | 修改阶段 |
+|------|-----------|---------|
+| **UPDATE** | 找到目标记录 + 加排他锁 + 读取最新版本 | 更新数据 |
+| **DELETE** | 找到目标记录 + 加排他锁 + 读取最新版本 | 标记删除 |
+| **INSERT** | 检查唯一索引冲突（需读取最新数据判断） | 写入新记录 |
+
+**关键理解**：
+
+| 问题 | 解释 |
+|------|------|
+| **为什么必须当前读？** | 写操作必须基于数据的**最新版本**，不能基于历史版本 |
+| **为什么必须加锁？** | 防止其他事务同时修改同一条记录，保证数据一致性 |
+| **INSERT 也需要当前读吗？** | 是的，INSERT 需要检查唯一索引冲突，这需要读取最新数据 |
+
 ### 6.3 快照读与当前读的选择
 
 ```mermaid
@@ -757,7 +882,7 @@ sequenceDiagram
 | 优点        | 说明           |
 | --------- | ------------ |
 | **高并发读写** | 无锁快照读，读写互不阻塞 |
-| **保证隔离性** | 解决脏读、不可重复读问题 |
+| **保证隔离性** | 解决脏读、不可重复读、幻读问题（RR 级别） |
 | **减少锁竞争** | 避免大量锁等待和死锁   |
 
 ### 8.2 缺点
@@ -766,26 +891,6 @@ sequenceDiagram
 | ----------- | ------------------------- |
 | **额外存储开销**  | 需存储 undo log 历史版本         |
 | **版本链遍历开销** | 版本链过长时，遍历判断可见性损耗性能        |
-| **无法解决幻读**  | 单纯 MVCC 无法解决范围读时出现新行的幻读问题 |
-
-### 8.3 幻读问题
-
-```mermaid
-flowchart TB
-    subgraph PhantomRead["幻读问题"]
-        direction TB
-        T1["事务 A：SELECT WHERE id > 5<br/>返回 2 条记录"]
-        T2["事务 B：INSERT id=6"]
-        T3["事务 B：COMMIT"]
-        T4["事务 A：SELECT WHERE id > 5<br/>返回 3 条记录（幻读）"]
-    end
-    
-    T1 --> T2 --> T3 --> T4
-    
-    style T4 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
-```
-
-**解决方案**：InnoDB 通过 **Next-Key Lock（间隙锁）** 解决 RR 级别的幻读问题。
 
 ***
 
