@@ -16,6 +16,7 @@
 | 文档 | 概述 |
 |------|------|
 | [Spring Bean 作用域详解](./Spring%20Bean%20作用域详解.md) | 详解 Spring Bean 的六种作用域，重点分析单例 Bean 依赖原型 Bean 的问题与四种解决方案 |
+| [Spring 事务管理机制详解](./Spring事务管理机制详解.md) | 深入解析 Spring 事务管理机制，包括事务传播行为、隔离级别、AOP 动态代理实现原理、@Transactional 注解详解、事务失效场景分析、跨线程事务解决方案 |
 
 ### MySQL
 
@@ -53,6 +54,7 @@
 |------|------|
 | [Redis 抢购票据解决方案](./Redis%20抢购票据解决方案.md) | 基于 Redis 的高并发抢购/抢票场景解决方案，包括原子操作、分布式锁、限流策略等 |
 | [Redis 批量数据原子性操作解决方案](./Redis%20批量数据原子性操作解决方案.md) | Redis 批量数据操作的原子性保证方案，包括 Pipeline、Lua 脚本、事务等技术的应用 |
+| [Redis 缓存穿透击穿雪崩详解](./Redis缓存穿透击穿雪崩详解.md) | 深入解析 Redis 缓存三大问题，包括穿透、击穿、雪崩的场景分析、解决方案对比与最佳实践 |
 
 ### 消息中间件MQ
 
@@ -81,7 +83,8 @@ interview_projects/
 │   ├── Java HashMap 扩容机制详解.md
 │   └── Java 单例模式详解.md
 ├── Spring/
-│   └── Spring Bean 作用域详解.md
+│   ├── Spring Bean 作用域详解.md
+│   └── Spring事务管理机制详解.md
 ├── MySQL/
 │   ├── MySQL MVCC 多版本并发控制机制详解.md
 │   └── MySQL 多粒度锁机制详解.md
@@ -102,7 +105,8 @@ interview_projects/
 │   └── ElasticSearch教程.md
 ├── Redis/
 │   ├── Redis 抢购票据解决方案.md
-│   └── Redis 批量数据原子性操作解决方案.md
+│   ├── Redis 批量数据原子性操作解决方案.md
+│   └── Redis缓存穿透击穿雪崩详解.md
 ├── 消息中间件MQ/
 │   ├── 消息中间件MQ对比详情.md
 │   └── RocketMQ消息中间件详解.md
