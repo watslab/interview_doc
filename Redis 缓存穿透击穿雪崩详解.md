@@ -42,13 +42,13 @@ flowchart TB
 
 ### 1.1 三大问题对比
 
-| 问题 | 触发场景 | 影响范围 | 核心特征 |
-|------|----------|----------|----------|
-| **缓存穿透** | 查询根本不存在的数据 | 中 | 缓存和数据库都没有 |
-| **缓存击穿** | 热点 Key 过期瞬间 | 中高 | 单点热点，高并发 |
-| **缓存雪崩** | 大量 Key 同时过期或 Redis 宕机 | 最高 | 大面积失效 |
+| 问题       | 触发场景                  | 影响范围 | 核心特征      |
+| -------- | --------------------- | ---- | --------- |
+| **缓存穿透** | 查询根本不存在的数据            | 中    | 缓存和数据库都没有 |
+| **缓存击穿** | 热点 Key 过期瞬间           | 中高   | 单点热点，高并发  |
+| **缓存雪崩** | 大量 Key 同时过期或 Redis 宕机 | 最高   | 大面积失效     |
 
----
+***
 
 ## 二、缓存穿透
 
@@ -79,11 +79,11 @@ sequenceDiagram
 
 **缓存穿透的原因**：
 
-| 原因 | 说明 |
-|------|------|
+| 原因       | 说明                 |
+| -------- | ------------------ |
 | **恶意攻击** | 攻击者故意请求不存在的数据，绕过缓存 |
-| **业务缺陷** | 业务逻辑错误，产生大量无效查询 |
-| **数据删除** | 数据被删除，但缓存未同步清理 |
+| **业务缺陷** | 业务逻辑错误，产生大量无效查询    |
+| **数据删除** | 数据被删除，但缓存未同步清理     |
 
 ### 2.2 解决方案
 
@@ -132,13 +132,22 @@ public User getUserById(Long id) {
 
 **优缺点**：
 
-| 优点 | 缺点 |
-|------|------|
-| 实现简单 | 占用额外内存 |
+| 优点        | 缺点          |
+| --------- | ----------- |
+| 实现简单      | 占用额外内存      |
 | 有效减少数据库压力 | 需要设置合理的过期时间 |
-| | 可能存在数据不一致 |
+| <br />    | 可能存在数据不一致   |
 
 #### 方案二：布隆过滤器
+
+##### 什么是布隆过滤器
+
+布隆过滤器（Bloom Filter）是一种空间效率很高的概率型数据结构，用于判断一个元素是否在一个集合中。它的特点是：
+
+- **判断不存在**：100% 准确，元素一定不在集合中
+- **判断存在**：可能误判，元素可能在集合中（假阳性）
+
+##### 工作原理图解
 
 ```mermaid
 flowchart TB
@@ -166,53 +175,150 @@ flowchart TB
     style Query fill:#fff3e0,stroke:#ef6c00
 ```
 
-**布隆过滤器原理**：
+##### 存储过程详解
 
 ```mermaid
-flowchart LR
-    subgraph Input["输入元素"]
-        E1["元素 A"]
-        E2["元素 B"]
-        E3["元素 C"]
+flowchart TB
+    subgraph Store["元素存储过程"]
+        Input["输入元素: user:123"]
+        HashFunc["使用 k 个哈希函数<br/>计算 k 个位置"]
+        Pos1["位置 1: 5"]
+        Pos2["位置 2: 17"]
+        Pos3["位置 3: 29"]
+        SetBits["将对应位置设为 1"]
     end
     
-    subgraph Hash["哈希函数"]
-        H1["Hash1"]
-        H2["Hash2"]
-        H3["Hash3"]
-    end
-    
-    subgraph BitArray["位数组"]
+    subgraph BitArray["位数组（初始全 0）"]
         B0["0"]
-        B1["1"]
-        B2["1"]
+        B1["0"]
+        B2["0"]
         B3["0"]
-        B4["1"]
-        B5["0"]
-        B6["1"]
+        B4["0"]
+        B5["1"]
+        B6["0"]
         B7["0"]
+        B8["..."]
+        B9["0"]
+        B10["1"]
+        B11["0"]
+        B12["..."]
+        B13["0"]
+        B14["1"]
+        B15["0"]
     end
     
-    E1 --> Hash
-    E2 --> Hash
-    E3 --> Hash
-    Hash --> BitArray
+    Input --> HashFunc
+    HashFunc --> Pos1
+    HashFunc --> Pos2
+    HashFunc --> Pos3
+    Pos1 --> SetBits
+    Pos2 --> SetBits
+    Pos3 --> SetBits
+    SetBits --> BitArray
     
-    style Input fill:#e3f2fd,stroke:#1565c0
-    style Hash fill:#fff3e0,stroke:#ef6c00
+    style Store fill:#e3f2fd,stroke:#1565c0
     style BitArray fill:#c8e6c9,stroke:#2e7d32
 ```
 
-**布隆过滤器特点**：
+##### 查询过程详解
+
+```mermaid
+flowchart TB
+    subgraph QueryExist["查询存在的元素"]
+        Q1["查询: user:123"]
+        QHash1["计算哈希位置: 5, 17, 29"]
+        QCheck1["检查这些位置"]
+        QResult1["全部为 1 → 可能存在"]
+    end
+    
+    subgraph QueryNotExist["查询不存在的元素"]
+        Q2["查询: user:999"]
+        QHash2["计算哈希位置: 3, 8, 42"]
+        QCheck2["检查这些位置"]
+        QResult2["存在 0 → 一定不存在"]
+    end
+    
+    subgraph QueryFalse["误判场景"]
+        Q3["查询: user:888"]
+        QHash3["计算哈希位置: 5, 17, 29"]
+        QCheck3["检查这些位置"]
+        QResult3["全部为 1 → 误判为存在<br/>实际不存在"]
+    end
+    
+    style QueryExist fill:#c8e6c9,stroke:#2e7d32
+    style QueryNotExist fill:#ffcdd2,stroke:#c62828
+    style QueryFalse fill:#fff3e0,stroke:#ef6c00
+```
+
+##### 为什么会有误判
+
+```mermaid
+flowchart LR
+    subgraph Scenario["误判原因"]
+        A["元素 A 设置位置: 5, 17, 29"]
+        B["元素 B 设置位置: 3, 8, 42"]
+        C["元素 C 设置位置: 5, 8, 35"]
+    end
+    
+    subgraph BitArray["位数组状态"]
+        Bits["位置 5: 1 (A, C)<br/>位置 17: 1 (A)<br/>位置 29: 1 (A)<br/>位置 3: 1 (B)<br/>位置 8: 1 (B, C)<br/>位置 42: 1 (B)<br/>位置 35: 1 (C)"]
+    end
+    
+    subgraph FalsePositive["误判示例"]
+        D["查询元素 D<br/>哈希位置: 5, 17, 29"]
+        Result["位置 5, 17, 29 都为 1<br/>判断: 可能存在<br/>实际: 不存在（被 A 的位覆盖）"]
+    end
+    
+    Scenario --> BitArray
+    BitArray --> FalsePositive
+    
+    style Scenario fill:#e3f2fd,stroke:#1565c0
+    style BitArray fill:#c8e6c9,stroke:#2e7d32
+    style FalsePositive fill:#ffcdd2,stroke:#c62828
+```
+
+**误判原因总结**：
+- 不同元素经过哈希函数计算后，可能得到相同的位置
+- 当查询一个不存在的元素时，其所有哈希位置可能恰好都被其他元素设置为 1
+- 这种"巧合"导致误判（假阳性）
+
+##### 关键参数选择
+
+| 参数 | 说明 | 影响 |
+|------|------|------|
+| **n** | 预期元素数量 | 过小会导致误判率升高 |
+| **m** | 位数组大小（bit） | 越大误判率越低，但占用内存越多 |
+| **k** | 哈希函数数量 | 过多影响性能，过少误判率高 |
+| **p** | 期望误判率 | 越低需要越大的 m 和越多的 k |
+
+**参数计算公式**：
+
+```
+最优哈希函数数量: k = (m/n) × ln(2)
+最小位数组大小: m = -n × ln(p) / (ln(2))²
+```
+
+**实际选择建议**：
+
+| 预期元素数量 | 期望误判率 | 建议位数组大小 | 建议哈希函数数 |
+|--------------|------------|----------------|----------------|
+| 100 万 | 1% | 9.6 Mbit (1.2 MB) | 7 |
+| 100 万 | 0.1% | 14.4 Mbit (1.8 MB) | 10 |
+| 1000 万 | 1% | 96 Mbit (12 MB) | 7 |
+| 1000 万 | 0.1% | 144 Mbit (18 MB) | 10 |
+
+##### 布隆过滤器特点总结
 
 | 特性 | 说明 |
 |------|------|
-| **空间效率高** | 使用位数组，占用内存小 |
+| **空间效率高** | 使用位数组，每个元素只需几个 bit |
 | **查询速度快** | O(k) 时间复杂度，k 为哈希函数数量 |
+| **插入速度快** | O(k) 时间复杂度 |
 | **存在误判** | 可能判断存在但实际不存在（假阳性） |
 | **不存在误判** | 判断不存在则一定不存在 |
+| **不能删除** | 不支持删除元素（会影响其他元素） |
 
-**Redisson 实现示例**：
+##### Redisson 实现示例：
 
 ```java
 @Configuration
@@ -273,13 +379,13 @@ public Result getUser(@PathVariable Long id) {
 
 ### 2.3 方案对比
 
-| 方案 | 优点 | 缺点 | 适用场景 |
-|------|------|------|----------|
-| **缓存空值** | 实现简单 | 占用内存、数据不一致 | 数据量小、穿透频率低 |
-| **布隆过滤器** | 内存占用小、效率高 | 存在误判、需要预热 | 数据量大、穿透频率高 |
-| **接口校验** | 提前拦截 | 无法防止所有情况 | 参数校验、基础防护 |
+| 方案        | 优点        | 缺点         | 适用场景       |
+| --------- | --------- | ---------- | ---------- |
+| **缓存空值**  | 实现简单      | 占用内存、数据不一致 | 数据量小、穿透频率低 |
+| **布隆过滤器** | 内存占用小、效率高 | 存在误判、需要预热  | 数据量大、穿透频率高 |
+| **接口校验**  | 提前拦截      | 无法防止所有情况   | 参数校验、基础防护  |
 
----
+***
 
 ## 三、缓存击穿
 
@@ -316,11 +422,11 @@ sequenceDiagram
 
 **缓存击穿的原因**：
 
-| 原因 | 说明 |
-|------|------|
+| 原因         | 说明             |
+| ---------- | -------------- |
 | **热点数据过期** | 高频访问的 Key 恰好过期 |
-| **缓存未命中** | 大量并发请求同时发现缓存失效 |
-| **无保护机制** | 没有限制并发查询数据库 |
+| **缓存未命中**  | 大量并发请求同时发现缓存失效 |
+| **无保护机制**  | 没有限制并发查询数据库    |
 
 ### 3.2 解决方案
 
@@ -356,8 +462,9 @@ public User getUserWithLock(Long id) {
         return JSON.parseObject(value, User.class);
     }
     
+    boolean locked = false;
     try {
-        boolean locked = redis.setnx(lockKey, "1", 10);
+        locked = redis.setnx(lockKey, "1", 10);
         if (locked) {
             User user = userMapper.selectById(id);
             if (user != null) {
@@ -372,10 +479,68 @@ public User getUserWithLock(Long id) {
         Thread.currentThread().interrupt();
         return null;
     } finally {
-        redis.del(lockKey);
+        if (locked) {
+            redis.del(lockKey);
+        }
     }
 }
 ```
+
+**关键说明**：
+
+| 问题 | 说明 |
+|------|------|
+| **为什么用 finally？** | 确保锁最终被释放，避免死锁 |
+| **为什么判断 locked？** | 只有获取锁成功的线程才能释放锁 |
+| **锁过期时间 10 秒** | 防止业务异常导致锁永不释放 |
+
+**更安全的锁实现（Lua 脚本保证原子性）**：
+
+```java
+public User getUserWithSafeLock(Long id) {
+    String key = "user:" + id;
+    String lockKey = "lock:user:" + id;
+    String lockValue = UUID.randomUUID().toString();
+    
+    String value = redis.get(key);
+    if (value != null) {
+        return JSON.parseObject(value, User.class);
+    }
+    
+    boolean locked = false;
+    try {
+        locked = redis.setnx(lockKey, lockValue, 10);
+        if (locked) {
+            User user = userMapper.selectById(id);
+            if (user != null) {
+                redis.set(key, JSON.toJSONString(user), 3600);
+            }
+            return user;
+        } else {
+            Thread.sleep(50);
+            return getUserWithSafeLock(id);
+        }
+    } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        return null;
+    } finally {
+        if (locked) {
+            String script = "if redis.call('get', KEYS[1]) == ARGV[1] then " +
+                           "return redis.call('del', KEYS[1]) " +
+                           "else return 0 end";
+            redis.eval(script, Arrays.asList(lockKey), Arrays.asList(lockValue));
+        }
+    }
+}
+```
+
+**安全锁的关键点**：
+
+| 要点 | 说明 |
+|------|------|
+| **锁值唯一性** | 使用 UUID 作为锁值，标识锁的持有者 |
+| **Lua 脚本释放** | 保证"判断锁归属"和"删除锁"的原子性 |
+| **防止误删** | 只删除自己持有的锁，避免删除其他线程的锁 |
 
 **双重检测优化**：
 
@@ -389,8 +554,9 @@ public User getUserWithDoubleCheck(Long id) {
         return JSON.parseObject(value, User.class);
     }
     
+    boolean locked = false;
     try {
-        boolean locked = redis.setnx(lockKey, "1", 10);
+        locked = redis.setnx(lockKey, "1", 10);
         if (locked) {
             value = redis.get(key);
             if (value != null) {
@@ -410,12 +576,18 @@ public User getUserWithDoubleCheck(Long id) {
         Thread.currentThread().interrupt();
         return null;
     } finally {
-        redis.del(lockKey);
+        if (locked) {
+            redis.del(lockKey);
+        }
     }
 }
 ```
 
 #### 方案二：逻辑过期
+
+##### 方案设计理念
+
+逻辑过期方案的核心思想是：**热点数据永不过期，通过逻辑过期时间判断是否需要更新**。
 
 ```mermaid
 flowchart TB
@@ -435,7 +607,94 @@ flowchart TB
     style Process fill:#e3f2fd,stroke:#1565c0
 ```
 
-**数据结构设计**：
+##### 为什么缓存不存在直接返回 null？
+
+```mermaid
+flowchart TB
+    subgraph Scenario["场景分析"]
+        Q1["缓存不存在的原因"]
+        A1["数据本身不存在"]
+        A2["缓存未预热"]
+        A3["缓存被清空"]
+    end
+    
+    subgraph Reason["设计原因"]
+        B1["逻辑过期方案适用于热点数据"]
+        B2["热点数据应提前预热到缓存"]
+        B3["缓存不存在说明非热点或数据无效"]
+        B4["直接返回 null 避免缓存穿透"]
+    end
+    
+    subgraph Solution["解决方案"]
+        C1["数据不存在 → 返回 null 正确"]
+        C2["缓存未预热 → 需要提前预热"]
+        C3["缓存清空 → 需要重新预热"]
+    end
+    
+    Scenario --> Reason
+    Reason --> Solution
+    
+    style Scenario fill:#e3f2fd,stroke:#1565c0
+    style Reason fill:#fff3e0,stroke:#ef6c00
+    style Solution fill:#c8e6c9,stroke:#2e7d32
+```
+
+**关键说明**：
+
+| 情况 | 原因 | 处理方式 |
+|------|------|----------|
+| **缓存不存在** | 数据本身不存在或未预热 | 直接返回 null（非热点数据） |
+| **缓存存在但未过期** | 数据仍然有效 | 直接返回缓存数据 |
+| **缓存存在但已过期** | 需要更新 | 返回旧数据 + 异步更新 |
+
+##### 为什么获取不到锁返回旧数据？
+
+```mermaid
+sequenceDiagram
+    participant T1 as 线程1（获取锁成功）
+    participant T2 as 线程2（获取锁失败）
+    participant Lock as 分布式锁
+    participant Cache as 缓存
+    participant DB as 数据库
+    
+    Note over T1,T2: 缓存数据逻辑过期，但旧数据仍可用
+    
+    T1->>Lock: 尝试获取锁
+    Lock-->>T1: 获取成功
+    T2->>Lock: 尝试获取锁
+    Lock-->>T2: 获取失败
+    
+    par 线程1异步更新
+        T1->>DB: 查询最新数据
+        T1->>Cache: 更新缓存
+        T1->>Lock: 释放锁
+    and 线程2直接返回
+        T2->>Cache: 读取旧数据
+        T2-->>T2: 立即返回（无需等待）
+    end
+    
+    Note over T1,T2: 线程2返回旧数据，保证性能<br/>线程1更新后，后续请求获得新数据
+```
+
+**返回旧数据的优势**：
+
+| 优势 | 说明 |
+|------|------|
+| **无阻塞** | 用户不需要等待数据库查询和缓存更新 |
+| **高性能** | 所有请求都能快速响应 |
+| **最终一致** | 异步更新后，后续请求获得最新数据 |
+| **避免击穿** | 不会大量请求打到数据库 |
+
+**适用场景**：
+
+| 场景 | 是否适用 | 原因 |
+|------|----------|------|
+| **热点数据** | 适用 | 数据已预热，缓存中始终存在 |
+| **允许短暂过期** | 适用 | 可以接受返回稍旧的数据 |
+| **高并发场景** | 适用 | 无阻塞，性能最优 |
+| **强一致性要求** | 不适用 | 需要使用互斥锁方案 |
+
+##### 数据结构设计：
 
 ```java
 @Data
@@ -503,13 +762,13 @@ public void refreshHotData() {
 
 ### 3.3 方案对比
 
-| 方案 | 一致性 | 性能 | 复杂度 | 适用场景 |
-|------|--------|------|--------|----------|
-| **互斥锁** | 强一致 | 有等待延迟 | 中 | 对一致性要求高 |
-| **逻辑过期** | 最终一致 | 无阻塞 | 高 | 对性能要求高 |
-| **永不过期** | 最终一致 | 最高 | 低 | 热点数据、定时更新 |
+| 方案       | 一致性  | 性能    | 复杂度 | 适用场景      |
+| -------- | ---- | ----- | --- | --------- |
+| **互斥锁**  | 强一致  | 有等待延迟 | 中   | 对一致性要求高   |
+| **逻辑过期** | 最终一致 | 无阻塞   | 高   | 对性能要求高    |
+| **永不过期** | 最终一致 | 最高    | 低   | 热点数据、定时更新 |
 
----
+***
 
 ## 四、缓存雪崩
 
@@ -533,11 +792,11 @@ sequenceDiagram
 
 **缓存雪崩的原因**：
 
-| 原因 | 说明 |
-|------|------|
-| **同时过期** | 大量 Key 设置了相同的过期时间 |
-| **Redis 宕机** | Redis 服务故障，缓存不可用 |
-| **缓存预热失败** | 系统启动时缓存未预热 |
+| 原因           | 说明                |
+| ------------ | ----------------- |
+| **同时过期**     | 大量 Key 设置了相同的过期时间 |
+| **Redis 宕机** | Redis 服务故障，缓存不可用  |
+| **缓存预热失败**   | 系统启动时缓存未预热        |
 
 ### 4.2 解决方案
 
@@ -609,28 +868,121 @@ flowchart TB
 
 **Spring Cache + Caffeine + Redis 实现**：
 
+##### Maven 依赖
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-cache</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.github.ben-manes.caffeine</groupId>
+        <artifactId>caffeine</artifactId>
+    </dependency>
+</dependencies>
+```
+
+##### 配置类实现
+
 ```java
 @Configuration
+@EnableCaching
 public class CacheConfig {
     
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
-        List<CaffeineCache> caches = new ArrayList<>();
-        caches.add(new CaffeineCache("user", 
-            Caffeine.newBuilder()
-                .expireAfterWrite(300, TimeUnit.SECONDS)
-                .maximumSize(1000)
-                .build()));
+        List<CacheManager> cacheManagers = new ArrayList<>();
         
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
-            .entryTtl(Duration.ofSeconds(3600));
+        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
+        caffeineCacheManager.setCaffeine(Caffeine.newBuilder()
+            .expireAfterWrite(300, TimeUnit.SECONDS)
+            .maximumSize(1000));
+        cacheManagers.add(caffeineCacheManager);
         
-        return new CompositeCacheManager(
-            new CaffeineCacheManager(),
-            RedisCacheManager.builder(factory).cacheDefaults(config).build()
-        );
+        RedisCacheConfiguration redisConfig = RedisCacheConfiguration.defaultCacheConfig()
+            .entryTtl(Duration.ofSeconds(3600))
+            .serializeKeysWith(RedisSerializationContext.SerializationPair
+                .fromSerializer(new StringRedisSerializer()))
+            .serializeValuesWith(RedisSerializationContext.SerializationPair
+                .fromSerializer(new GenericJackson2JsonRedisSerializer()));
+        
+        RedisCacheManager redisCacheManager = RedisCacheManager.builder(factory)
+            .cacheDefaults(redisConfig)
+            .build();
+        cacheManagers.add(redisCacheManager);
+        
+        return new CompositeCacheManager(cacheManagers.toArray(new CacheManager[0]));
     }
 }
+```
+
+##### 使用示例
+
+```java
+@Service
+public class UserService {
+    
+    @Cacheable(value = "user", key = "#id")
+    public User getUserById(Long id) {
+        return userMapper.selectById(id);
+    }
+    
+    @CacheEvict(value = "user", key = "#id")
+    public void updateUser(User user) {
+        userMapper.updateById(user);
+    }
+}
+```
+
+##### 关键说明
+
+| 组件 | 作用 | 说明 |
+|------|------|------|
+| **CompositeCacheManager** | 组合多个缓存管理器 | 按顺序查找：先查 Caffeine，再查 Redis |
+| **CaffeineCacheManager** | 本地缓存管理器 | L1 缓存，速度快但容量有限 |
+| **RedisCacheManager** | 分布式缓存管理器 | L2 缓存，支持分布式共享 |
+| **@EnableCaching** | 启用缓存注解 | 必须添加才能使用 @Cacheable 等注解 |
+
+##### 多级缓存工作流程
+
+```mermaid
+sequenceDiagram
+    participant Client as 客户端
+    participant Service as 服务层<br/>@Cacheable
+    participant Cache as Spring Cache<br/>CompositeCacheManager
+    participant Caffeine as L1 本地缓存
+    participant Redis as L2 Redis缓存
+    participant DB as 数据库
+    
+    Client->>Service: 查询 user:1
+    Service->>Cache: @Cacheable 触发
+    Cache->>Caffeine: 查询 L1 缓存
+    
+    alt L1 命中
+        Caffeine-->>Cache: 返回数据
+        Cache-->>Service: 返回数据
+        Service-->>Client: 返回数据
+    else L1 未命中
+        Cache->>Redis: 查询 L2 缓存
+        alt L2 命中
+            Redis-->>Cache: 返回数据
+            Cache->>Caffeine: 自动写入 L1 缓存
+            Cache-->>Service: 返回数据
+            Service-->>Client: 返回数据
+        else L2 未命中
+            Service->>DB: 查询数据库
+            DB-->>Service: 返回数据
+            Service-->>Cache: 缓存数据
+            Cache->>Redis: 自动写入 L2 缓存
+            Cache->>Caffeine: 自动写入 L1 缓存
+            Service-->>Client: 返回数据
+        end
+    end
 ```
 
 #### 方案三：熔断降级
@@ -726,14 +1078,14 @@ flowchart TB
 
 ### 4.3 方案对比
 
-| 方案 | 作用 | 优点 | 缺点 |
-|------|------|------|------|
-| **过期时间随机化** | 防止同时过期 | 实现简单 | 无法防止 Redis 宕机 |
-| **多级缓存** | 多层保护 | 高可用 | 数据一致性复杂 |
-| **熔断降级** | 保护数据库 | 防止级联故障 | 用户体验下降 |
-| **Redis 高可用** | 防止宕机 | 自动故障转移 | 架构复杂 |
+| 方案            | 作用     | 优点     | 缺点            |
+| ------------- | ------ | ------ | ------------- |
+| **过期时间随机化**   | 防止同时过期 | 实现简单   | 无法防止 Redis 宕机 |
+| **多级缓存**      | 多层保护   | 高可用    | 数据一致性复杂       |
+| **熔断降级**      | 保护数据库  | 防止级联故障 | 用户体验下降        |
+| **Redis 高可用** | 防止宕机   | 自动故障转移 | 架构复杂          |
 
----
+***
 
 ## 五、综合对比与最佳实践
 
@@ -769,26 +1121,27 @@ flowchart TB
 
 ### 5.2 最佳实践
 
-| 场景 | 推荐方案 |
-|------|----------|
-| **防止穿透** | 布隆过滤器 + 接口参数校验 |
-| **防止击穿** | 互斥锁（强一致）或 逻辑过期（高性能） |
+| 场景       | 推荐方案                  |
+| -------- | --------------------- |
+| **防止穿透** | 布隆过滤器 + 接口参数校验        |
+| **防止击穿** | 互斥锁（强一致）或 逻辑过期（高性能）   |
 | **防止雪崩** | 过期时间随机化 + 多级缓存 + 熔断降级 |
-| **高可用** | Redis 集群/哨兵 + 本地缓存兜底 |
+| **高可用**  | Redis 集群/哨兵 + 本地缓存兜底  |
 
 ### 5.3 面试高频问题
 
-| 问题 | 答案要点 |
-|------|----------|
-| **三大问题区别** | 穿透是数据不存在，击穿是热点过期，雪崩是大面积失效 |
-| **布隆过滤器原理** | 位数组 + 多哈希，存在误判但不会漏判 |
-| **互斥锁 vs 逻辑过期** | 互斥锁强一致有阻塞，逻辑过期高性能最终一致 |
-| **如何设计缓存** | 多级缓存 + 随机过期 + 熔断降级 + 高可用 |
+| 问题              | 答案要点                      |
+| --------------- | ------------------------- |
+| **三大问题区别**      | 穿透是数据不存在，击穿是热点过期，雪崩是大面积失效 |
+| **布隆过滤器原理**     | 位数组 + 多哈希，存在误判但不会漏判       |
+| **互斥锁 vs 逻辑过期** | 互斥锁强一致有阻塞，逻辑过期高性能最终一致     |
+| **如何设计缓存**      | 多级缓存 + 随机过期 + 熔断降级 + 高可用  |
 
----
+***
 
 ## 参考资料
 
 - [Redis 缓存穿透、击穿、雪崩解决方案](https://blog.csdn.net/m0_73784704/article/details/152006873)
 - [Redis 布隆过滤器原理与应用](https://blog.csdn.net/zhang_hao_chao/article/details/132219157)
 - [Redis 缓存三大核心问题](https://blog.csdn.net/weixin_43290370/article/details/154689046)
+
