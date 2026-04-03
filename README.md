@@ -56,6 +56,7 @@
 | [Redis 抢购票据解决方案](./Redis%20抢购票据解决方案.md) | 基于 Redis 的高并发抢购/抢票场景解决方案，包括原子操作、分布式锁、限流策略等 |
 | [Redis 批量数据原子性操作解决方案](./Redis%20批量数据原子性操作解决方案.md) | Redis 批量数据操作的原子性保证方案，包括 Pipeline、Lua 脚本、事务等技术的应用 |
 | [Redis 缓存穿透击穿雪崩详解](./Redis缓存穿透击穿雪崩详解.md) | 深入解析 Redis 缓存三大问题，包括穿透、击穿、雪崩的场景分析、解决方案对比与最佳实践 |
+| [Redis Pipeline 管道技术详解](./Redis%20Pipeline管道技术详解.md) | 深入解析 Redis Pipeline 管道技术，包括工作原理、与事务和 Lua 脚本的对比、适用场景、实战示例与性能优化建议 |
 
 ### 消息中间件MQ
 
@@ -108,7 +109,8 @@ interview_projects/
 ├── Redis/
 │   ├── Redis 抢购票据解决方案.md
 │   ├── Redis 批量数据原子性操作解决方案.md
-│   └── Redis缓存穿透击穿雪崩详解.md
+│   ├── Redis缓存穿透击穿雪崩详解.md
+│   └── Redis Pipeline管道技术详解.md
 ├── 消息中间件MQ/
 │   ├── 消息中间件MQ对比详情.md
 │   └── RocketMQ消息中间件详解.md
