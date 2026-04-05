@@ -79,6 +79,13 @@
 |------|------|
 | [Docker 容器技术详解](./document/Docker/Docker%20容器技术详解.md) | 全面介绍 Docker 容器技术，包括核心概念、底层原理、常用命令、Dockerfile 编写、Docker Compose 使用与实战案例 |
 
+### AI
+
+| 文档 | 概述 |
+|------|------|
+| [Spring AI 框架详解](./document/AI/Spring%20AI%20框架详解.md) | 深入解析 Spring AI 框架，包括核心架构设计、ChatClient API、RAG 检索增强生成、函数调用、向量数据库集成与实际应用场景 |
+| [向量数据库选型与原理详解](./document/AI/向量数据库选型与原理详解.md) | 全面解析向量数据库核心原理（HNSW、IVF、PQ 索引算法），主流产品对比（Milvus、Qdrant、Chroma、Pinecone），选型决策树与 RAG 架构实践 |
+
 ## 目录结构
 
 ```
@@ -120,6 +127,9 @@ document/
 │   └── RocketMQ 消息中间件详解.md
 ├── 微服务架构/
 │   └── Sentinel 流量控制与限流算法详解.md
-└── Docker/
-    └── Docker 容器技术详解.md
+├── Docker/
+│   └── Docker 容器技术详解.md
+└── AI/
+    ├── Spring AI 框架详解.md
+    └── 向量数据库选型与原理详解.md
 ```
