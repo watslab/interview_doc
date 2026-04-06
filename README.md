@@ -10,6 +10,7 @@
 |------|------|
 | [Java HashMap 扩容机制详解](./document/Java/Java%20HashMap%20扩容机制详解.md) | 深入解析 HashMap 扩容机制，包括触发条件、元素迁移流程、JDK 1.7 与 1.8 核心差异对比、面试高频问题总结 |
 | [Java 单例模式详解](./document/Java/Java%20单例模式详解.md) | 详解单例模式的四种实现方式：饿汉模式、懒汉模式（单线程/多线程/双重检查锁定），分析线程安全与性能权衡 |
+| [Java WebSocket 开发详解](./document/Java/Java%20WebSocket%20开发详解.md) | 全面解析 Java WebSocket 开发方案（JSR-356、Spring WebSocket、Netty），包括 STOMP 协议、心跳机制、断线重连、集群方案与最佳实践 |
 
 ### Spring
 
@@ -93,6 +94,7 @@
 document/
 ├── Java/
 │   ├── Java HashMap 扩容机制详解.md
+│   ├── Java WebSocket 开发详解.md
 │   └── Java 单例模式详解.md
 ├── Spring/
 │   ├── Spring Bean 作用域详解.md
@@ -131,6 +133,7 @@ document/
 ├── Docker/
 │   └── Docker 容器技术详解.md
 └── AI/
+    ├── AI 开发术语详解.md
     ├── Spring AI 框架详解.md
     └── 向量数据库选型与原理详解.md
 ```
