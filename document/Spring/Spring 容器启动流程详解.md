@@ -30,13 +30,13 @@ ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.cl
 
 ```java
 public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
-    this();                  // 步骤1：初始化容器基础组件
+    this();                     // 步骤1：初始化容器基础组件
     register(componentClasses); // 步骤2：注册配置类
-    refresh();               // 步骤3：刷新容器（核心）
+    refresh();                  // 步骤3：刷新容器（核心）
 }
 ```
 
-#### 步骤1：容器初始化（this()）
+#### 步骤1：容器初始化（`this()`）
 
 完成以下工作：
 - 创建 `DefaultListableBeanFactory`（核心 Bean 工厂）
@@ -44,7 +44,7 @@ public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
 - 创建 `ClassPathBeanDefinitionScanner`（类路径扫描器）
 - 注册 Spring 内置的后置处理器
 
-#### 步骤2：注册配置类（register()）
+#### 步骤2：注册配置类（`register()`）
 
 将配置类解析为 `BeanDefinition` 并注册到容器中。
 
