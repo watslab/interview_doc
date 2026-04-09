@@ -16,6 +16,7 @@
 
 | 文档 | 概述 |
 |------|------|
+| [Spring 容器启动流程详解](./document/Spring/Spring%20容器启动流程详解.md) | 深入解析 Spring 容器启动流程，包括 refresh() 方法 12 个核心步骤、Spring Boot 启动流程、传统 Spring 与 Spring Boot 启动差异对比 |
 | [Spring Bean 作用域详解](./document/Spring/Spring%20Bean%20作用域详解.md) | 详解 Spring Bean 的六种作用域，重点分析单例 Bean 依赖原型 Bean 的问题与四种解决方案 |
 | [Spring 事务管理机制详解](./document/Spring/Spring%20事务管理机制详解.md) | 深入解析 Spring 事务管理机制，包括事务传播行为、隔离级别、AOP 动态代理实现原理、@Transactional 注解详解、事务失效场景分析、跨线程事务解决方案 |
 | [Spring Cloud Alibaba 面试项目推荐方案](./document/Spring/Spring%20Cloud%20Alibaba%20面试项目推荐方案.md) | Spring Cloud Alibaba 面试项目推荐方案 |
@@ -98,8 +99,9 @@ document/
 │   └── Java 单例模式详解.md
 ├── Spring/
 │   ├── Spring Bean 作用域详解.md
-│   ├── Spring 事务管理机制详解.md
-│   └── Spring Cloud Alibaba 面试项目推荐方案.md
+│   ├── Spring Cloud Alibaba 面试项目推荐方案.md
+│   ├── Spring 容器启动流程详解.md
+│   └── Spring 事务管理机制详解.md
 ├── MySQL/
 │   ├── MySQL MVCC 多版本并发控制机制详解.md
 │   ├── MySQL 三大日志详解.md
