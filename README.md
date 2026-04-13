@@ -91,6 +91,12 @@
 | [向量数据库选型与原理详解](./document/AI/向量数据库选型与原理详解.md) | 全面解析向量数据库核心原理（HNSW、IVF、PQ 索引算法），主流产品对比（Milvus、Qdrant、Chroma、Pinecone），选型决策树与 RAG 架构实践 |
 | [AI 开发术语详解](./document/AI/AI%20开发术语详解.md) | 详解 AI 开发核心术语，包括机器学习评估指标（准确率、精确率、召回率、F1、ROC/AUC）、大模型开发术语（Token、Temperature、Top-k、Top-p、RAG）等 |
 
+### SEO
+
+| 文档 | 概述 |
+|------|------|
+| [SEO 搜索引擎优化详解](./document/SEO/SEO%20搜索引擎优化详解.md) | 全面解析 SEO 搜索引擎优化，包括搜索引擎工作原理（爬取、索引、排名）、三大核心支柱（技术 SEO、内容 SEO、外部 SEO）、关键词策略、E-E-A-T 原则、白帽与黑帽 SEO 对比、常用工具推荐 |
+
 ## 目录结构
 
 ```
@@ -138,8 +144,10 @@ document/
 │   └── Sentinel 流量控制与限流算法详解.md
 ├── Docker/
 │   └── Docker 容器技术详解.md
-└── AI/
-    ├── AI 开发术语详解.md
-    ├── Spring AI 框架详解.md
-    └── 向量数据库选型与原理详解.md
+├── AI/
+│   ├── AI 开发术语详解.md
+│   ├── Spring AI 框架详解.md
+│   └── 向量数据库选型与原理详解.md
+└── SEO/
+    └── SEO 搜索引擎优化详解.md
 ```
