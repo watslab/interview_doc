@@ -59,6 +59,7 @@
 
 | 文档 | 概述 |
 |------|------|
+| [Redis HyperLogLog 详解](./document/Redis/Redis%20HyperLogLog%20详解.md) | 深入解析 Redis HyperLogLog 基数估计算法，包括原理、误差分析、命令详解与使用场景 |
 | [Redis 抢购票据解决方案](./document/Redis/Redis%20抢购票据解决方案.md) | 基于 Redis 的高并发抢购/抢票场景解决方案，包括原子操作、分布式锁、限流策略等 |
 | [Redis 批量数据原子性操作解决方案](./document/Redis/Redis%20批量数据原子性操作解决方案.md) | Redis 批量数据操作的原子性保证方案，包括 Pipeline、Lua 脚本、事务等技术的应用 |
 | [Redis Pipeline 管道技术详解](./document/Redis/Redis%20Pipeline%20管道技术详解.md) | Redis Pipeline 管道技术详解 |
@@ -75,6 +76,7 @@
 
 | 文档 | 概述 |
 |------|------|
+| [Apache Seata 分布式事务详解](./document/微服务架构/Apache%20Seata%20分布式事务详解.md) | 深入解析 Apache Seata 分布式事务解决方案，包括分布式事务基础理论、三大核心角色（TC/TM/RM）、四种事务模式（AT/TCC/SAGA/XA）原理与对比、Spring Cloud Alibaba 集成配置与最佳实践 |
 | [Sentinel 流量控制与限流算法详解](./document/微服务架构/Sentinel%20流量控制与限流算法详解.md) | 深入解析 Sentinel 流量控制组件，包括核心概念、责任链工作原理、流量控制策略、熔断降级机制，以及固定窗口、滑动窗口、漏桶、令牌桶四种限流算法详解 |
 
 ### Docker
@@ -133,6 +135,7 @@ document/
 │   ├── ElasticSearch 集群管理完全指南.md
 │   └── ElasticSearch 集群部署最佳实践.md
 ├── Redis/
+│   ├── Redis HyperLogLog 详解.md
 │   ├── Redis Pipeline 管道技术详解.md
 │   ├── Redis 批量数据原子性操作解决方案.md
 │   ├── Redis 抢购票据解决方案.md
@@ -141,6 +144,7 @@ document/
 │   ├── 消息中间件 MQ 对比详情.md
 │   └── RocketMQ 消息中间件详解.md
 ├── 微服务架构/
+│   ├── Apache Seata 分布式事务详解.md
 │   └── Sentinel 流量控制与限流算法详解.md
 ├── Docker/
 │   └── Docker 容器技术详解.md
