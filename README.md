@@ -21,7 +21,6 @@
 | [SpringMVC 核心原理详解](./document/Spring/SpringMVC%20核心原理详解.md) | 深入解析 SpringMVC 核心原理，包括请求处理流程、核心组件职责、拦截器机制、常用注解、前后端分离与传统 MVC 对比 |
 | [Spring Bean 作用域详解](./document/Spring/Spring%20Bean%20作用域详解.md) | 详解 Spring Bean 的六种作用域，重点分析单例 Bean 依赖原型 Bean 的问题与四种解决方案 |
 | [Spring 事务管理机制详解](./document/Spring/Spring%20事务管理机制详解.md) | 深入解析 Spring 事务管理机制，包括事务传播行为、隔离级别、AOP 动态代理实现原理、@Transactional 注解详解、事务失效场景分析、跨线程事务解决方案 |
-| [Spring Cloud Alibaba 面试项目推荐方案](./document/Spring/Spring%20Cloud%20Alibaba%20面试项目推荐方案.md) | Spring Cloud Alibaba 面试项目推荐方案 |
 
 ### MySQL
 
@@ -77,7 +76,9 @@
 | 文档 | 概述 |
 |------|------|
 | [Apache Seata 分布式事务详解](./document/微服务架构/Apache%20Seata%20分布式事务详解.md) | 深入解析 Apache Seata 分布式事务解决方案，包括分布式事务基础理论、三大核心角色（TC/TM/RM）、四种事务模式（AT/TCC/SAGA/XA）原理与对比、Spring Cloud Alibaba 集成配置与最佳实践 |
+| [Nacos 注册配置中心详解](./document/微服务架构/Nacos%20注册配置中心详解.md) | 深入解析 Nacos 注册配置中心，包括三层隔离模型（Namespace/Group/Data ID）、服务注册发现与健康检查机制、配置管理与动态刷新、AP/CP 模式切换、Spring Cloud Alibaba 集成配置 |
 | [Sentinel 流量控制与限流算法详解](./document/微服务架构/Sentinel%20流量控制与限流算法详解.md) | 深入解析 Sentinel 流量控制组件，包括核心概念、责任链工作原理、流量控制策略、熔断降级机制，以及固定窗口、滑动窗口、漏桶、令牌桶四种限流算法详解 |
+| [Spring Cloud Alibaba 面试项目推荐方案](./document/微服务架构/Spring%20Cloud%20Alibaba%20面试项目推荐方案.md) | Spring Cloud Alibaba 面试项目推荐方案 |
 
 ### Docker
 
@@ -109,7 +110,6 @@ document/
 │   └── Java 单例模式详解.md
 ├── Spring/
 │   ├── Spring Bean 作用域详解.md
-│   ├── Spring Cloud Alibaba 面试项目推荐方案.md
 │   ├── Spring 容器启动流程详解.md
 │   ├── Spring 循环依赖解决方案详解.md
 │   ├── Spring 事务管理机制详解.md
@@ -145,7 +145,9 @@ document/
 │   └── RocketMQ 消息中间件详解.md
 ├── 微服务架构/
 │   ├── Apache Seata 分布式事务详解.md
-│   └── Sentinel 流量控制与限流算法详解.md
+│   ├── Nacos 注册配置中心详解.md
+│   ├── Sentinel 流量控制与限流算法详解.md
+│   └── Spring Cloud Alibaba 面试项目推荐方案.md
 ├── Docker/
 │   └── Docker 容器技术详解.md
 ├── AI/
