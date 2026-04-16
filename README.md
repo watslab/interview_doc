@@ -75,7 +75,7 @@
 
 | 文档 | 概述 |
 |------|------|
-| [Apache Seata 分布式事务详解](./document/微服务架构/Apache%20Seata%20分布式事务详解.md) | 深入解析 Apache Seata 分布式事务解决方案，包括分布式事务基础理论、三大核心角色（TC/TM/RM）、四种事务模式（AT/TCC/SAGA/XA）原理与对比、Spring Cloud Alibaba 集成配置与最佳实践 |
+| [Seata 分布式事务详解](./document/微服务架构/Seata%20分布式事务详解.md) | 深入解析 Seata 分布式事务解决方案，包括分布式事务基础理论、三大核心角色（TC/TM/RM）、四种事务模式（AT/TCC/SAGA/XA）原理与对比、Spring Cloud Alibaba 集成配置与最佳实践 |
 | [Nacos 注册配置中心详解](./document/微服务架构/Nacos%20注册配置中心详解.md) | 深入解析 Nacos 注册配置中心，包括三层隔离模型（Namespace/Group/Data ID）、服务注册发现与健康检查机制、配置管理与动态刷新、AP/CP 模式切换、Spring Cloud Alibaba 集成配置 |
 | [Sentinel 流量控制与限流算法详解](./document/微服务架构/Sentinel%20流量控制与限流算法详解.md) | 深入解析 Sentinel 流量控制组件，包括核心概念、责任链工作原理、流量控制策略、熔断降级机制，以及固定窗口、滑动窗口、漏桶、令牌桶四种限流算法详解 |
 | [Spring Cloud Alibaba 面试项目推荐方案](./document/微服务架构/Spring%20Cloud%20Alibaba%20面试项目推荐方案.md) | Spring Cloud Alibaba 面试项目推荐方案 |
@@ -99,6 +99,12 @@
 | 文档 | 概述 |
 |------|------|
 | [SEO 搜索引擎优化详解](./document/SEO/SEO%20搜索引擎优化详解.md) | 全面解析 SEO 搜索引擎优化，包括搜索引擎工作原理（爬取、索引、排名）、三大核心支柱（技术 SEO、内容 SEO、外部 SEO）、关键词策略、E-E-A-T 原则、白帽与黑帽 SEO 对比、常用工具推荐 |
+
+### 计算机网络
+
+| 文档 | 概述 |
+|------|------|
+| [TCP 三次握手与四次挥手详解](./document/计算机网络/TCP%20三次握手与四次挥手详解.md) | 深入解析 TCP 连接建立与断开过程，包括三次握手流程与目的、四次挥手流程与原因、TCP 状态转换、TIME_WAIT 状态作用、半连接队列与全连接队列、SYN Flood 攻击原理与防御 |
 
 ## 目录结构
 
@@ -154,6 +160,8 @@ document/
 │   ├── AI 开发术语详解.md
 │   ├── Spring AI 框架详解.md
 │   └── 向量数据库选型与原理详解.md
-└── SEO/
-    └── SEO 搜索引擎优化详解.md
+├── SEO/
+│   └── SEO 搜索引擎优化详解.md
+└── 计算机网络/
+    └── TCP 三次握手与四次挥手详解.md
 ```
