@@ -93,6 +93,7 @@
 | [Spring AI 框架详解](./document/AI/Spring%20AI%20框架详解.md) | 深入解析 Spring AI 框架，包括核心架构设计、ChatClient API、RAG 检索增强生成、函数调用、向量数据库集成与实际应用场景 |
 | [向量数据库选型与原理详解](./document/AI/向量数据库选型与原理详解.md) | 全面解析向量数据库核心原理（HNSW、IVF、PQ 索引算法），主流产品对比（Milvus、Qdrant、Chroma、Pinecone），选型决策树与 RAG 架构实践 |
 | [AI 开发术语详解](./document/AI/AI%20开发术语详解.md) | 详解 AI 开发核心术语，包括机器学习评估指标（准确率、精确率、召回率、F1、ROC/AUC）、大模型开发术语（Token、Temperature、Top-k、Top-p、RAG）等 |
+| [AI 大模型幻觉与输出稳定性解决方案](./document/AI/AI%20大模型幻觉与输出稳定性解决方案.md) | 深入解析大模型幻觉问题成因与分类、幻觉解决方案（RAG、CoT、RLHF、幻觉检测）、输出不稳定原因与解决方案（参数控制、提示工程、后处理校验） |
 
 ### SEO
 
