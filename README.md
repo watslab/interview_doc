@@ -29,6 +29,7 @@
 | [MySQL MVCC 多版本并发控制机制详解](./document/MySQL/MySQL%20MVCC%20多版本并发控制机制详解.md) | 深入讲解 MySQL InnoDB 的 MVCC 机制，包括隐藏列、Undo Log、Read View、版本可见性判断规则，以及 MVCC 与事务隔离级别的关系、Next-Key Lock 解决幻读问题等 |
 | [MySQL 多粒度锁机制详解](./document/MySQL/MySQL%20多粒度锁机制详解.md) | 详解 MySQL InnoDB 的多粒度锁机制，包括表锁、行锁、意向锁（IS/IX）的工作原理与兼容性矩阵，以及意向锁与 MVCC 的协作关系 |
 | [MySQL 三大日志详解](./document/MySQL/MySQL%20三大日志详解.md) | 深入解析 MySQL Binlog、Redo Log、Undo Log 三大日志系统，包括核心原理、存储结构、刷盘策略、两阶段提交机制、崩溃恢复流程与最佳实践 |
+| [MySQL 集群架构详解](./document/MySQL/MySQL%20集群架构详解.md) | 系统介绍 MySQL 集群架构，包括主从复制架构、高可用方案（MHA、MGR、InnoDB Cluster）、分布式集群方案（NDB Cluster、PXC/Galera Cluster），详解认证复制原理、GCache 机制、状态同步方式 |
 
 ### PostgreSQL
 
@@ -125,7 +126,8 @@ document/
 ├── MySQL/
 │   ├── MySQL MVCC 多版本并发控制机制详解.md
 │   ├── MySQL 三大日志详解.md
-│   └── MySQL 多粒度锁机制详解.md
+│   ├── MySQL 多粒度锁机制详解.md
+│   └── MySQL 集群架构详解.md
 ├── PostgreSQL/
 │   ├── PostgreSQL 分区表最佳实践与底层原理.md
 │   ├── PostgreSQL 分级锁机制详解.md
