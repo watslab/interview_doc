@@ -79,11 +79,11 @@ sequenceDiagram
 
 **缓存穿透的原因**：
 
-| 原因       | 说明                 |
-| -------- | ------------------ |
+| 原因 | 说明 |
+| ---- | ------------------ |
 | **恶意攻击** | 攻击者故意请求不存在的数据，绕过缓存 |
-| **业务缺陷** | 业务逻辑错误，产生大量无效查询    |
-| **数据删除** | 数据被删除，但缓存未同步清理     |
+| **业务缺陷** | 业务逻辑错误，产生大量无效查询 |
+| **数据删除** | 数据被删除后，请求仍访问已删除的数据（如已下架商品、已注销用户） |
 
 ### 2.2 解决方案
 
@@ -542,46 +542,100 @@ public User getUserWithSafeLock(Long id) {
 | **Lua 脚本释放** | 保证"判断锁归属"和"删除锁"的原子性 |
 | **防止误删** | 只删除自己持有的锁，避免删除其他线程的锁 |
 
+**为什么需要 UUID 标识锁持有者？**
+
+当线程执行时间超过锁过期时间时，锁会自动释放，其他线程可能获取锁。此时原线程执行完毕后释放锁，若不检查锁的归属，会误删其他线程的锁。
+
+```mermaid
+sequenceDiagram
+    participant A as 线程A
+    participant Redis as Redis
+    participant B as 线程B
+
+    A->>Redis: SETNX lock:key value=UUID_A (过期10s)
+    Redis-->>A: 获取锁成功
+    Note over A: 执行业务逻辑...<br/>超过10s
+    Redis->>Redis: 锁自动过期
+    B->>Redis: SETNX lock:key value=UUID_B
+    Redis-->>B: 获取锁成功
+    Note over B: 执行业务逻辑...
+    
+    alt 不检查 value 直接删除
+        A->>Redis: DEL lock:key
+        Redis-->>A: 删除成功
+        Note over B: 锁被误删！B 的业务失去保护
+    else 检查 value 后删除
+        A->>Redis: Lua: if get(key)==UUID_A then del(key)
+        Redis-->>A: 返回 0 (未删除)
+        Note over B: 锁安全，B 继续执行
+    end
+```
+
+**误删场景示例**：
+
+| 时间 | 线程A | 线程B | Redis 锁状态 |
+|------|-------|-------|-------------|
+| T1 | 获取锁，value=UUID_A | - | lock:key = UUID_A |
+| T2 | 执行业务逻辑... | - | lock:key = UUID_A |
+| T10 | (仍在执行) | - | 锁过期自动释放 |
+| T11 | (仍在执行) | 获取锁，value=UUID_B | lock:key = UUID_B |
+| T12 | 执行完毕，尝试释放锁 | 执行业务逻辑... | 若不检查value，锁被误删 |
+
 **双重检测优化**：
 
 ```java
 public User getUserWithDoubleCheck(Long id) {
     String key = "user:" + id;
     String lockKey = "lock:user:" + id;
+    String lockValue = UUID.randomUUID().toString();
     
     String value = redis.get(key);
     if (value != null) {
         return JSON.parseObject(value, User.class);
     }
     
-    boolean locked = false;
-    try {
-        locked = redis.setnx(lockKey, "1", 10);
+    int maxRetry = 10;
+    for (int i = 0; i < maxRetry; i++) {
+        boolean locked = redis.setnx(lockKey, lockValue, 10);
         if (locked) {
-            value = redis.get(key);
-            if (value != null) {
-                return JSON.parseObject(value, User.class);
+            try {
+                value = redis.get(key);
+                if (value != null) {
+                    return JSON.parseObject(value, User.class);
+                }
+                
+                User user = userMapper.selectById(id);
+                if (user != null) {
+                    redis.set(key, JSON.toJSONString(user), 3600);
+                }
+                return user;
+            } finally {
+                String script = "if redis.call('get', KEYS[1]) == ARGV[1] then " +
+                               "return redis.call('del', KEYS[1]) " +
+                               "else return 0 end";
+                redis.eval(script, Arrays.asList(lockKey), Arrays.asList(lockValue));
             }
-            
-            User user = userMapper.selectById(id);
-            if (user != null) {
-                redis.set(key, JSON.toJSONString(user), 3600);
-            }
-            return user;
-        } else {
-            Thread.sleep(50);
-            return getUserWithDoubleCheck(id);
         }
-    } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        return null;
-    } finally {
-        if (locked) {
-            redis.del(lockKey);
+        
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return null;
         }
     }
+    
+    return null;
 }
 ```
+
+**循环模式的优势**：
+
+| 优势 | 说明 |
+|------|------|
+| **避免栈溢出** | 无递归调用，不会 StackOverflowError |
+| **可控重试次数** | 通过 maxRetry 限制最大重试次数 |
+| **资源消耗低** | 无额外栈帧开销 |
 
 #### 方案二：逻辑过期
 
