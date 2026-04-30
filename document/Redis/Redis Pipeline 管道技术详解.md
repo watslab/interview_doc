@@ -413,6 +413,10 @@ public class RedisPipelineService {
 }
 ```
 
+**为什么 RedisCallback 方法必须返回 null？**
+
+Pipeline 模式下，`executePipelined` 返回所有命令的响应集合，而 `RedisCallback` 只负责发送命令，其方法返回值无实际意义会被框架丢弃，因此返回 `null` 符合回调本身不产生结果的约定。
+
 ### 6.4 Python redis-py 实现
 
 ```python
