@@ -56,24 +56,23 @@ flowchart TB
     
     subgraph Producer["生产者组"]
         P1["Producer 1"]
-        P2["Producer 2"]
     end
     
     subgraph Consumer["消费者组"]
         C1["Consumer 1"]
-        C2["Consumer 2"]
     end
     
     BA_M -->|"心跳注册"| NameServer
+    BA_S -->|"心跳注册"| NameServer
+
     BB_M -->|"心跳注册"| NameServer
+    BB_S -->|"心跳注册"| NameServer
     
     P1 -->|"1.获取路由"| NameServer
     P1 -->|"2.发送消息"| BA_M
-    P2 -->|"2.发送消息"| BB_M
     
     C1 -->|"1.获取路由"| NameServer
     C1 -->|"2.拉取消息"| BA_M
-    C2 -->|"2.拉取消息"| BB_M
     
     BA_M -.->|"同步复制"| BA_S
     BB_M -.->|"同步复制"| BB_S
@@ -158,7 +157,7 @@ flowchart TB
             IDX["Key -> Offset<br/>时间范围索引"]
         end
         
-        ReputService["ReputMessageService<br/>异步构建索引"]
+        ReputMessageService["ReputMessageService<br/>异步构建索引"]
     end
     
     subgraph Consumer["消费者"]
@@ -181,9 +180,9 @@ flowchart TB
 
 | 文件 | 存储路径 | 文件大小 | 说明 |
 |------|----------|----------|------|
-| **CommitLog** | `$HOME/store/commitlog/` | 单文件 1G | 消息主体存储，顺序写入 |
-| **ConsumeQueue** | `$HOME/store/consumequeue/{topic}/{queueId}/` | 单文件 5.72M | 消费索引，定长 20 字节 |
-| **IndexFile** | `$HOME/store/index/` | 单文件 400M | Key 索引，支持按 Key 查询 |
+| **CommitLog** | `$HOME/store/commitlog/` | 单文件 1GB | 消息主体存储，顺序写入 |
+| **ConsumeQueue** | `$HOME/store/consumequeue/{topic}/{queueId}/` | 单文件 5.72MB | 消费索引，定长 20 字节 |
+| **IndexFile** | `$HOME/store/index/` | 单文件 400MB | Key 索引，支持按 Key 查询 |
 
 **CommitLog 文件结构**：
 
@@ -191,9 +190,35 @@ flowchart TB
 文件命名规则：起始偏移量（20位数字，左补零）
 例如：
 00000000000000000000  -> 第一个文件，起始偏移量 0
-00000000001073741824  -> 第二个文件，起始偏移量 1G
-00000000002147483648  -> 第三个文件，起始偏移量 2G
+00000000001073741824  -> 第二个文件，起始偏移量 1GB（1073741824 字节）
+00000000002147483648  -> 第三个文件，起始偏移量 2GB（2147483648 字节）
 ```
+
+**CommitLog 消息存储格式**：
+
+每条消息按以下结构顺序存储：
+
+| 字段 | 字节数 | 说明 |
+|------|--------|------|
+| msgSize | 4 | 消息总长度 |
+| magicCode | 4 | 魔数（校验） |
+| bodyCRC | 4 | 消息体 CRC 校验 |
+| queueId | 4 | 队列 ID |
+| flag | 4 | 标志位 |
+| queueOffset | 8 | 队列偏移量 |
+| physicOffset | 8 | 物理偏移量 |
+| bornTimestamp | 8 | 消息产生时间 |
+| bornHost | 8 | 生产者地址 |
+| storeTimestamp | 8 | 存储时间 |
+| storeHost | 8 | Broker 地址 |
+| reconsumeTimes | 4 | 重试次数 |
+| preparedTransactionOffset | 8 | 事务偏移量 |
+| bodyLength | 4 | 消息体长度 |
+| body | 变长 | 消息体内容 |
+| topicLength | 1 | 主题长度 |
+| topic | 变长 | 主题名称 |
+| propertiesLength | 2 | 属性长度 |
+| properties | 变长 | 扩展属性 |
 
 **ConsumeQueue 条目结构**（每个条目固定 20 字节）：
 
@@ -209,7 +234,7 @@ flowchart TB
 sequenceDiagram
     participant P as Producer
     participant CL as CommitLog
-    participant RS as ReputService
+    participant RS as ReputMessageService
     participant CQ as ConsumeQueue
     participant IDX as IndexFile
     participant C as Consumer
@@ -231,7 +256,7 @@ sequenceDiagram
 |------|------|
 | **顺序写入** | CommitLog 顺序写入，性能极高 |
 | **零拷贝** | 使用 MMap 内存映射，减少数据拷贝 |
-| **异步索引** | ReputService 异步构建索引，不阻塞写入 |
+| **异步索引** | ReputMessageService 异步构建索引，不阻塞写入 |
 | **快速检索** | ConsumeQueue 定长设计，支持随机访问 |
 
 ---
@@ -539,8 +564,40 @@ flowchart TB
 
 | 模式 | 说明 | 特点 |
 |------|------|------|
-| **Push 模式** | Broker 推送消息给 Consumer | 实时性好，封装了 Pull |
+| **Push 模式** | Broker 推送消息给 Consumer | 实时性好，底层封装了 Pull |
 | **Pull 模式** | Consumer 主动拉取消息 | 控制精细，适合批量处理 |
+
+**Push 模式的本质**：
+
+RocketMQ 的 Push 模式底层是通过 **Pull + 长轮询** 实现的：
+
+```mermaid
+flowchart TB
+    subgraph Push模式内部实现
+        subgraph Consumer
+            L["MessageListener<br/>用户监听器"]
+            PT["Pull 线程<br/>后台轮询"]
+        end
+        
+        subgraph Broker
+            Q["消息队列"]
+        end
+        
+        PT -->|"长轮询拉取"| Q
+        Q -->|"返回消息"| PT
+        PT -->|"触发回调"| L
+    end
+```
+
+| 对比项 | Push 模式 | Pull 模式 |
+|--------|-----------|-----------|
+| **用户感知** | 消息自动推送 | 主动调用拉取 |
+| **底层实现** | Pull 线程 + 长轮询 | 用户调用 pull() |
+| **实时性** | 高（长轮询阻塞等待） | 取决于拉取频率 |
+| **流控** | Consumer 自动控制 | 用户自行控制 |
+| **适用场景** | 实时消费 | 批量处理、定时任务 |
+
+> **本质**：Push 模式通过后台 Pull 线程不断轮询，对用户屏蔽了 Pull 细节，让用户感觉消息是"推送"过来的。
 
 ### 5.2 消费进度管理
 
@@ -562,8 +619,8 @@ flowchart TB
         BroadcastMode["使用本地模式"]
     end
     
-    Cluster --> ClusterMode --> Remote
-    Broadcast --> BroadcastMode --> Local
+    ClusterMode --> Remote
+    BroadcastMode --> Local
     
     style Local fill:#e3f2fd,stroke:#1565c0
     style Remote fill:#c8e6c9,stroke:#2e7d32
@@ -783,7 +840,7 @@ flowchart TB
     CheckSlave -->|"是"| Promote["Slave 提升为 Master"]
     CheckSlave -->|"否"| WaitSlave["等待 Slave 恢复"]
     Promote --> UpdateRoute["更新路由信息"]
-    WaitSlave --> UpdateRoute
+    WaitSlave --> CheckSlave
     UpdateRoute --> NotifyClient["通知客户端"]
     NotifyClient --> End["恢复正常服务"]
     
