@@ -158,26 +158,21 @@ sequenceDiagram
     participant TB as 事务B
     participant TC as 事务C
     
-    Note over TA,DB: 事务A获取行锁
+    Note over TA,DB: 事务A获取行锁<br/>SELECT * FROM users WHERE id=6 FOR UPDATE
     
-    TA->>DB: SELECT * FROM users WHERE id=6 FOR UPDATE
-    Note over DB: 1. 自动获取 users 表的意向排他锁（IX）
-    Note over DB: 2. 获取 id = 6 的行级排他锁ㅤㅤㅤㅤㅤㅤ
+    TA->>DB: 1. 自动获取 users 表的意向排他锁（IX）
+	TA->>DB: 2. 获取 id = 6 的行级排他锁
     
-    Note over TB,DB: 事务B申请表锁
+    Note over TB,DB: 事务B申请表锁<br/>LOCK TABLE users WRITE
     
-    TB->>DB: LOCK TABLE users WRITE
-    Note over DB: 检测到意向排他锁（IX）存在ㅤㅤㅤ
-    Note over DB: 意向排他锁（IX）与表级排他锁互斥
-    Note over TB: 加锁请求被阻塞
+    TB-xDB: 检测到意向排他锁（IX）存在<br/>意向排他锁（IX）与表级排他锁互斥
+	Note over TB: 加锁请求被阻塞
     
-    Note over TC,DB: 事务C申请其他行的锁
+    Note over TC,DB: 事务C申请其他行的锁<br/>SELECT * FROM users WHERE id=5 FOR UPDATE
     
-    TC->>DB: SELECT * FROM users WHERE id=5 FOR UPDATE
-    Note over DB: 1. 申请 users 表的意向排他锁（IX）
-    Note over DB: 2. 意向排他锁之间兼容，获取成功ㅤ
-    Note over DB: 3. 获取 id = 5 的行级排他锁ㅤㅤㅤㅤ
-    Note over TC: 成功获取锁
+    TC->>DB: 1. 申请 users 表的意向排他锁（IX），意向排他锁之间兼容，获取成功
+	TC->>DB: 2. 获取 id = 5 的行级排他锁
+    Note over TC: 获取锁成功
 ```
 
 ### 3.3 完整示例
@@ -384,7 +379,7 @@ flowchart TB
             direction LR
             RV["Read View"]
             UL["Undo Log"]
-            VC["版本链"]
+            VC["隐藏列"]
         end
     end
     
