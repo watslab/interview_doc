@@ -25,23 +25,6 @@ PostgreSQL 提供了 8 种表级锁模式，按锁强度从弱到强排列如下
 
 ### 1.2 表级锁兼容性矩阵
 
-```mermaid
-flowchart LR
-    subgraph LockModes["锁模式强度递增"]
-        direction TB
-        AS["ACCESS SHARE"]
-        RS["ROW SHARE"]
-        RE["ROW EXCLUSIVE"]
-        SUE["SHARE UPDATE EXCLUSIVE"]
-        S["SHARE"]
-        SRE["SHARE ROW EXCLUSIVE"]
-        E["EXCLUSIVE"]
-        AE["ACCESS EXCLUSIVE"]
-    end
-    
-    AS --> RS --> RE --> SUE --> S --> SRE --> E --> AE
-```
-
 | 请求锁 \ 持有锁 | AS | RS | RE | SUE | S | SRE | E | AE |
 |----------------|----|----|----|----|---|-----|---|-----|
 | **ACCESS SHARE** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
@@ -55,14 +38,36 @@ flowchart LR
 
 ### 1.3 行级锁（Row-Level Locks）
 
-行级锁用于控制对特定行的并发访问：
+行级锁用于控制对特定行的并发访问，通过 `SELECT ... FOR` 子句显式获取。
 
-| 行锁模式 | 说明 | 冲突锁 |
-|----------|------|--------|
-| **FOR UPDATE** | 排他行锁，阻止其他事务修改或删除该行 | FOR UPDATE, FOR NO KEY UPDATE, FOR SHARE, FOR KEY SHARE |
-| **FOR NO KEY UPDATE** | 非键列更新锁，允许其他事务读取键值 | FOR UPDATE, FOR NO KEY UPDATE |
-| **FOR SHARE** | 共享行锁，允许读取但阻止修改 | FOR UPDATE, FOR NO KEY UPDATE, FOR SHARE |
-| **FOR KEY SHARE** | 键共享锁，允许其他事务修改非键列 | FOR UPDATE |
+**行级锁模式**：
+
+| 行锁模式 | 说明 | 适用场景 |
+|----------|------|----------|
+| **FOR UPDATE** | 排他行锁，阻止其他事务修改或删除该行 | 需要修改行数据，或确保数据不被其他事务修改 |
+| **FOR NO KEY UPDATE** | 非键列更新锁，允许其他事务读取键值 | 仅修改非键列，允许外键检查并发执行 |
+| **FOR SHARE** | 共享行锁，允许读取但阻止修改 | 需要确保行不被修改，但允许其他事务共享读取 |
+| **FOR KEY SHARE** | 键共享锁，允许其他事务修改非键列 | 外键检查场景，不阻止对非键列的更新 |
+
+### 1.4 行级锁兼容性矩阵
+
+| 请求锁 \ 持有锁 | FOR UPDATE | FOR NO KEY UPDATE | FOR SHARE | FOR KEY SHARE |
+|---------------------------|:----------:|:-----------------:|:---------:|:-------------:|
+| **FOR UPDATE** | ❌ | ❌ | ❌ | ❌ |
+| **FOR NO KEY UPDATE** | ❌ | ❌ | ❌ | ✅ |
+| **FOR SHARE** | ❌ | ❌ | ✅ | ✅ |
+| **FOR KEY SHARE** | ❌ | ✅ | ✅ | ✅ |
+
+**常用语法扩展**：
+
+```sql
+-- NOWAIT: 无法立即获取锁时抛出异常，不等待
+SELECT * FROM orders WHERE id = 1 FOR UPDATE NOWAIT;
+
+-- SKIP LOCKED: 跳过已被锁定的行，适用于任务队列
+SELECT * FROM task_queue WHERE status = 'pending' 
+FOR UPDATE SKIP LOCKED LIMIT 1;
+```
 
 ---
 
@@ -359,41 +364,85 @@ ALTER INDEX idx_measurement_logdate
 
 **锁行为分析**：
 
-| 操作 | 锁模式 | 说明 |
-|------|--------|------|
-| CREATE INDEX ON ONLY | SHARE UPDATE EXCLUSIVE | 最小影响 |
-| CREATE INDEX CONCURRENTLY | 无阻塞锁 | 允许并发读写 |
-| ALTER INDEX ATTACH | SHARE UPDATE EXCLUSIVE | 短暂锁定 |
+| 操作 | 作用对象 | 锁模式 | 说明 |
+|------|----------|--------|------|
+| CREATE INDEX ON ONLY | 父表 | SHARE UPDATE EXCLUSIVE | 仅在父表创建索引定义，不扫描数据 |
+| CREATE INDEX CONCURRENTLY | 子表（分区） | SHARE UPDATE EXCLUSIVE | 分阶段获取，不阻塞读写，允许并发操作 |
+| ALTER INDEX ATTACH | 父表 | SHARE UPDATE EXCLUSIVE | 短暂锁定，将子表索引挂载到父表索引 |
+
+**CREATE INDEX CONCURRENTLY 锁机制详解**：
+
+| 阶段 | 锁模式 | 持续时间 | 说明 |
+|------|--------|----------|------|
+| 阶段 1 | SHARE UPDATE EXCLUSIVE | 短暂 | 初始化索引构建，记录快照点 |
+| 阶段 2 | 无额外锁 | 扫描期间 | 基于快照扫描表数据，允许并发读写 |
+| 阶段 3 | SHARE UPDATE EXCLUSIVE | 短暂 | 等待所有快照前事务完成，捕获并发修改 |
+
+**扫描期间不持锁如何保证完整性**：
+
+```
+工作流程：
+阶段1: 记录快照点 ──→ 阶段2: 基于快照扫描 ──→ 阶段3: 捕获并发修改
+        │                    │                      │
+        ▼                    ▼                      ▼
+   确定数据可见性        扫描快照可见数据        处理快照后修改
+```
+
+| 阶段 | 核心机制 | 工作原理 |
+|------|----------|----------|
+| **阶段 1** | 快照记录 | 记录当前事务 ID 作为快照点，确定数据可见性边界 |
+| **阶段 2** | 快照扫描 | 基于 MVCC，只扫描快照点之前已提交的数据，并发写入不影响扫描结果 |
+| **阶段 3** | 变更捕获 | 扫描事务 ID > 快照点的元组，将扫描期间的修改纳入索引 |
+
+| 写入场景 | 处理方式 |
+|----------|----------|
+| 扫描前已存在的数据 | 基于快照直接扫描，构建索引 |
+| 扫描期间新增的数据 | 新元组事务 ID > 快照点，阶段 3 捕获处理 |
+| 扫描期间修改的数据 | 旧版本仍在，新版本在阶段 3 捕获处理 |
+| 扫描期间删除的数据 | 旧版本标记删除，索引仍包含并且在阶段 3 捕获处理 |
+
+> **对比普通 CREATE INDEX**：普通方式持有 `SHARE` 锁阻塞写入，保证完整性；并发方式采用快照 + 二次扫描的乐观策略，在不阻塞写入的前提下保证完整性。
 
 ---
 
 ## 三、分区表 ALTER TABLE 操作分类与锁行为
 
-根据 ALTER TABLE 子命令对分区表的影响，可分为以下类别：
+根据 ALTER TABLE 子命令对分区表的**传播行为**（是否影响子分区）和**锁需求**，可分为以下类别：
 
-### 3.1 仅作用于父表的结构性变更（C1）
+### 3.1 强制传播的结构性变更
+
+**操作定义**：修改表结构且必须同步到所有分区的操作，不支持 `ONLY` 关键字。
 
 | 子命令 | 父表锁模式 | 分区锁模式 | 传播性 |
 |--------|-----------|-----------|--------|
 | ADD COLUMN | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | 强制传播 |
 | DROP COLUMN | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | 强制传播 |
 | SET DATA TYPE | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | 强制传播 |
+| SET NOT NULL | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | 强制传播 |
+| DROP NOT NULL | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | 强制传播 |
+| ADD CONSTRAINT | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | 强制传播 |
+| VALIDATE CONSTRAINT | SHARE UPDATE EXCLUSIVE | SHARE UPDATE EXCLUSIVE | 强制传播 |
 | ADD GENERATED AS IDENTITY | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | 强制传播 |
 
 **示例**：
 
 ```sql
 ALTER TABLE measurement ADD COLUMN new_column VARCHAR(100);
+ALTER TABLE measurement ADD CONSTRAINT chk_unitsales CHECK (unitsales >= 0);
 ```
 
-### 3.2 可传播且可继承的变更（C2）
+### 3.2 可选传播的属性变更
+
+**操作定义**：修改列属性或约束，支持 `ONLY` 关键字控制是否传播到分区。
 
 | 子命令 | 父表锁模式 | 分区锁模式 | ONLY 支持 |
 |--------|-----------|-----------|-----------|
 | SET DEFAULT | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | ✅ |
 | DROP DEFAULT | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | ✅ |
 | SET STORAGE | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | ✅ |
+| SET STATISTICS | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | ✅ |
 | DROP CONSTRAINT | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | ✅ |
+| ALTER CONSTRAINT | ACCESS EXCLUSIVE | ACCESS EXCLUSIVE | ✅ |
 
 **示例**：
 
@@ -403,16 +452,23 @@ ALTER TABLE measurement ALTER COLUMN unitsales SET DEFAULT 0;
 ALTER TABLE ONLY measurement ALTER COLUMN unitsales SET DEFAULT 0;
 ```
 
-### 3.3 父表与分区完全独立（C4）
+### 3.3 仅作用于父表的属性变更
+
+**操作定义**：仅修改父表自身的属性，不影响分区的操作，天然不传播。
 
 | 子命令 | 父表锁模式 | 分区锁模式 | 传播性 |
 |--------|-----------|-----------|--------|
 | SET/RESET (attribute_option) | ACCESS EXCLUSIVE | 无 | 不传播 |
+| SET/RESET (storage_parameter) | ACCESS EXCLUSIVE | 无 | 不传播 |
+| SET TABLESPACE | ACCESS EXCLUSIVE | 无 | 不传播 |
 | OWNER TO | ACCESS EXCLUSIVE | 无 | 不传播 |
 | SET SCHEMA | ACCESS EXCLUSIVE | 无 | 不传播 |
 | ENABLE/DISABLE ROW LEVEL SECURITY | ACCESS EXCLUSIVE | 无 | 不传播 |
+| CLUSTER ON / SET WITHOUT CLUSTER | ACCESS EXCLUSIVE | 无 | 不传播 |
 
-### 3.4 分区管理类命令（C15）
+### 3.4 分区管理操作
+
+**操作定义**：管理分区与父表关系的操作，包括挂载、卸载分区。
 
 | 子命令 | 父表锁模式 | 分区锁模式 |
 |--------|-----------|-----------|
@@ -435,7 +491,7 @@ SELECT
     blocking_locks.pid AS blocking_pid,
     blocking_activity.usename AS blocking_user,
     blocked_activity.query AS blocked_statement,
-    blocking_activity.query AS current_statement_in_blocking_process,
+    blocking_activity.query AS blocking_statement,
     blocked_activity.application_name AS blocked_application
 FROM pg_catalog.pg_locks blocked_locks
     JOIN pg_catalog.pg_stat_activity blocked_activity ON blocked_activity.pid = blocked_locks.pid
@@ -481,31 +537,36 @@ COMMIT;
 
 ```mermaid
 flowchart TB
-    subgraph CreatePartition["创建分区"]
-        C1["预创建分区"] --> C2["在维护窗口执行"]
-        C2 --> C3["使用 ATTACH 替代直接创建"]
+    subgraph BestPractice["最佳实践"]
+        subgraph CreatePartition["创建分区"]
+            direction LR
+            C1["预创建分区"]
+                --> C2["在维护窗口执行"]
+                --> C3["使用 ATTACH PARTITION 替代直接创建"]
+        end
+        
+        subgraph AttachPartition["挂载分区"]
+            direction LR
+            A1["预创建 CHECK 约束"]
+                --> A2["加载数据"]
+                --> A3["ATTACH PARTITION"]
+                --> A4["删除冗余 CHECK 约束"]
+        end
+        
+        subgraph DetachPartition["卸载分区"]
+            direction LR
+            D1["使用 CONCURRENTLY 选项"]
+                --> D2["等待事务完成"]
+                --> D3["最小化生产影响"]
+        end
+        
+        subgraph DropIndex["删除/截断分区"]
+            direction LR
+            T1["先 DETACH PARTITION"]
+                --> T2["再 DROP/TRUNCATE TABLE"]
+                --> T3["减少父表锁定时间"]
+        end
     end
-    
-    subgraph AttachPartition["挂载分区"]
-        A1["预先创建 CHECK 约束"] --> A2["加载数据"]
-        A2 --> A3["ATTACH PARTITION"]
-        A3 --> A4["删除冗余 CHECK 约束"]
-    end
-    
-    subgraph DetachPartition["卸载分区"]
-        D1["使用 CONCURRENTLY 选项"] --> D2["等待事务完成"]
-        D2 --> D3["最小化生产影响"]
-    end
-    
-    subgraph DropIndex["删除/截断分区"]
-        T1["先 DETACH"] --> T2["再 DROP/TRUNCATE"]
-        T2 --> T3["减少父表锁定时间"]
-    end
-    
-    CreatePartition --> BestPractice["最佳实践"]
-    AttachPartition --> BestPractice
-    DetachPartition --> BestPractice
-    DropIndex --> BestPractice
     
     style BestPractice fill:#a5d6a7,stroke:#2e7d32,stroke-width:3px
 ```

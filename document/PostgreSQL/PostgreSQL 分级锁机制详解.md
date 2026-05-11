@@ -463,7 +463,7 @@ flowchart TB
     
     CheckStrong -->|否| AcquireNormal["正常获取流程"]
     
-    AcquireStrong --> CheckConflict{"检查锁冲突"]
+    AcquireStrong --> CheckConflict{"检查锁冲突"}
     AcquireNormal --> CheckConflict
     
     CheckConflict -->|无冲突| GrantLock["授予锁"]

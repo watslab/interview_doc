@@ -40,6 +40,18 @@
 | [PostgreSQL 分级锁机制详解](./document/PostgreSQL/PostgreSQL%20分级锁机制详解.md) | 深入解析 PostgreSQL 的三级锁体系：Spin Lock、Lightweight Lock、Regular Lock，以及 8 种表级锁的兼容性与应用场景 |
 | [PostgreSQL 锁机制与分区表操作详解](./document/PostgreSQL/PostgreSQL%20锁机制与分区表操作详解.md) | PostgreSQL 锁机制与分区表操作详解 |
 
+### ClickHouse
+
+| 文档 | 概述 |
+|------|------|
+| [ClickHouse 列式数据库详解](./document/数据库/ClickHouse%20列式数据库详解.md) | 深入解析 ClickHouse 列式数据库，包括核心架构（列式存储、向量化执行、稀疏索引）、MergeTree 存储引擎家族、分布式架构（分片与副本）、应用场景、与 MySQL/Elasticsearch 对比、最佳实践 |
+
+### 数据库架构
+
+| 文档 | 概述 |
+|------|------|
+| [OLTP与OLAP数据处理架构详解](./document/数据库/OLTP与OLAP数据处理架构详解.md) | 深入解析 OLTP（联机事务处理）与 OLAP（联机分析处理）两大数据处理架构，包括核心特征、技术架构、数据模型、全面对比、传统分离架构问题、HTAP 混合架构原理与代表产品（TiDB、OceanBase）、选型指南 |
+
 ### ElasticSearch
 
 | 文档 | 概述 |
@@ -116,6 +128,12 @@
 |------|------|
 | [并发性能指标详解](./document/性能优化/并发性能指标详解.md) | 系统介绍并发性能指标体系，包括吞吐量指标（QPS、TPS）、响应时间指标（RT、P99）、并发指标、业务流量指标（PV、UV、DAU）、系统资源指标，详解利特尔法则与性能优化方向 |
 
+### 工具
+
+| 文档 | 概述 |
+|------|------|
+| [Arthas Java诊断工具详解](./document/工具/Arthas%20Java诊断工具详解.md) | 深入解析阿里巴巴开源的 Java 诊断工具 Arthas，包括核心原理（Java Agent、Instrumentation、字节码增强）、常用命令详解（dashboard、thread、trace、watch、jad 等）、实战案例（CPU 飙高、接口慢、死锁排查）与最佳实践 |
+
 ## 目录结构
 
 ```
@@ -140,6 +158,9 @@ document/
 │   ├── PostgreSQL 分区表最佳实践与底层原理.md
 │   ├── PostgreSQL 分级锁机制详解.md
 │   └── PostgreSQL 锁机制与分区表操作详解.md
+├── 数据库/
+│   ├── ClickHouse 列式数据库详解.md
+│   └── OLTP与OLAP数据处理架构详解.md
 ├── ElasticSearch/
 │   ├── ElasticSearch 修改现有索引 Settings 详解.md
 │   ├── ElasticSearch 分片数量设置最佳实践详解.md
@@ -177,6 +198,8 @@ document/
 │   └── SEO 搜索引擎优化详解.md
 ├── 计算机网络/
 │   └── TCP 三次握手与四次挥手详解.md
-└── 性能优化/
-    └── 并发性能指标详解.md
+├── 性能优化/
+│   └── 并发性能指标详解.md
+└── 工具/
+    └── Arthas Java诊断工具详解.md
 ```

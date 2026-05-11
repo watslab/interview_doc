@@ -160,7 +160,11 @@ flowchart TB
 
 #### 1.4.2 分区裁剪（Partition Pruning）
 
-**分区裁剪**是声明式分区表的核心性能优化机制：
+**分区裁剪**是声明式分区表的核心性能优化机制。
+
+**概念定义**：优化器根据 WHERE 条件中的分区键，直接读取系统目录中的分区边界元数据（`pg_class.relpartbound`），在查询规划阶段排除不包含目标数据的分区，从而避免全分区扫描。
+
+**底层依赖**：分区边界元数据，存储在 `pg_class.relpartbound` 字段中。
 
 | 阶段 | 操作 | 说明 |
 |------|------|------|
@@ -464,62 +468,63 @@ flowchart TB
     Start([INSERT 语句]) --> Parent["父表"]
     
     Parent --> Route{"路由方式"}
-    
-    Route -->|"触发器方式"| Trigger["BEFORE INSERT 触发器"]
-    Route -->|"规则方式"| Rule["规则系统拦截"]
-    
-    Trigger --> Func["执行触发器函数"]
-    Func --> CalcPartition["判断分区键值"]
-    
-    Rule --> RuleMatch{"规则条件匹配?"}
-    RuleMatch -->|匹配| RuleInsert["DO INSTEAD 执行"]
-    RuleMatch -->|不匹配| RuleNext["继续检查其他规则"]
-    RuleNext --> AllMatch{"所有规则都不匹配?"}
-    AllMatch -->|是| InsertParent["数据插入父表"]
-    AllMatch -->|否| RuleMatch
-    
-    CalcPartition --> CheckRange{"匹配分区范围?"}
-    CheckRange -->|匹配| InsertChild["INSERT INTO 子表"]
-    CheckRange -->|不匹配| RaiseError["RAISE EXCEPTION"]
-    
-    RuleInsert --> CheckConstraint{"CHECK 约束验证"}
-    InsertChild --> CheckConstraint
-    
-    CheckConstraint -->|通过| StoreChild["数据存入子表"]
-    CheckConstraint -->|失败| ConstraintError["抛出约束错误"]
-    
-    StoreChild --> ReturnNull["RETURN NULL"]
-    ReturnNull --> NoParentData["父表不存储数据"]
-    
-    InsertParent --> Success([插入成功])
-    NoParentData --> Success
-    RaiseError --> Fail([插入失败])
-    ConstraintError --> Fail
+
+		subgraph RuleSys["规则系统处理"]
+			RuleProc["校验规则条件"]
+		end
+
+		subgraph TriggerSys["触发器系统处理"]
+			TriggerProc["调用BEFORE INSERT 触发器"]
+		end
+		
+    Route -->|"规则方式"| RuleSys
+    Route -->|"触发器方式"| TriggerSys
+
+		RuleSys --> RuleMatch{"规则条件匹配?"}
+		RuleMatch -->|匹配| InsertRule["DO INSTEAD 执行"] --> RuleChildCheckConstraint{"子表 CHECK 约束验证"}
+		RuleChildCheckConstraint -->|通过| RuleStoreChild["数据存入子表<br/>父表不存储数据"] --> RuleInsertSucess(["插入成功"])
+		RuleChildCheckConstraint -->|不通过| RuleRaiseConstraintError["抛出约束错误"] --> RuleInsertFail(["插入失败"])
+		RuleMatch -->|不匹配| NextRule["继续检查其他规则"] --> RuleAllNotMatch{"所有规则都不匹配?"}
+		RuleAllNotMatch -->|是| InsertParentRule["数据插入父表"] --> RuleInsertSucess
+		RuleAllNotMatch -->|否| RuleMatch
+
+		TriggerSys --> TriggerCheckRange{"匹配分区范围?"}
+		TriggerCheckRange -->|匹配| TriggerInsertChild["INSERT INTO 子表"] --> TriggerChildCheckConstraint{"子表 CHECK 约束验证"}
+		TriggerChildCheckConstraint -->|通过| TriggerStoreChild["数据存入子表<br/>父表不存储数据"] --> TriggerInsertSuccess([插入成功])
+		TriggerChildCheckConstraint -->|不通过| TriggerRaiseConstraintError["抛出约束错误"] --> TriggerInsertFail([插入失败])
+		TriggerCheckRange -->|不匹配| TriggerRaiseException["RAISE EXCEPTION"] --> TriggerInsertFail
     
     style Start fill:#e1f5e1,stroke:#2e7d32,stroke-width:2px
     style Parent fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px
     style Route fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    style Trigger fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    style Rule fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    style Func fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style TriggerSys fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style RuleSys fill:#fce4ec,stroke:#c2185b,stroke-width:2px
     style RuleMatch fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style AllMatch fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style CheckRange fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style CheckConstraint fill:#fff9c4,stroke:#f57f17,stroke-width:2px
-    style InsertChild fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
-    style RuleInsert fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
-    style StoreChild fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
-    style InsertParent fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
-    style NoParentData fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
-    style Success fill:#a5d6a7,stroke:#2e7d32,stroke-width:3px
-    style RaiseError fill:#ffcdd2,stroke:#c62828,stroke-width:2px
-    style ConstraintError fill:#ffcdd2,stroke:#c62828,stroke-width:2px
-    style Fail fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style InsertRule fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style RuleChildCheckConstraint fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style RuleStoreChild fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
+    style RuleRaiseConstraintError fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style RuleAllNotMatch fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style RuleInsertSucess fill:#a5d6a7,stroke:#2e7d32,stroke-width:3px
+    style RuleInsertFail fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style InsertParentRule fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+		style TriggerCheckRange fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style TriggerInsertChild fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    style TriggerChildCheckConstraint fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style TriggerStoreChild fill:#a5d6a7,stroke:#2e7d32,stroke-width:2px
+    style TriggerRaiseConstraintError fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style TriggerRaiseException fill:#ffcdd2,stroke:#c62828,stroke-width:2px
+    style TriggerInsertSuccess fill:#a5d6a7,stroke:#2e7d32,stroke-width:3px
+    style TriggerInsertFail fill:#ffcdd2,stroke:#c62828,stroke-width:2px
 ```
 
 #### 2.3.2 约束排除（Constraint Exclusion）
 
-**约束排除**是继承式分区表的查询优化机制：
+**约束排除**是继承式分区表的查询优化机制。
+
+**概念定义**：优化器根据 WHERE 条件与子表的 CHECK 约束进行逻辑比对，排除不可能满足查询条件的子表，从而减少扫描范围。
+
+**底层依赖**：CHECK 约束，存储在 `pg_constraint` 系统目录中。
 
 | 配置值 | 说明 |
 |--------|------|
@@ -531,26 +536,31 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-    subgraph ParentTable["父表（模板表）"]
+		classDef leftAlign text-align:left;
+		
+    subgraph ParentTable["父表（引导表）"]
         Parent["逻辑容器"]
-        ParentNote["• 通常不存储数据<br/>• 定义表结构和触发器"]
     end
     
-    subgraph ChildTables["子表（分区）"]
-        Child1["子表 1"]
-        Child2["子表 2"]
-        Child3["子表 3"]
+    subgraph ChildTables["子表（目标表）"]
+        Child1["分区子表 1"]
+        Child2["分区子表 2"]
+        Child3["分区子表 3"]
     end
+
+		subgraph ParentFeatures["父表特性"]
+		    ParentNote["• 通常不存储数据<br/>• 定义表结构和触发器"]:::leftAlign
+		end
     
     subgraph ChildFeatures["子表特性"]
-        FeatureNote["• 物理存储表，存储实际数据<br/>• 继承父表结构<br/>• 包含检查约束（CHECK CONSTRAINT）<br/>• 独立的索引和统计信息<br/>• 无特殊分区元数据"]
+        FeatureNote["• 物理存储表，存储实际数据<br/>• 继承父表结构<br/>• 包含检查约束（CHECK CONSTRAINT）<br/>• 独立的索引和统计信息<br/>• 无分区边界元数据"]:::leftAlign
     end
     
     Parent --> Child1
     Parent --> Child2
     Parent --> Child3
     
-    Parent -.-> ParentNote
+    ParentTable -.-> ParentNote
     ChildTables -.-> FeatureNote
     
     style Parent fill:#e1bee7,stroke:#6a1b9a,stroke-width:3px
@@ -560,6 +570,15 @@ flowchart TB
     style Child3 fill:#bbdefb,stroke:#1565c0,stroke-width:2px
     style FeatureNote fill:#e3f2fd,stroke:#1565c0,stroke-width:1px,stroke-dasharray:5,5
 ```
+
+**声明式分区 vs 继承式分区的元数据差异**：
+
+| 对比项 | 声明式分区 | 继承式分区 |
+|--------|------------|------------|
+| **分区边界存储** | 系统目录 `pg_class.relpartbound` 记录分区边界 | 无系统记录，依赖 CHECK 约束表达 |
+| **分区关系记录** | `pg_inherits` 记录父子关系 + 分区标识 | `pg_inherits` 仅记录继承关系 |
+| **分区路由** | 优化器自动识别分区边界 | 依赖约束排除机制推断 |
+| **元数据查询** | `\d+ 父表` 显示分区信息 | 需手动查询子表约束 |
 
 ### 2.4 最佳实践
 
@@ -576,10 +595,10 @@ flowchart TB
 
 | 场景 | 说明 |
 |------|------|
-| **复杂分区逻辑** | 声明式分区无法满足的复杂路由规则 |
-| **特殊存储需求** | 不同分区需要不同的存储参数 |
+| **复杂分区逻辑** | 声明式分区无法满足的复杂路由规则（如基于多个不相关字段的条件路由） |
+| **多父继承** | 子表需要同时作为多个父表的分区（声明式分区不支持） |
 | **PostgreSQL 9.x** | 旧版本无法使用声明式分区 |
-| **混合分区策略** | 多种分区策略的混合使用 |
+| **自定义路由逻辑** | 需要通过触发器实现特殊的数据分发逻辑 |
 
 ---
 
@@ -604,7 +623,7 @@ flowchart TB
 | **插入性能** | ✅ 更快，直接路由 | ❌ 较慢，触发器开销 |
 | **查询性能** | ✅ 更好的分区裁剪 | ⚠️ 依赖约束排除 |
 | **维护性能** | ✅ 更简单的管理 | ❌ 复杂的触发器维护 |
-| **元数据开销** | ✅ 更低 | ❌ 更高 |
+| **元数据开销** | ✅ 更低（仅分区边界） | ❌ 更高（触发器 + 函数） |
 | **扩展性能** | ✅ 更好的并行处理 | ⚠️ 有限制 |
 
 ### 3.3 适用场景对比
@@ -615,7 +634,6 @@ flowchart TB
 | **日志数据** | 声明式分区 | 按时间分区，易于管理 |
 | **用户数据** | 声明式哈希分区 | 均匀分布，性能稳定 |
 | **复杂路由逻辑** | 继承式分区 | 触发器支持复杂逻辑 |
-| **特殊存储需求** | 继承式分区 | 子表可自定义存储参数 |
 | **PostgreSQL 10+** | 声明式分区 | 原生支持，性能更好 |
 | **PostgreSQL 9.x** | 继承式分区 | 唯一选择 |
 
