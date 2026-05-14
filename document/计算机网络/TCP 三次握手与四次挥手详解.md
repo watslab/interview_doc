@@ -17,18 +17,7 @@ TCP（Transmission Control Protocol，传输控制协议）是一种面向连接
 
 TCP 报文由首部和数据两部分组成，首部包含以下关键字段：
 
-```mermaid
-flowchart TB
-    subgraph TCP报文首部
-        A["源端口 (16位)"] --> B["目的端口 (16位)"]
-        B --> C["序列号 seq (32位)"]
-        C --> D["确认号 ack (32位)"]
-        D --> E["数据偏移 + 保留 + 标志位 (16位)"]
-        E --> F["窗口大小 (16位)"]
-        F --> G["校验和 (16位)"]
-        G --> H["紧急指针 (16位)"]
-    end
-```
+![TCP协议报文结构](./images/TCP协议报文结构.svg)
 
 **关键字段说明**：
 
@@ -257,55 +246,11 @@ flowchart TB
 
 ### 4.1 三次握手状态转换
 
-```mermaid
-flowchart TB
-    subgraph 客户端状态
-        direction TB
-        C1["CLOSED"] -->|"主动打开<br/>发送 SYN"| C2["SYN_SENT"]
-        C2 -->|"收到 SYN+ACK<br/>发送 ACK"| C3["ESTABLISHED"]
-        C2 -->|"超时/关闭"| C1
-    end
-    
-    subgraph 服务器状态
-        direction TB
-        S1["CLOSED"] -->|"被动打开<br/>listen()"| S2["LISTEN"]
-        S2 -->|"收到 SYN<br/>发送 SYN+ACK"| S3["SYN_RCVD"]
-        S3 -->|"收到 ACK"| S4["ESTABLISHED"]
-        S3 -->|"超时/关闭"| S1
-        S2 -->|"关闭"| S1
-    end
-    
-    C2 -.->|"SYN"| S3
-    S3 -.->|"SYN+ACK"| C3
-    C2 -.->|"ACK"| S4
-```
+![TCP三次握手状态转换](./images/TCP三次握手状态转换.svg)
 
 ### 4.2 四次挥手状态转换
 
-```mermaid
-flowchart TB
-    subgraph 主动关闭方状态
-        direction TB
-        A1["ESTABLISHED"] -->|"发送 FIN"| A2["FIN_WAIT_1"]
-        A2 -->|"收到 ACK"| A3["FIN_WAIT_2"]
-        A2 -->|"同时关闭<br/>收到对方 FIN<br/>发送 ACK"| A4["CLOSING"]
-        A3 -->|"收到 FIN<br/>发送 ACK"| A5["TIME_WAIT"]
-        A4 -->|"收到对方 ACK"| A5
-        A5 -->|"等待 2MSL"| A6["CLOSED"]
-    end
-    
-    subgraph 被动关闭方状态
-        direction TB
-        P1["ESTABLISHED"] -->|"收到 FIN<br/>发送 ACK"| P2["CLOSE_WAIT"]
-        P2 -->|"发送 FIN"| P3["LAST_ACK"]
-        P3 -->|"收到 ACK"| P4["CLOSED"]
-    end
-    
-    A2 -.->|"FIN"| P2
-    P2 -.->|"ACK"| A3
-    P2 -.->|"FIN"| A5
-    A5 -.->|"ACK"| P4
-```
+![TCP四次挥手状态转换](./images/TCP四次挥手状态转换.svg)
 
 > **CLOSING 状态说明**：当双方**同时发起关闭**时（双方几乎同时发送 FIN），双方都是主动关闭方，都走主动关闭方的状态线。此时：
 > - 双方都处于 FIN_WAIT_1 状态
