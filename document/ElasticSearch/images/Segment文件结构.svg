@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 680" width="950" height="680">
+  <defs>
+    <linearGradient id="indexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e3f2fd" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#bbdefb" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="shardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3e5f5" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#e1bee7" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="luceneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8f5e9" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#c8e6c9" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="segmentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8e1" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffecb3" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="metaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff3e0" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#ffe0b2" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="invertedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e3f2fd" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#bbdefb" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="storedGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fce4ec" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#f8bbd0" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="docvalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2f1" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#b2dfdb" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="normsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f1f8e9" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#dcedc8" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="bkdGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff8e1" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#ffecb3" stop-opacity="1"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shadowLight" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect x="10" y="10" width="930" height="660" rx="15" fill="#fafafa" filter="url(#shadow)"/>
+
+  <rect x="30" y="25" width="890" height="630" rx="12" fill="url(#indexGrad)" filter="url(#shadow)"/>
+  <text x="475" y="50" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="16" font-weight="bold" fill="#1565c0">Index</text>
+
+  <rect x="50" y="65" width="850" height="570" rx="10" fill="url(#shardGrad)" filter="url(#shadow)"/>
+  <text x="475" y="90" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="14" font-weight="bold" fill="#7b1fa2">Shard</text>
+
+  <rect x="70" y="105" width="810" height="510" rx="8" fill="url(#luceneGrad)" filter="url(#shadow)"/>
+  <text x="475" y="130" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="13" font-weight="bold" fill="#2e7d32">Lucene Index</text>
+
+  <rect x="90" y="145" width="770" height="450" rx="6" fill="url(#segmentGrad)" filter="url(#shadow)"/>
+  <text x="475" y="170" text-anchor="middle" font-family="Microsoft YaHei, Arial, sans-serif" font-size="12" font-weight="bold" fill="#e65100">Segment</text>
+
+  <g id="top-row" font-family="Microsoft YaHei, Arial, sans-serif">
+    <rect x="105" y="185" width="150" height="180" rx="6" fill="url(#metaGrad)" filter="url(#shadowLight)"/>
+    <text x="180" y="208" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">元数据文件</text>
+    <g font-size="11" fill="#37474f">
+      <rect x="115" y="220" width="130" height="40" rx="4" fill="white" opacity="0.8"/>
+      <text x="180" y="238" text-anchor="middle" font-weight="bold">.si</text>
+      <text x="180" y="253" text-anchor="middle" font-size="9">段信息</text>
+
+      <rect x="115" y="270" width="130" height="40" rx="4" fill="white" opacity="0.8"/>
+      <text x="180" y="288" text-anchor="middle" font-weight="bold">.fnm</text>
+      <text x="180" y="303" text-anchor="middle" font-size="9">字段元数据</text>
+    </g>
+
+    <rect x="270" y="185" width="430" height="180" rx="6" fill="url(#invertedGrad)" filter="url(#shadowLight)"/>
+    <text x="485" y="208" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">倒排索引文件</text>
+    <g font-size="11" fill="#37474f">
+      <rect x="280" y="220" width="80" height="55" rx="4" fill="white" opacity="0.8"/>
+      <text x="320" y="240" text-anchor="middle" font-weight="bold">.tim</text>
+      <text x="320" y="258" text-anchor="middle" font-size="9">词典</text>
+
+      <rect x="370" y="220" width="80" height="55" rx="4" fill="white" opacity="0.8"/>
+      <text x="410" y="240" text-anchor="middle" font-weight="bold">.tip</text>
+      <text x="410" y="258" text-anchor="middle" font-size="9">词典索引</text>
+
+      <rect x="460" y="220" width="80" height="55" rx="4" fill="white" opacity="0.8"/>
+      <text x="500" y="240" text-anchor="middle" font-weight="bold">.doc</text>
+      <text x="500" y="258" text-anchor="middle" font-size="9">倒排列表</text>
+
+      <rect x="550" y="220" width="80" height="55" rx="4" fill="white" opacity="0.8"/>
+      <text x="590" y="240" text-anchor="middle" font-weight="bold">.pos</text>
+      <text x="590" y="258" text-anchor="middle" font-size="9">位置信息</text>
+
+      <rect x="640" y="220" width="50" height="55" rx="4" fill="white" opacity="0.8"/>
+      <text x="665" y="240" text-anchor="middle" font-weight="bold">.pay</text>
+      <text x="665" y="258" text-anchor="middle" font-size="9">负载</text>
+    </g>
+
+    <rect x="715" y="185" width="130" height="180" rx="6" fill="url(#storedGrad)" filter="url(#shadowLight)"/>
+    <text x="780" y="208" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2185b">存储字段文件</text>
+    <g font-size="11" fill="#37474f">
+      <rect x="725" y="220" width="110" height="40" rx="4" fill="white" opacity="0.8"/>
+      <text x="780" y="238" text-anchor="middle" font-weight="bold">.fdt</text>
+      <text x="780" y="253" text-anchor="middle" font-size="9">存储字段数据</text>
+
+      <rect x="725" y="270" width="110" height="40" rx="4" fill="white" opacity="0.8"/>
+      <text x="780" y="288" text-anchor="middle" font-weight="bold">.fdx</text>
+      <text x="780" y="303" text-anchor="middle" font-size="9">存储字段索引</text>
+    </g>
+  </g>
+
+  <g id="bottom-row" font-family="Microsoft YaHei, Arial, sans-serif">
+    <rect x="105" y="380" width="250" height="200" rx="6" fill="url(#docvalGrad)" filter="url(#shadowLight)"/>
+    <text x="230" y="405" text-anchor="middle" font-size="12" font-weight="bold" fill="#00695c">Doc Values 文件</text>
+    <g font-size="11" fill="#37474f">
+      <rect x="120" y="420" width="100" height="50" rx="4" fill="white" opacity="0.8"/>
+      <text x="170" y="442" text-anchor="middle" font-weight="bold">.dvd</text>
+      <text x="170" y="460" text-anchor="middle" font-size="9">Doc Values 数据</text>
+
+      <rect x="235" y="420" width="100" height="50" rx="4" fill="white" opacity="0.8"/>
+      <text x="285" y="442" text-anchor="middle" font-weight="bold">.dvm</text>
+      <text x="285" y="460" text-anchor="middle" font-size="9">Doc Values 元数据</text>
+    </g>
+
+    <rect x="370" y="380" width="250" height="200" rx="6" fill="url(#normsGrad)" filter="url(#shadowLight)"/>
+    <text x="495" y="405" text-anchor="middle" font-size="12" font-weight="bold" fill="#558b2f">归一化文件</text>
+    <g font-size="11" fill="#37474f">
+      <rect x="385" y="420" width="100" height="50" rx="4" fill="white" opacity="0.8"/>
+      <text x="435" y="442" text-anchor="middle" font-weight="bold">.nvd</text>
+      <text x="435" y="460" text-anchor="middle" font-size="9">归一化数据</text>
+
+      <rect x="500" y="420" width="100" height="50" rx="4" fill="white" opacity="0.8"/>
+      <text x="550" y="442" text-anchor="middle" font-weight="bold">.nvm</text>
+      <text x="550" y="460" text-anchor="middle" font-size="9">归一化元数据</text>
+    </g>
+
+    <rect x="635" y="380" width="210" height="200" rx="6" fill="url(#bkdGrad)" filter="url(#shadowLight)"/>
+    <text x="740" y="405" text-anchor="middle" font-size="12" font-weight="bold" fill="#ff8f00">BKD 树文件</text>
+    <text x="740" y="422" text-anchor="middle" font-size="9" fill="#ff8f00">（数值和地理索引）</text>
+    <g font-size="11" fill="#37474f">
+      <rect x="650" y="435" width="90" height="50" rx="4" fill="white" opacity="0.8"/>
+      <text x="695" y="457" text-anchor="middle" font-weight="bold">.dim</text>
+      <text x="695" y="475" text-anchor="middle" font-size="9">BKD 维度</text>
+
+      <rect x="755" y="435" width="80" height="50" rx="4" fill="white" opacity="0.8"/>
+      <text x="795" y="457" text-anchor="middle" font-weight="bold">.dii</text>
+      <text x="795" y="475" text-anchor="middle" font-size="9">BKD 索引</text>
+    </g>
+  </g>
+</svg>

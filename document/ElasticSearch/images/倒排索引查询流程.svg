@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 550" font-family="'Segoe UI', 'Microsoft YaHei', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f4ff"/>
+      <stop offset="100%" stop-color="#e8eeff"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a90d9"/>
+      <stop offset="100%" stop-color="#357abd"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3b7dd8"/>
+      <stop offset="100%" stop-color="#2a6abf"/>
+    </linearGradient>
+    <linearGradient id="card3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2e6bc4"/>
+      <stop offset="100%" stop-color="#1e5ab0"/>
+    </linearGradient>
+    <linearGradient id="resultGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b4f8a"/>
+      <stop offset="100%" stop-color="#143d6b"/>
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2a5a9a" flood-opacity="0.18"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#5a8ec4"/>
+    </marker>
+  </defs>
+
+  <rect width="600" height="550" rx="12" fill="url(#bg)"/>
+
+  <text x="300" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a5f">ElasticSearch 倒排索引查询流程</text>
+
+  <!-- Query input "fox" -->
+  <rect x="255" y="48" width="90" height="28" rx="6" fill="#eef3fb" stroke="#4a90d9" stroke-width="1.2"/>
+  <text x="300" y="68" text-anchor="middle" font-size="13" font-weight="600" fill="#2a6abf">"fox"</text>
+  <line x1="300" y1="76" x2="300" y2="98" stroke="#4a90d9" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
+
+  <!-- ===== Step 1: .tip ===== -->
+  <circle cx="72" cy="128" r="16" fill="#4a90d9" opacity="0.9"/>
+  <text x="72" y="133" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">①</text>
+
+  <rect x="100" y="98" width="400" height="62" rx="10" fill="url(#card1)" filter="url(#shadow)"/>
+  <text x="130" y="122" font-size="15" font-weight="700" fill="#fff">.tip</text>
+  <text x="165" y="122" font-size="13" fill="#d4e4f7">→ Term Index</text>
+  <text x="130" y="144" font-size="12" fill="#c8ddf5">FST 查找，定位 Block 偏移量</text>
+  <rect x="410" y="112" width="56" height="24" rx="12" fill="#fff" fill-opacity="0.22"/>
+  <text x="438" y="129" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">内存</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="300" y1="160" x2="300" y2="195" stroke="#5a8ec4" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="316" y="182" font-size="10" fill="#6a9ad0">偏移量</text>
+
+  <!-- ===== Step 2: .tim ===== -->
+  <circle cx="72" cy="228" r="16" fill="#3b7dd8" opacity="0.9"/>
+  <text x="72" y="233" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">②</text>
+
+  <rect x="100" y="198" width="400" height="62" rx="10" fill="url(#card2)" filter="url(#shadow)"/>
+  <text x="130" y="222" font-size="15" font-weight="700" fill="#fff">.tim</text>
+  <text x="170" y="222" font-size="13" fill="#d4e4f7">→ Term Dictionary</text>
+  <text x="130" y="244" font-size="12" fill="#c8ddf5">定位 Block，扫描找到 Term</text>
+  <rect x="410" y="212" width="56" height="24" rx="12" fill="#fff" fill-opacity="0.22"/>
+  <text x="438" y="229" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">磁盘</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="300" y1="260" x2="300" y2="295" stroke="#5a8ec4" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="316" y="282" font-size="10" fill="#6a9ad0">docFreq / 文档指针</text>
+
+  <!-- ===== Step 3: .doc ===== -->
+  <circle cx="72" cy="328" r="16" fill="#2e6bc4" opacity="0.9"/>
+  <text x="72" y="333" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">③</text>
+
+  <rect x="100" y="298" width="400" height="62" rx="10" fill="url(#card3)" filter="url(#shadow)"/>
+  <text x="130" y="322" font-size="15" font-weight="700" fill="#fff">.doc</text>
+  <text x="170" y="322" font-size="13" fill="#d4e4f7">→ Posting List</text>
+  <text x="130" y="344" font-size="12" fill="#c8ddf5">读取倒排列表，获取文档列表</text>
+  <rect x="410" y="312" width="56" height="24" rx="12" fill="#fff" fill-opacity="0.22"/>
+  <text x="438" y="329" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">磁盘</text>
+
+  <!-- Arrow 3→Result -->
+  <line x1="300" y1="360" x2="300" y2="400" stroke="#5a8ec4" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ===== Result ===== -->
+  <rect x="150" y="405" width="300" height="52" rx="10" fill="url(#resultGrad)" filter="url(#shadow)"/>
+  <text x="300" y="427" text-anchor="middle" font-size="13" fill="#a8c8ee">查询词 "fox" 匹配文档</text>
+  <text x="300" y="447" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">[ Doc1, Doc3, Doc5 ]</text>
+
+  <!-- ===== Legend ===== -->
+  <rect x="140" y="480" width="320" height="60" rx="8" fill="#fff" fill-opacity="0.55" stroke="#c0d4ee" stroke-width="1"/>
+  <text x="160" y="500" font-size="11" font-weight="600" fill="#3a5a8a">流程说明</text>
+  <circle cx="168" cy="518" r="5" fill="#4a90d9"/>
+  <text x="180" y="522" font-size="10" fill="#4a6a8a">.tip 在内存中通过 FST 快速定位</text>
+  <circle cx="348" cy="518" r="5" fill="#2e6bc4"/>
+  <text x="360" y="522" font-size="10" fill="#4a6a8a">.tim/.doc 需磁盘 I/O</text>
+</svg>
