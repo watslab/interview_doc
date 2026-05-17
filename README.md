@@ -44,7 +44,7 @@
 
 | 文档 | 概述 |
 |------|------|
-| [ClickHouse 列式数据库详解](./document/数据库/ClickHouse%20列式数据库详解.md) | 深入解析 ClickHouse 列式数据库，包括核心架构（列式存储、向量化执行、稀疏索引）、MergeTree 存储引擎家族、分布式架构（分片与副本）、应用场景、与 MySQL/Elasticsearch 对比、最佳实践 |
+| [ClickHouse 列式数据库详解](./document/ClickHouse/ClickHouse%20列式数据库详解.md) | 深入解析 ClickHouse 列式数据库，包括核心架构（列式存储、向量化执行、稀疏索引）、MergeTree 存储引擎家族、分布式架构（分片与副本）、应用场景、与 MySQL/Elasticsearch 对比、最佳实践 |
 
 ### 数据库架构
 
@@ -158,8 +158,9 @@ document/
 │   ├── PostgreSQL 分区表最佳实践与底层原理.md
 │   ├── PostgreSQL 分级锁机制详解.md
 │   └── PostgreSQL 锁机制与分区表操作详解.md
+├── ClickHouse/
+│   └── ClickHouse 列式数据库详解.md
 ├── 数据库/
-│   ├── ClickHouse 列式数据库详解.md
 │   └── OLTP与OLAP数据处理架构详解.md
 ├── ElasticSearch/
 │   ├── ElasticSearch 修改现有索引 Settings 详解.md
