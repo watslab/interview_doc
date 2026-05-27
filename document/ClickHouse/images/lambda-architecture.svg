@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" font-family="'Segoe UI','Microsoft YaHei',sans-serif">
+  <defs>
+    <filter id="ds" x="-2%" y="-4%" width="104%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+    <marker id="ah" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94A3B8"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2F7"/>
+    </linearGradient>
+    <linearGradient id="realtimeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    <linearGradient id="offlineGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="320" rx="10" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#1E293B">Lambda 架构</text>
+
+  <!-- Real-time Layer Container -->
+  <rect x="40" y="45" width="720" height="100" rx="8" fill="white" stroke="#BFDBFE" stroke-width="1" filter="url(#ds)"/>
+  <path d="M40,53 Q40,45 48,45 L752,45 Q760,45 760,53 L760,72 L40,72 Z" fill="url(#realtimeGrad)"/>
+  <text x="56" y="63" font-size="12" font-weight="600" fill="white">⚡ 实时层</text>
+
+  <!-- Kafka (x=135, w=150) -->
+  <rect x="135" y="82" width="150" height="48" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1"/>
+  <text x="210" y="102" text-anchor="middle" font-size="13" font-weight="600" fill="#1E40AF">Kafka</text>
+  <text x="210" y="118" text-anchor="middle" font-size="9" fill="#64748B">消息队列</text>
+
+  <!-- Arrow: Kafka → Flink -->
+  <line x1="285" y1="106" x2="320" y2="106" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Flink (x=325, w=150) -->
+  <rect x="325" y="82" width="150" height="48" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1"/>
+  <text x="400" y="102" text-anchor="middle" font-size="13" font-weight="600" fill="#1E40AF">Flink</text>
+  <text x="400" y="118" text-anchor="middle" font-size="9" fill="#64748B">流计算</text>
+
+  <!-- Arrow: Flink → ClickHouse -->
+  <line x1="475" y1="106" x2="510" y2="106" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ClickHouse real-time (x=515, w=150) -->
+  <rect x="515" y="82" width="150" height="48" rx="6" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1"/>
+  <text x="590" y="102" text-anchor="middle" font-size="13" font-weight="600" fill="#065F46">ClickHouse</text>
+  <text x="590" y="118" text-anchor="middle" font-size="9" fill="#64748B">实时查询</text>
+
+  <!-- Offline Layer Container -->
+  <rect x="40" y="170" width="720" height="100" rx="8" fill="white" stroke="#FDE68A" stroke-width="1" filter="url(#ds)"/>
+  <path d="M40,178 Q40,170 48,170 L752,170 Q760,170 760,178 L760,197 L40,197 Z" fill="url(#offlineGrad)"/>
+  <text x="56" y="188" font-size="12" font-weight="600" fill="white">📦 离线层</text>
+
+  <!-- HDFS (x=135, w=150) -->
+  <rect x="135" y="207" width="150" height="48" rx="6" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+  <text x="210" y="227" text-anchor="middle" font-size="13" font-weight="600" fill="#92400E">HDFS</text>
+  <text x="210" y="243" text-anchor="middle" font-size="9" fill="#64748B">分布式存储</text>
+
+  <!-- Arrow: HDFS → Spark -->
+  <line x1="285" y1="231" x2="320" y2="231" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Spark (x=325, w=150) -->
+  <rect x="325" y="207" width="150" height="48" rx="6" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1"/>
+  <text x="400" y="227" text-anchor="middle" font-size="13" font-weight="600" fill="#92400E">Spark</text>
+  <text x="400" y="243" text-anchor="middle" font-size="9" fill="#64748B">批计算</text>
+
+  <!-- Arrow: Spark → ClickHouse -->
+  <line x1="475" y1="231" x2="510" y2="231" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ClickHouse offline (x=515, w=150) -->
+  <rect x="515" y="207" width="150" height="48" rx="6" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1"/>
+  <text x="590" y="227" text-anchor="middle" font-size="13" font-weight="600" fill="#065F46">ClickHouse</text>
+  <text x="590" y="243" text-anchor="middle" font-size="9" fill="#64748B">历史数据</text>
+
+  <!-- Merge Arrow -->
+  <line x1="590" y1="130" x2="590" y2="155" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="590" y1="155" x2="590" y2="207" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <rect x="560" y="148" width="60" height="18" rx="3" fill="white" stroke="#CBD5E1" stroke-width="0.5"/>
+  <text x="590" y="161" text-anchor="middle" font-size="9" fill="#64748B">合并</text>
+
+  <!-- Bottom Summary -->
+  <rect x="40" y="285" width="720" height="26" rx="4" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="400" y="303" text-anchor="middle" font-size="10" fill="#64748B">实时层保障低延迟查询，离线层保障数据完整性，两层结果在 ClickHouse 中合并对外服务</text>
+</svg>

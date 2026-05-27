@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2F7"/>
+    </linearGradient>
+    <linearGradient id="zkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="clusterGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EFF6FF"/>
+      <stop offset="100%" stop-color="#DBEAFE"/>
+    </linearGradient>
+    <linearGradient id="shardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="replicaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F0FDF4"/>
+    </linearGradient>
+    <filter id="ds1" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <filter id="ds2" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowPurple" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="10" markerHeight="7" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8B5CF6"/>
+    </marker>
+    <marker id="arrowGreenD" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="9" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22C55E"/>
+    </marker>
+    <marker id="arrowGreenU" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="9" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22C55E"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="480" rx="12" fill="url(#bgGrad)"/>
+
+  <rect x="280" y="25" width="240" height="55" rx="10" fill="url(#zkGrad)" filter="url(#ds1)"/>
+  <text x="400" y="50" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="15" font-weight="600">ZooKeeper / Keeper</text>
+  <text x="400" y="68" text-anchor="middle" fill="#DDD6FE" font-family="system-ui,sans-serif" font-size="11">分布式协调服务</text>
+
+  <rect x="40" y="150" width="720" height="295" rx="12" fill="url(#clusterGrad)" stroke="#93C5FD" stroke-width="1.5" filter="url(#ds1)"/>
+  <text x="400" y="175" text-anchor="middle" fill="#1E40AF" font-family="system-ui,sans-serif" font-size="14" font-weight="700">ClickHouse 集群</text>
+
+  <rect x="70" y="185" width="200" height="240" rx="8" fill="white" stroke="#93C5FD" stroke-width="1" filter="url(#ds2)"/>
+  <path d="M70,217 L70,193 Q70,185 78,185 L262,185 Q270,185 270,193 L270,217 Z" fill="url(#shardGrad)"/>
+  <text x="170" y="207" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="600">分片 1</text>
+
+  <rect x="90" y="228" width="160" height="42" rx="6" fill="url(#replicaGrad)" stroke="#86EFAC" stroke-width="1.2"/>
+  <circle cx="112" cy="249" r="9" fill="#22C55E" opacity="0.15"/>
+  <text x="112" y="253" text-anchor="middle" fill="#16A34A" font-family="system-ui,sans-serif" font-size="10" font-weight="700">R</text>
+  <text x="178" y="253" text-anchor="middle" fill="#166534" font-family="system-ui,sans-serif" font-size="12" font-weight="600">副本 1</text>
+
+  <rect x="90" y="318" width="160" height="42" rx="6" fill="url(#replicaGrad)" stroke="#86EFAC" stroke-width="1.2"/>
+  <circle cx="112" cy="339" r="9" fill="#22C55E" opacity="0.15"/>
+  <text x="112" y="343" text-anchor="middle" fill="#16A34A" font-family="system-ui,sans-serif" font-size="10" font-weight="700">R</text>
+  <text x="178" y="343" text-anchor="middle" fill="#166534" font-family="system-ui,sans-serif" font-size="12" font-weight="600">副本 2</text>
+
+  <line x1="162" y1="272" x2="162" y2="316" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrowGreenD)"/>
+  <line x1="178" y1="316" x2="178" y2="272" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrowGreenU)"/>
+  <text x="210" y="298" fill="#16A34A" font-family="system-ui,sans-serif" font-size="9">数据同步</text>
+
+  <text x="170" y="395" text-anchor="middle" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">数据子集 A</text>
+
+  <rect x="300" y="185" width="200" height="240" rx="8" fill="white" stroke="#93C5FD" stroke-width="1" filter="url(#ds2)"/>
+  <path d="M300,217 L300,193 Q300,185 308,185 L492,185 Q500,185 500,193 L500,217 Z" fill="url(#shardGrad)"/>
+  <text x="400" y="207" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="600">分片 2</text>
+
+  <rect x="320" y="228" width="160" height="42" rx="6" fill="url(#replicaGrad)" stroke="#86EFAC" stroke-width="1.2"/>
+  <circle cx="342" cy="249" r="9" fill="#22C55E" opacity="0.15"/>
+  <text x="342" y="253" text-anchor="middle" fill="#16A34A" font-family="system-ui,sans-serif" font-size="10" font-weight="700">R</text>
+  <text x="408" y="253" text-anchor="middle" fill="#166534" font-family="system-ui,sans-serif" font-size="12" font-weight="600">副本 1</text>
+
+  <rect x="320" y="318" width="160" height="42" rx="6" fill="url(#replicaGrad)" stroke="#86EFAC" stroke-width="1.2"/>
+  <circle cx="342" cy="339" r="9" fill="#22C55E" opacity="0.15"/>
+  <text x="342" y="343" text-anchor="middle" fill="#16A34A" font-family="system-ui,sans-serif" font-size="10" font-weight="700">R</text>
+  <text x="408" y="343" text-anchor="middle" fill="#166534" font-family="system-ui,sans-serif" font-size="12" font-weight="600">副本 2</text>
+
+  <line x1="392" y1="272" x2="392" y2="316" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrowGreenD)"/>
+  <line x1="408" y1="316" x2="408" y2="272" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrowGreenU)"/>
+  <text x="440" y="298" fill="#16A34A" font-family="system-ui,sans-serif" font-size="9">数据同步</text>
+
+  <text x="400" y="395" text-anchor="middle" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">数据子集 B</text>
+
+  <rect x="530" y="185" width="200" height="240" rx="8" fill="white" stroke="#93C5FD" stroke-width="1" filter="url(#ds2)"/>
+  <path d="M530,217 L530,193 Q530,185 538,185 L722,185 Q730,185 730,193 L730,217 Z" fill="url(#shardGrad)"/>
+  <text x="630" y="207" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="600">分片 N</text>
+
+  <rect x="550" y="228" width="160" height="42" rx="6" fill="url(#replicaGrad)" stroke="#86EFAC" stroke-width="1.2"/>
+  <circle cx="572" cy="249" r="9" fill="#22C55E" opacity="0.15"/>
+  <text x="572" y="253" text-anchor="middle" fill="#16A34A" font-family="system-ui,sans-serif" font-size="10" font-weight="700">R</text>
+  <text x="638" y="253" text-anchor="middle" fill="#166534" font-family="system-ui,sans-serif" font-size="12" font-weight="600">副本 1</text>
+
+  <rect x="550" y="318" width="160" height="42" rx="6" fill="url(#replicaGrad)" stroke="#86EFAC" stroke-width="1.2"/>
+  <circle cx="572" cy="339" r="9" fill="#22C55E" opacity="0.15"/>
+  <text x="572" y="343" text-anchor="middle" fill="#16A34A" font-family="system-ui,sans-serif" font-size="10" font-weight="700">R</text>
+  <text x="638" y="343" text-anchor="middle" fill="#166534" font-family="system-ui,sans-serif" font-size="12" font-weight="600">副本 2</text>
+
+  <line x1="622" y1="272" x2="622" y2="316" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrowGreenD)"/>
+  <line x1="638" y1="316" x2="638" y2="272" stroke="#22C55E" stroke-width="1.5" marker-end="url(#arrowGreenU)"/>
+  <text x="670" y="298" fill="#16A34A" font-family="system-ui,sans-serif" font-size="9">数据同步</text>
+
+  <text x="630" y="395" text-anchor="middle" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">数据子集 C</text>
+
+  <line x1="400" y1="80" x2="170" y2="185" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowPurple)"/>
+  <line x1="400" y1="80" x2="400" y2="185" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowPurple)"/>
+  <line x1="400" y1="80" x2="630" y2="185" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowPurple)"/>
+
+  <text x="260" y="120" text-anchor="middle" fill="#7C3AED" font-family="system-ui,sans-serif" font-size="9">协调</text>
+  <text x="400" y="120" text-anchor="middle" fill="#7C3AED" font-family="system-ui,sans-serif" font-size="9">协调</text>
+  <text x="540" y="120" text-anchor="middle" fill="#7C3AED" font-family="system-ui,sans-serif" font-size="9">协调</text>
+
+  <rect x="282" y="455" width="236" height="16" rx="4" fill="white" fill-opacity="0.7"/>
+  <line x1="302" y1="464" x2="332" y2="464" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="340" y="468" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">协调关系</text>
+  <line x1="418" y1="464" x2="448" y2="464" stroke="#22C55E" stroke-width="1.5"/>
+  <text x="456" y="468" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">数据同步</text>
+</svg>

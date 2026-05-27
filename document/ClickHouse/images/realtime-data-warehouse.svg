@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" font-family="'Segoe UI','Microsoft YaHei',sans-serif">
+  <defs>
+    <filter id="ds" x="-2%" y="-4%" width="104%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+    <marker id="ah" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94A3B8"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2F7"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="220" rx="10" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="700" fill="#1E293B">实时数仓架构</text>
+
+  <!-- Main Container -->
+  <rect x="40" y="45" width="720" height="120" rx="8" fill="white" stroke="#C4B5FD" stroke-width="1" filter="url(#ds)"/>
+  <path d="M40,53 Q40,45 48,45 L752,45 Q760,45 760,53 L760,72 L40,72 Z" fill="url(#headerGrad)"/>
+  <text x="56" y="63" font-size="12" font-weight="600" fill="white">🔄 数据流</text>
+
+  <!-- 5 nodes x 108px = 540, 4 gaps x 25px = 100, total = 640 -->
+  <!-- margins = (720 - 640) / 2 = 40px each side -->
+  <!-- first node x = 40 + 40 = 80 -->
+
+  <!-- 业务数据库 (x=80, w=108) -->
+  <rect x="80" y="82" width="108" height="48" rx="6" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="1"/>
+  <text x="134" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#5B21B6">业务数据库</text>
+  <text x="134" y="118" text-anchor="middle" font-size="9" fill="#64748B">MySQL/PgSQL</text>
+
+  <!-- Arrow: DB → CDC -->
+  <line x1="188" y1="106" x2="208" y2="106" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- CDC (x=213, w=108) -->
+  <rect x="213" y="82" width="108" height="48" rx="6" fill="#F5F3FF" stroke="#C4B5FD" stroke-width="1"/>
+  <text x="267" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#5B21B6">CDC</text>
+  <text x="267" y="118" text-anchor="middle" font-size="9" fill="#64748B">Canal/Debezium</text>
+
+  <!-- Arrow: CDC → Kafka -->
+  <line x1="321" y1="106" x2="341" y2="106" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Kafka (x=346, w=108) -->
+  <rect x="346" y="82" width="108" height="48" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1"/>
+  <text x="400" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#1E40AF">Kafka</text>
+  <text x="400" y="118" text-anchor="middle" font-size="9" fill="#64748B">消息队列</text>
+
+  <!-- Arrow: Kafka → Flink -->
+  <line x1="454" y1="106" x2="474" y2="106" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Flink (x=479, w=108) -->
+  <rect x="479" y="82" width="108" height="48" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1"/>
+  <text x="533" y="102" text-anchor="middle" font-size="11" font-weight="600" fill="#1E40AF">Flink</text>
+  <text x="533" y="118" text-anchor="middle" font-size="9" fill="#64748B">流计算</text>
+
+  <!-- Arrow: Flink → ClickHouse -->
+  <line x1="587" y1="106" x2="607" y2="106" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ClickHouse (x=612, w=108) -->
+  <rect x="612" y="82" width="108" height="48" rx="6" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1"/>
+  <text x="666" y="102" text-anchor="middle" font-size="12" font-weight="600" fill="#065F46">ClickHouse</text>
+  <text x="666" y="118" text-anchor="middle" font-size="9" fill="#64748B">OLAP 存储</text>
+
+  <!-- Arrow: ClickHouse → BI -->
+  <line x1="666" y1="130" x2="666" y2="170" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- BI Tools -->
+  <rect x="601" y="178" width="130" height="30" rx="6" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1"/>
+  <text x="666" y="198" text-anchor="middle" font-size="11" font-weight="600" fill="#9A3412">BI 工具 / 大屏</text>
+
+  <!-- Bottom Summary -->
+  <rect x="40" y="178" width="545" height="30" rx="4" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="312" y="198" text-anchor="middle" font-size="10" fill="#64748B">CDC 捕获业务库变更 → Kafka 缓冲 → Flink 清洗聚合 → ClickHouse 存储 → BI 查询展示</text>
+</svg>

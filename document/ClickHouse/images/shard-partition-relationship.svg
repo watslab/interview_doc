@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 530" font-family="'Segoe UI','Microsoft YaHei',sans-serif">
+  <defs>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2F7"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    <linearGradient id="shardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="partGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="530" rx="10" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="700" fill="#1E293B">分片与分区的关系（正交独立）</text>
+  <text x="400" y="48" text-anchor="middle" font-size="11" fill="#64748B">示例：PARTITION BY toYYYYMM(event_date)，sharding_key = user_id</text>
+
+  <!-- Full Table Container -->
+  <rect x="40" y="62" width="720" height="400" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1" filter="url(#ds)"/>
+  <!-- Full Table Header -->
+  <path d="M40,70 Q40,62 48,62 L752,62 Q760,62 760,70 L760,92 L40,92 Z" fill="url(#headerGrad)"/>
+  <text x="400" y="81" text-anchor="middle" font-size="13" font-weight="600" fill="white">全表数据（Distributed 表视角）</text>
+
+  <!-- Axis Labels -->
+  <text x="400" y="112" text-anchor="middle" font-size="11" font-weight="600" fill="#3B82F6">↓ 分片维度（按 user_id 哈希分布）</text>
+  <text x="58" y="300" text-anchor="middle" font-size="11" font-weight="600" fill="#059669" transform="rotate(-90,58,300)">分区维度（按 event_date）</text>
+
+  <!-- Column Headers (Shards) -->
+  <rect x="160" y="120" width="180" height="28" rx="4" fill="url(#shardGrad)"/>
+  <text x="250" y="139" text-anchor="middle" font-size="11" font-weight="600" fill="white">分片 1 本地表</text>
+
+  <rect x="360" y="120" width="180" height="28" rx="4" fill="url(#shardGrad)"/>
+  <text x="450" y="139" text-anchor="middle" font-size="11" font-weight="600" fill="white">分片 2 本地表</text>
+
+  <rect x="560" y="120" width="180" height="28" rx="4" fill="url(#shardGrad)"/>
+  <text x="650" y="139" text-anchor="middle" font-size="11" font-weight="600" fill="white">分片 N 本地表</text>
+
+  <!-- Row 1: Partition 202401 -->
+  <rect x="80" y="158" width="68" height="80" rx="4" fill="#D1FAE5" stroke="#6EE7B7" stroke-width="1"/>
+  <text x="114" y="192" text-anchor="middle" font-size="11" font-weight="600" fill="#065F46">分区</text>
+  <text x="114" y="208" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">202401</text>
+
+  <!-- Shard1-202401 -->
+  <rect x="160" y="158" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="250" y="180" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片1</text>
+  <text x="250" y="196" text-anchor="middle" font-size="10" fill="#1E40AF">的 202401 分区数据</text>
+  <rect x="200" y="206" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="250" y="221" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-A1</text>
+
+  <!-- Shard2-202401 -->
+  <rect x="360" y="158" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="450" y="180" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片2</text>
+  <text x="450" y="196" text-anchor="middle" font-size="10" fill="#1E40AF">的 202401 分区数据</text>
+  <rect x="400" y="206" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="450" y="221" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-B1</text>
+
+  <!-- ShardN-202401 -->
+  <rect x="560" y="158" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="650" y="180" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片N</text>
+  <text x="650" y="196" text-anchor="middle" font-size="10" fill="#1E40AF">的 202401 分区数据</text>
+  <rect x="600" y="206" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="650" y="221" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-N1</text>
+
+  <!-- Row 2: Partition 202402 -->
+  <rect x="80" y="252" width="68" height="80" rx="4" fill="#D1FAE5" stroke="#6EE7B7" stroke-width="1"/>
+  <text x="114" y="286" text-anchor="middle" font-size="11" font-weight="600" fill="#065F46">分区</text>
+  <text x="114" y="302" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">202402</text>
+
+  <!-- Shard1-202402 -->
+  <rect x="160" y="252" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="250" y="274" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片1</text>
+  <text x="250" y="290" text-anchor="middle" font-size="10" fill="#1E40AF">的 202402 分区数据</text>
+  <rect x="200" y="300" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="250" y="315" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-A2</text>
+
+  <!-- Shard2-202402 -->
+  <rect x="360" y="252" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="450" y="274" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片2</text>
+  <text x="450" y="290" text-anchor="middle" font-size="10" fill="#1E40AF">的 202402 分区数据</text>
+  <rect x="400" y="300" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="450" y="315" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-B2</text>
+
+  <!-- ShardN-202402 -->
+  <rect x="560" y="252" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="650" y="274" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片N</text>
+  <text x="650" y="290" text-anchor="middle" font-size="10" fill="#1E40AF">的 202402 分区数据</text>
+  <rect x="600" y="300" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="650" y="315" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-N2</text>
+
+  <!-- Row 3: Partition 202403 -->
+  <rect x="80" y="346" width="68" height="80" rx="4" fill="#D1FAE5" stroke="#6EE7B7" stroke-width="1"/>
+  <text x="114" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#065F46">分区</text>
+  <text x="114" y="396" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">202403</text>
+
+  <!-- Shard1-202403 -->
+  <rect x="160" y="346" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="250" y="368" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片1</text>
+  <text x="250" y="384" text-anchor="middle" font-size="10" fill="#1E40AF">的 202403 分区数据</text>
+  <rect x="200" y="394" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="250" y="409" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-A3</text>
+
+  <!-- Shard2-202403 -->
+  <rect x="360" y="346" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="450" y="368" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片2</text>
+  <text x="450" y="384" text-anchor="middle" font-size="10" fill="#1E40AF">的 202403 分区数据</text>
+  <rect x="400" y="394" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="450" y="409" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-B3</text>
+
+  <!-- ShardN-202403 -->
+  <rect x="560" y="346" width="180" height="80" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text x="650" y="368" text-anchor="middle" font-size="10" fill="#1E40AF">user_id 哈希到分片N</text>
+  <text x="650" y="384" text-anchor="middle" font-size="10" fill="#1E40AF">的 202403 分区数据</text>
+  <rect x="600" y="394" width="100" height="22" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="0.5"/>
+  <text x="650" y="409" text-anchor="middle" font-size="9" fill="#1D4ED8">Part-N3</text>
+
+  <!-- Highlight: same partition across shards -->
+  <rect x="155" y="153" width="590" height="90" rx="6" fill="none" stroke="#10B981" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="750" y="203" text-anchor="end" font-size="9" fill="#059669" font-weight="600">同一分区</text>
+  <text x="750" y="215" text-anchor="end" font-size="9" fill="#059669" font-weight="600">跨分片</text>
+
+  <!-- Highlight: same shard across partitions -->
+  <rect x="155" y="153" width="190" height="278" rx="6" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="250" y="445" text-anchor="middle" font-size="9" fill="#2563EB" font-weight="600">同一分片跨分区</text>
+
+  <!-- Bottom Summary -->
+  <rect x="40" y="468" width="720" height="48" rx="6" fill="white" stroke="#E2E8F0" stroke-width="1" filter="url(#ds)"/>
+  <circle cx="68" cy="486" r="6" fill="#10B981"/>
+  <text x="80" y="490" font-size="10" fill="#334155">分区：单节点本地表的存储组织方式，同一分区数据散布于多个分片</text>
+  <circle cx="68" cy="504" r="6" fill="#3B82F6"/>
+  <text x="80" y="508" font-size="10" fill="#334155">分片：集群级数据分布方式，同一分片包含多个分区的数据子集</text>
+</svg>

@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 900" font-family="'Segoe UI','Microsoft YaHei','PingFang SC',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0F4F8"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4A90D9"/>
+      <stop offset="100%" stop-color="#357ABD"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#27AE60"/>
+      <stop offset="100%" stop-color="#1E8449"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E67E22"/>
+      <stop offset="100%" stop-color="#D35400"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8E44AD"/>
+      <stop offset="100%" stop-color="#7D3C98"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B0BEC5"/>
+      <stop offset="100%" stop-color="#78909C"/>
+    </linearGradient>
+    <filter id="ds">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+    <filter id="ds2">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.06"/>
+    </filter>
+    <marker id="ah" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5 L2,3.5Z" fill="#78909C"/>
+    </marker>
+    <marker id="ahG" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5 L2,3.5Z" fill="#8E44AD"/>
+    </marker>
+    <marker id="ahGr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <path d="M0,0.5 L9,3.5 L0,6.5 L2,3.5Z" fill="#27AE60"/>
+    </marker>
+  </defs>
+
+  <rect width="820" height="900" fill="url(#bg)" rx="12"/>
+
+  <!-- ==================== 客户端层 ==================== -->
+  <g filter="url(#ds)">
+    <rect x="35" y="25" width="750" height="120" rx="12" fill="white"/>
+    <rect x="35" y="25" width="750" height="40" rx="12" fill="url(#g1)"/>
+    <rect x="35" y="53" width="750" height="12" fill="url(#g1)"/>
+    <rect x="56" y="34" width="16" height="12" rx="2" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"/>
+    <line x1="64" y1="46" x2="64" y2="51" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"/>
+    <line x1="58" y1="51" x2="70" y2="51" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"/>
+    <text x="410" y="52" text-anchor="middle" fill="white" font-size="15" font-weight="bold" letter-spacing="2">客户端层</text>
+
+    <g filter="url(#ds2)">
+      <rect x="58" y="78" width="210" height="52" rx="8" fill="#EBF5FB" stroke="#4A90D9" stroke-width="1.2"/>
+      <circle cx="80" cy="104" r="10" fill="#4A90D9" opacity="0.15"/>
+      <text x="78" y="108" text-anchor="middle" fill="#4A90D9" font-size="11" font-weight="bold">&gt;_</text>
+      <text x="170" y="109" text-anchor="middle" fill="#2C5F8A" font-size="13" font-weight="600">命令行客户端</text>
+    </g>
+    <g filter="url(#ds2)">
+      <rect x="305" y="78" width="210" height="52" rx="8" fill="#EBF5FB" stroke="#4A90D9" stroke-width="1.2"/>
+      <circle cx="327" cy="104" r="10" fill="#4A90D9" opacity="0.15"/>
+      <text x="327" y="108" text-anchor="middle" fill="#4A90D9" font-size="11" font-weight="bold">J</text>
+      <text x="417" y="109" text-anchor="middle" fill="#2C5F8A" font-size="13" font-weight="600">JDBC / ODBC</text>
+    </g>
+    <g filter="url(#ds2)">
+      <rect x="552" y="78" width="210" height="52" rx="8" fill="#EBF5FB" stroke="#4A90D9" stroke-width="1.2"/>
+      <circle cx="574" cy="104" r="10" fill="#4A90D9" opacity="0.15"/>
+      <text x="574" y="108" text-anchor="middle" fill="#4A90D9" font-size="10" font-weight="bold">⇄</text>
+      <text x="664" y="109" text-anchor="middle" fill="#2C5F8A" font-size="13" font-weight="600">HTTP 接口</text>
+    </g>
+  </g>
+
+  <!-- ==================== 服务层 ==================== -->
+  <g filter="url(#ds)">
+    <rect x="35" y="200" width="750" height="120" rx="12" fill="white"/>
+    <rect x="35" y="200" width="750" height="40" rx="12" fill="url(#g2)"/>
+    <rect x="35" y="228" width="750" height="12" fill="url(#g2)"/>
+    <circle cx="64" cy="215" r="8" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"/>
+    <circle cx="64" cy="215" r="3" fill="rgba(255,255,255,0.85)"/>
+    <text x="410" y="227" text-anchor="middle" fill="white" font-size="15" font-weight="bold" letter-spacing="2">服务层</text>
+
+    <g filter="url(#ds2)">
+      <rect x="58" y="253" width="210" height="52" rx="8" fill="#E8F8F0" stroke="#27AE60" stroke-width="1.2"/>
+      <text x="163" y="284" text-anchor="middle" fill="#1E8449" font-size="13" font-weight="600">SQL 解析器</text>
+    </g>
+    <line x1="268" y1="279" x2="303" y2="279" stroke="#27AE60" stroke-width="1.8" marker-end="url(#ahGr)" stroke-dasharray="4,2"/>
+
+    <g filter="url(#ds2)">
+      <rect x="305" y="253" width="210" height="52" rx="8" fill="#E8F8F0" stroke="#27AE60" stroke-width="1.2"/>
+      <text x="410" y="284" text-anchor="middle" fill="#1E8449" font-size="13" font-weight="600">查询优化器</text>
+    </g>
+    <line x1="515" y1="279" x2="550" y2="279" stroke="#27AE60" stroke-width="1.8" marker-end="url(#ahGr)" stroke-dasharray="4,2"/>
+
+    <g filter="url(#ds2)">
+      <rect x="552" y="253" width="210" height="52" rx="8" fill="#E8F8F0" stroke="#27AE60" stroke-width="1.2"/>
+      <text x="657" y="284" text-anchor="middle" fill="#1E8449" font-size="13" font-weight="600">查询执行器</text>
+    </g>
+  </g>
+
+  <!-- ==================== 存储层 ==================== -->
+  <g filter="url(#ds)">
+    <rect x="35" y="375" width="750" height="195" rx="12" fill="white"/>
+    <rect x="35" y="375" width="750" height="40" rx="12" fill="url(#g3)"/>
+    <rect x="35" y="403" width="750" height="12" fill="url(#g3)"/>
+    <ellipse cx="64" cy="388" rx="9" ry="4.5" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"/>
+    <path d="M55,388 v9 a9,4.5 0 0,0 18,0 v-9" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.6"/>
+    <text x="410" y="402" text-anchor="middle" fill="white" font-size="15" font-weight="bold" letter-spacing="2">存储层</text>
+
+    <!-- MergeTree 引擎族 - 核心区域 -->
+    <rect x="50" y="425" width="350" height="142" rx="8" fill="#FEF9F0" stroke="#E67E22" stroke-width="1" stroke-dasharray="4,2"/>
+    <text x="225" y="443" text-anchor="middle" fill="#D35400" font-size="11" font-weight="bold">MergeTree 引擎族（核心）</text>
+    
+    <g filter="url(#ds2)">
+      <rect x="60" y="455" width="155" height="48" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+      <text x="137" y="476" text-anchor="middle" fill="#D35400" font-size="10" font-weight="600">MergeTree</text>
+      <text x="137" y="492" text-anchor="middle" fill="#A05A0C" font-size="8">基础引擎</text>
+    </g>
+    <g filter="url(#ds2)">
+      <rect x="225" y="455" width="165" height="48" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+      <text x="307" y="476" text-anchor="middle" fill="#D35400" font-size="10" font-weight="600">ReplacingMergeTree</text>
+      <text x="307" y="492" text-anchor="middle" fill="#A05A0C" font-size="8">自动去重</text>
+    </g>
+    <g filter="url(#ds2)">
+      <rect x="60" y="511" width="155" height="48" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+      <text x="137" y="532" text-anchor="middle" fill="#D35400" font-size="10" font-weight="600">SummingMergeTree</text>
+      <text x="137" y="548" text-anchor="middle" fill="#A05A0C" font-size="8">预聚合求和</text>
+    </g>
+    <g filter="url(#ds2)">
+      <rect x="225" y="511" width="165" height="48" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1"/>
+      <text x="307" y="532" text-anchor="middle" fill="#D35400" font-size="10" font-weight="600">AggregatingMergeTree</text>
+      <text x="307" y="548" text-anchor="middle" fill="#A05A0C" font-size="8">复杂聚合</text>
+    </g>
+
+    <!-- 右侧引擎分类 -->
+    <g filter="url(#ds2)">
+      <rect x="420" y="425" width="350" height="42" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1.2"/>
+      <text x="595" y="443" text-anchor="middle" fill="#D35400" font-size="11" font-weight="600">ReplicatedMergeTree</text>
+      <text x="595" y="458" text-anchor="middle" fill="#A05A0C" font-size="9">高可用副本引擎（基于 MergeTree）</text>
+    </g>
+    
+    <g filter="url(#ds2)">
+      <rect x="420" y="475" width="350" height="42" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1.2"/>
+      <text x="595" y="493" text-anchor="middle" fill="#D35400" font-size="11" font-weight="600">Distributed</text>
+      <text x="595" y="508" text-anchor="middle" fill="#A05A0C" font-size="9">分布式查询路由引擎（逻辑表）</text>
+    </g>
+
+    <g filter="url(#ds2)">
+      <rect x="420" y="525" width="165" height="42" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1.2"/>
+      <text x="502" y="543" text-anchor="middle" fill="#D35400" font-size="11" font-weight="600">Log 系列</text>
+      <text x="502" y="558" text-anchor="middle" fill="#A05A0C" font-size="9">临时数据存储</text>
+    </g>
+    
+    <g filter="url(#ds2)">
+      <rect x="595" y="525" width="175" height="42" rx="6" fill="#FEF5E7" stroke="#E67E22" stroke-width="1.2"/>
+      <text x="682" y="543" text-anchor="middle" fill="#D35400" font-size="11" font-weight="600">Integration 系列</text>
+      <text x="682" y="558" text-anchor="middle" fill="#A05A0C" font-size="9">外部数据源集成</text>
+    </g>
+  </g>
+
+  <!-- ==================== 集群层 ==================== -->
+  <g filter="url(#ds)">
+    <rect x="35" y="625" width="750" height="230" rx="12" fill="white"/>
+    <rect x="35" y="625" width="750" height="40" rx="12" fill="url(#g4)"/>
+    <rect x="35" y="653" width="750" height="12" fill="url(#g4)"/>
+    <circle cx="64" cy="639" r="3.5" fill="rgba(255,255,255,0.85)"/>
+    <circle cx="54" cy="651" r="3" fill="rgba(255,255,255,0.6)"/>
+    <circle cx="74" cy="651" r="3" fill="rgba(255,255,255,0.6)"/>
+    <line x1="62" y1="642" x2="56" y2="649" stroke="rgba(255,255,255,0.6)" stroke-width="1.3"/>
+    <line x1="66" y1="642" x2="72" y2="649" stroke="rgba(255,255,255,0.6)" stroke-width="1.3"/>
+    <text x="410" y="652" text-anchor="middle" fill="white" font-size="15" font-weight="bold" letter-spacing="2">集群层</text>
+
+    <!-- ZooKeeper - 居中上方 -->
+    <g filter="url(#ds2)">
+      <rect x="310" y="675" width="200" height="48" rx="8" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.2"/>
+      <text x="410" y="705" text-anchor="middle" fill="#6C3483" font-size="13" font-weight="600">ZooKeeper / Keeper</text>
+    </g>
+
+    <!-- ZK 向下到分片的主连线 -->
+    <line x1="410" y1="723" x2="410" y2="750" stroke="#8E44AD" stroke-width="1.8" stroke-dasharray="5,3"/>
+    
+    <!-- 水平分发线 -->
+    <line x1="170" y1="750" x2="650" y2="750" stroke="#8E44AD" stroke-width="1.8" stroke-dasharray="5,3"/>
+    
+    <!-- 垂直连接到各分片 -->
+    <line x1="170" y1="750" x2="170" y2="770" stroke="#8E44AD" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ahG)"/>
+    <line x1="410" y1="750" x2="410" y2="770" stroke="#8E44AD" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ahG)"/>
+    <line x1="650" y1="750" x2="650" y2="770" stroke="#8E44AD" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ahG)"/>
+
+    <!-- 分片1 -->
+    <g filter="url(#ds2)">
+      <rect x="100" y="775" width="140" height="40" rx="8" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.2"/>
+      <text x="170" y="800" text-anchor="middle" fill="#6C3483" font-size="12" font-weight="600">分片 1</text>
+    </g>
+    
+    <!-- 分片2 -->
+    <g filter="url(#ds2)">
+      <rect x="340" y="775" width="140" height="40" rx="8" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.2"/>
+      <text x="410" y="800" text-anchor="middle" fill="#6C3483" font-size="12" font-weight="600">分片 2</text>
+    </g>
+    
+    <!-- 分片N -->
+    <g filter="url(#ds2)">
+      <rect x="580" y="775" width="140" height="40" rx="8" fill="#F4ECF7" stroke="#8E44AD" stroke-width="1.2"/>
+      <text x="650" y="800" text-anchor="middle" fill="#6C3483" font-size="12" font-weight="600">分片 N</text>
+    </g>
+
+    <!-- 省略号 -->
+    <text x="280" y="800" text-anchor="middle" fill="#8E44AD" font-size="14" font-weight="bold">···</text>
+    <text x="530" y="800" text-anchor="middle" fill="#8E44AD" font-size="14" font-weight="bold">···</text>
+
+    <!-- 副本标注 -->
+    <g opacity="0.65">
+      <rect x="100" y="820" width="140" height="28" rx="5" fill="none" stroke="#8E44AD" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <text x="170" y="838" text-anchor="middle" fill="#8E44AD" font-size="9">副本1  副本2</text>
+      <rect x="340" y="820" width="140" height="28" rx="5" fill="none" stroke="#8E44AD" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <text x="410" y="838" text-anchor="middle" fill="#8E44AD" font-size="9">副本1  副本2</text>
+      <rect x="580" y="820" width="140" height="28" rx="5" fill="none" stroke="#8E44AD" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <text x="650" y="838" text-anchor="middle" fill="#8E44AD" font-size="9">副本1  副本2</text>
+    </g>
+  </g>
+
+  <!-- ==================== 层间连接线 ==================== -->
+  <line x1="410" y1="145" x2="410" y2="198" stroke="#78909C" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="420" y="175" fill="#607D8B" font-size="10" font-weight="500">SQL 请求</text>
+  
+  <line x1="410" y1="320" x2="410" y2="373" stroke="#78909C" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="420" y="350" fill="#607D8B" font-size="10" font-weight="500">执行计划</text>
+  
+  <line x1="410" y1="570" x2="410" y2="623" stroke="#78909C" stroke-width="2" marker-end="url(#ah)"/>
+  <text x="420" y="600" fill="#607D8B" font-size="10" font-weight="500">数据读写</text>
+</svg>

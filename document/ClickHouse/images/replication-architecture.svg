@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 465" width="800" height="465">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2F7"/>
+    </linearGradient>
+    <linearGradient id="zkGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="leaderGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="followerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <filter id="ds1" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrowPurple" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="9" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8B5CF6"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="9" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="9" markerHeight="6" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="465" rx="12" fill="url(#bgGrad)"/>
+
+  <rect x="200" y="20" width="400" height="225" rx="10" fill="white" stroke="#C4B5FD" stroke-width="1.5" filter="url(#ds1)"/>
+  <path d="M200,70 L200,30 Q200,20 210,20 L590,20 Q600,20 600,30 L600,70 Z" fill="url(#zkGrad)"/>
+  <text x="400" y="42" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="14" font-weight="700">ZooKeeper / Keeper</text>
+  <text x="400" y="60" text-anchor="middle" fill="#DDD6FE" font-family="system-ui,sans-serif" font-size="10">元数据协调中心（不存储实际数据）</text>
+
+  <text x="230" y="92" fill="#6D28D9" font-family="monospace,sans-serif" font-size="11" font-weight="600">/tables/{shard}/{db}/{table}/</text>
+
+  <rect x="240" y="100" width="340" height="28" rx="5" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="258" y="119" fill="#7C3AED" font-family="monospace,sans-serif" font-size="11">├── leader_election</text>
+  <text x="440" y="119" fill="#9CA3AF" font-family="system-ui,sans-serif" font-size="10">主副本选举</text>
+
+  <rect x="240" y="133" width="340" height="28" rx="5" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="258" y="152" fill="#7C3AED" font-family="monospace,sans-serif" font-size="11">├── log/</text>
+  <text x="440" y="152" fill="#9CA3AF" font-family="system-ui,sans-serif" font-size="10">操作日志（写入指令）</text>
+
+  <rect x="240" y="166" width="340" height="28" rx="5" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="258" y="185" fill="#7C3AED" font-family="monospace,sans-serif" font-size="11">├── parts/</text>
+  <text x="440" y="185" fill="#9CA3AF" font-family="system-ui,sans-serif" font-size="10">Part 元数据</text>
+
+  <rect x="240" y="199" width="340" height="26" rx="5" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="258" y="217" fill="#7C3AED" font-family="monospace,sans-serif" font-size="11">└── replicas/</text>
+  <text x="440" y="217" fill="#9CA3AF" font-family="system-ui,sans-serif" font-size="10">副本注册信息</text>
+
+  <rect x="60" y="320" width="220" height="110" rx="10" fill="white" stroke="#93C5FD" stroke-width="1.5" filter="url(#ds1)"/>
+  <path d="M60,355 L60,330 Q60,320 70,320 L270,320 Q280,320 280,330 L280,355 Z" fill="url(#leaderGrad)"/>
+  <text x="170" y="342" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="700">主副本（Leader）</text>
+  <text x="170" y="375" text-anchor="middle" fill="#1E40AF" font-family="system-ui,sans-serif" font-size="11">写入入口</text>
+  <text x="170" y="395" text-anchor="middle" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">接收写入 → 生成 Part</text>
+  <text x="170" y="413" text-anchor="middle" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">记录日志到 ZK</text>
+
+  <rect x="520" y="320" width="220" height="110" rx="10" fill="white" stroke="#6EE7B7" stroke-width="1.5" filter="url(#ds1)"/>
+  <path d="M520,355 L520,330 Q520,320 530,320 L730,320 Q740,320 740,330 L740,355 Z" fill="url(#followerGrad)"/>
+  <text x="630" y="342" text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="13" font-weight="700">从副本（Follower）</text>
+  <text x="630" y="375" text-anchor="middle" fill="#065F46" font-family="system-ui,sans-serif" font-size="11">同步数据</text>
+  <text x="630" y="395" text-anchor="middle" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">Watch 通知 → 读取日志</text>
+  <text x="630" y="413" text-anchor="middle" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">拉取 Part → 写入本地</text>
+
+  <line x1="170" y1="320" x2="310" y2="245" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowPurple)"/>
+  <text x="220" y="280" text-anchor="end" fill="#7C3AED" font-family="system-ui,sans-serif" font-size="10" font-weight="500">记录日志</text>
+
+  <line x1="490" y1="245" x2="630" y2="320" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrowPurple)"/>
+  <text x="580" y="280" fill="#7C3AED" font-family="system-ui,sans-serif" font-size="10" font-weight="500">Watch 通知</text>
+
+  <line x1="280" y1="368" x2="520" y2="368" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <text x="400" y="362" text-anchor="middle" fill="#2563EB" font-family="system-ui,sans-serif" font-size="10" font-weight="500">发送 Part 文件</text>
+
+  <line x1="520" y1="398" x2="280" y2="398" stroke="#10B981" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <text x="400" y="415" text-anchor="middle" fill="#059669" font-family="system-ui,sans-serif" font-size="10" font-weight="500">拉取 Part 数据</text>
+
+  <rect x="276" y="435" width="248" height="20" rx="4" fill="white" fill-opacity="0.7"/>
+  <line x1="296" y1="446" x2="326" y2="446" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="334" y="450" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">元数据操作</text>
+  <line x1="418" y1="446" x2="448" y2="446" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="456" y="450" fill="#6B7280" font-family="system-ui,sans-serif" font-size="10">数据传输</text>
+</svg>
