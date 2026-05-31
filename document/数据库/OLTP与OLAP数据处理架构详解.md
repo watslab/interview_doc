@@ -54,30 +54,7 @@ timeline
 
 ### 2.3 技术架构
 
-```mermaid
-flowchart TB
-    subgraph OLTP架构
-        subgraph 应用层
-            App[业务应用]
-        end
-        
-        subgraph 连接层
-            Pool[连接池]
-        end
-        
-        subgraph 数据库层
-            Cache[Buffer Pool]
-            Log[Redo Log]
-            Lock[锁管理器]
-            Data[数据文件]
-        end
-    end
-    
-    App --> Pool --> Cache
-    Cache --> Lock
-    Cache --> Log
-    Cache --> Data
-```
+![OLTP架构](./images/OLTP架构.svg)
 
 **核心技术**：
 
@@ -93,18 +70,7 @@ flowchart TB
 
 **规范化设计（第三范式）**：
 
-```
-订单系统示例：
-
-users 表          orders 表              order_items 表
-┌─────────┐      ┌──────────────┐       ┌─────────────────┐
-│ user_id │←─────│ order_id     │←──────│ item_id         │
-│ name    │      │ user_id (FK) │       │ order_id (FK)   │
-│ email   │      │ total_amount │       │ product_id (FK) │
-│ phone   │      │ status       │       │ quantity        │
-└─────────┘      │ create_time  │       │ price           │
-                 └──────────────┘       └─────────────────┘
-```
+![订单数据模型](./images/订单数据模型.svg)
 
 **设计原则**：
 - 消除数据冗余
@@ -129,7 +95,6 @@ users 表          orders 表              order_items 表
 | **PostgreSQL** | 功能强大的对象关系数据库 |
 | **Oracle** | 企业级数据库，功能全面 |
 | **SQL Server** | 微软企业级数据库 |
-| **MySQL InnoDB** | 默认存储引擎，支持事务 |
 
 ---
 
@@ -147,72 +112,43 @@ users 表          orders 表              order_items 表
 
 ### 3.2 多维数据模型
 
+OLAP 的数据建模围绕**事实（Fact）**和**维度（Dimension）**两个核心概念展开：
+
+| 概念 | 说明 | 示例 |
+|------|------|------|
+| **事实表** | 存储业务事件的度量值，包含维度外键和可聚合的数值指标 | 销售额、销售量、订单金额 |
+| **维度表** | 描述业务的观察角度，提供分析的上下文信息 | 时间、地区、产品、客户 |
+
 **星型模型**：
 
-```
-              ┌─────────────┐
-              │  时间维度   │
-              │ dim_time    │
-              └──────┬──────┘
-                     │
-┌─────────────┐     │     ┌─────────────┐
-│  地区维度   │─────┼─────│  产品维度   │
-│ dim_region  │     │     │ dim_product │
-└─────────────┘     │     └─────────────┘
-                     │
-              ┌──────┴──────┐
-              │  事实表     │
-              │ fact_sales  │
-              │ - 时间ID    │
-              │ - 地区ID    │
-              │ - 产品ID    │
-              │ - 销售额    │
-              │ - 销售量    │
-              └─────────────┘
-```
+事实表居中，维度表直接围绕事实表展开，维度表不做规范化拆分，结构呈星形。
 
-**雪花模型**：星型模型的扩展，维度表进一步规范化。
+![星型模型](./images/星型模型.svg)
+
+**特点**：结构简单、查询效率高（少量 JOIN）、存在数据冗余。
+
+**雪花模型**：
+
+在星型模型基础上，维度表进一步按规范化拆分为子维度表，结构呈雪花状延伸。
+
+![雪花模型](./images/雪花模型.svg)
+
+**特点**：数据冗余少、存储节省、查询需更多 JOIN、结构更复杂。
+
+**模型对比**：
+
+| 对比维度 | 星型模型 | 雪花模型 |
+|----------|----------|----------|
+| **维度表规范化** | 不规范化（扁平） | 进一步规范化（层级拆分） |
+| **JOIN 数量** | 少（事实表直连维度表） | 多（需穿过子维度表） |
+| **查询性能** | 高 | 相对较低 |
+| **存储冗余** | 较多 | 较少 |
+| **可读性** | 直观简洁 | 层次清晰但复杂 |
+| **适用场景** | 追求查询性能的报表分析 | 维度层级深、存储敏感的场景 |
 
 ### 3.3 技术架构
 
-```mermaid
-flowchart TB
-    subgraph OLAP架构
-        subgraph 数据源
-            OLTP[OLTP 数据库]
-            Log[日志数据]
-            Ext[外部数据]
-        end
-        
-        subgraph ETL层
-            Extract[数据抽取]
-            Transform[数据转换]
-            Load[数据加载]
-        end
-        
-        subgraph 存储层
-            ODS[操作数据层]
-            DWD[明细数据层]
-            DWS[汇总数据层]
-            ADS[应用数据层]
-        end
-        
-        subgraph 分析层
-            BI[BI 报表]
-            Adhoc[即席查询]
-            ML[数据挖掘]
-        end
-    end
-    
-    OLTP --> Extract
-    Log --> Extract
-    Ext --> Extract
-    Extract --> Transform --> Load
-    Load --> ODS --> DWD --> DWS --> ADS
-    ADS --> BI
-    ADS --> Adhoc
-    ADS --> ML
-```
+![OLAP架构](./images/OLAP架构.svg)
 
 **核心技术**：
 
@@ -267,26 +203,7 @@ flowchart TB
 
 ### 4.2 架构对比
 
-```mermaid
-flowchart LR
-    subgraph OLTP["OLTP 架构"]
-        direction TB
-        O1[业务应用] --> O2[连接池]
-        O2 --> O3[关系数据库]
-        O3 --> O4[行式存储]
-    end
-    
-    subgraph OLAP["OLAP 架构"]
-        direction TB
-        A1[数据源] --> A2[ETL]
-        A2 --> A3[数据仓库]
-        A3 --> A4[列式存储]
-        A4 --> A5[BI 分析]
-    end
-    
-    style OLTP fill:#ffcdd2,stroke:#c62828
-    style OLAP fill:#c8e6c9,stroke:#2e7d32
-```
+![OLTP与OLAP架构对比](./images/OLTP与OLAP架构对比.svg)
 
 ### 4.3 读写模式对比
 
@@ -312,31 +229,7 @@ flowchart LR
 
 ### 5.1 架构模式
 
-```mermaid
-flowchart LR
-    subgraph 分离架构["传统 OLTP + OLAP 分离架构"]
-        subgraph OLTP侧
-            App[业务应用]
-            DB[(OLTP 数据库)]
-        end
-        
-        subgraph 中间层
-            ETL[ETL 过程]
-            MQ[消息队列]
-        end
-        
-        subgraph OLAP侧
-            DW[(数据仓库)]
-            BI[BI 报表]
-        end
-    end
-    
-    App --> DB
-    DB --> ETL
-    ETL --> MQ
-    MQ --> DW
-    DW --> BI
-```
+![传统分离架构](./images/分离架构.svg)
 
 ### 5.2 数据流转过程
 
@@ -373,31 +266,7 @@ flowchart LR
 
 ### 6.2 HTAP 架构原理
 
-```mermaid
-flowchart TB
-    subgraph HTAP架构
-        subgraph 计算层
-            SQL[SQL 引擎]
-            Optimizer[查询优化器]
-        end
-        
-        subgraph 存储层
-            direction LR
-            RowStore[行存引擎<br/>OLTP]
-            ColStore[列存引擎<br/>OLAP]
-            Sync[实时同步]
-        end
-        
-        subgraph 应用
-            TX[事务处理]
-            AN[分析查询]
-        end
-    end
-    
-    TX --> SQL --> Optimizer --> RowStore
-    AN --> SQL --> Optimizer --> ColStore
-    RowStore <--> Sync <--> ColStore
-```
+![HTAP架构](./images/HTAP架构.svg)
 
 ### 6.3 HTAP 核心技术
 
@@ -420,30 +289,7 @@ flowchart TB
 
 ### 6.5 TiDB HTAP 架构示例
 
-```mermaid
-flowchart TB
-    subgraph TiDB架构
-        subgraph 计算层
-            TiDB[TiDB Server<br/>SQL 解析与优化]
-        end
-        
-        subgraph 存储层
-            TiKV[(TiKV<br/>行存引擎<br/>OLTP)]
-            TiFlash[(TiFlash<br/>列存引擎<br/>OLAP)]
-        end
-        
-        subgraph 调度层
-            PD[PD<br/>调度与元数据]
-        end
-    end
-    
-    TiDB --> TiKV
-    TiDB --> TiFlash
-    TiKV <-->|Raft 同步| TiFlash
-    PD --> TiKV
-    PD --> TiFlash
-    PD --> TiDB
-```
+![TiDB-HTAP架构](./images/TiDB-HTAP架构.svg)
 
 **TiDB HTAP 特点**：
 

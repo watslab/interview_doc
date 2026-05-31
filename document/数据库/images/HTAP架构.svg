@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 440" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#78909C"/></marker>
+    <marker id="ahf" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#4CAF50"/></marker>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#4CAF50"/></marker>
+  </defs>
+  <rect x="10" y="10" width="600" height="420" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <path d="M22,10 H598 Q610,10 610,22 V48 H10 V22 Q10,10 22,10Z" fill="#5C6BC0"/>
+  <text x="310" y="36" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">HTAP 架构原理</text>
+
+  <rect x="30" y="68" width="560" height="95" rx="8" fill="#E8EAF6" stroke="#9FA8DA" stroke-width="1"/>
+  <text x="38" y="82" fill="#3F51B5" font-size="11" font-weight="bold">应用层</text>
+  <g filter="url(#s1)">
+    <rect x="90" y="90" width="170" height="50" rx="6" fill="#fff" stroke="#9FA8DA" stroke-width="1"/>
+    <text x="175" y="112" text-anchor="middle" fill="#333" font-size="13" font-weight="bold">事务处理</text>
+    <text x="175" y="130" text-anchor="middle" fill="#9E9E9E" font-size="10">OLTP</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="360" y="90" width="170" height="50" rx="6" fill="#fff" stroke="#9FA8DA" stroke-width="1"/>
+    <text x="445" y="112" text-anchor="middle" fill="#333" font-size="13" font-weight="bold">分析查询</text>
+    <text x="445" y="130" text-anchor="middle" fill="#9E9E9E" font-size="10">OLAP</text>
+  </g>
+
+  <line x1="175" y1="163" x2="175" y2="188" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="445" y1="163" x2="445" y2="188" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="30" y="188" width="560" height="75" rx="8" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <text x="38" y="202" fill="#1565C0" font-size="11" font-weight="bold">计算层</text>
+  <g filter="url(#s1)">
+    <rect x="90" y="208" width="170" height="36" rx="6" fill="#fff" stroke="#90CAF9" stroke-width="1"/>
+    <text x="175" y="232" text-anchor="middle" fill="#333" font-size="13">SQL 引擎</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="360" y="208" width="170" height="36" rx="6" fill="#fff" stroke="#90CAF9" stroke-width="1"/>
+    <text x="445" y="232" text-anchor="middle" fill="#333" font-size="13">查询优化器</text>
+  </g>
+
+  <line x1="175" y1="263" x2="175" y2="288" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="445" y1="263" x2="445" y2="288" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <rect x="30" y="288" width="560" height="110" rx="8" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1"/>
+  <text x="38" y="302" fill="#E65100" font-size="11" font-weight="bold">存储层</text>
+  <g filter="url(#s1)">
+    <rect x="90" y="318" width="170" height="50" rx="6" fill="#fff" stroke="#FFCC80" stroke-width="1"/>
+    <text x="175" y="340" text-anchor="middle" fill="#333" font-size="13" font-weight="bold">行存引擎</text>
+    <text x="175" y="358" text-anchor="middle" fill="#E65100" font-size="11">OLTP</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="360" y="318" width="170" height="50" rx="6" fill="#fff" stroke="#FFCC80" stroke-width="1"/>
+    <text x="445" y="340" text-anchor="middle" fill="#333" font-size="13" font-weight="bold">列存引擎</text>
+    <text x="445" y="358" text-anchor="middle" fill="#E65100" font-size="11">OLAP</text>
+  </g>
+  <line x1="260" y1="343" x2="360" y2="343" stroke="#4CAF50" stroke-width="1.5" stroke-dasharray="4,3" marker-start="url(#ahb)" marker-end="url(#ahf)"/>
+  <text x="310" y="335" text-anchor="middle" fill="#2E7D32" font-size="10" font-weight="bold">实时同步</text>
+</svg>

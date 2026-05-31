@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 450" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="900" height="430" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <rect x="30" y="30" width="400" height="390" rx="10" fill="#FFF5F5" stroke="#EF9A9A" stroke-width="1.2"/>
+  <path d="M40,30 H420 Q430,30 430,40 V64 H30 V40 Q30,30 40,30Z" fill="#E53935"/>
+  <text x="230" y="47" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" dominant-baseline="central">OLTP 架构</text>
+
+  <g filter="url(#s1)">
+    <rect x="105" y="84" width="250" height="48" rx="6" fill="#fff" stroke="#EF9A9A" stroke-width="1"/>
+    <text x="230" y="99" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">业务应用</text>
+    <text x="230" y="117" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">高并发访问</text>
+  </g>
+  <line x1="230" y1="132" x2="230" y2="152" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <g filter="url(#s1)">
+    <rect x="105" y="152" width="250" height="48" rx="6" fill="#fff" stroke="#EF9A9A" stroke-width="1"/>
+    <text x="230" y="167" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">连接池</text>
+    <text x="230" y="185" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">连接复用管理</text>
+  </g>
+  <line x1="230" y1="200" x2="230" y2="220" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <g filter="url(#s1)">
+    <rect x="105" y="220" width="250" height="48" rx="6" fill="#fff" stroke="#EF9A9A" stroke-width="1"/>
+    <text x="230" y="235" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">关系数据库</text>
+    <text x="230" y="253" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">ACID 事务保障</text>
+  </g>
+  <line x1="230" y1="268" x2="230" y2="288" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <g filter="url(#s1)">
+    <rect x="105" y="288" width="250" height="48" rx="6" fill="#fff" stroke="#EF9A9A" stroke-width="1"/>
+    <text x="230" y="303" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">行式存储</text>
+    <text x="230" y="321" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">点查效率优先</text>
+  </g>
+
+  <circle cx="460" cy="220" r="22" fill="#fff" stroke="#BDBDBD" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="220" text-anchor="middle" fill="#757575" font-size="13" font-weight="bold" dominant-baseline="central">VS</text>
+
+  <rect x="490" y="30" width="400" height="390" rx="10" fill="#F1F8E9" stroke="#A5D6A7" stroke-width="1.2"/>
+  <path d="M500,30 H880 Q890,30 890,40 V64 H490 V40 Q490,30 500,30Z" fill="#43A047"/>
+  <text x="690" y="47" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" dominant-baseline="central">OLAP 架构</text>
+
+  <g filter="url(#s1)">
+    <rect x="565" y="84" width="250" height="48" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="690" y="99" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">数据源</text>
+    <text x="690" y="117" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">多源异构数据</text>
+  </g>
+  <line x1="690" y1="132" x2="690" y2="152" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <g filter="url(#s1)">
+    <rect x="565" y="152" width="250" height="48" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="690" y="167" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">ETL</text>
+    <text x="690" y="185" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">清洗转换加载</text>
+  </g>
+  <line x1="690" y1="200" x2="690" y2="220" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <g filter="url(#s1)">
+    <rect x="565" y="220" width="250" height="48" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="690" y="235" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">数据仓库</text>
+    <text x="690" y="253" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">多维建模存储</text>
+  </g>
+  <line x1="690" y1="268" x2="690" y2="288" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <g filter="url(#s1)">
+    <rect x="565" y="288" width="250" height="48" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="690" y="303" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">列式存储</text>
+    <text x="690" y="321" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">聚合查询优化</text>
+  </g>
+  <line x1="690" y1="336" x2="690" y2="356" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <g filter="url(#s1)">
+    <rect x="565" y="356" width="250" height="48" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="690" y="371" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">BI 分析</text>
+    <text x="690" y="389" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">多维分析报表</text>
+  </g>
+</svg>

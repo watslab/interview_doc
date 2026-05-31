@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 280" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#78909C"/></marker>
+  </defs>
+  <rect x="10" y="10" width="860" height="260" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <path d="M22,10 H858 Q870,10 870,22 V48 H10 V22 Q10,10 22,10Z" fill="#546E7A"/>
+  <text x="440" y="36" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">传统 OLTP + OLAP 分离架构</text>
+
+  <rect x="30" y="68" width="240" height="180" rx="8" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
+  <path d="M38,68 H262 Q270,68 270,76 V94 H30 V76 Q30,68 38,68Z" fill="#E53935"/>
+  <text x="150" y="87" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">OLTP 侧</text>
+  <g filter="url(#s1)">
+    <rect x="55" y="110" width="190" height="42" rx="6" fill="#fff" stroke="#EF9A9A" stroke-width="1"/>
+    <text x="150" y="136" text-anchor="middle" fill="#333" font-size="13">业务应用</text>
+  </g>
+  <line x1="150" y1="152" x2="150" y2="172" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ah)"/>
+  <g filter="url(#s1)">
+    <rect x="55" y="172" width="190" height="42" rx="6" fill="#fff" stroke="#EF9A9A" stroke-width="1"/>
+    <ellipse cx="150" cy="193" rx="80" ry="14" fill="none" stroke="#EF9A9A" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="150" y="198" text-anchor="middle" fill="#333" font-size="13">OLTP 数据库</text>
+  </g>
+
+  <line x1="270" y1="193" x2="320" y2="193" stroke="#78909C" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <rect x="320" y="68" width="240" height="180" rx="8" fill="#E8EAF6" stroke="#9FA8DA" stroke-width="1"/>
+  <path d="M328,68 H552 Q560,68 560,76 V94 H320 V76 Q320,68 328,68Z" fill="#3F51B5"/>
+  <text x="440" y="87" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">中间层</text>
+  <g filter="url(#s1)">
+    <rect x="345" y="110" width="190" height="42" rx="6" fill="#fff" stroke="#9FA8DA" stroke-width="1"/>
+    <text x="440" y="136" text-anchor="middle" fill="#333" font-size="13">ETL 过程</text>
+  </g>
+  <line x1="440" y1="152" x2="440" y2="172" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ah)"/>
+  <g filter="url(#s1)">
+    <rect x="345" y="172" width="190" height="42" rx="6" fill="#fff" stroke="#9FA8DA" stroke-width="1"/>
+    <text x="440" y="198" text-anchor="middle" fill="#333" font-size="13">消息队列</text>
+  </g>
+
+  <line x1="560" y1="193" x2="610" y2="193" stroke="#78909C" stroke-width="1.8" marker-end="url(#ah)"/>
+
+  <rect x="610" y="68" width="240" height="180" rx="8" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <path d="M618,68 H842 Q850,68 850,76 V94 H610 V76 Q610,68 618,68Z" fill="#43A047"/>
+  <text x="730" y="87" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">OLAP 侧</text>
+  <g filter="url(#s1)">
+    <rect x="635" y="110" width="190" height="42" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <ellipse cx="730" cy="131" rx="80" ry="14" fill="none" stroke="#A5D6A7" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="730" y="136" text-anchor="middle" fill="#333" font-size="13">数据仓库</text>
+  </g>
+  <line x1="730" y1="152" x2="730" y2="172" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ah)"/>
+  <g filter="url(#s1)">
+    <rect x="635" y="172" width="190" height="42" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="730" y="198" text-anchor="middle" fill="#333" font-size="13">BI 报表</text>
+  </g>
+</svg>

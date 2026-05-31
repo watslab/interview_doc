@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.1" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#5C6BC0"/></marker>
+  </defs>
+  <g filter="url(#s1)">
+    <rect x="260" y="20" width="180" height="130" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <rect x="260" y="20" width="180" height="38" rx="8" fill="#7986CB"/>
+    <rect x="260" y="46" width="180" height="12" fill="#7986CB"/>
+    <text x="350" y="46" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_time</text>
+    <line x1="260" y1="58" x2="440" y2="58" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="276" y="80" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="308" y="80" fill="#333" font-size="13">时间ID</text>
+    <text x="276" y="106" fill="#999" font-size="11">　</text>
+    <text x="308" y="106" fill="#333" font-size="13">年 / 月 / 日</text>
+    <text x="350" y="138" text-anchor="middle" fill="#7986CB" font-size="11">时间维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="20" y="190" width="180" height="130" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <rect x="20" y="190" width="180" height="38" rx="8" fill="#7986CB"/>
+    <rect x="20" y="216" width="180" height="12" fill="#7986CB"/>
+    <text x="110" y="216" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_region</text>
+    <line x1="20" y1="228" x2="200" y2="228" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="36" y="250" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="68" y="250" fill="#333" font-size="13">地区ID</text>
+    <text x="36" y="276" fill="#999" font-size="11">　</text>
+    <text x="68" y="276" fill="#333" font-size="13">省份 / 城市</text>
+    <text x="110" y="308" text-anchor="middle" fill="#7986CB" font-size="11">地区维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="500" y="190" width="180" height="130" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <rect x="500" y="190" width="180" height="38" rx="8" fill="#7986CB"/>
+    <rect x="500" y="216" width="180" height="12" fill="#7986CB"/>
+    <text x="590" y="216" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_product</text>
+    <line x1="500" y1="228" x2="680" y2="228" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="516" y="250" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="548" y="250" fill="#333" font-size="13">产品ID</text>
+    <text x="516" y="276" fill="#999" font-size="11">　</text>
+    <text x="548" y="276" fill="#333" font-size="13">产品名 / 类别</text>
+    <text x="590" y="308" text-anchor="middle" fill="#7986CB" font-size="11">产品维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="220" y="340" width="260" height="130" rx="8" fill="#fff" stroke="#FFB74D" stroke-width="1.5"/>
+    <rect x="220" y="340" width="260" height="38" rx="8" fill="#FF9800"/>
+    <rect x="220" y="366" width="260" height="12" fill="#FF9800"/>
+    <text x="350" y="366" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">fact_sales</text>
+    <line x1="220" y1="378" x2="480" y2="378" stroke="#FFB74D" stroke-width="0.5"/>
+    <text x="236" y="400" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="268" y="400" fill="#333" font-size="13">时间ID</text>
+    <text x="370" y="400" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="402" y="400" fill="#333" font-size="13">地区ID</text>
+    <text x="236" y="426" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="268" y="426" fill="#333" font-size="13">产品ID</text>
+    <text x="370" y="426" fill="#999" font-size="11">　</text>
+    <text x="402" y="426" fill="#333" font-size="13">销售额</text>
+    <text x="236" y="452" fill="#999" font-size="11">　</text>
+    <text x="268" y="452" fill="#333" font-size="13">销售量</text>
+    <text x="350" y="462" text-anchor="middle" fill="#FF9800" font-size="11">事实表</text>
+  </g>
+  <path d="M350,150 C350,220 350,270 350,340" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path d="M200,255 C200,290 350,300 350,340" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path d="M500,255 C500,290 350,300 350,340" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+</svg>

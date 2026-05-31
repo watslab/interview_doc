@@ -609,17 +609,64 @@ INSERT INTO user_events SETTINGS insert_quorum=2, insert_quorum_timeout=60000 VA
 
 #### 4.3.5 复制相关配置
 
+ClickHouse 的复制配置分布在**两个配置文件**中，均位于节点的 `/etc/clickhouse-server/` 目录下：
+
+| 配置文件 | 作用 | 是否每个节点不同 |
+|----------|------|------------------|
+| `config.xml` | 主配置文件，定义 ZooKeeper/Keeper 连接信息 | 相同（所有节点连接同一 ZK 集群） |
+| `config.d/macros.xml` | 宏定义文件，声明当前节点的分片编号和副本标识 | **不同**（每个节点需设置自己的身份） |
+
+**① ZooKeeper 连接配置**（所有节点相同，写入 `config.xml` 或 `config.d/zookeeper.xml`）：
+
 ```xml
 <clickhouse>
     <zookeeper>
         <node>
-            <host>zk1</host>
+            <host>zk1.example.com</host>
+            <port>2181</port>
+        </node>
+        <node>
+            <host>zk2.example.com</host>
+            <port>2181</port>
+        </node>
+        <node>
+            <host>zk3.example.com</host>
             <port>2181</port>
         </node>
     </zookeeper>
-    
+</clickhouse>
+```
+
+| 配置项 | 说明 |
+|--------|------|
+| `zookeeper/node/host` | ZooKeeper 节点地址，推荐配置 3 个以上节点实现高可用 |
+| `zookeeper/node/port` | ZooKeeper 客户端端口，默认 2181 |
+
+> **替代方案**：使用内置 ClickHouse Keeper 替代外部 ZooKeeper 时，将 `<zookeeper>` 替换为 `<keeper>` 块，并在 `config.xml` 中启用 Keeper 服务。
+
+**② 节点身份宏配置**（每个节点不同，写入 `config.d/macros.xml`）：
+
+```xml
+<!-- 分片1-副本1 节点 -->
+<clickhouse>
     <macros>
         <shard>01</shard>
+        <replica>replica1</replica>
+    </macros>
+</clickhouse>
+
+<!-- 分片1-副本2 节点 -->
+<clickhouse>
+    <macros>
+        <shard>01</shard>
+        <replica>replica2</replica>
+    </macros>
+</clickhouse>
+
+<!-- 分片2-副本1 节点 -->
+<clickhouse>
+    <macros>
+        <shard>02</shard>
         <replica>replica1</replica>
     </macros>
 </clickhouse>
@@ -627,9 +674,51 @@ INSERT INTO user_events SETTINGS insert_quorum=2, insert_quorum_timeout=60000 VA
 
 | 配置项 | 说明 |
 |--------|------|
-| `zookeeper/node` | ZooKeeper 集群地址 |
-| `macros/shard` | 当前节点的分片编号 |
-| `macros/replica` | 当前节点的副本标识 |
+| `macros/shard` | 当前节点所属的分片编号，与建表语句中 `{shard}` 占位符对应 |
+| `macros/replica` | 当前节点在分片内的副本标识，与建表语句中 `{replica}` 占位符对应 |
+
+> **宏的作用**：建 Replicated 表时使用 `ReplicatedMergeTree('/clickhouse/tables/{shard}/table_name', '{replica}')`，ClickHouse 自动将 `{shard}` 和 `{replica}` 替换为当前节点的宏值，从而让同一份 DDL 在不同节点上创建指向不同 ZNode 的副本表。
+
+**③ 集群定义配置**（所有节点相同，写入 `config.d/cluster.xml`）：
+
+```xml
+<clickhouse>
+    <remote_servers>
+        <my_cluster>
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <host>ch-shard1-r1.example.com</host>
+                    <port>9000</port>
+                </replica>
+                <replica>
+                    <host>ch-shard1-r2.example.com</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <host>ch-shard2-r1.example.com</host>
+                    <port>9000</port>
+                </replica>
+                <replica>
+                    <host>ch-shard2-r2.example.com</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+        </my_cluster>
+    </remote_servers>
+</clickhouse>
+```
+
+| 配置项 | 说明 |
+|--------|------|
+| `remote_servers/my_cluster` | 集群名称，与 `ON CLUSTER` 和 `Distributed` 引擎中引用的名称一致 |
+| `shard` | 每个分片定义一个 `<shard>` 块 |
+| `internal_replication` | 设为 `true` 表示写入只发给一个副本，由 Replicated 引擎负责同步；设为 `false` 则 Distributed 表向所有副本写入（不推荐） |
+| `replica/host` | 副本节点的地址 |
+| `replica/port` | 副本节点的 TCP 端口，默认 9000 |
 
 ### 4.4 查询路由
 
@@ -729,7 +818,7 @@ ORDER BY 决定数据的物理排序，直接影响主键索引的效率和 Part
 | 原则 | 说明 | 原因 |
 |------|------|------|
 | **高频过滤字段优先** | 将常用 WHERE 条件字段放在前面 | 主键索引只能加速 ORDER BY 前缀列的查询 |
-| **基数递减** | 字段基数从前到后递减 | 低基数字段在前可使主键索引更紧凑，减少需扫描的 Granule |
+| **基数递增** | 字段基数从前到后递增（低基数在前） | 低基数字段在前可使主键索引更紧凑，减少需扫描的 Granule |
 | **时间字段优先** | 时间字段通常放在第一位 | 时间过滤是最常见的查询模式，且有利于 Part 合并效率 |
 
 > **注意**：上述原则可能冲突。例如"时间字段优先"与"高频过滤字段优先"矛盾时，应优先保证查询频率最高的过滤条件能命中主键索引。

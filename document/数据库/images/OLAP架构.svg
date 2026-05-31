@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 400" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#78909C"/></marker>
+    <marker id="ahd" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#B0BEC5"/></marker>
+  </defs>
+  <rect x="10" y="10" width="900" height="380" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="10" y="10" width="900" height="38" rx="12" fill="#4DB6AC"/>
+  <rect x="10" y="36" width="900" height="12" fill="#4DB6AC"/>
+  <text x="460" y="36" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">OLAP 架构</text>
+  <rect x="30" y="68" width="190" height="300" rx="8" fill="#E8EAF6" stroke="#9FA8DA" stroke-width="1"/>
+  <rect x="30" y="68" width="190" height="32" rx="8" fill="#7986CB"/>
+  <rect x="30" y="88" width="190" height="12" fill="#7986CB"/>
+  <text x="125" y="90" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">数据源</text>
+  <g filter="url(#s1)">
+    <rect x="50" y="115" width="150" height="34" rx="6" fill="#fff" stroke="#9FA8DA" stroke-width="1"/>
+    <text x="125" y="137" text-anchor="middle" fill="#333" font-size="12">OLTP 数据库</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="50" y="163" width="150" height="34" rx="6" fill="#fff" stroke="#9FA8DA" stroke-width="1"/>
+    <text x="125" y="185" text-anchor="middle" fill="#333" font-size="12">日志数据</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="50" y="211" width="150" height="34" rx="6" fill="#fff" stroke="#9FA8DA" stroke-width="1"/>
+    <text x="125" y="233" text-anchor="middle" fill="#333" font-size="12">外部数据</text>
+  </g>
+  <rect x="245" y="68" width="190" height="300" rx="8" fill="#E0F2F1" stroke="#80CBC4" stroke-width="1"/>
+  <rect x="245" y="68" width="190" height="32" rx="8" fill="#4DB6AC"/>
+  <rect x="245" y="88" width="190" height="12" fill="#4DB6AC"/>
+  <text x="340" y="90" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">ETL 层</text>
+  <g filter="url(#s1)">
+    <rect x="265" y="115" width="150" height="34" rx="6" fill="#fff" stroke="#80CBC4" stroke-width="1"/>
+    <text x="340" y="137" text-anchor="middle" fill="#333" font-size="12">数据抽取</text>
+  </g>
+  <line x1="340" y1="149" x2="340" y2="175" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ahd)"/>
+  <g filter="url(#s1)">
+    <rect x="265" y="175" width="150" height="34" rx="6" fill="#fff" stroke="#80CBC4" stroke-width="1"/>
+    <text x="340" y="197" text-anchor="middle" fill="#333" font-size="12">数据转换</text>
+  </g>
+  <line x1="340" y1="209" x2="340" y2="235" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ahd)"/>
+  <g filter="url(#s1)">
+    <rect x="265" y="235" width="150" height="34" rx="6" fill="#fff" stroke="#80CBC4" stroke-width="1"/>
+    <text x="340" y="257" text-anchor="middle" fill="#333" font-size="12">数据加载</text>
+  </g>
+  <rect x="460" y="68" width="190" height="300" rx="8" fill="#FFF8E1" stroke="#FFD54F" stroke-width="1"/>
+  <rect x="460" y="68" width="190" height="32" rx="8" fill="#FFB74D"/>
+  <rect x="460" y="88" width="190" height="12" fill="#FFB74D"/>
+  <text x="555" y="90" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">存储层</text>
+  <g filter="url(#s1)">
+    <rect x="480" y="115" width="150" height="34" rx="6" fill="#fff" stroke="#FFD54F" stroke-width="1"/>
+    <text x="555" y="137" text-anchor="middle" fill="#333" font-size="12">ODS 操作数据层</text>
+  </g>
+  <line x1="555" y1="149" x2="555" y2="175" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ahd)"/>
+  <g filter="url(#s1)">
+    <rect x="480" y="175" width="150" height="34" rx="6" fill="#fff" stroke="#FFD54F" stroke-width="1"/>
+    <text x="555" y="197" text-anchor="middle" fill="#333" font-size="12">DWD 明细数据层</text>
+  </g>
+  <line x1="555" y1="209" x2="555" y2="235" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ahd)"/>
+  <g filter="url(#s1)">
+    <rect x="480" y="235" width="150" height="34" rx="6" fill="#fff" stroke="#FFD54F" stroke-width="1"/>
+    <text x="555" y="257" text-anchor="middle" fill="#333" font-size="12">DWS 汇总数据层</text>
+  </g>
+  <line x1="555" y1="269" x2="555" y2="295" stroke="#B0BEC5" stroke-width="1.2" marker-end="url(#ahd)"/>
+  <g filter="url(#s1)">
+    <rect x="480" y="295" width="150" height="34" rx="6" fill="#fff" stroke="#FFD54F" stroke-width="1"/>
+    <text x="555" y="317" text-anchor="middle" fill="#333" font-size="12">ADS 应用数据层</text>
+  </g>
+  <rect x="675" y="68" width="215" height="300" rx="8" fill="#FCE4EC" stroke="#F48FB1" stroke-width="1"/>
+  <rect x="675" y="68" width="215" height="32" rx="8" fill="#F06292"/>
+  <rect x="675" y="88" width="215" height="12" fill="#F06292"/>
+  <text x="782" y="90" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">分析层</text>
+  <g filter="url(#s1)">
+    <rect x="695" y="115" width="175" height="34" rx="6" fill="#fff" stroke="#F48FB1" stroke-width="1"/>
+    <text x="782" y="137" text-anchor="middle" fill="#333" font-size="12">BI 报表</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="695" y="163" width="175" height="34" rx="6" fill="#fff" stroke="#F48FB1" stroke-width="1"/>
+    <text x="782" y="185" text-anchor="middle" fill="#333" font-size="12">即席查询</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="695" y="211" width="175" height="34" rx="6" fill="#fff" stroke="#F48FB1" stroke-width="1"/>
+    <text x="782" y="233" text-anchor="middle" fill="#333" font-size="12">数据挖掘</text>
+  </g>
+  <line x1="220" y1="180" x2="245" y2="180" stroke="#78909C" stroke-width="1.8" marker-end="url(#ah)"/>
+  <line x1="435" y1="180" x2="460" y2="180" stroke="#78909C" stroke-width="1.8" marker-end="url(#ah)"/>
+  <line x1="650" y1="180" x2="675" y2="180" stroke="#78909C" stroke-width="1.8" marker-end="url(#ah)"/>
+</svg>

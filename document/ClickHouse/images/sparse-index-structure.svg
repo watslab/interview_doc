@@ -99,9 +99,12 @@
     <text x="655" y="286" text-anchor="middle" fill="#059669" font-size="10">...</text>
 
     <!-- 偏移量说明 -->
-    <rect x="50" y="318" width="710" height="30" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="0.8"/>
-    <text x="60" y="337" fill="#065F46" font-size="10" font-weight="500">
-      <tspan font-weight="700">col_offset</tspan> = Granule 在 .bin 压缩文件中的字节偏移　｜
+    <rect x="50" y="318" width="685" height="30" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="0.8"/>
+    <text x="380" y="337" text-anchor="end" fill="#065F46" font-size="10" font-weight="500">
+      <tspan font-weight="700">col_offset</tspan> = Granule 在 .bin 压缩文件中的字节偏移
+    </text>
+    <text x="393" y="337" text-anchor="middle" fill="#065F46" font-size="10" font-weight="400">｜</text>
+    <text x="406" y="337" text-anchor="start" fill="#065F46" font-size="10" font-weight="500">
       <tspan font-weight="700">granule_offset</tspan> = Granule 在解压块中的行偏移
     </text>
   </g>

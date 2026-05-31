@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 600" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.1" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#5C6BC0"/></marker>
+  </defs>
+  <g filter="url(#s1)">
+    <rect x="300" y="10" width="180" height="110" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <path d="M308,10 H472 Q480,10 480,18 V48 H300 V18 Q300,10 308,10Z" fill="#7986CB"/>
+    <text x="390" y="35" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_time</text>
+    <line x1="300" y1="48" x2="480" y2="48" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="316" y="70" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="348" y="70" fill="#333" font-size="13">时间ID</text>
+    <text x="316" y="96" fill="#999" font-size="11">&#x3000;</text>
+    <text x="348" y="96" fill="#333" font-size="13">年 / 月 / 日</text>
+    <text x="390" y="112" text-anchor="middle" fill="#7986CB" font-size="11">时间维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="20" y="155" width="180" height="110" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <path d="M28,155 H192 Q200,155 200,163 V193 H20 V163 Q20,155 28,155Z" fill="#7986CB"/>
+    <text x="110" y="180" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_province</text>
+    <line x1="20" y1="193" x2="200" y2="193" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="36" y="215" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="68" y="215" fill="#333" font-size="13">省份ID</text>
+    <text x="36" y="241" fill="#999" font-size="11">&#x3000;</text>
+    <text x="68" y="241" fill="#333" font-size="13">省份名称</text>
+    <text x="110" y="257" text-anchor="middle" fill="#7986CB" font-size="11">省份维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="20" y="300" width="180" height="136" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <path d="M28,300 H192 Q200,300 200,308 V338 H20 V308 Q20,300 28,300Z" fill="#7986CB"/>
+    <text x="110" y="325" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_city</text>
+    <line x1="20" y1="338" x2="200" y2="338" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="36" y="360" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="68" y="360" fill="#333" font-size="13">省份ID</text>
+    <text x="36" y="386" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="68" y="386" fill="#333" font-size="13">城市ID</text>
+    <text x="36" y="412" fill="#999" font-size="11">&#x3000;</text>
+    <text x="68" y="412" fill="#333" font-size="13">城市名称</text>
+    <text x="110" y="428" text-anchor="middle" fill="#7986CB" font-size="11">城市维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="580" y="155" width="180" height="110" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <path d="M588,155 H752 Q760,155 760,163 V193 H580 V163 Q580,155 588,155Z" fill="#7986CB"/>
+    <text x="670" y="180" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_category</text>
+    <line x1="580" y1="193" x2="760" y2="193" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="596" y="215" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="628" y="215" fill="#333" font-size="13">类别ID</text>
+    <text x="596" y="241" fill="#999" font-size="11">&#x3000;</text>
+    <text x="628" y="241" fill="#333" font-size="13">类别名称</text>
+    <text x="670" y="257" text-anchor="middle" fill="#7986CB" font-size="11">类别维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="580" y="300" width="180" height="136" rx="8" fill="#fff" stroke="#C5CAE9" stroke-width="1.5"/>
+    <path d="M588,300 H752 Q760,300 760,308 V338 H580 V308 Q580,300 588,300Z" fill="#7986CB"/>
+    <text x="670" y="325" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">dim_product</text>
+    <line x1="580" y1="338" x2="760" y2="338" stroke="#C5CAE9" stroke-width="0.5"/>
+    <text x="596" y="360" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="628" y="360" fill="#333" font-size="13">类别ID</text>
+    <text x="596" y="386" fill="#FF9800" font-size="11" font-weight="bold">PK</text>
+    <text x="628" y="386" fill="#333" font-size="13">产品ID</text>
+    <text x="596" y="412" fill="#999" font-size="11">&#x3000;</text>
+    <text x="628" y="412" fill="#333" font-size="13">产品名称</text>
+    <text x="670" y="428" text-anchor="middle" fill="#7986CB" font-size="11">产品维度</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="230" y="470" width="320" height="120" rx="8" fill="#fff" stroke="#FFB74D" stroke-width="1.5"/>
+    <path d="M238,470 H542 Q550,470 550,478 V508 H230 V478 Q230,470 238,470Z" fill="#FF9800"/>
+    <text x="390" y="495" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">fact_sales</text>
+    <line x1="230" y1="508" x2="550" y2="508" stroke="#FFB74D" stroke-width="0.5"/>
+    <text x="246" y="530" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="278" y="530" fill="#333" font-size="13">时间ID</text>
+    <text x="380" y="530" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="412" y="530" fill="#333" font-size="13">城市ID</text>
+    <text x="246" y="556" fill="#E65100" font-size="11" font-weight="bold">FK</text>
+    <text x="278" y="556" fill="#333" font-size="13">产品ID</text>
+    <text x="380" y="556" fill="#999" font-size="11">&#x3000;</text>
+    <text x="412" y="556" fill="#333" font-size="13">销售额 / 销售量</text>
+    <text x="390" y="582" text-anchor="middle" fill="#FF9800" font-size="11">事实表</text>
+  </g>
+  <path d="M390,120 L390,470" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path d="M110,265 L110,300" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path d="M670,265 L670,300" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path d="M200,368 C260,368 320,368 320,470" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+  <path d="M580,368 C520,368 460,368 460,470" fill="none" stroke="#5C6BC0" stroke-width="1.8" marker-end="url(#ah)"/>
+</svg>

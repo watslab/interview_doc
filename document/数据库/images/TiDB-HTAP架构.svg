@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 460" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#78909C"/></marker>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#4CAF50"/></marker>
+  </defs>
+  <rect x="10" y="10" width="660" height="440" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="10" y="10" width="660" height="38" rx="12" fill="#1565C0"/>
+  <rect x="10" y="36" width="660" height="12" fill="#1565C0"/>
+  <text x="340" y="36" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">TiDB HTAP 架构</text>
+  <rect x="30" y="68" width="620" height="90" rx="8" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <text x="50" y="88" fill="#1565C0" font-size="12" font-weight="bold">计算层</text>
+  <g filter="url(#s1)">
+    <rect x="170" y="88" width="340" height="52" rx="6" fill="#fff" stroke="#90CAF9" stroke-width="1"/>
+    <text x="340" y="112" text-anchor="middle" fill="#333" font-size="14" font-weight="bold">TiDB Server</text>
+    <text x="340" y="130" text-anchor="middle" fill="#9E9E9E" font-size="11">SQL 解析与优化</text>
+  </g>
+  <rect x="30" y="188" width="620" height="120" rx="8" fill="#FFF3E0" stroke="#FFCC80" stroke-width="1"/>
+  <text x="50" y="208" fill="#E65100" font-size="12" font-weight="bold">存储层</text>
+  <g filter="url(#s1)">
+    <rect x="80" y="220" width="200" height="70" rx="8" fill="#fff" stroke="#FFCC80" stroke-width="1.5"/>
+    <rect x="80" y="220" width="200" height="28" rx="8" fill="#E65100"/>
+    <rect x="80" y="240" width="200" height="8" fill="#E65100"/>
+    <text x="180" y="240" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">TiKV</text>
+    <text x="180" y="268" text-anchor="middle" fill="#333" font-size="12">行存引擎</text>
+    <text x="180" y="284" text-anchor="middle" fill="#E65100" font-size="11">OLTP</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="400" y="220" width="200" height="70" rx="8" fill="#fff" stroke="#FFCC80" stroke-width="1.5"/>
+    <rect x="400" y="220" width="200" height="28" rx="8" fill="#1565C0"/>
+    <rect x="400" y="240" width="200" height="8" fill="#1565C0"/>
+    <text x="500" y="240" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">TiFlash</text>
+    <text x="500" y="268" text-anchor="middle" fill="#333" font-size="12">列存引擎</text>
+    <text x="500" y="284" text-anchor="middle" fill="#1565C0" font-size="11">OLAP</text>
+  </g>
+  <line x1="260" y1="140" x2="180" y2="220" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="420" y1="140" x2="500" y2="220" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="280" y1="248" x2="400" y2="248" stroke="#4CAF50" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+  <line x1="400" y1="262" x2="280" y2="262" stroke="#4CAF50" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#ahg)"/>
+  <text x="340" y="240" text-anchor="middle" fill="#2E7D32" font-size="10" font-weight="bold">Raft 同步</text>
+  <rect x="30" y="328" width="620" height="100" rx="8" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1"/>
+  <text x="50" y="348" fill="#7B1FA2" font-size="12" font-weight="bold">调度层</text>
+  <g filter="url(#s1)">
+    <rect x="170" y="358" width="340" height="52" rx="6" fill="#fff" stroke="#CE93D8" stroke-width="1"/>
+    <text x="340" y="382" text-anchor="middle" fill="#333" font-size="14" font-weight="bold">PD</text>
+    <text x="340" y="400" text-anchor="middle" fill="#9E9E9E" font-size="11">调度与元数据</text>
+  </g>
+  <line x1="240" y1="358" x2="180" y2="290" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+  <line x1="440" y1="358" x2="500" y2="290" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+  <line x1="340" y1="358" x2="340" y2="140" stroke="#78909C" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+</svg>
