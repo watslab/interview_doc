@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -6 780 280" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#78909C"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="15" y="12" width="730" height="250" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="390" y="36" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Lambda 架构 — 流批分离，双链路并行</text>
+
+  <!-- ===== Layer Annotation Labels ===== -->
+  <text x="150" y="65" text-anchor="start" font-size="10" font-weight="600" fill="#1E88E5" dominant-baseline="central">批处理层（离线）</text>
+  <text x="150" y="235" text-anchor="start" font-size="10" font-weight="600" fill="#F57C00" dominant-baseline="central">速度层（实时）</text>
+
+  <!-- ===== Data Source ===== -->
+  <rect x="30" y="125" width="100" height="50" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="80" y="145" text-anchor="middle" font-size="13" font-weight="600" fill="#333" dominant-baseline="central">数据源</text>
+  <text x="80" y="160" text-anchor="middle" font-size="10" fill="#78909C" dominant-baseline="central">Data Source</text>
+
+  <!-- ===== Batch Layer ===== -->
+  <rect x="240" y="55" width="120" height="50" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="300" y="74" text-anchor="middle" font-size="12" font-weight="600" fill="#333" dominant-baseline="central">批处理层</text>
+  <text x="300" y="90" text-anchor="middle" font-size="9" fill="#64B5F6" dominant-baseline="central">HDFS + MR/Spark</text>
+
+  <!-- ===== Speed Layer ===== -->
+  <rect x="240" y="195" width="120" height="50" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="300" y="214" text-anchor="middle" font-size="12" font-weight="600" fill="#333" dominant-baseline="central">速度层</text>
+  <text x="300" y="230" text-anchor="middle" font-size="9" fill="#FFB74D" dominant-baseline="central">Kafka + Storm/Flink</text>
+
+  <!-- ===== Batch View ===== -->
+  <rect x="430" y="55" width="110" height="50" rx="8" fill="#E8EAF6" stroke="#5C6BC0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="485" y="74" text-anchor="middle" font-size="12" font-weight="600" fill="#333" dominant-baseline="central">批处理视图</text>
+  <text x="485" y="90" text-anchor="middle" font-size="9" fill="#7986CB" dominant-baseline="central">全量数据</text>
+
+  <!-- ===== Real-time View ===== -->
+  <rect x="430" y="195" width="110" height="50" rx="8" fill="#FFF8E1" stroke="#FF8F00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="485" y="214" text-anchor="middle" font-size="12" font-weight="600" fill="#333" dominant-baseline="central">实时视图</text>
+  <text x="485" y="230" text-anchor="middle" font-size="9" fill="#FFB74D" dominant-baseline="central">增量数据</text>
+
+  <!-- ===== Serving Layer ===== -->
+  <rect x="630" y="125" width="100" height="50" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="680" y="145" text-anchor="middle" font-size="12" font-weight="600" fill="#333" dominant-baseline="central">服务层</text>
+  <text x="680" y="160" text-anchor="middle" font-size="9" fill="#81C784" dominant-baseline="central">合并查询</text>
+
+  <!-- ===== Connection Lines (drawn last for correct z-order) ===== -->
+
+  <!-- Fork from Data Source -->
+  <line x1="130" y1="150" x2="180" y2="150" stroke="#78909C" stroke-width="1.5"/>
+  <line x1="180" y1="150" x2="180" y2="80" stroke="#78909C" stroke-width="1.5"/>
+  <line x1="180" y1="80" x2="240" y2="80" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="180" y1="150" x2="180" y2="220" stroke="#78909C" stroke-width="1.5"/>
+  <line x1="180" y1="220" x2="240" y2="220" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Fork point circle -->
+  <circle cx="180" cy="150" r="4" fill="#78909C"/>
+
+  <!-- Between Layer and View -->
+  <line x1="360" y1="80" x2="430" y2="80" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="360" y1="220" x2="430" y2="220" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Merge to Serving Layer -->
+  <line x1="540" y1="80" x2="585" y2="80" stroke="#78909C" stroke-width="1.5"/>
+  <line x1="585" y1="80" x2="585" y2="150" stroke="#78909C" stroke-width="1.5"/>
+  <line x1="540" y1="220" x2="585" y2="220" stroke="#78909C" stroke-width="1.5"/>
+  <line x1="585" y1="220" x2="585" y2="150" stroke="#78909C" stroke-width="1.5"/>
+  <line x1="585" y1="150" x2="630" y2="150" stroke="#78909C" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Merge point circle -->
+  <circle cx="585" cy="150" r="4" fill="#78909C"/>
+</svg>

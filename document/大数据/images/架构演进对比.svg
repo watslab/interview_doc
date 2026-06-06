@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/></marker>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E88E5"/><stop offset="100%" stop-color="#1565C0"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F57C00"/><stop offset="100%" stop-color="#E65100"/></linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#43A047"/><stop offset="100%" stop-color="#2E7D32"/></linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1080" height="680" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="550" y="45" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">大数据架构演进：Lambda → Kappa → 湖仓一体</text>
+
+  <!-- ==================== Lambda Architecture ==================== -->
+  <rect x="30" y="65" width="330" height="580" rx="10" fill="white" stroke="#1E88E5" stroke-width="2" filter="url(#s1)"/>
+  <path d="M38,65 H352 Q360,65 360,73 V95 H30 V73 Q30,65 38,65Z" fill="url(#g1)"/>
+  <text x="195" y="84" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Lambda 架构</text>
+  <text x="195" y="115" text-anchor="middle" font-size="10" fill="#78909C">流批分离 · 双链路并行</text>
+
+  <!-- Data Source -->
+  <rect x="110" y="130" width="170" height="35" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="195" y="152" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">数据源 (Kafka/日志)</text>
+
+  <!-- Split arrow -->
+  <line x1="155" y1="165" x2="100" y2="195" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="235" y1="165" x2="290" y2="195" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+
+  <!-- Batch Layer -->
+  <rect x="45" y="195" width="120" height="80" rx="6" fill="#BBDEFB" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="105" y="218" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">批处理层</text>
+  <text x="105" y="236" text-anchor="middle" font-size="9" fill="#455A64">HDFS + MapReduce</text>
+  <text x="105" y="250" text-anchor="middle" font-size="9" fill="#455A64">Spark 批处理</text>
+  <text x="105" y="264" text-anchor="middle" font-size="9" fill="#999">高延迟 · 高吞吐</text>
+
+  <!-- Speed Layer -->
+  <rect x="225" y="195" width="120" height="80" rx="6" fill="#BBDEFB" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="285" y="218" text-anchor="middle" font-size="11" font-weight="bold" fill="#1565C0">速度层</text>
+  <text x="285" y="236" text-anchor="middle" font-size="9" fill="#455A64">Storm / Flink</text>
+  <text x="285" y="250" text-anchor="middle" font-size="9" fill="#455A64">实时流处理</text>
+  <text x="285" y="264" text-anchor="middle" font-size="9" fill="#999">低延迟 · 近似结果</text>
+
+  <!-- Arrows down -->
+  <line x1="105" y1="275" x2="105" y2="310" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="285" y1="275" x2="285" y2="310" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+
+  <!-- Batch View -->
+  <rect x="45" y="310" width="120" height="50" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="105" y="332" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">批处理视图</text>
+  <text x="105" y="348" text-anchor="middle" font-size="9" fill="#999">Hive / HBase</text>
+
+  <!-- Realtime View -->
+  <rect x="225" y="310" width="120" height="50" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="285" y="332" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">实时视图</text>
+  <text x="285" y="348" text-anchor="middle" font-size="9" fill="#999">Redis / HBase</text>
+
+  <!-- Arrows to serving -->
+  <line x1="105" y1="360" x2="155" y2="395" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="285" y1="360" x2="235" y2="395" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+
+  <!-- Serving Layer -->
+  <rect x="90" y="395" width="210" height="45" rx="6" fill="#1565C0" filter="url(#s1)"/>
+  <text x="195" y="422" text-anchor="middle" font-size="11" font-weight="bold" fill="white">服务层 (合并查询)</text>
+
+  <!-- Pain points -->
+  <rect x="45" y="460" width="300" height="170" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="195" y="482" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">痛点</text>
+  <text x="60" y="502" font-size="10" fill="#BF360C">&#10005; 两套代码、两套运维，开发成本翻倍</text>
+  <text x="60" y="520" font-size="10" fill="#BF360C">&#10005; 流批结果不一致，数据核对困难</text>
+  <text x="60" y="538" font-size="10" fill="#BF360C">&#10005; 资源冗余，存储计算双重消耗</text>
+  <text x="60" y="556" font-size="10" fill="#BF360C">&#10005; 数据治理成本高，血缘难以统一</text>
+  <text x="60" y="574" font-size="10" fill="#BF360C">&#10005; 组件繁多(30+)，升级维护困难</text>
+  <text x="60" y="592" font-size="10" fill="#BF360C">&#10005; 系统复杂度高，稳定性挑战大</text>
+
+  <!-- ==================== Kappa Architecture ==================== -->
+  <rect x="385" y="65" width="330" height="580" rx="10" fill="white" stroke="#F57C00" stroke-width="2" filter="url(#s1)"/>
+  <path d="M393,65 H707 Q715,65 715,73 V95 H385 V73 Q385,65 393,65Z" fill="url(#g2)"/>
+  <text x="550" y="84" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Kappa 架构</text>
+  <text x="550" y="115" text-anchor="middle" font-size="10" fill="#78909C">流批一体 · 统一流处理</text>
+
+  <!-- Data Source -->
+  <rect x="465" y="130" width="170" height="35" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="550" y="152" text-anchor="middle" font-size="11" font-weight="600" fill="#E65100">数据源 (Kafka)</text>
+
+  <!-- Arrow down -->
+  <line x1="550" y1="165" x2="550" y2="195" stroke="#F57C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- Unified Stream Processing -->
+  <rect x="430" y="195" width="240" height="80" rx="6" fill="#FFE0B2" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="550" y="218" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">统一流处理层</text>
+  <text x="550" y="236" text-anchor="middle" font-size="9" fill="#455A64">Flink / Kafka Streams</text>
+  <text x="550" y="250" text-anchor="middle" font-size="9" fill="#455A64">全量数据通过流处理</text>
+  <text x="550" y="264" text-anchor="middle" font-size="9" fill="#999">一套代码 · 流批统一</text>
+
+  <!-- Arrow down -->
+  <line x1="550" y1="275" x2="550" y2="310" stroke="#F57C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- Unified Storage -->
+  <rect x="430" y="310" width="240" height="50" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="550" y="332" text-anchor="middle" font-size="10" font-weight="600" fill="#E65100">统一存储 (Kafka日志)</text>
+  <text x="550" y="348" text-anchor="middle" font-size="9" fill="#999">历史数据通过回溯日志重算</text>
+
+  <!-- Arrow down -->
+  <line x1="550" y1="360" x2="550" y2="395" stroke="#F57C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- Serving Layer -->
+  <rect x="445" y="395" width="210" height="45" rx="6" fill="#E65100" filter="url(#s1)"/>
+  <text x="550" y="422" text-anchor="middle" font-size="11" font-weight="bold" fill="white">服务层 (单一查询)</text>
+
+  <!-- Pain points -->
+  <rect x="400" y="460" width="300" height="170" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="550" y="482" text-anchor="middle" font-size="11" font-weight="bold" fill="#E65100">痛点</text>
+  <text x="415" y="502" font-size="10" fill="#BF360C">&#10005; 数据回溯成本高，需长期保存全量日志</text>
+  <text x="415" y="520" font-size="10" fill="#BF360C">&#10005; OLAP查询能力弱，复杂分析支持不足</text>
+  <text x="415" y="538" font-size="10" fill="#BF360C">&#10005; 状态管理复杂，大规模作业稳定性差</text>
+  <text x="415" y="556" font-size="10" fill="#BF360C">&#10005; Kafka存储全量数据成本极高</text>
+  <text x="415" y="574" font-size="10" fill="#BF360C">&#10005; 数据更新/删除操作困难</text>
+  <text x="415" y="592" font-size="10" fill="#BF360C">&#10005; 不适合复杂的关联分析场景</text>
+
+  <!-- ==================== Lakehouse Architecture ==================== -->
+  <rect x="740" y="65" width="330" height="580" rx="10" fill="white" stroke="#43A047" stroke-width="2" filter="url(#s1)"/>
+  <path d="M748,65 H1062 Q1070,65 1070,73 V95 H740 V73 Q740,65 748,65Z" fill="url(#g3)"/>
+  <text x="905" y="84" text-anchor="middle" font-size="14" font-weight="bold" fill="white">湖仓一体 (Lakehouse)</text>
+  <text x="905" y="115" text-anchor="middle" font-size="10" fill="#78909C">流批统一 · 湖仓融合 · 智能化</text>
+
+  <!-- Data Source -->
+  <rect x="820" y="130" width="170" height="35" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="905" y="152" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">数据源 (多源异构)</text>
+
+  <!-- Arrow down -->
+  <line x1="905" y1="165" x2="905" y2="195" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahg)"/>
+
+  <!-- Unified Compute -->
+  <rect x="785" y="195" width="240" height="80" rx="6" fill="#C8E6C9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="905" y="218" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">统一计算层</text>
+  <text x="905" y="236" text-anchor="middle" font-size="9" fill="#455A64">Flink (流批一体) + Spark</text>
+  <text x="905" y="250" text-anchor="middle" font-size="9" fill="#455A64">增量计算 + 全量计算</text>
+  <text x="905" y="264" text-anchor="middle" font-size="9" fill="#999">统一API · 弹性调度</text>
+
+  <!-- Arrow down -->
+  <line x1="905" y1="275" x2="905" y2="310" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahg)"/>
+
+  <!-- Lakehouse Storage -->
+  <rect x="785" y="310" width="240" height="50" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="905" y="332" text-anchor="middle" font-size="10" font-weight="600" fill="#2E7D32">湖仓统一存储</text>
+  <text x="905" y="348" text-anchor="middle" font-size="9" fill="#999">Iceberg / Hudi / Delta Lake</text>
+
+  <!-- Arrow down -->
+  <line x1="905" y1="360" x2="905" y2="395" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahg)"/>
+
+  <!-- Serving Layer -->
+  <rect x="800" y="395" width="210" height="45" rx="6" fill="#2E7D32" filter="url(#s1)"/>
+  <text x="905" y="422" text-anchor="middle" font-size="11" font-weight="bold" fill="white">服务层 (统一查询)</text>
+
+  <!-- Advantages -->
+  <rect x="755" y="460" width="300" height="170" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="905" y="482" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">优势</text>
+  <text x="770" y="502" font-size="10" fill="#1B5E20">&#10003; ACID事务，保证数据一致性</text>
+  <text x="770" y="520" font-size="10" fill="#1B5E20">&#10003; 支持Upsert/Delete操作</text>
+  <text x="770" y="538" font-size="10" fill="#1B5E20">&#10003; Time Travel数据回溯</text>
+  <text x="770" y="556" font-size="10" fill="#1B5E20">&#10003; Schema Evolution灵活演进</text>
+  <text x="770" y="574" font-size="10" fill="#1B5E20">&#10003; 统一元数据，简化治理</text>
+  <text x="770" y="592" font-size="10" fill="#1B5E20">&#10003; 存算分离，弹性伸缩</text>
+
+  <!-- Evolution arrows between architectures -->
+  <line x1="360" y1="350" x2="385" y2="350" stroke="#546E7A" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="715" y1="350" x2="740" y2="350" stroke="#546E7A" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- Evolution labels -->
+  <text x="372" y="340" text-anchor="middle" font-size="9" fill="#546E7A">演进</text>
+  <text x="727" y="340" text-anchor="middle" font-size="9" fill="#546E7A">演进</text>
+</svg>

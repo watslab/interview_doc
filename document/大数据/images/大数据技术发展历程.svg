@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 550" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#78909C"/></marker>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#78909C"/><stop offset="100%" stop-color="#546E7A"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E88E5"/><stop offset="100%" stop-color="#1565C0"/></linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F57C00"/><stop offset="100%" stop-color="#E65100"/></linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#43A047"/><stop offset="100%" stop-color="#2E7D32"/></linearGradient>
+    <linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7B1FA2"/><stop offset="100%" stop-color="#6A1B9A"/></linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1080" height="530" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="550" y="45" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">大数据开发技术发展历程</text>
+
+  <!-- Timeline axis -->
+  <line x1="65" y1="140" x2="1035" y2="140" stroke="#B0BEC5" stroke-width="3" marker-end="url(#ah)"/>
+
+  <!-- Phase 1: 萌芽期 -->
+  <rect x="85" y="100" width="150" height="40" rx="6" fill="url(#g1)" filter="url(#s1)"/>
+  <text x="160" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="white">萌芽期</text>
+  <text x="160" y="163" text-anchor="middle" font-size="11" fill="#546E7A">1990s - 2005</text>
+  <rect x="80" y="188" width="160" height="150" rx="8" fill="white" stroke="#90A4AE" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M88,188 H232 Q240,188 240,196 V213 H80 V196 Q80,188 88,188Z" fill="#546E7A"/>
+  <text x="160" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="white">传统数据仓库时代</text>
+  <text x="92" y="233" font-size="10" fill="#455A64">&#8226; 关系型数据库为主</text>
+  <text x="92" y="251" font-size="10" fill="#455A64">&#8226; 数据仓库/数据挖掘</text>
+  <text x="92" y="269" font-size="10" fill="#455A64">&#8226; Teradata/Oracle</text>
+  <text x="92" y="287" font-size="10" fill="#455A64">&#8226; 3V模型提出</text>
+  <text x="92" y="305" font-size="10" fill="#455A64">&#8226; 算力与存储受限</text>
+  <text x="92" y="323" font-size="10" fill="#999">延迟：天/周级</text>
+
+  <!-- Phase 2: 磁盘计算时代 -->
+  <rect x="280" y="100" width="150" height="40" rx="6" fill="url(#g2)" filter="url(#s1)"/>
+  <text x="355" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="white">磁盘计算时代</text>
+  <text x="355" y="163" text-anchor="middle" font-size="11" fill="#1565C0">2005 - 2013</text>
+  <rect x="260" y="188" width="190" height="150" rx="8" fill="white" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M268,188 H442 Q450,188 450,196 V213 H260 V196 Q260,188 268,188Z" fill="#1E88E5"/>
+  <text x="355" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Hadoop批处理时代</text>
+  <text x="272" y="233" font-size="10" fill="#455A64">&#8226; Google三篇论文</text>
+  <text x="272" y="251" font-size="10" fill="#455A64">&#8226; Hadoop/HDFS/MapReduce</text>
+  <text x="272" y="269" font-size="10" fill="#455A64">&#8226; Hive/HBase/Pig</text>
+  <text x="272" y="287" font-size="10" fill="#455A64">&#8226; 分布式计算平民化</text>
+  <text x="272" y="305" font-size="10" fill="#455A64">&#8226; YARN资源管理</text>
+  <text x="272" y="323" font-size="10" fill="#999">延迟：小时级</text>
+
+  <!-- Phase 3: 内存计算时代 -->
+  <rect x="475" y="100" width="150" height="40" rx="6" fill="url(#g3)" filter="url(#s1)"/>
+  <text x="550" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="white">内存计算时代</text>
+  <text x="550" y="163" text-anchor="middle" font-size="11" fill="#E65100">2013 - 2016</text>
+  <rect x="470" y="188" width="160" height="150" rx="8" fill="white" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M478,188 H622 Q630,188 630,196 V213 H470 V196 Q470,188 478,188Z" fill="#F57C00"/>
+  <text x="550" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Spark革命时代</text>
+  <text x="482" y="233" font-size="10" fill="#455A64">&#8226; RDD内存计算</text>
+  <text x="482" y="251" font-size="10" fill="#455A64">&#8226; DAG执行引擎</text>
+  <text x="482" y="269" font-size="10" fill="#455A64">&#8226; 速度提升10-100x</text>
+  <text x="482" y="287" font-size="10" fill="#455A64">&#8226; Impala/Presto</text>
+  <text x="482" y="305" font-size="10" fill="#455A64">&#8226; 交互式SQL查询</text>
+  <text x="482" y="323" font-size="10" fill="#999">延迟：秒级</text>
+
+  <!-- Phase 4: 实时计算时代 -->
+  <rect x="655" y="100" width="150" height="40" rx="6" fill="url(#g4)" filter="url(#s1)"/>
+  <text x="730" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="white">实时计算时代</text>
+  <text x="730" y="163" text-anchor="middle" font-size="11" fill="#2E7D32">2016 - 2020</text>
+  <rect x="650" y="188" width="160" height="150" rx="8" fill="white" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M658,188 H802 Q810,188 810,196 V213 H650 V196 Q650,188 658,188Z" fill="#43A047"/>
+  <text x="730" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Flink流处理时代</text>
+  <text x="662" y="233" font-size="10" fill="#455A64">&#8226; Flink流批一体</text>
+  <text x="662" y="251" font-size="10" fill="#455A64">&#8226; 事件驱动处理</text>
+  <text x="662" y="269" font-size="10" fill="#455A64">&#8226; Kafka生态成熟</text>
+  <text x="662" y="287" font-size="10" fill="#455A64">&#8226; ClickHouse/Doris</text>
+  <text x="662" y="305" font-size="10" fill="#455A64">&#8226; Lambda/Kappa架构</text>
+  <text x="662" y="323" font-size="10" fill="#999">延迟：毫秒级</text>
+
+  <!-- Phase 5: 云原生与智能化时代 -->
+  <rect x="850" y="100" width="150" height="40" rx="6" fill="url(#g5)" filter="url(#s1)"/>
+  <text x="925" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="white">云原生与智能化时代</text>
+  <text x="925" y="163" text-anchor="middle" font-size="11" fill="#6A1B9A">2020 - 至今</text>
+  <rect x="830" y="188" width="190" height="150" rx="8" fill="white" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M838,188 H1012 Q1020,188 1020,196 V213 H830 V196 Q830,188 838,188Z" fill="#7B1FA2"/>
+  <text x="925" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="white">湖仓一体与AI融合</text>
+  <text x="842" y="233" font-size="10" fill="#455A64">&#8226; 湖仓一体(Lakehouse)</text>
+  <text x="842" y="251" font-size="10" fill="#455A64">&#8226; Iceberg/Hudi/Delta</text>
+  <text x="842" y="269" font-size="10" fill="#455A64">&#8226; 云原生/K8s部署</text>
+  <text x="842" y="287" font-size="10" fill="#455A64">&#8226; Data Fabric/Data Mesh</text>
+  <text x="842" y="305" font-size="10" fill="#455A64">&#8226; AI+大数据深度融合</text>
+  <text x="842" y="323" font-size="10" fill="#999">延迟：实时/智能</text>
+
+  <!-- Key milestone markers on timeline -->
+  <circle cx="160" cy="140" r="5" fill="#546E7A"/>
+  <circle cx="355" cy="140" r="5" fill="#1E88E5"/>
+  <circle cx="550" cy="140" r="5" fill="#F57C00"/>
+  <circle cx="730" cy="140" r="5" fill="#43A047"/>
+  <circle cx="925" cy="140" r="5" fill="#7B1FA2"/>
+
+  <!-- Key milestone labels -->
+  <text x="160" y="84" text-anchor="middle" font-size="10" fill="#546E7A">2001: 3V模型</text>
+  <text x="355" y="84" text-anchor="middle" font-size="10" fill="#1565C0">2006: Hadoop诞生</text>
+  <text x="550" y="84" text-anchor="middle" font-size="10" fill="#E65100">2013: Spark 1.0</text>
+  <text x="730" y="84" text-anchor="middle" font-size="10" fill="#2E7D32">2016: Flink崛起</text>
+  <text x="925" y="84" text-anchor="middle" font-size="10" fill="#6A1B9A">2020: Lakehouse</text>
+
+  <!-- Bottom summary bar -->
+  <rect x="80" y="373" width="940" height="60" rx="8" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="550" y="398" text-anchor="middle" font-size="12" font-weight="bold" fill="#37474F">核心驱动力演进</text>
+  <text x="550" y="418" text-anchor="middle" font-size="11" fill="#546E7A">数据能算就行 &#8594; 算得更快 &#8594; 算得实时 &#8594; 算得智能 &#8594; 数据即决策</text>
+
+  <!-- Bottom legend -->
+  <rect x="80" y="458" width="940" height="55" rx="8" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="100" y="489" font-size="10" font-weight="bold" fill="#37474F">关键里程碑：</text>
+  <rect x="190" y="479" width="12" height="12" rx="2" fill="#1E88E5"/><text x="208" y="490" font-size="9" fill="#455A64">2003 GFS论文</text>
+  <rect x="300" y="479" width="12" height="12" rx="2" fill="#1E88E5"/><text x="318" y="490" font-size="9" fill="#455A64">2004 MapReduce论文</text>
+  <rect x="440" y="479" width="12" height="12" rx="2" fill="#F57C00"/><text x="458" y="490" font-size="9" fill="#455A64">2010 Spark开源</text>
+  <rect x="560" y="479" width="12" height="12" rx="2" fill="#43A047"/><text x="578" y="490" font-size="9" fill="#455A64">2014 Flink孵化</text>
+  <rect x="680" y="479" width="12" height="12" rx="2" fill="#7B1FA2"/><text x="698" y="490" font-size="9" fill="#455A64">2019 Delta Lake</text>
+  <rect x="800" y="479" width="12" height="12" rx="2" fill="#7B1FA2"/><text x="818" y="490" font-size="9" fill="#455A64">2020 Iceberg毕业</text>
+  <rect x="920" y="479" width="12" height="12" rx="2" fill="#7B1FA2"/><text x="938" y="490" font-size="9" fill="#455A64">2023 AI+大数据</text>
+</svg>

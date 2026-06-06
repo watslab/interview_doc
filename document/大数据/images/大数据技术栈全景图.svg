@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 450" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E88E5"/><stop offset="100%" stop-color="#1565C0"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F57C00"/><stop offset="100%" stop-color="#E65100"/></linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#43A047"/><stop offset="100%" stop-color="#2E7D32"/></linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7B1FA2"/><stop offset="100%" stop-color="#6A1B9A"/></linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="15" y="15" width="1070" height="420" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="550" y="45" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">大数据技术栈代际全景</text>
+
+  <!-- ===== Col 1: 磁盘计算时代 ===== -->
+  <rect x="50" y="70" width="235" height="40" rx="6" fill="url(#g1)" filter="url(#s1)"/>
+  <text x="167.5" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="white">磁盘计算时代</text>
+  <text x="167.5" y="121" text-anchor="middle" font-size="10" fill="#1565C0">2005 — 2013</text>
+
+  <rect x="62.5" y="136" width="210" height="32" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="167.5" y="156" text-anchor="middle" font-size="11" fill="#1565C0">HDFS（分布式文件系统）</text>
+  <rect x="62.5" y="178" width="210" height="32" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="167.5" y="198" text-anchor="middle" font-size="11" fill="#1565C0">MapReduce（批处理计算）</text>
+  <rect x="62.5" y="220" width="210" height="32" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="167.5" y="240" text-anchor="middle" font-size="11" fill="#1565C0">Hive（SQL 转译引擎）</text>
+  <rect x="62.5" y="262" width="210" height="32" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="167.5" y="282" text-anchor="middle" font-size="11" fill="#1565C0">HBase（NoSQL 数据库）</text>
+  <rect x="62.5" y="304" width="210" height="32" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="167.5" y="324" text-anchor="middle" font-size="11" fill="#1565C0">YARN（资源调度）</text>
+  <rect x="62.5" y="346" width="210" height="32" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="167.5" y="366" text-anchor="middle" font-size="11" fill="#1565C0">ZooKeeper（协调服务）</text>
+
+  <rect x="50" y="390" width="235" height="24" rx="4" fill="none" stroke="#1565C0" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="167.5" y="406" text-anchor="middle" font-size="10" fill="#1565C0">磁盘计算 · 批处理为主</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="285" y1="260" x2="303" y2="260" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ===== Col 2: 内存计算时代 ===== -->
+  <rect x="305" y="70" width="235" height="40" rx="6" fill="url(#g2)" filter="url(#s1)"/>
+  <text x="422.5" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="white">内存计算时代</text>
+  <text x="422.5" y="121" text-anchor="middle" font-size="10" fill="#E65100">2013 — 2016</text>
+
+  <rect x="317.5" y="136" width="210" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="422.5" y="156" text-anchor="middle" font-size="11" fill="#E65100">Spark Core（RDD 引擎）</text>
+  <rect x="317.5" y="178" width="210" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="422.5" y="198" text-anchor="middle" font-size="11" fill="#E65100">Spark SQL（结构化查询）</text>
+  <rect x="317.5" y="220" width="210" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="422.5" y="240" text-anchor="middle" font-size="11" fill="#E65100">Spark Streaming（微批流）</text>
+  <rect x="317.5" y="262" width="210" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="422.5" y="282" text-anchor="middle" font-size="11" fill="#E65100">MLlib（机器学习库）</text>
+  <rect x="317.5" y="304" width="210" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="422.5" y="324" text-anchor="middle" font-size="11" fill="#E65100">Presto（联邦查询）</text>
+  <rect x="317.5" y="346" width="210" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="422.5" y="366" text-anchor="middle" font-size="11" fill="#E65100">Impala（MPP 查询）</text>
+
+  <rect x="305" y="390" width="235" height="24" rx="4" fill="none" stroke="#E65100" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="422.5" y="406" text-anchor="middle" font-size="10" fill="#E65100">内存计算 · 微批处理</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="540" y1="260" x2="558" y2="260" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ===== Col 3: 实时计算时代 ===== -->
+  <rect x="560" y="70" width="235" height="40" rx="6" fill="url(#g3)" filter="url(#s1)"/>
+  <text x="677.5" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="white">实时计算时代</text>
+  <text x="677.5" y="121" text-anchor="middle" font-size="10" fill="#2E7D32">2016 — 2020</text>
+
+  <rect x="572.5" y="136" width="210" height="32" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="677.5" y="156" text-anchor="middle" font-size="11" fill="#2E7D32">Flink（流批一体引擎）</text>
+  <rect x="572.5" y="178" width="210" height="32" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="677.5" y="198" text-anchor="middle" font-size="11" fill="#2E7D32">Kafka（消息管道）</text>
+  <rect x="572.5" y="220" width="210" height="32" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="677.5" y="240" text-anchor="middle" font-size="11" fill="#2E7D32">ClickHouse（实时 OLAP）</text>
+  <rect x="572.5" y="262" width="210" height="32" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="677.5" y="282" text-anchor="middle" font-size="11" fill="#2E7D32">Doris（MPP 分析）</text>
+  <rect x="572.5" y="304" width="210" height="32" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="677.5" y="324" text-anchor="middle" font-size="11" fill="#2E7D32">Elasticsearch（检索分析）</text>
+  <rect x="572.5" y="346" width="210" height="32" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="677.5" y="366" text-anchor="middle" font-size="11" fill="#2E7D32">Druid（时序 OLAP）</text>
+
+  <rect x="560" y="390" width="235" height="24" rx="4" fill="none" stroke="#2E7D32" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="677.5" y="406" text-anchor="middle" font-size="10" fill="#2E7D32">事件驱动 · 毫秒级延迟</text>
+
+  <!-- Arrow 3→4 -->
+  <line x1="795" y1="260" x2="813" y2="260" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ===== Col 4: 云原生与智能化时代 ===== -->
+  <rect x="815" y="70" width="235" height="40" rx="6" fill="url(#g4)" filter="url(#s1)"/>
+  <text x="932.5" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="white">云原生与智能化时代</text>
+  <text x="932.5" y="121" text-anchor="middle" font-size="10" fill="#7B1FA2">2020 至今</text>
+
+  <rect x="827.5" y="136" width="210" height="32" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="932.5" y="156" text-anchor="middle" font-size="11" fill="#7B1FA2">Iceberg/Hudi/Delta</text>
+  <rect x="827.5" y="178" width="210" height="32" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="932.5" y="198" text-anchor="middle" font-size="11" fill="#7B1FA2">Kubernetes（容器编排）</text>
+  <rect x="827.5" y="220" width="210" height="32" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="932.5" y="240" text-anchor="middle" font-size="11" fill="#7B1FA2">Trino（联邦查询）</text>
+  <rect x="827.5" y="262" width="210" height="32" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="932.5" y="282" text-anchor="middle" font-size="11" fill="#7B1FA2">Flink on K8s（云原生流）</text>
+  <rect x="827.5" y="304" width="210" height="32" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="932.5" y="324" text-anchor="middle" font-size="11" fill="#7B1FA2">AI/ML 平台（智能分析）</text>
+  <rect x="827.5" y="346" width="210" height="32" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="932.5" y="366" text-anchor="middle" font-size="11" fill="#7B1FA2">Data Fabric（数据编织）</text>
+
+  <rect x="815" y="390" width="235" height="24" rx="4" fill="none" stroke="#7B1FA2" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="932.5" y="406" text-anchor="middle" font-size="10" fill="#7B1FA2">湖仓一体 · 存算分离</text>
+</svg>
