@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 600" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="760" height="580" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M22,10 H758 Q770,10 770,22 V48 H10 V22 Q10,10 22,10Z" fill="#43A047"/>
+  <text x="390" y="29" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">向量化执行示例：SELECT sum(price * quantity) FROM orders WHERE category = 'Electronics'</text>
+
+  <!-- ===== Step 1: Scan ===== -->
+  <rect x="30" y="70" width="90" height="28" rx="14" fill="#43A047"/>
+  <text x="75" y="84" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="white">Step 1</text>
+
+  <rect x="130" y="64" width="120" height="40" rx="6" fill="white" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="190" y="78" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#2E7D32">Scan</text>
+  <text x="190" y="94" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#66BB6A">读取 Block</text>
+
+  <!-- Scan output (3 lines, h=56, arrays aligned at x=380) -->
+  <rect x="280" y="56" width="470" height="56" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="310" y="68" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#2E7D32">category</text>
+  <text x="380" y="68" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="Consolas,monospace">['Electronics', 'Books', 'Electronics', ...]</text>
+  <text x="310" y="84" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#2E7D32">price</text>
+  <text x="380" y="84" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="Consolas,monospace">[999, 49, 1299, ...]</text>
+  <text x="310" y="100" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#2E7D32">quantity</text>
+  <text x="380" y="100" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="Consolas,monospace">[2, 5, 1, ...]</text>
+
+  <!-- Arrow Step1→Step2 -->
+  <line x1="190" y1="104" x2="190" y2="146" stroke="#43A047" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ===== Step 2: Filter ===== -->
+  <rect x="30" y="152" width="90" height="28" rx="14" fill="#43A047"/>
+  <text x="75" y="166" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="white">Step 2</text>
+
+  <rect x="130" y="146" width="120" height="40" rx="6" fill="white" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="190" y="160" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#2E7D32">Filter</text>
+  <text x="190" y="176" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#66BB6A">批量比较 + 物理过滤</text>
+
+  <!-- Filter output (2 lines, h=40) -->
+  <rect x="280" y="146" width="470" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="310" y="158" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#2E7D32">①</text>
+  <text x="324" y="158" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="Consolas,monospace">生成 mask = [1, 0, 1, ...]</text>
+  <text x="310" y="174" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#2E7D32">②</text>
+  <text x="324" y="174" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="Consolas,monospace">物理过滤 → 仅保留 mask=1 的行</text>
+
+  <!-- Arrow Step2→Step3 -->
+  <line x1="190" y1="186" x2="190" y2="220" stroke="#43A047" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ===== Step 3: Expression ===== -->
+  <rect x="30" y="226" width="90" height="28" rx="14" fill="#43A047"/>
+  <text x="75" y="240" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="white">Step 3</text>
+
+  <rect x="130" y="220" width="120" height="40" rx="6" fill="white" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="190" y="234" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#2E7D32">Expression</text>
+  <text x="190" y="250" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#66BB6A">price * quantity 批量乘法</text>
+
+  <!-- Expression output (2 lines, h=40) -->
+  <rect x="280" y="220" width="470" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="310" y="232" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#2E7D32">result</text>
+  <text x="348" y="232" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="Consolas,monospace">= [999×2, 1299×1, ...] = [1998, 1299, ...]</text>
+  <text x="310" y="248" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575" font-style="italic">// 仅对过滤后的行执行 element-wise 乘法</text>
+
+  <!-- Arrow Step3→Step4 -->
+  <line x1="190" y1="260" x2="190" y2="294" stroke="#43A047" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ===== Step 4: Aggregate ===== -->
+  <rect x="30" y="300" width="90" height="28" rx="14" fill="#43A047"/>
+  <text x="75" y="314" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="white">Step 4</text>
+
+  <rect x="130" y="294" width="120" height="40" rx="6" fill="white" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="190" y="308" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#2E7D32">Aggregate</text>
+  <text x="190" y="324" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#66BB6A">批量求和</text>
+
+  <!-- Aggregate output (2 lines, h=40) -->
+  <rect x="280" y="294" width="470" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="310" y="306" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#2E7D32">sum</text>
+  <text x="336" y="306" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="Consolas,monospace">= 1998 + 1299 + ...</text>
+  <text x="310" y="322" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575" font-style="italic">// 对所有结果行求和（已无需 mask）</text>
+
+  <!-- ===== Data flow detail ===== -->
+  <line x1="30" y1="354" x2="750" y2="354" stroke="#E0E0E0" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="390" y="372" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">数据流转细节</text>
+
+  <!-- Left section: Before Filter -->
+  <rect x="30" y="392" width="340" height="24" rx="4" fill="#E3F2FD"/>
+  <text x="200" y="404" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1565C0" font-weight="600">Filter 前（原始 Block）</text>
+
+  <!-- Left Headers -->
+  <rect x="30" y="420" width="60" height="22" rx="4" fill="#ECEFF1"/>
+  <text x="60" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">行号</text>
+  <rect x="94" y="420" width="110" height="22" rx="4" fill="#ECEFF1"/>
+  <text x="149" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">category</text>
+  <rect x="208" y="420" width="60" height="22" rx="4" fill="#ECEFF1"/>
+  <text x="238" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">price</text>
+  <rect x="272" y="420" width="60" height="22" rx="4" fill="#ECEFF1"/>
+  <text x="302" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">quantity</text>
+  <rect x="336" y="420" width="34" height="22" rx="4" fill="#FFF3E0"/>
+  <text x="353" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#E65100" font-weight="600">mask</text>
+
+  <!-- Left Row [0] - match -->
+  <rect x="30" y="446" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="60" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333">[0]</text>
+  <rect x="94" y="446" width="110" height="22" rx="4" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="149" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">'Electronics'</text>
+  <rect x="208" y="446" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="238" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">999</text>
+  <rect x="272" y="446" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="302" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">2</text>
+  <rect x="336" y="446" width="34" height="22" rx="4" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="353" y="457" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32" font-weight="bold">1</text>
+
+  <!-- Left Row [1] - no match -->
+  <rect x="30" y="472" width="60" height="22" rx="4" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="60" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">[1]</text>
+  <rect x="94" y="472" width="110" height="22" rx="4" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="0.8"/>
+  <text x="149" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999" font-family="Consolas,monospace">'Books'</text>
+  <rect x="208" y="472" width="60" height="22" rx="4" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="238" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999" font-family="Consolas,monospace">49</text>
+  <rect x="272" y="472" width="60" height="22" rx="4" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="302" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999" font-family="Consolas,monospace">5</text>
+  <rect x="336" y="472" width="34" height="22" rx="4" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="0.8"/>
+  <text x="353" y="483" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#C62828" font-weight="bold">0</text>
+
+  <!-- Left Row [2] - match -->
+  <rect x="30" y="498" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="60" y="509" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333">[2]</text>
+  <rect x="94" y="498" width="110" height="22" rx="4" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="149" y="509" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">'Electronics'</text>
+  <rect x="208" y="498" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="238" y="509" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">1299</text>
+  <rect x="272" y="498" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="302" y="509" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">1</text>
+  <rect x="336" y="498" width="34" height="22" rx="4" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="353" y="509" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32" font-weight="bold">1</text>
+
+  <!-- Arrow between sections -->
+  <path d="M378,456 C390,456 410,456 422,456" stroke="#43A047" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <text x="400" y="448" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#43A047" font-weight="600">filter</text>
+
+  <!-- Right section: After Filter -->
+  <rect x="430" y="392" width="320" height="24" rx="4" fill="#E8F5E9"/>
+  <text x="590" y="404" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32" font-weight="600">Filter 后（仅保留 mask=1 的行）</text>
+
+  <!-- Right Headers -->
+  <rect x="430" y="420" width="60" height="22" rx="4" fill="#ECEFF1"/>
+  <text x="460" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">行号</text>
+  <rect x="494" y="420" width="60" height="22" rx="4" fill="#ECEFF1"/>
+  <text x="524" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">price</text>
+  <rect x="558" y="420" width="60" height="22" rx="4" fill="#ECEFF1"/>
+  <text x="588" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">quantity</text>
+  <rect x="622" y="420" width="128" height="22" rx="4" fill="#F3E5F5"/>
+  <text x="686" y="431" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#7B1FA2" font-weight="600">price × quantity</text>
+
+  <!-- Right Row [0] after filter -->
+  <rect x="430" y="446" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="460" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333">[0]</text>
+  <rect x="494" y="446" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="524" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">999</text>
+  <rect x="558" y="446" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="588" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">2</text>
+  <rect x="622" y="446" width="128" height="22" rx="4" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="686" y="457" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#2E7D32" font-weight="bold" font-family="Consolas,monospace">1998</text>
+
+  <!-- Right Row [1] after filter (was [2]) -->
+  <rect x="430" y="472" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="460" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333">[1]</text>
+  <rect x="494" y="472" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="524" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">1299</text>
+  <rect x="558" y="472" width="60" height="22" rx="4" fill="white" stroke="#E0E0E0" stroke-width="0.8"/>
+  <text x="588" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#333" font-family="Consolas,monospace">1</text>
+  <rect x="622" y="472" width="128" height="22" rx="4" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="686" y="483" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#2E7D32" font-weight="bold" font-family="Consolas,monospace">1299</text>
+
+  <!-- Sum row -->
+  <rect x="430" y="498" width="320" height="22" rx="6" fill="#43A047" filter="url(#s1)"/>
+  <text x="590" y="509" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="white">sum = 1998 + 1299 + ... = 3297 + ...</text>
+
+  <!-- Final result bar (top margin 13px, bottom margin 13px) -->
+  <rect x="30" y="533" width="720" height="28" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="50" y="547" text-anchor="start" dominant-baseline="central" font-size="10" fill="#E65100" font-weight="bold">关键：</text>
+  <text x="90" y="547" text-anchor="start" dominant-baseline="central" font-size="10" fill="#F57C00">Filter 通过 IColumn::filter(mask) 物理移除不满足条件的行，下游算子仅处理过滤后的数据</text>
+</svg>

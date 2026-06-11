@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="660" height="280" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M22,10 H658 Q670,10 670,22 V46 H10 V22 Q10,10 22,10Z" fill="#1E88E5"/>
+  <text x="340" y="28" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">Block 示例（默认 8192 行）</text>
+
+  <!-- Column 1: user_id -->
+  <rect x="42" y="62" width="185" height="210" rx="8" fill="white" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M50,62 H219 Q227,62 227,70 V94 H42 V70 Q42,62 50,62Z" fill="#1565C0"/>
+  <text x="134" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="white">user_id</text>
+  <text x="134" y="114" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">u1</text>
+  <line x1="54" y1="128" x2="214" y2="128" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="134" y="142" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">u2</text>
+  <line x1="54" y1="156" x2="214" y2="156" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="134" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">u3</text>
+  <line x1="54" y1="184" x2="214" y2="184" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="134" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">···</text>
+  <line x1="54" y1="214" x2="214" y2="214" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="134" y="230" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">u8192</text>
+  <line x1="54" y1="244" x2="214" y2="244" stroke="#BBDEFB" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="134" y="260" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1565C0">ColumnUInt64</text>
+
+  <!-- Column 2: price -->
+  <rect x="245" y="62" width="185" height="210" rx="8" fill="white" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M253,62 H422 Q430,62 430,70 V94 H245 V70 Q245,62 253,62Z" fill="#1565C0"/>
+  <text x="337" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="white">price</text>
+  <text x="337" y="114" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">10</text>
+  <line x1="257" y1="128" x2="417" y2="128" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="337" y="142" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">20</text>
+  <line x1="257" y1="156" x2="417" y2="156" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="337" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">30</text>
+  <line x1="257" y1="184" x2="417" y2="184" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="337" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">···</text>
+  <line x1="257" y1="214" x2="417" y2="214" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="337" y="230" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">5000</text>
+  <line x1="257" y1="244" x2="417" y2="244" stroke="#BBDEFB" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="337" y="260" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1565C0">ColumnFloat64</text>
+
+  <!-- Column 3: category -->
+  <rect x="448" y="62" width="185" height="210" rx="8" fill="white" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M456,62 H625 Q633,62 633,70 V94 H448 V70 Q448,62 456,62Z" fill="#1565C0"/>
+  <text x="540" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="white">category</text>
+  <text x="540" y="114" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">'A'</text>
+  <line x1="460" y1="128" x2="620" y2="128" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="540" y="142" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">'B'</text>
+  <line x1="460" y1="156" x2="620" y2="156" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="540" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">'A'</text>
+  <line x1="460" y1="184" x2="620" y2="184" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="540" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">···</text>
+  <line x1="460" y1="214" x2="620" y2="214" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="540" y="230" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">'C'</text>
+  <line x1="460" y1="244" x2="620" y2="244" stroke="#BBDEFB" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="540" y="260" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1565C0">ColumnString</text>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="660" height="400" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M22,10 H658 Q670,10 670,22 V44 H10 V22 Q10,10 22,10Z" fill="#E53935"/>
+  <text x="340" y="27" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">火山模型（Volcano Iterator Model）</text>
+
+  <!-- SQL example -->
+  <rect x="100" y="52" width="480" height="20" rx="4" fill="#FFEBEE"/>
+  <text x="340" y="62" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#C62828" font-family="Consolas,monospace">SELECT sum(price) FROM orders WHERE category = 'Electronics'</text>
+
+  <!-- Scan -->
+  <rect x="120" y="82" width="200" height="44" rx="6" fill="white" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="220" y="98" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#C62828">Scan</text>
+  <text x="220" y="114" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#EF9A9A">next() → 1 行</text>
+
+  <!-- Arrow Scan→Filter -->
+  <line x1="220" y1="126" x2="220" y2="150" stroke="#E53935" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Data annotation: Scan output -->
+  <line x1="324" y1="140" x2="380" y2="140" stroke="#FFCDD2" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <rect x="384" y="128" width="260" height="24" rx="4" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="0.8"/>
+  <text x="514" y="140" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828" font-family="Consolas,monospace">(1, 'Electronics', 999)</text>
+
+  <!-- Filter -->
+  <rect x="120" y="154" width="200" height="44" rx="6" fill="white" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="220" y="170" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#C62828">Filter</text>
+  <text x="220" y="186" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#EF9A9A">next() → 1 行</text>
+
+  <!-- Arrow Filter→Aggregate -->
+  <line x1="220" y1="198" x2="220" y2="222" stroke="#E53935" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Data annotation: Filter output -->
+  <line x1="324" y1="212" x2="380" y2="212" stroke="#FFCDD2" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <rect x="384" y="200" width="260" height="24" rx="4" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="0.8"/>
+  <text x="514" y="212" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828" font-family="Consolas,monospace">检查 category，匹配则传递</text>
+
+  <!-- Aggregate -->
+  <rect x="120" y="226" width="200" height="44" rx="6" fill="white" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="220" y="242" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#C62828">Aggregate</text>
+  <text x="220" y="258" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#EF9A9A">next() → 1 行</text>
+
+  <!-- Arrow Aggregate→Result -->
+  <line x1="220" y1="270" x2="220" y2="294" stroke="#E53935" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Data annotation: Aggregate output -->
+  <line x1="324" y1="284" x2="380" y2="284" stroke="#FFCDD2" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <rect x="384" y="272" width="260" height="24" rx="4" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="0.8"/>
+  <text x="514" y="284" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828" font-family="Consolas,monospace">取出 price，累加到 sum</text>
+
+  <!-- Result -->
+  <rect x="120" y="298" width="200" height="44" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="220" y="314" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#C62828">Result</text>
+  <text x="220" y="330" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#EF9A9A">最终聚合结果</text>
+
+  <!-- Loop arrow (left side): Result → Scan -->
+  <path d="M120,320 H90 Q70,320 70,300 V126 Q70,106 90,106 H118" fill="none" stroke="#E53935" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#ah)"/>
+
+  <!-- Loop label -->
+  <rect x="30" y="82" width="30" height="260" rx="6" fill="#FFCDD2" stroke="#EF9A9A" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="45" y="212" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828" font-weight="bold" transform="rotate(-90, 45, 212)">逐行迭代 N 次</text>
+
+  <!-- Key difference badge -->
+  <rect x="120" y="358" width="440" height="36" rx="8" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="140" y="376" text-anchor="start" dominant-baseline="central" font-size="11" fill="#E65100" font-weight="bold">关键特征：</text>
+  <text x="218" y="376" text-anchor="start" dominant-baseline="central" font-size="11" fill="#F57C00">每个算子逐行调用 next()，虚函数开销大，无法利用 SIMD</text>
+</svg>

@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 550" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="760" height="530" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M22,10 H758 Q770,10 770,22 V48 H10 V22 Q10,10 22,10Z" fill="#546E7A"/>
+  <text x="390" y="29" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">行式存储 vs 列式存储的缓存表现</text>
+
+  <!-- ===== Left: Row Storage ===== -->
+  <rect x="30" y="64" width="350" height="210" rx="8" fill="white" stroke="#EF9A9A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M38,64 H372 Q380,64 380,72 V92 H30 V72 Q30,64 38,64Z" fill="#E53935"/>
+  <text x="205" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="white">行式存储（Cache 不友好）</text>
+
+  <!-- Column headers -->
+  <rect x="46" y="100" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="68" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">id</text>
+  <rect x="94" y="100" width="56" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="122" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">name</text>
+  <rect x="154" y="100" width="44" height="22" rx="3" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1.2"/>
+  <text x="176" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828" font-weight="bold">age</text>
+  <rect x="202" y="100" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="224" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">price</text>
+  <rect x="250" y="100" width="86" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="293" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">created_at</text>
+
+  <!-- Row 1 -->
+  <rect x="46" y="126" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="68" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">1</text>
+  <rect x="94" y="126" width="56" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="122" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">Alice</text>
+  <rect x="154" y="126" width="44" height="22" rx="3" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1.2"/>
+  <text x="176" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828" font-weight="bold">25</text>
+  <rect x="202" y="126" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="224" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">99</text>
+  <rect x="250" y="126" width="86" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="293" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">2024-01</text>
+
+  <!-- Row 2 -->
+  <rect x="46" y="152" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="68" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">2</text>
+  <rect x="94" y="152" width="56" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="122" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">Bob</text>
+  <rect x="154" y="152" width="44" height="22" rx="3" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1.2"/>
+  <text x="176" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828" font-weight="bold">30</text>
+  <rect x="202" y="152" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="224" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">199</text>
+  <rect x="250" y="152" width="86" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="293" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">2024-02</text>
+
+  <!-- Row 3 -->
+  <rect x="46" y="178" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="68" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">3</text>
+  <rect x="94" y="178" width="56" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="122" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">Carol</text>
+  <rect x="154" y="178" width="44" height="22" rx="3" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1.2"/>
+  <text x="176" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828" font-weight="bold">28</text>
+  <rect x="202" y="178" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="224" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">59</text>
+  <rect x="250" y="178" width="86" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="293" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">2024-03</text>
+
+  <!-- Cache line bracket for row storage -->
+  <path d="M46,204 L46,210 L336,210 L336,204" stroke="#E53935" stroke-width="1.2" fill="none"/>
+  <text x="191" y="222" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#E53935">1 个缓存行 ≈ 1 行数据（大量无关列占用）</text>
+
+  <!-- Row storage annotation -->
+  <text x="205" y="244" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#C62828">查询 age：每读一行触发 1 次 Cache Miss</text>
+  <text x="205" y="262" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#C62828">缓存行 80%+ 被无关数据占用</text>
+
+  <!-- ===== Right: Column Storage ===== -->
+  <rect x="400" y="64" width="350" height="210" rx="8" fill="white" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M408,64 H742 Q750,64 750,72 V92 H400 V72 Q400,64 408,64Z" fill="#43A047"/>
+  <text x="575" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="white">列式存储（Cache 友好）</text>
+
+  <!-- Column headers -->
+  <rect x="416" y="100" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="438" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">id</text>
+  <rect x="464" y="100" width="56" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="492" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">name</text>
+  <rect x="524" y="100" width="44" height="22" rx="3" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.2"/>
+  <text x="546" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#2E7D32" font-weight="bold">age</text>
+  <rect x="572" y="100" width="44" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="594" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">price</text>
+  <rect x="620" y="100" width="86" height="22" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="663" y="111" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A" font-weight="600">created_at</text>
+
+  <!-- id column data -->
+  <rect x="416" y="126" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="438" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">1</text>
+  <rect x="416" y="152" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="438" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">2</text>
+  <rect x="416" y="178" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="438" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">3</text>
+
+  <!-- name column data -->
+  <rect x="464" y="126" width="56" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="492" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">Alice</text>
+  <rect x="464" y="152" width="56" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="492" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">Bob</text>
+  <rect x="464" y="178" width="56" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="492" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">Carol</text>
+
+  <!-- age column data (highlighted) -->
+  <rect x="524" y="126" width="44" height="22" rx="3" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.2"/>
+  <text x="546" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#2E7D32" font-weight="bold">25</text>
+  <rect x="524" y="152" width="44" height="22" rx="3" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.2"/>
+  <text x="546" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#2E7D32" font-weight="bold">30</text>
+  <rect x="524" y="178" width="44" height="22" rx="3" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.2"/>
+  <text x="546" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#2E7D32" font-weight="bold">28</text>
+
+  <!-- price column data -->
+  <rect x="572" y="126" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="594" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">99</text>
+  <rect x="572" y="152" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="594" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">199</text>
+  <rect x="572" y="178" width="44" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="594" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">59</text>
+
+  <!-- created_at column data -->
+  <rect x="620" y="126" width="86" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="663" y="137" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">2024-01</text>
+  <rect x="620" y="152" width="86" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="663" y="163" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">2024-02</text>
+  <rect x="620" y="178" width="86" height="22" rx="3" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="663" y="189" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#999">2024-03</text>
+
+  <!-- Cache line bracket for age column -->
+  <path d="M524,204 L524,210 L568,210 L568,204" stroke="#43A047" stroke-width="1.2" fill="none"/>
+  <text x="546" y="222" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#43A047">1 个缓存行</text>
+
+  <!-- Column storage annotation -->
+  <text x="575" y="244" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">查询 age：1 次内存读取获得 16 个值</text>
+  <text x="575" y="262" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">缓存行 100% 被目标数据填满</text>
+
+  <!-- ===== Bottom: Cache Line Detail ===== -->
+  <line x1="30" y1="290" x2="750" y2="290" stroke="#E0E0E0" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="390" y="308" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">缓存行（Cache Line）加载对比</text>
+
+  <!-- Left: Row storage cache line -->
+  <rect x="30" y="324" width="350" height="110" rx="8" fill="white" stroke="#EF9A9A" stroke-width="1" filter="url(#s1)"/>
+  <text x="205" y="342" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#C62828" font-weight="600">行式：加载 1 行 → 缓存行被无关列占满</text>
+
+  <!-- Row header -->
+  <rect x="46" y="354" width="40" height="18" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="66" y="363" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#546E7A" font-weight="600">id</text>
+  <rect x="90" y="354" width="56" height="18" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="118" y="363" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#546E7A" font-weight="600">name</text>
+  <rect x="150" y="354" width="36" height="18" rx="3" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="0.8"/>
+  <text x="168" y="363" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#C62828" font-weight="bold">age</text>
+  <rect x="190" y="354" width="40" height="18" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="210" y="363" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#546E7A" font-weight="600">price</text>
+  <rect x="234" y="354" width="130" height="18" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="299" y="363" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#546E7A" font-weight="600">created_at</text>
+
+  <!-- Cache line data bar (no background, just cells) -->
+  <rect x="46" y="376" width="40" height="24" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="66" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#999">1</text>
+  <rect x="90" y="376" width="56" height="24" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="118" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#999">Alice</text>
+  <rect x="150" y="376" width="36" height="24" rx="3" fill="#C62828" stroke="#C62828" stroke-width="0.8"/>
+  <text x="168" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="white" font-weight="bold">25</text>
+  <rect x="190" y="376" width="40" height="24" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="210" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#999">99</text>
+  <rect x="234" y="376" width="130" height="24" rx="3" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="0.8"/>
+  <text x="299" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#999">2024-01</text>
+
+  <!-- Utilization bar -->
+  <text x="46" y="418" text-anchor="start" dominant-baseline="central" font-size="9" fill="#546E7A">缓存利用率：</text>
+  <rect x="120" y="412" width="160" height="12" rx="3" fill="#ECEFF1"/>
+  <rect x="120" y="412" width="18" height="12" rx="3" fill="#C62828"/>
+  <text x="290" y="418" text-anchor="start" dominant-baseline="central" font-size="9" fill="#C62828" font-weight="bold">≈ 11%</text>
+
+  <!-- Right: Column storage cache line -->
+  <rect x="400" y="324" width="350" height="110" rx="8" fill="white" stroke="#A5D6A7" stroke-width="1" filter="url(#s1)"/>
+  <text x="575" y="342" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32" font-weight="600">列式：加载 age 列 → 缓存行全是目标数据</text>
+
+  <!-- Column header -->
+  <rect x="416" y="354" width="318" height="18" rx="3" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="575" y="363" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">age</text>
+
+  <!-- Cache line data bar -->
+  <rect x="416" y="376" width="318" height="24" rx="3" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="440" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">25</text>
+  <text x="458" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">30</text>
+  <text x="476" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">28</text>
+  <text x="494" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">35</text>
+  <text x="512" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">42</text>
+  <text x="530" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">27</text>
+  <text x="548" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">31</text>
+  <text x="566" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">29</text>
+  <text x="584" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">33</text>
+  <text x="602" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">26</text>
+  <text x="620" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">38</text>
+  <text x="638" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">24</text>
+  <text x="656" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">36</text>
+  <text x="674" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">41</text>
+  <text x="692" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">23</text>
+  <text x="710" y="388" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#2E7D32" font-weight="bold">37</text>
+
+  <!-- Utilization bar -->
+  <text x="416" y="418" text-anchor="start" dominant-baseline="central" font-size="9" fill="#546E7A">缓存利用率：</text>
+  <rect x="490" y="412" width="160" height="12" rx="3" fill="#E8F5E9"/>
+  <rect x="490" y="412" width="160" height="12" rx="3" fill="#43A047"/>
+  <text x="660" y="418" text-anchor="start" dominant-baseline="central" font-size="9" fill="#2E7D32" font-weight="bold">= 100%</text>
+
+  <!-- ===== Bottom Summary ===== -->
+  <rect x="30" y="445" width="720" height="84" rx="8" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="50" y="463" text-anchor="start" dominant-baseline="central" font-size="11" fill="#E65100" font-weight="bold">核心原理</text>
+  <text x="50" y="479" text-anchor="start" dominant-baseline="central" font-size="10" fill="#F57C00">CPU 以缓存行（64 字节）为单位加载数据。</text>
+  <text x="50" y="495" text-anchor="start" dominant-baseline="central" font-size="10" fill="#2E7D32">列式存储同列数据连续排列，1 次内存读取可获得 16 个 Int32 值；</text>
+  <text x="50" y="511" text-anchor="start" dominant-baseline="central" font-size="10" fill="#C62828">行式存储一行跨多列，单个缓存行仅含 1 个目标值，其余被无关列占用 → 缓存利用率极低。</text>
+</svg>

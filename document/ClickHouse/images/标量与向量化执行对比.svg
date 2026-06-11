@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahs" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5Z" fill="#B0BEC5"/></marker>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Left Panel: 标量执行 -->
+  <rect x="20" y="15" width="345" height="250" rx="10" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M30,15 H355 Q365,15 365,25 V47 H20 V25 Q20,15 30,15Z" fill="#E53935"/>
+  <text x="192" y="31" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">标量执行（逐行处理）</text>
+
+  <!-- Row 1 -->
+  <rect x="48" y="64" width="105" height="28" rx="5" fill="white" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="100" y="78" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828" font-weight="600">指令 1</text>
+  <text x="170" y="78" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#B0BEC5">→</text>
+  <rect x="190" y="64" width="120" height="28" rx="5" fill="#FFCDD2" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="250" y="78" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828">数据 A</text>
+
+  <line x1="100" y1="94" x2="100" y2="108" stroke="#B0BEC5" stroke-width="1" marker-end="url(#ahs)"/>
+
+  <!-- Row 2 -->
+  <rect x="48" y="110" width="105" height="28" rx="5" fill="white" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="100" y="124" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828" font-weight="600">指令 2</text>
+  <text x="170" y="124" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#B0BEC5">→</text>
+  <rect x="190" y="110" width="120" height="28" rx="5" fill="#FFCDD2" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="250" y="124" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828">数据 B</text>
+
+  <line x1="100" y1="140" x2="100" y2="154" stroke="#B0BEC5" stroke-width="1" marker-end="url(#ahs)"/>
+
+  <!-- Row 3 -->
+  <rect x="48" y="156" width="105" height="28" rx="5" fill="white" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="100" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828" font-weight="600">指令 3</text>
+  <text x="170" y="170" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#B0BEC5">→</text>
+  <rect x="190" y="156" width="120" height="28" rx="5" fill="#FFCDD2" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="250" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828">数据 C</text>
+
+  <line x1="100" y1="186" x2="100" y2="200" stroke="#B0BEC5" stroke-width="1" marker-end="url(#ahs)"/>
+
+  <!-- Row 4 -->
+  <rect x="48" y="202" width="105" height="28" rx="5" fill="white" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="100" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828" font-weight="600">指令 4</text>
+  <text x="170" y="216" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#B0BEC5">→</text>
+  <rect x="190" y="202" width="120" height="28" rx="5" fill="#FFCDD2" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="250" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828">数据 D</text>
+
+  <text x="192" y="248" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#E53935" font-weight="bold">4 次指令调用</text>
+
+  <!-- Right Panel: 向量化执行 -->
+  <rect x="395" y="15" width="345" height="250" rx="10" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M405,15 H730 Q740,15 740,25 V47 H395 V25 Q395,15 405,15Z" fill="#43A047"/>
+  <text x="567" y="31" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">向量化执行（批量处理）</text>
+
+  <!-- Instruction box -->
+  <rect x="420" y="120" width="110" height="36" rx="6" fill="white" stroke="#66BB6A" stroke-width="1.5"/>
+  <text x="475" y="138" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#2E7D32">指令 1</text>
+
+  <!-- Arrow -->
+  <line x1="530" y1="138" x2="558" y2="138" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahg)"/>
+
+  <!-- Data batch box -->
+  <rect x="568" y="90" width="148" height="96" rx="6" fill="#C8E6C9" stroke="#66BB6A" stroke-width="1.5"/>
+  <rect x="578" y="98" width="128" height="17" rx="3" fill="white" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="642" y="106" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">数据 A</text>
+  <rect x="578" y="119" width="128" height="17" rx="3" fill="white" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="642" y="127" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">数据 B</text>
+  <rect x="578" y="140" width="128" height="17" rx="3" fill="white" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="642" y="148" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">数据 C</text>
+  <rect x="578" y="161" width="128" height="17" rx="3" fill="white" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="642" y="169" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">数据 D</text>
+
+  <!-- SIMD badge -->
+  <rect x="610" y="194" width="64" height="18" rx="9" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="0.8"/>
+  <text x="642" y="203" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#43A047" font-weight="600">SIMD</text>
+
+  <text x="567" y="248" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#43A047" font-weight="bold">1 次指令调用</text>
+</svg>
