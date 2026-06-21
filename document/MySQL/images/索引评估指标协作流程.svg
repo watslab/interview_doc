@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s"><feDropShadow dx="1" dy="1" flood-color="#000" flood-opacity="0.06" stdDeviation="2"/></filter>
+    <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E88E5"/>
+      <stop offset="100%" stop-color="#1565C0"/>
+    </linearGradient>
+    <marker id="ah" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+      <path d="M0,0 L7,2.5 L0,5Z" fill="#78909C"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="8" width="400" height="444" rx="10" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="210" y="32" text-anchor="middle" font-size="14" font-weight="700" fill="#37474F">索引评估指标协作流程</text>
+
+  <!-- ===== BOXES ===== -->
+
+  <!-- Metric Box 1: 基数 -->
+  <rect x="115" y="46" width="190" height="44" rx="7" fill="url(#mg)" stroke="#0D47A1" stroke-width="1.2" filter="url(#s)"/>
+  <circle cx="138" cy="68" r="9" fill="rgba(255,255,255,0.25)"/>
+  <text x="138" y="68" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="white">1</text>
+  <text x="218" y="60" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">基数 Cardinality</text>
+  <text x="210" y="76" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#BBDEFB">列的不重复值数量</text>
+
+  <!-- Metric Box 2: 选择性 -->
+  <rect x="115" y="120" width="190" height="44" rx="7" fill="url(#mg)" stroke="#0D47A1" stroke-width="1.2" filter="url(#s)"/>
+  <circle cx="138" cy="142" r="9" fill="rgba(255,255,255,0.25)"/>
+  <text x="138" y="142" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="white">2</text>
+  <text x="222" y="134" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">选择性 Selectivity</text>
+  <text x="210" y="150" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#BBDEFB">列值的不重复程度</text>
+
+  <!-- Metric Box 3: 过滤因子 -->
+  <rect x="115" y="194" width="190" height="44" rx="7" fill="url(#mg)" stroke="#0D47A1" stroke-width="1.2" filter="url(#s)"/>
+  <circle cx="138" cy="216" r="9" fill="rgba(255,255,255,0.25)"/>
+  <text x="138" y="216" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="white">3</text>
+  <text x="226" y="208" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="white">过滤因子 Filter Factor</text>
+  <text x="210" y="224" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#BBDEFB">谓词匹配的行数比例</text>
+
+  <!-- 预估匹配行数 -->
+  <rect x="130" y="268" width="160" height="34" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.2" filter="url(#s)"/>
+  <text x="210" y="285" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">预估匹配行数</text>
+
+  <!-- I/O 成本 -->
+  <rect x="70" y="330" width="130" height="38" rx="6" fill="#FFF3E0" stroke="#FF9800" stroke-width="1.2" filter="url(#s)"/>
+  <text x="135" y="344" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#E65100">I/O 成本</text>
+  <text x="135" y="359" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#FF9800">回表随机 I/O</text>
+
+  <!-- CPU 成本 -->
+  <rect x="220" y="330" width="130" height="38" rx="6" fill="#FFF3E0" stroke="#FF9800" stroke-width="1.2" filter="url(#s)"/>
+  <text x="285" y="344" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#E65100">CPU 成本</text>
+  <text x="285" y="359" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#FF9800">条件评估</text>
+
+  <!-- 总成本 -->
+  <rect x="130" y="394" width="160" height="34" rx="6" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1.2" filter="url(#s)"/>
+  <text x="210" y="411" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2E7D32">总成本 = I/O + CPU</text>
+
+  <!-- ===== CONNECTION LINES (drawn last for z-order) ===== -->
+
+  <!-- Box1 → Box2 -->
+  <line x1="210" y1="90" x2="210" y2="120" stroke="#78909C" stroke-width="1.2" marker-end="url(#ah)"/>
+  <!-- Box2 → Box3 -->
+  <line x1="210" y1="164" x2="210" y2="194" stroke="#78909C" stroke-width="1.2" marker-end="url(#ah)"/>
+  <!-- Box3 → 预估匹配行数 -->
+  <line x1="210" y1="238" x2="210" y2="268" stroke="#78909C" stroke-width="1.2" marker-end="url(#ah)"/>
+  <!-- 预估匹配行数 → I/O -->
+  <line x1="175" y1="302" x2="135" y2="330" stroke="#78909C" stroke-width="1.2" marker-end="url(#ah)"/>
+  <!-- 预估匹配行数 → CPU -->
+  <line x1="245" y1="302" x2="285" y2="330" stroke="#78909C" stroke-width="1.2" marker-end="url(#ah)"/>
+  <!-- I/O → 总成本 -->
+  <line x1="135" y1="368" x2="185" y2="394" stroke="#78909C" stroke-width="1.2" marker-end="url(#ah)"/>
+  <!-- CPU → 总成本 -->
+  <line x1="285" y1="368" x2="235" y2="394" stroke="#78909C" stroke-width="1.2" marker-end="url(#ah)"/>
+
+  <!-- ===== ARROW LABELS ===== -->
+
+  <!-- 归一化 (Box1底y=90, Box2顶y=120, 中点=105) -->
+  <text x="305" y="101" text-anchor="end" dominant-baseline="central" font-size="9" font-weight="600" fill="#546E7A">归一化</text>
+  <text x="305" y="113" text-anchor="end" dominant-baseline="central" font-size="8" fill="#90A4AE" font-style="italic">÷ 表行数</text>
+
+  <!-- 结合谓词 (Box2底y=164, Box3顶y=194, 中点=179) -->
+  <text x="305" y="179" text-anchor="end" dominant-baseline="central" font-size="9" font-weight="600" fill="#546E7A">结合谓词</text>
+
+  <!-- × 表总行数 (Box3底y=238, 预估框顶y=268, 中点=253) -->
+  <text x="305" y="253" text-anchor="end" dominant-baseline="central" font-size="9" font-weight="600" fill="#546E7A">× 表总行数</text>
+</svg>
