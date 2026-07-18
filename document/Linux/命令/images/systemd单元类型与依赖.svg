@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="880" height="660" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" dominant-baseline="central" font-size="17" font-weight="bold" fill="#263238">systemd 单元类型与依赖关系</text>
+  <text x="450" y="56" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">Unit Types &amp; Dependency Directives</text>
+
+  <!-- Section A: systemd PID 1 -->
+  <rect x="300" y="68" width="300" height="52" rx="8" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="450" y="86" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">systemd (PID 1)</text>
+  <text x="450" y="104" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E3F2FD">系统与服务管理器 · 现代 init 系统</text>
+
+  <!-- arrow systemd -> container B -->
+  <path d="M450,120 L450,148" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="462" y="134" text-anchor="start" dominant-baseline="central" font-size="10" fill="#1E88E5">管理</text>
+
+  <!-- Section B: 7 unit types container -->
+  <rect x="40" y="150" width="820" height="195" rx="10" fill="#F5F5F5" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="58" y="168" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="bold" fill="#546E7A">7 种 Unit 类型</text>
+
+  <!-- Row 1: .service GREEN -->
+  <rect x="64" y="182" width="175" height="65" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M72,182 H231 Q239,182 239,190 V206 H64 V190 Q64,182 72,182 Z" fill="#43A047"/>
+  <text x="151" y="194" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">.service</text>
+  <text x="151" y="227" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#2E7D32">服务 / 进程</text>
+
+  <!-- .target PURPLE -->
+  <rect x="263" y="182" width="175" height="65" rx="8" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M271,182 H430 Q438,182 438,190 V206 H263 V190 Q263,182 271,182 Z" fill="#7B1FA2"/>
+  <text x="350" y="194" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">.target</text>
+  <text x="350" y="227" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#6A1B9A">目标组 / 运行级别</text>
+
+  <!-- .socket BLUE -->
+  <rect x="462" y="182" width="175" height="65" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M470,182 H629 Q637,182 637,190 V206 H462 V190 Q462,182 470,182 Z" fill="#1E88E5"/>
+  <text x="549" y="194" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">.socket</text>
+  <text x="549" y="227" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">套接字激活</text>
+
+  <!-- .timer BLUE -->
+  <rect x="661" y="182" width="175" height="65" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M669,182 H828 Q836,182 836,190 V206 H661 V190 Q661,182 669,182 Z" fill="#1E88E5"/>
+  <text x="748" y="194" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">.timer</text>
+  <text x="748" y="227" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">定时器</text>
+
+  <!-- Row 2: .mount BLUE -->
+  <rect x="164" y="262" width="175" height="65" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M172,262 H331 Q339,262 339,270 V286 H164 V270 Q164,262 172,262 Z" fill="#1E88E5"/>
+  <text x="251" y="274" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">.mount</text>
+  <text x="251" y="307" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">挂载点</text>
+
+  <!-- .device GRAY -->
+  <rect x="363" y="262" width="175" height="65" rx="8" fill="#FFFFFF" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M371,262 H530 Q538,262 538,270 V286 H363 V270 Q363,262 371,262 Z" fill="#546E7A"/>
+  <text x="450" y="274" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">.device</text>
+  <text x="450" y="307" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">设备</text>
+
+  <!-- .path BLUE -->
+  <rect x="562" y="262" width="175" height="65" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M570,262 H729 Q737,262 737,270 V286 H562 V270 Q562,262 570,262 Z" fill="#1E88E5"/>
+  <text x="649" y="274" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">.path</text>
+  <text x="649" y="307" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">路径触发</text>
+
+  <!-- Section C: target hierarchy -->
+  <text x="450" y="372" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#546E7A">常见 Target 层级</text>
+  <!-- multi-user.target -->
+  <rect x="170" y="385" width="220" height="54" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="280" y="404" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#6A1B9A">multi-user.target</text>
+  <text x="280" y="422" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#7B1FA2">多用户命令行模式</text>
+  <!-- arrow multi-user -> graphical -->
+  <path d="M390,412 L510,412" fill="none" stroke="#F57C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <text x="450" y="402" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#F57C00">Wants=</text>
+  <!-- graphical.target -->
+  <rect x="510" y="385" width="220" height="54" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="620" y="404" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#6A1B9A">graphical.target</text>
+  <text x="620" y="422" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#7B1FA2">图形界面模式</text>
+  <text x="450" y="455" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">graphical.target 通过 Wants= 依赖 multi-user.target；default.target 通常软链接至 graphical.target</text>
+
+  <!-- Section D: dependency types -->
+  <text x="450" y="478" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#546E7A">依赖关系类型</text>
+  <!-- Card1 Wants= -->
+  <rect x="57" y="490" width="250" height="140" rx="8" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M65,490 H299 Q307,490 307,498 V516 H57 V498 Q57,490 65,490 Z" fill="#F57C00"/>
+  <text x="182" y="503" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Wants=</text>
+  <text x="182" y="548" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">
+    <tspan x="182" font-weight="600" fill="#E65100">弱依赖</tspan>
+    <tspan x="182" dy="22">启动时一并拉起目标单元</tspan>
+    <tspan x="182" dy="18">目标失败不影响本单元</tspan>
+  </text>
+
+  <!-- Card2 Requires= -->
+  <rect x="325" y="490" width="250" height="140" rx="8" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M333,490 H567 Q575,490 575,498 V516 H325 V498 Q325,490 333,490 Z" fill="#F57C00"/>
+  <text x="450" y="503" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Requires=</text>
+  <text x="450" y="548" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">
+    <tspan x="450" font-weight="600" fill="#E65100">强依赖</tspan>
+    <tspan x="450" dy="22">目标失败则本单元也失败</tspan>
+    <tspan x="450" dy="18">需配合 After= 指定顺序</tspan>
+  </text>
+
+  <!-- Card3 After=/Before= -->
+  <rect x="593" y="490" width="250" height="140" rx="8" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M601,490 H835 Q843,490 843,498 V516 H593 V498 Q593,490 601,490 Z" fill="#F57C00"/>
+  <text x="718" y="503" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">After= / Before=</text>
+  <text x="718" y="548" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">
+    <tspan x="718" font-weight="600" fill="#E65100">顺序约束</tspan>
+    <tspan x="718" dy="22">After= 在目标之后启动</tspan>
+    <tspan x="718" dy="18">Before= 在目标之前启动</tspan>
+  </text>
+
+  <!-- bottom note -->
+  <text x="450" y="652" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Wants= / Requires= 表依赖强弱；After= / Before= 表启动顺序；二者正交可组合使用</text>
+</svg>

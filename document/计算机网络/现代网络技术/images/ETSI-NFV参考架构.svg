@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 640" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="620" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="44" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">ETSI NFV 参考架构</text>
+
+  <!-- OSS/BSS -->
+  <rect x="280" y="68" width="340" height="58" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M288,68 H612 Q620,68 620,76 V94 H280 V76 Q280,68 288,68Z" fill="#7B1FA2"/>
+  <text x="450" y="86" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">OSS/BSS（运营/业务支撑系统）</text>
+  <text x="450" y="114" text-anchor="middle" font-size="11" fill="#6A1B9A">业务编排 · 计费 · 故障管理</text>
+  <line x1="450" y1="130" x2="450" y2="158" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="460" y="148" font-size="10" fill="#90A4AE">Os-Ma</text>
+
+  <!-- NFV-MANO -->
+  <rect x="70" y="160" width="760" height="130" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,160 H822 Q830,160 830,168 V188 H70 V168 Q70,160 78,160Z" fill="#1E88E5"/>
+  <text x="450" y="178" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">NFV-MANO（管理与编排）</text>
+  <rect x="100" y="202" width="220" height="72" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="210" y="226" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">NFVO</text>
+  <text x="210" y="244" text-anchor="middle" font-size="10" fill="#546E7A">网络服务编排</text>
+  <text x="210" y="260" text-anchor="middle" font-size="10" fill="#90A4AE">跨域资源编排</text>
+  <rect x="340" y="202" width="220" height="72" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="450" y="226" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">VNFM</text>
+  <text x="450" y="244" text-anchor="middle" font-size="10" fill="#546E7A">VNF 生命周期管理</text>
+  <text x="450" y="260" text-anchor="middle" font-size="10" fill="#90A4AE">扩缩容 · 愈合</text>
+  <rect x="580" y="202" width="220" height="72" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="690" y="226" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">VIM</text>
+  <text x="690" y="244" text-anchor="middle" font-size="10" fill="#546E7A">NFVI 资源管理</text>
+  <text x="690" y="260" text-anchor="middle" font-size="10" fill="#90A4AE">OpenStack / K8s</text>
+
+  <line x1="210" y1="294" x2="210" y2="322" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="450" y1="294" x2="450" y2="322" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="690" y1="294" x2="690" y2="322" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="220" y="312" font-size="10" fill="#90A4AE">Or-Vnfm</text>
+  <text x="460" y="312" font-size="10" fill="#90A4AE">Ve-Vnfm</text>
+  <text x="700" y="312" font-size="10" fill="#90A4AE">Or-Vi / Nf-Vi</text>
+
+  <!-- VNF -->
+  <rect x="70" y="324" width="760" height="120" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,324 H822 Q830,324 830,332 V352 H70 V332 Q70,324 78,324Z" fill="#F57C00"/>
+  <text x="450" y="342" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">VNF（虚拟网络功能）+ EM（网元管理）</text>
+  <rect x="100" y="366" width="130" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="165" y="390" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">vFW</text>
+  <text x="165" y="408" text-anchor="middle" font-size="10" fill="#90A4AE">虚拟防火墙</text>
+  <rect x="250" y="366" width="130" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="315" y="390" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">vLB</text>
+  <text x="315" y="408" text-anchor="middle" font-size="10" fill="#90A4AE">虚拟负载均衡</text>
+  <rect x="400" y="366" width="130" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="465" y="390" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">vEPC/5GC</text>
+  <text x="465" y="408" text-anchor="middle" font-size="10" fill="#90A4AE">核心网网元</text>
+  <rect x="550" y="366" width="130" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="615" y="390" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">vIMS</text>
+  <text x="615" y="408" text-anchor="middle" font-size="10" fill="#90A4AE">IP 多媒体</text>
+  <rect x="700" y="366" width="130" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="765" y="390" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">vCPE</text>
+  <text x="765" y="408" text-anchor="middle" font-size="10" fill="#90A4AE">虚拟客户端</text>
+  <line x1="450" y1="448" x2="450" y2="476" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="460" y="468" font-size="10" fill="#90A4AE">Vn-Nf</text>
+
+  <!-- NFVI -->
+  <rect x="70" y="478" width="760" height="128" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,478 H822 Q830,478 830,486 V506 H70 V486 Q70,478 78,478Z" fill="#546E7A"/>
+  <text x="450" y="496" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">NFVI（NFV 基础设施）</text>
+  <rect x="100" y="518" width="680" height="34" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1"/>
+  <text x="450" y="540" text-anchor="middle" font-size="12" font-weight="600" fill="#37474F">虚拟化层（Hypervisor：KVM / VMware ESXi · 容器运行时）</text>
+  <rect x="100" y="560" width="680" height="34" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1"/>
+  <text x="450" y="582" text-anchor="middle" font-size="12" font-weight="600" fill="#37474F">硬件层（COTS 通用服务器 · 存储 · 网络）</text>
+</svg>

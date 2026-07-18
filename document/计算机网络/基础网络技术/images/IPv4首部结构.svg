@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="580" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">IPv4 首部结构（RFC 791）</text>
+
+  <!-- Bit position scale (top) -->
+  <text x="100" y="75" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">0</text>
+  <text x="300" y="75" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">4</text>
+  <text x="500" y="75" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">8</text>
+  <text x="700" y="75" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">16</text>
+  <text x="900" y="75" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">31</text>
+
+  <!-- Position lines -->
+  <line x1="100" y1="85" x2="100" y2="90" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="300" y1="85" x2="300" y2="90" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="500" y1="85" x2="500" y2="90" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="700" y1="85" x2="700" y2="90" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="900" y1="85" x2="900" y2="90" stroke="#90A4AE" stroke-width="0.5"/>
+
+  <!-- Row 1: Version(4) | IHL(4) | DSCP(6)+ECN(2) | Total Length(16) -->
+  <rect x="100" y="90" width="200" height="44" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="200" y="112" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Version（4 位）</text>
+
+  <rect x="300" y="90" width="200" height="44" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="400" y="112" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">IHL（4 位）</text>
+
+  <rect x="500" y="90" width="200" height="44" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="600" y="112" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#E65100">DSCP(6)+ECN(2)</text>
+
+  <rect x="700" y="90" width="200" height="44" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="800" y="112" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#4A148C">Total Length（16 位）</text>
+
+  <!-- Row 2: Identification(16) | Flags(3) | Fragment Offset(13) -->
+  <rect x="100" y="134" width="400" height="44" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="300" y="156" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">Identification（16 位）</text>
+
+  <rect x="500" y="134" width="75" height="44" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="537" y="156" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#B71C1C">Flags</text>
+
+  <rect x="575" y="134" width="325" height="44" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="737" y="156" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#B71C1C">Fragment Offset（13 位）</text>
+
+  <!-- Row 3: TTL(8) | Protocol(8) | Header Checksum(16) -->
+  <rect x="100" y="178" width="200" height="44" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="200" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">TTL（8 位）</text>
+
+  <rect x="300" y="178" width="200" height="44" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="400" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#E65100">Protocol（8 位）</text>
+
+  <rect x="500" y="178" width="400" height="44" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="700" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#4A148C">Header Checksum（16 位）</text>
+
+  <!-- Row 4: Source Address (32) -->
+  <rect x="100" y="222" width="800" height="44" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="500" y="244" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Source Address（32 位）</text>
+
+  <!-- Row 5: Destination Address (32) -->
+  <rect x="100" y="266" width="800" height="44" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="500" y="288" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Destination Address（32 位）</text>
+
+  <!-- Row 6: Options (variable, 0~40 bytes) -->
+  <rect x="100" y="310" width="800" height="44" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#s1)"/>
+  <text x="500" y="332" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">Options（可选，0~40 字节，IHL 决定实际长度）</text>
+
+  <!-- Separator -->
+  <line x1="100" y1="370" x2="900" y2="370" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Field detail table title -->
+  <text x="480" y="390" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#37474F">关键字段说明</text>
+
+  <!-- Detail rows -->
+  <rect x="60" y="405" width="840" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="405" width="160" height="30" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="140" y="420" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">Version</text>
+  <text x="230" y="420" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">IP 协议版本，IPv4 固定为 4</text>
+
+  <rect x="60" y="435" width="840" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="435" width="160" height="30" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="140" y="450" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1B5E20">IHL</text>
+  <text x="230" y="450" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">首部长度，单位 4 字节；最小 5（20 字节），最大 15（60 字节）</text>
+
+  <rect x="60" y="465" width="840" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="465" width="160" height="30" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="140" y="480" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">DSCP + ECN</text>
+  <text x="230" y="480" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">DSCP 区分服务优先级；ECN 显式拥塞通知（RFC 3168）</text>
+
+  <rect x="60" y="495" width="840" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="495" width="160" height="30" rx="4" fill="#ECEFF1" stroke="#546E7A" stroke-width="1"/>
+  <text x="140" y="510" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">Flags + Offset</text>
+  <text x="230" y="510" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">MF/DF/保留位 + 分片偏移，支持大于 MTU 的报文分片重组</text>
+
+  <rect x="60" y="525" width="840" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="525" width="160" height="30" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="140" y="540" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1B5E20">TTL</text>
+  <text x="230" y="540" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">生存时间，每经过一跳减 1，为 0 时丢弃，防止环路</text>
+
+  <rect x="60" y="555" width="840" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="555" width="160" height="30" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="140" y="570" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">Protocol</text>
+  <text x="230" y="570" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">上层协议号：6=TCP, 17=UDP, 1=ICMP, 89=OSPF</text>
+</svg>

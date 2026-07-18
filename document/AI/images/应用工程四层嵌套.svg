@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1080" height="700" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="550" y="40" text-anchor="middle" dominant-baseline="central" font-size="22" font-weight="bold" fill="#263238">应用工程四层嵌套</text>
+  <text x="550" y="68" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#78909C">AI 应用工程范式的同心演进：外层包含内层，不是替代关系（2022 — 2026）</text>
+
+  <!-- ========== Concentric rectangles (outer to inner) ========== -->
+  <!-- Outermost: Loop Engineering (Purple) -->
+  <rect x="60" y="100" width="560" height="400" rx="10" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2.5"/>
+  <!-- 3rd: Harness Engineering (Green) -->
+  <rect x="110" y="145" width="460" height="310" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="2.5"/>
+  <!-- 2nd: Context Engineering (Blue) -->
+  <rect x="160" y="190" width="360" height="220" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="2.5"/>
+  <!-- Innermost: Prompt Engineering (Gray) -->
+  <rect x="210" y="235" width="260" height="130" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="2.5"/>
+
+  <!-- Layer name labels in top wall of each rectangle -->
+  <text x="75" y="122" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#7B1FA2">Loop Engineering（2026 中）</text>
+  <text x="125" y="167" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#43A047">Harness Engineering（2026 初）</text>
+  <text x="175" y="212" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1E88E5">Context Engineering（2025）</text>
+  <text x="225" y="257" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#546E7A">Prompt Engineering（2022）</text>
+
+  <!-- Center note inside innermost rectangle -->
+  <text x="340" y="295" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#37474F">外层包含内层</text>
+  <text x="340" y="318" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#37474F">不是替代关系</text>
+  <text x="340" y="345" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-style="italic">每一层都是前一层的超集</text>
+
+  <!-- ========== Right side detail panel ========== -->
+  <!-- Entry 1: Loop Engineering (Purple) -->
+  <rect x="660" y="100" width="410" height="88" rx="6" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
+  <rect x="660" y="100" width="6" height="88" rx="3" fill="#7B1FA2"/>
+  <text x="678" y="120" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#7B1FA2">Loop Engineering</text>
+  <text x="1052" y="120" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE">2026 中</text>
+  <text x="678" y="142" text-anchor="start" dominant-baseline="central" font-size="11" font-style="italic" fill="#37474F">核心问题：系统如何自动反复触发直到目标达成？</text>
+  <text x="678" y="162" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">产物</text>
+  <text x="678" y="178" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">调度器 · 状态机 · 子智能体 · 验证器</text>
+
+  <!-- Entry 2: Harness Engineering (Green) -->
+  <rect x="660" y="198" width="410" height="88" rx="6" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <rect x="660" y="198" width="6" height="88" rx="3" fill="#43A047"/>
+  <text x="678" y="218" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#43A047">Harness Engineering</text>
+  <text x="1052" y="218" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE">2026 初</text>
+  <text x="678" y="240" text-anchor="start" dominant-baseline="central" font-size="11" font-style="italic" fill="#37474F">核心问题：模型外部的执行支架怎么设计？</text>
+  <text x="678" y="260" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">产物</text>
+  <text x="678" y="276" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">工具 · 沙箱 · 权限 · hooks · 日志 · 测试</text>
+
+  <!-- Entry 3: Context Engineering (Blue) -->
+  <rect x="660" y="296" width="410" height="88" rx="6" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <rect x="660" y="296" width="6" height="88" rx="3" fill="#1E88E5"/>
+  <text x="678" y="316" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1E88E5">Context Engineering</text>
+  <text x="1052" y="316" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE">2025</text>
+  <text x="678" y="338" text-anchor="start" dominant-baseline="central" font-size="11" font-style="italic" fill="#37474F">核心问题：每一步给模型什么信息？</text>
+  <text x="678" y="358" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">产物</text>
+  <text x="678" y="374" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">检索 · 摘要 · 记忆 · 上下文选择</text>
+
+  <!-- Entry 4: Prompt Engineering (Gray) -->
+  <rect x="660" y="394" width="410" height="88" rx="6" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" filter="url(#s1)"/>
+  <rect x="660" y="394" width="6" height="88" rx="3" fill="#546E7A"/>
+  <text x="678" y="414" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#546E7A">Prompt Engineering</text>
+  <text x="1052" y="414" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE">2022</text>
+  <text x="678" y="436" text-anchor="start" dominant-baseline="central" font-size="11" font-style="italic" fill="#37474F">核心问题：单次模型调用怎么说清楚？</text>
+  <text x="678" y="456" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">产物</text>
+  <text x="678" y="472" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">prompt · system prompt · few-shot</text>
+
+  <!-- Arrow connecting right panel to nested rectangles (decorative) -->
+  <text x="640" y="510" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-style="italic">← 同心嵌套：每层包含其内层</text>
+
+  <!-- ========== Bottom: key quotes ========== -->
+  <rect x="35" y="525" width="1030" height="155" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="55" y="550" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">关键人物言论：范式变迁的注脚</text>
+
+  <!-- Quote 1: Karpathy -->
+  <rect x="55" y="565" width="320" height="100" rx="6" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <text x="70" y="585" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#1E88E5">Andrej Karpathy（2025）</text>
+  <line x1="70" y1="595" x2="360" y2="595" stroke="#BBDEFB" stroke-width="1"/>
+  <text x="70" y="613" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">"prompt engineering 应该</text>
+  <text x="70" y="631" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">让位给 context engineering"</text>
+  <text x="70" y="652" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">从单次提示到上下文工程</text>
+
+  <!-- Quote 2: Mitchell Hashimoto -->
+  <rect x="390" y="565" width="320" height="100" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="405" y="585" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#43A047">Mitchell Hashimoto（2026.2）</text>
+  <line x1="405" y1="595" x2="695" y2="595" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="405" y="613" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">"engineer the harness"</text>
+  <text x="405" y="631" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">（设计驾驭支架）</text>
+  <text x="405" y="652" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">从上下文到执行支架</text>
+
+  <!-- Quote 3: Boris Cherny -->
+  <rect x="725" y="565" width="320" height="100" rx="6" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1"/>
+  <text x="740" y="585" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#7B1FA2">Boris Cherny（2026.6）</text>
+  <line x1="740" y1="595" x2="1030" y2="595" stroke="#E1BEE7" stroke-width="1"/>
+  <text x="740" y="613" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">"我不再 prompt Claude 了，</text>
+  <text x="740" y="631" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">我设计循环来 prompt Claude"</text>
+  <text x="740" y="652" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">从支架到自主循环</text>
+</svg>

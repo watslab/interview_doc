@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="420" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">传统边界安全 vs 零信任架构</text>
+
+  <!-- 传统边界 -->
+  <rect x="40" y="68" width="400" height="300" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,68 H432 Q440,68 440,76 V96 H40 V76 Q40,68 48,68Z" fill="#E53935"/>
+  <text x="240" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">传统边界安全（城堡护城河）</text>
+
+  <!-- 外网 -->
+  <rect x="70" y="118" width="120" height="40" rx="6" fill="#FFF" stroke="#EF9A9A" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="130" y="142" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">外部（不可信）</text>
+
+  <!-- 防火墙 -->
+  <rect x="220" y="118" width="120" height="40" rx="6" fill="#FFCDD2" stroke="#E53935" stroke-width="1.5"/>
+  <text x="280" y="142" text-anchor="middle" font-size="11" font-weight="600" fill="#B71C1C">防火墙（边界）</text>
+
+  <line x1="190" y1="138" x2="218" y2="138" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 内网 -->
+  <rect x="70" y="180" width="340" height="170" rx="6" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="240" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">内部网络（视为可信）</text>
+  <rect x="90" y="214" width="90" height="36" rx="5" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="135" y="237" text-anchor="middle" font-size="10" fill="#C62828">服务器 A</text>
+  <rect x="195" y="214" width="90" height="36" rx="5" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="240" y="237" text-anchor="middle" font-size="10" fill="#C62828">服务器 B</text>
+  <rect x="300" y="214" width="90" height="36" rx="5" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="345" y="237" text-anchor="middle" font-size="10" fill="#C62828">服务器 C</text>
+  <path d="M135,250 L345,250" stroke="#E53935" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#ah)"/>
+  <text x="240" y="280" text-anchor="middle" font-size="10" fill="#C62828">突破边界后内网横向移动无阻碍</text>
+  <text x="240" y="306" text-anchor="middle" font-size="10" font-weight="600" fill="#C62828">信任基础：网络位置（内/外）</text>
+  <text x="240" y="326" text-anchor="middle" font-size="10" fill="#90A4AE">验证频率：一次性登录</text>
+  <text x="240" y="344" text-anchor="middle" font-size="10" fill="#90A4AE">访问粒度：网络级（LAN 全访问）</text>
+
+  <!-- 零信任 -->
+  <rect x="460" y="68" width="400" height="300" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M468,68 H852 Q860,68 860,76 V96 H460 V76 Q460,68 468,68Z" fill="#1E88E5"/>
+  <text x="660" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">零信任架构（永不信任，始终验证）</text>
+
+  <!-- 用户 -->
+  <rect x="490" y="118" width="100" height="40" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="540" y="142" text-anchor="middle" font-size="11" font-weight="600" fill="#546E7A">用户/设备</text>
+
+  <!-- PEP -->
+  <rect x="620" y="118" width="100" height="40" rx="6" fill="#BBDEFB" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="670" y="142" text-anchor="middle" font-size="11" font-weight="600" fill="#0D47A1">PEP</text>
+
+  <line x1="590" y1="138" x2="618" y2="138" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="604" y="130" text-anchor="middle" font-size="9" fill="#90A4AE">验证</text>
+
+  <!-- 微分段资源 -->
+  <rect x="490" y="180" width="340" height="170" rx="6" fill="#FFF" stroke="#90CAF9" stroke-width="1"/>
+  <text x="660" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">微分段资源（每个资源独立验证）</text>
+  <rect x="510" y="214" width="90" height="50" rx="5" fill="#E3F2FD" stroke="#64B5F6" stroke-width="1.5"/>
+  <text x="555" y="234" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">应用 A</text>
+  <text x="555" y="250" text-anchor="middle" font-size="9" fill="#90A4AE">PEP 隔离</text>
+  <rect x="615" y="214" width="90" height="50" rx="5" fill="#E3F2FD" stroke="#64B5F6" stroke-width="1.5"/>
+  <text x="660" y="234" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">应用 B</text>
+  <text x="660" y="250" text-anchor="middle" font-size="9" fill="#90A4AE">PEP 隔离</text>
+  <rect x="720" y="214" width="90" height="50" rx="5" fill="#E3F2FD" stroke="#64B5F6" stroke-width="1.5"/>
+  <text x="765" y="234" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">应用 C</text>
+  <text x="765" y="250" text-anchor="middle" font-size="9" fill="#90A4AE">PEP 隔离</text>
+  <text x="660" y="290" text-anchor="middle" font-size="10" fill="#1565C0">每次访问独立验证，微分段限制横向移动</text>
+  <text x="660" y="316" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">信任基础：身份+设备+上下文</text>
+  <text x="660" y="336" text-anchor="middle" font-size="10" fill="#90A4AE">验证频率：持续、按请求</text>
+
+  <text x="450" y="396" text-anchor="middle" font-size="12" font-weight="600" fill="#546E7A">从"网络位置信任"转向"设备 + 用户身份信任"——无论内网、家庭网、咖啡店，访问都基于身份与上下文验证</text>
+  <text x="450" y="416" text-anchor="middle" font-size="11" fill="#90A4AE">Google BeyondCorp 工业级实现：员工无需传统 VPN，访问基于设备状态和用户凭证认证授权加密</text>
+</svg>

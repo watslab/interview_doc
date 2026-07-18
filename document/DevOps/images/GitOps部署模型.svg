@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/>
+    </filter>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#43A047"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="360" fill="#FAFAFA"/>
+
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#263238">Push vs Pull 部署模型对比</text>
+
+  <line x1="400" y1="55" x2="400" y2="345" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <rect x="30" y="55" width="350" height="290" rx="10" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M40,55 H370 Q380,55 380,65 V90 H30 V65 Q30,55 40,55Z" fill="#F57C00"/>
+  <text x="205" y="72" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Push 模型（传统 CI/CD）</text>
+
+  <rect x="95" y="105" width="220" height="45" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="205" y="121" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333333">代码仓库（Git）</text>
+  <text x="205" y="137" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">源代码版本控制</text>
+
+  <rect x="95" y="175" width="220" height="45" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="175" y="191" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333333">CI 流水线（Jenkins）</text>
+  <text x="175" y="207" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">构建 + 部署</text>
+  <g transform="translate(272,191)">
+    <circle cx="0" cy="0" r="5" fill="none" stroke="#F57C00" stroke-width="1.5"/>
+    <line x1="5" y1="0" x2="15" y2="0" stroke="#F57C00" stroke-width="1.5"/>
+    <line x1="11" y1="0" x2="11" y2="3" stroke="#F57C00" stroke-width="1.5"/>
+    <line x1="15" y1="0" x2="15" y2="3" stroke="#F57C00" stroke-width="1.5"/>
+  </g>
+  <text x="277" y="207" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#F57C00">持有凭证</text>
+
+  <rect x="95" y="260" width="220" height="65" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5"/>
+  <text x="205" y="285" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333333">Kubernetes 集群</text>
+  <text x="205" y="303" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">生产环境</text>
+
+  <rect x="420" y="55" width="350" height="290" rx="10" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M430,55 H760 Q770,55 770,65 V90 H420 V65 Q420,55 430,55Z" fill="#43A047"/>
+  <text x="595" y="72" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Pull 模型（GitOps）</text>
+
+  <rect x="485" y="105" width="220" height="45" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="595" y="121" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333333">Git 仓库</text>
+  <text x="595" y="137" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">声明式配置（期望状态）</text>
+
+  <rect x="485" y="185" width="220" height="140" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5"/>
+  <text x="595" y="202" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333333">Kubernetes 集群</text>
+
+  <rect x="525" y="215" width="140" height="50" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="595" y="233" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">Agent</text>
+  <text x="595" y="251" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">ArgoCD / Flux</text>
+
+  <g transform="translate(550,295)">
+    <circle cx="0" cy="0" r="5" fill="none" stroke="#43A047" stroke-width="1.5"/>
+    <line x1="5" y1="0" x2="15" y2="0" stroke="#43A047" stroke-width="1.5"/>
+    <line x1="11" y1="0" x2="11" y2="3" stroke="#43A047" stroke-width="1.5"/>
+    <line x1="15" y1="0" x2="15" y2="3" stroke="#43A047" stroke-width="1.5"/>
+  </g>
+  <text x="572" y="295" text-anchor="start" dominant-baseline="central" font-size="10" fill="#43A047">凭证留存集群内</text>
+
+  <line x1="205" y1="152" x2="205" y2="173" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+
+  <line x1="205" y1="222" x2="205" y2="258" stroke="#F57C00" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <text x="215" y="233" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="600" fill="#F57C00">Push</text>
+  <text x="215" y="247" text-anchor="start" dominant-baseline="central" font-size="9" fill="#F57C00">+ 集群凭证外泄</text>
+
+  <line x1="595" y1="183" x2="595" y2="152" stroke="#43A047" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="605" y="161" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="600" fill="#43A047">Pull</text>
+  <text x="605" y="174" text-anchor="start" dominant-baseline="central" font-size="9" fill="#43A047">+ 凭证不出集群</text>
+
+</svg>

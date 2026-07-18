@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1180" height="600" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="600" y="45" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="#263238">大模型训练范式演进</text>
+  <text x="600" y="75" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#78909C">从监督学习到预训练+对齐的范式变迁</text>
+
+  <!-- ========== Container 1: 监督学习 (Gray) ========== -->
+  <rect x="45" y="120" width="340" height="340" rx="8" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M53,120 H327 Q335,120 335,128 V170 H45 V128 Q45,120 53,120Z" fill="#546E7A"/>
+  <text x="215" y="140" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#ECEFF1">范式 1</text>
+  <text x="215" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#CFD8DC">~ 2017 前</text>
+
+  <text x="215" y="195" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#546E7A">监督学习</text>
+  <text x="215" y="215" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE">Supervised Learning</text>
+  <line x1="75" y1="232" x2="355" y2="232" stroke="#ECEFF1" stroke-width="1"/>
+
+  <!-- Feature points -->
+  <circle cx="70" cy="258" r="3" fill="#546E7A"/>
+  <text x="82" y="258" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">一个任务一个模型</text>
+
+  <circle cx="70" cy="288" r="3" fill="#546E7A"/>
+  <text x="82" y="288" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">依赖大量标注数据</text>
+
+  <circle cx="70" cy="318" r="3" fill="#546E7A"/>
+  <text x="82" y="318" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">场景适应能力弱</text>
+
+  <circle cx="70" cy="348" r="3" fill="#546E7A"/>
+  <text x="82" y="348" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">迁移成本高</text>
+
+  <line x1="75" y1="370" x2="355" y2="370" stroke="#ECEFF1" stroke-width="1"/>
+  <text x="65" y="390" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">代表模型</text>
+  <text x="65" y="410" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#546E7A">CNN · RNN · LSTM · BiLSTM-CRF</text>
+  <text x="65" y="432" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">任务定制化，难以复用</text>
+
+  <!-- ========== Container 2: 预训练+微调 (Blue) ========== -->
+  <rect x="430" y="120" width="340" height="340" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M438,120 H722 Q730,120 730,128 V170 H430 V128 Q430,120 438,120Z" fill="#1E88E5"/>
+  <text x="600" y="140" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#E3F2FD">范式 2</text>
+  <text x="600" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#BBDEFB">2018 — 2021</text>
+
+  <text x="600" y="195" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#1E88E5">预训练 + 微调</text>
+  <text x="600" y="215" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE">Pretrain + Fine-tune</text>
+  <line x1="460" y1="232" x2="740" y2="232" stroke="#E3F2FD" stroke-width="1"/>
+
+  <circle cx="455" cy="258" r="3" fill="#1E88E5"/>
+  <text x="467" y="258" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">海量无标注语料预训练</text>
+
+  <circle cx="455" cy="288" r="3" fill="#1E88E5"/>
+  <text x="467" y="288" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">少量标注数据微调</text>
+
+  <circle cx="455" cy="318" r="3" fill="#1E88E5"/>
+  <text x="467" y="318" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">NLP 任务新标准</text>
+
+  <circle cx="455" cy="348" r="3" fill="#1E88E5"/>
+  <text x="467" y="348" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">特征迁移复用</text>
+
+  <line x1="460" y1="370" x2="740" y2="370" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="450" y="390" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">代表模型</text>
+  <text x="450" y="410" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#1E88E5">BERT · GPT-2 · GPT-3 · T5</text>
+  <text x="450" y="432" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">"预训练即基建" 范式确立</text>
+
+  <!-- ========== Container 3: 预训练+对齐 (Green) ========== -->
+  <rect x="815" y="120" width="340" height="340" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M823,120 H1107 Q1115,120 1115,128 V170 H815 V128 Q815,120 823,120Z" fill="#43A047"/>
+  <text x="985" y="140" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#E8F5E9">范式 3</text>
+  <text x="985" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C8E6C9">2022 至今</text>
+
+  <text x="985" y="195" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#43A047">预训练 + 对齐</text>
+  <text x="985" y="215" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE">Pretrain + Alignment</text>
+  <line x1="845" y1="232" x2="1125" y2="232" stroke="#E8F5E9" stroke-width="1"/>
+
+  <circle cx="840" cy="258" r="3" fill="#43A047"/>
+  <text x="852" y="258" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">指令微调 SFT</text>
+
+  <circle cx="840" cy="288" r="3" fill="#43A047"/>
+  <text x="852" y="288" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">RLHF 人类反馈强化学习</text>
+
+  <circle cx="840" cy="318" r="3" fill="#43A047"/>
+  <text x="852" y="318" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">提示生成范式 Prompting</text>
+
+  <circle cx="840" cy="348" r="3" fill="#43A047"/>
+  <text x="852" y="348" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">通用对话能力涌现</text>
+
+  <line x1="845" y1="370" x2="1125" y2="370" stroke="#E8F5E9" stroke-width="1"/>
+  <text x="835" y="390" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">代表模型</text>
+  <text x="835" y="410" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#43A047">ChatGPT · GPT-4 · Claude · LLaMA-2/3</text>
+  <text x="835" y="432" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">对齐人类意图，通用智能涌现</text>
+
+  <!-- ========== Dashed arrows between containers ========== -->
+  <line x1="390" y1="290" x2="425" y2="290" stroke="#90A4AE" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+  <text x="407" y="275" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">演进</text>
+
+  <line x1="775" y1="290" x2="810" y2="290" stroke="#90A4AE" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#ah)"/>
+  <text x="792" y="275" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">演进</text>
+
+  <!-- ========== Bottom evolution summary bar ========== -->
+  <rect x="45" y="490" width="1110" height="100" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="65" y="515" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">范式演进核心趋势</text>
+
+  <circle cx="73" cy="545" r="3" fill="#546E7A"/>
+  <text x="85" y="545" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">数据效率：从全量标注 → 少量微调 → 无标注预训练+人类偏好</text>
+
+  <circle cx="73" cy="572" r="3" fill="#43A047"/>
+  <text x="85" y="572" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">能力范围：从单一任务 → 多任务迁移 → 通用智能涌现，模型逐步具备跨任务通用能力</text>
+
+  <text x="600" y="600" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-style="italic">每次范式变迁都伴随着数据利用方式的革新与模型能力的阶跃式提升</text>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="480" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">零信任架构逻辑组件（NIST SP 800-207）</text>
+
+  <!-- 主体 -->
+  <rect x="80" y="68" width="740" height="360" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M88,68 H812 Q820,68 820,76 V96 H80 V76 Q80,68 88,68Z" fill="#7B1FA2"/>
+  <text x="450" y="86" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">零信任架构（Zero Trust Architecture）</text>
+
+  <!-- 控制面 PDP -->
+  <rect x="120" y="120" width="660" height="100" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5"/>
+  <path d="M128,120 H772 Q780,120 780,128 V148 H120 V128 Q120,120 128,120Z" fill="#1E88E5"/>
+  <text x="450" y="138" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">控制面：PDP（策略决策点 = PE + PA）</text>
+  <rect x="150" y="158" width="300" height="50" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="300" y="178" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">PE（策略引擎）</text>
+  <text x="300" y="196" text-anchor="middle" font-size="10" fill="#546E7A">基于身份/设备/行为/环境做决策</text>
+  <rect x="490" y="158" width="260" height="50" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="620" y="178" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">PA（策略管理者）</text>
+  <text x="620" y="196" text-anchor="middle" font-size="10" fill="#546E7A">建立/维护/终止会话</text>
+
+  <line x1="450" y1="222" x2="450" y2="250" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="460" y="240" font-size="10" fill="#90A4AE">控制指令</text>
+
+  <!-- 数据面 PEP -->
+  <rect x="120" y="252" width="660" height="56" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <path d="M128,252 H772 Q780,252 780,260 V280 H120 V260 Q120,252 128,252Z" fill="#F57C00"/>
+  <text x="450" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">数据面：PEP（策略执行点）</text>
+  <text x="450" y="298" text-anchor="middle" font-size="11" fill="#E65100">拦截访问请求，与 PDP 通信于控制面，转发数据面流量</text>
+
+  <!-- 输入信号 -->
+  <rect x="120" y="330" width="660" height="80" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="450" y="350" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">信任算法（Trust Algorithm）输入信号</text>
+  <text x="150" y="372" font-size="10" fill="#546E7A">• 主体身份（用户/服务账户）</text>
+  <text x="350" y="372" font-size="10" fill="#546E7A">• 设备姿态（合规/证书）</text>
+  <text x="550" y="372" font-size="10" fill="#546E7A">• 行为属性</text>
+  <text x="700" y="372" font-size="10" fill="#546E7A">• 环境属性</text>
+  <text x="150" y="392" font-size="10" fill="#546E7A">• 威胁情报</text>
+  <text x="350" y="392" font-size="10" fill="#546E7A">• 资产合规状态</text>
+  <text x="550" y="392" font-size="10" fill="#546E7A">• 请求时间/地理位置</text>
+  <text x="700" y="392" font-size="10" fill="#546E7A">• 所用网络</text>
+
+  <!-- 主体 / 资源 -->
+  <rect x="40" y="200" width="60" height="40" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="70" y="224" text-anchor="middle" font-size="10" font-weight="600" fill="#546E7A">主体</text>
+  <rect x="800" y="200" width="60" height="40" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="830" y="224" text-anchor="middle" font-size="10" font-weight="600" fill="#546E7A">资源</text>
+  <line x1="100" y1="280" x2="120" y2="280" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="780" y1="280" x2="800" y2="280" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <text x="450" y="452" text-anchor="middle" font-size="12" font-weight="600" fill="#546E7A">核心原则：默认拒绝 · 最小权限 · 持续验证 · 微分段 · 以身份为中心</text>
+  <text x="450" y="472" text-anchor="middle" font-size="11" fill="#90A4AE">"Never trust, always verify" — 网络被视为已被攻陷，每次访问按会话独立验证</text>
+</svg>

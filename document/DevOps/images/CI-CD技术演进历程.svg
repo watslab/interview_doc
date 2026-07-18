@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="arrow1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="880" height="280" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="#263238">CI/CD 技术演进历程</text>
+
+  <!-- Stage 1: 手动部署时代 -->
+  <rect x="30" y="75" width="140" height="190" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#shadow1)"/>
+  <path d="M38,75 H162 Q170,75 170,83 V130 H30 V83 Q30,75 38,75 Z" fill="#BBDEFB"/>
+  <text x="100" y="93" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#0D47A1">手动部署时代</text>
+  <text x="100" y="113" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1565C0">2000 前</text>
+  <text x="100" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">手工部署</text>
+  <text x="100" y="185" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">Shell 脚本</text>
+  <text x="100" y="210" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">人工运维</text>
+  <text x="100" y="235" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">无统一标准</text>
+
+  <!-- Stage 2: 持续集成萌芽 -->
+  <rect x="205" y="75" width="140" height="190" rx="8" fill="#FFFFFF" stroke="#64B5F6" stroke-width="1.5" filter="url(#shadow1)"/>
+  <path d="M213,75 H337 Q345,75 345,83 V130 H205 V83 Q205,75 213,75 Z" fill="#90CAF9"/>
+  <text x="275" y="93" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#0D47A1">持续集成萌芽</text>
+  <text x="275" y="113" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1565C0">2001-2010</text>
+  <text x="275" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">CruiseControl</text>
+  <text x="275" y="185" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">Jenkins/Hudson</text>
+  <text x="275" y="210" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">每日集成</text>
+  <text x="275" y="235" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">自动构建</text>
+
+  <!-- Stage 3: DevOps与CD兴起 -->
+  <rect x="380" y="75" width="140" height="190" rx="8" fill="#FFFFFF" stroke="#42A5F5" stroke-width="1.5" filter="url(#shadow1)"/>
+  <path d="M388,75 H512 Q520,75 520,83 V130 H380 V83 Q380,75 388,75 Z" fill="#64B5F6"/>
+  <text x="450" y="93" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#0D47A1">DevOps与CD兴起</text>
+  <text x="450" y="113" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1565C0">2011-2015</text>
+  <text x="450" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">DevOps 文化</text>
+  <text x="450" y="185" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">持续交付</text>
+  <text x="450" y="210" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">Docker 容器化</text>
+  <text x="450" y="235" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">基础设施即代码</text>
+
+  <!-- Stage 4: 云原生CI/CD -->
+  <rect x="555" y="75" width="140" height="190" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#shadow1)"/>
+  <path d="M563,75 H687 Q695,75 695,83 V130 H555 V83 Q555,75 563,75 Z" fill="#42A5F5"/>
+  <text x="625" y="93" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">云原生CI/CD</text>
+  <text x="625" y="113" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E3F2FD">2016-2020</text>
+  <text x="625" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">Kubernetes</text>
+  <text x="625" y="185" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">Tekton</text>
+  <text x="625" y="210" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">微服务架构</text>
+  <text x="625" y="235" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">声明式流水线</text>
+
+  <!-- Stage 5: 智能化与GitOps -->
+  <rect x="730" y="75" width="140" height="190" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.5" filter="url(#shadow1)"/>
+  <path d="M738,75 H862 Q870,75 870,83 V130 H730 V83 Q730,75 738,75 Z" fill="#1E88E5"/>
+  <text x="800" y="93" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">智能化与GitOps</text>
+  <text x="800" y="113" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E3F2FD">2021 至今</text>
+  <text x="800" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">GitOps 模型</text>
+  <text x="800" y="185" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">ArgoCD/Flux</text>
+  <text x="800" y="210" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">AI 辅助运维</text>
+  <text x="800" y="235" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555555">渐进式发布</text>
+
+  <!-- Arrows and driver labels (drawn last for z-order) -->
+  <line x1="172" y1="170" x2="203" y2="170" stroke="#546E7A" stroke-width="1.5" marker-end="url(#arrow1)"/>
+  <text x="187" y="158" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">自动化</text>
+
+  <line x1="347" y1="170" x2="378" y2="170" stroke="#546E7A" stroke-width="1.5" marker-end="url(#arrow1)"/>
+  <text x="362" y="158" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">DevOps</text>
+
+  <line x1="522" y1="170" x2="553" y2="170" stroke="#546E7A" stroke-width="1.5" marker-end="url(#arrow1)"/>
+  <text x="537" y="158" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">容器化</text>
+
+  <line x1="697" y1="170" x2="728" y2="170" stroke="#546E7A" stroke-width="1.5" marker-end="url(#arrow1)"/>
+  <text x="712" y="158" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">GitOps</text>
+</svg>

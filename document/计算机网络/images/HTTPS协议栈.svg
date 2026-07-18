@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="580" height="340" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="300" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#263238">HTTP 与 HTTPS 协议栈对比</text>
+
+  <!-- Left: HTTP Stack -->
+  <rect x="50" y="55" width="180" height="270" rx="8" fill="#FFFFFF" stroke="#EF9A9A" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M58,55 H222 Q230,55 230,63 V85 H50 V63 Q50,55 58,55 Z" fill="#E53935"/>
+  <text x="140" y="70" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">HTTP</text>
+
+  <rect x="65" y="100" width="150" height="40" rx="6" fill="#FFEBEE" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="140" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#C62828">应用层（HTTP）</text>
+
+  <rect x="65" y="150" width="150" height="40" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="140" y="170" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#546E7A">传输层（TCP）</text>
+
+  <rect x="65" y="200" width="150" height="40" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="140" y="220" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#546E7A">网络层（IP）</text>
+
+  <rect x="65" y="250" width="150" height="40" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="140" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#546E7A">链路层</text>
+
+  <!-- HTTP warning -->
+  <text x="140" y="308" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#E53935">明文传输（不安全）</text>
+
+  <!-- Right: HTTPS Stack -->
+  <rect x="370" y="55" width="180" height="270" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M378,55 H542 Q550,55 550,63 V85 H370 V63 Q370,55 378,55 Z" fill="#43A047"/>
+  <text x="460" y="70" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">HTTPS</text>
+
+  <rect x="385" y="100" width="150" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="460" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2E7D32">应用层（HTTP）</text>
+
+  <!-- TLS layer highlighted -->
+  <rect x="383" y="148" width="154" height="44" rx="6" fill="#C8E6C9" stroke="#43A047" stroke-width="2"/>
+  <text x="460" y="165" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1B5E20">安全层（TLS）</text>
+  <text x="460" y="181" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#388E3C">加密 + 认证 + 完整性</text>
+
+  <rect x="385" y="200" width="150" height="40" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="460" y="220" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#546E7A">传输层（TCP）</text>
+
+  <rect x="385" y="250" width="150" height="40" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="460" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#546E7A">网络层（IP） + 链路层</text>
+
+  <!-- HTTPS safe -->
+  <text x="460" y="308" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#43A047">加密传输（安全）</text>
+
+  <!-- Arrow between stacks -->
+  <line x1="240" y1="180" x2="365" y2="180" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="300" y="170" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">插入 TLS 层</text>
+</svg>

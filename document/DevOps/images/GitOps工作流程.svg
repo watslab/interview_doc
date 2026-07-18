@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 390" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/>
+    </filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/>
+    </marker>
+    <marker id="ahd" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="920" height="390" fill="#FFFFFF"/>
+
+  <text x="460" y="28" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="#263238">GitOps 工作流程</text>
+
+  <rect x="20" y="55" width="880" height="115" rx="8" fill="#E3F2FD" filter="url(#shadow)"/>
+  <path d="M28,55 H892 Q900,55 900,63 V83 H20 V63 Q20,55 28,55 Z" fill="#1E88E5"/>
+  <rect x="20" y="55" width="880" height="115" rx="8" fill="none" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="460" y="69" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">构建管道（CI）</text>
+
+  <rect x="35" y="95" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <circle cx="53" cy="120" r="10" fill="#1E88E5"/>
+  <text x="53" y="120" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="113" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">代码提交</text>
+
+  <rect x="215" y="95" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <circle cx="233" cy="120" r="10" fill="#1E88E5"/>
+  <text x="233" y="120" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="293" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">触发CI</text>
+
+  <rect x="395" y="95" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <circle cx="413" cy="120" r="10" fill="#1E88E5"/>
+  <text x="413" y="120" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="473" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">构建镜像</text>
+
+  <rect x="575" y="95" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <circle cx="593" cy="120" r="10" fill="#1E88E5"/>
+  <text x="593" y="120" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">4</text>
+  <text x="653" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">推送镜像</text>
+
+  <rect x="755" y="95" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <circle cx="773" cy="120" r="10" fill="#1E88E5"/>
+  <text x="773" y="120" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">5</text>
+  <text x="833" y="120" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">更新清单</text>
+
+  <rect x="20" y="250" width="880" height="115" rx="8" fill="#E8F5E9" filter="url(#shadow)"/>
+  <path d="M28,250 H892 Q900,250 900,258 V278 H20 V258 Q20,250 28,250 Z" fill="#43A047"/>
+  <rect x="20" y="250" width="880" height="115" rx="8" fill="none" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="460" y="264" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">部署管道（CD）</text>
+
+  <rect x="35" y="290" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="53" cy="315" r="10" fill="#43A047"/>
+  <text x="53" y="315" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">6</text>
+  <text x="113" y="315" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">检测变更</text>
+
+  <rect x="215" y="290" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="233" cy="315" r="10" fill="#43A047"/>
+  <text x="233" y="315" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">7</text>
+  <text x="293" y="315" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">拉取配置</text>
+
+  <rect x="395" y="290" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="413" cy="315" r="10" fill="#43A047"/>
+  <text x="413" y="315" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">8</text>
+  <text x="473" y="315" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">同步集群</text>
+
+  <rect x="575" y="290" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="593" cy="315" r="10" fill="#43A047"/>
+  <text x="593" y="315" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">9</text>
+  <text x="653" y="315" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">健康检查</text>
+
+  <rect x="755" y="290" width="130" height="50" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="773" cy="315" r="10" fill="#43A047"/>
+  <text x="773" y="315" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">10</text>
+  <text x="833" y="315" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">反馈状态</text>
+
+  <line x1="165" y1="120" x2="213" y2="120" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="345" y1="120" x2="393" y2="120" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="525" y1="120" x2="573" y2="120" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="705" y1="120" x2="753" y2="120" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <line x1="165" y1="315" x2="213" y2="315" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="345" y1="315" x2="393" y2="315" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="525" y1="315" x2="573" y2="315" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="705" y1="315" x2="753" y2="315" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <path d="M820,145 C820,217 100,217 100,290" fill="none" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ahd)"/>
+  <text x="460" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">Git 仓库变更触发</text>
+</svg>

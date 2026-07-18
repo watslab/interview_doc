@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="780" height="420" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="#263238">DORA 效能指标体系</text>
+
+  <!-- ===== Left Group: 吞吐量 ===== -->
+  <rect x="50" y="65" width="320" height="180" rx="8" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M58,65 H362 Q370,65 370,73 V93 H50 V73 Q50,65 58,65 Z" fill="#1E88E5"/>
+  <text x="210" y="79" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">吞吐量</text>
+
+  <!-- Metric 1: 部署频率 -->
+  <rect x="70" y="105" width="280" height="55" rx="6" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1" filter="url(#s1)"/>
+  <circle cx="90" cy="132" r="11" fill="#1E88E5"/>
+  <text x="90" y="132" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="215" y="124" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#333333">部署频率</text>
+  <text x="215" y="142" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">Deployment Frequency · 生产部署的频率</text>
+
+  <!-- Metric 2: 交付周期 -->
+  <rect x="70" y="175" width="280" height="55" rx="6" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1" filter="url(#s1)"/>
+  <circle cx="90" cy="202" r="11" fill="#1E88E5"/>
+  <text x="90" y="202" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="215" y="194" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#333333">交付周期</text>
+  <text x="215" y="212" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">Lead Time for Changes · 提交到部署的时间</text>
+
+  <!-- ===== Right Group: 稳定性 ===== -->
+  <rect x="430" y="65" width="320" height="180" rx="8" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M438,65 H742 Q750,65 750,73 V93 H430 V73 Q430,65 438,65 Z" fill="#43A047"/>
+  <text x="590" y="79" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">稳定性</text>
+
+  <!-- Metric 3: 变更失败率 -->
+  <rect x="450" y="98" width="280" height="40" rx="6" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1" filter="url(#s1)"/>
+  <circle cx="470" cy="118" r="10" fill="#43A047"/>
+  <text x="470" y="118" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="595" y="112" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#333333">变更失败率</text>
+  <text x="595" y="126" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">Change Failure Rate · 导致故障的部署比例</text>
+
+  <!-- Metric 4: 平均恢复时间 -->
+  <rect x="450" y="149" width="280" height="40" rx="6" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1" filter="url(#s1)"/>
+  <circle cx="470" cy="169" r="10" fill="#43A047"/>
+  <text x="470" y="169" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">4</text>
+  <text x="595" y="163" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#333333">平均恢复时间</text>
+  <text x="595" y="177" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">MTTR · 故障恢复时间</text>
+
+  <!-- Metric 5: 返工率 + 2025 新增 badge -->
+  <rect x="450" y="200" width="280" height="40" rx="6" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1" filter="url(#s1)"/>
+  <circle cx="470" cy="220" r="10" fill="#43A047"/>
+  <text x="470" y="220" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">5</text>
+  <text x="580" y="214" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#333333">返工率</text>
+  <text x="580" y="228" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#999999">Rework Rate · 非计划部署比例</text>
+  <rect x="675" y="203" width="50" height="14" rx="7" fill="#F57C00"/>
+  <text x="700" y="210" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="bold" fill="#FFFFFF">2025 新增</text>
+
+  <!-- ===== 交付效能 (Purple) ===== -->
+  <rect x="300" y="290" width="200" height="55" rx="8" fill="#7B1FA2" filter="url(#s1)"/>
+  <text x="400" y="308" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">交付效能</text>
+  <text x="400" y="326" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#F3E5F5">Delivery Performance</text>
+
+  <!-- ===== Level Labels ===== -->
+  <rect x="178" y="375" width="100" height="30" rx="4" fill="#2E7D32"/>
+  <text x="228" y="390" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">精英级</text>
+
+  <rect x="293" y="375" width="100" height="30" rx="4" fill="#66BB6A"/>
+  <text x="343" y="390" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">高效能</text>
+
+  <rect x="408" y="375" width="100" height="30" rx="4" fill="#FB8C00"/>
+  <text x="458" y="390" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">中等效能</text>
+
+  <rect x="523" y="375" width="100" height="30" rx="4" fill="#E53935"/>
+  <text x="573" y="390" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">低效能</text>
+
+  <!-- ===== Connection Lines (drawn last) ===== -->
+  <!-- Left group -> 交付效能 -->
+  <path d="M210,245 C210,270 360,270 360,290" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <!-- Right group -> 交付效能 -->
+  <path d="M590,245 C590,270 440,270 440,290" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <!-- 交付效能 -> Level labels -->
+  <path d="M400,345 L400,373" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg>

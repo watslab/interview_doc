@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 660" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahblue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahorange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+    <marker id="ahgreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="960" height="640" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H958 Q970,10 970,22 V50 H10 Z" fill="#37474F"/>
+  <text x="490" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">DPU 硬件卸载架构</text>
+
+  <!-- ====== Host CPU Block ====== -->
+  <rect x="40" y="70" width="300" height="560" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M40,78 Q40,70 48,70 H332 Q340,70 340,78 V100 H40 Z" fill="#1E88E5"/>
+  <text x="190" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Host CPU（主机）</text>
+
+  <!-- Business App -->
+  <rect x="70" y="125" width="240" height="100" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="190" y="155" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="700" fill="#1E88E5">业务应用</text>
+  <text x="190" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">Application Workload</text>
+  <text x="190" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">独占 CPU 算力</text>
+  <text x="190" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">无基础设施干扰</text>
+
+  <!-- Freed CPU -->
+  <rect x="70" y="245" width="240" height="100" rx="6" fill="#C8E6C9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="190" y="275" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="700" fill="#2E7D32">释放的 CPU 算力</text>
+  <text x="190" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">OVS / vRouter / Crypto</text>
+  <text x="190" y="316" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">存储虚拟化 / 网络策略</text>
+  <text x="190" y="334" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">→ 全部卸载至 DPU</text>
+
+  <!-- Offload note -->
+  <rect x="70" y="365" width="240" height="240" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="190" y="385" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1E88E5">卸载前 vs 卸载后</text>
+  <text x="190" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828" font-weight="600">卸载前（CPU 承担）</text>
+  <text x="190" y="428" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">vSwitch 数据面</text>
+  <text x="190" y="444" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">IPsec / TLS 加解密</text>
+  <text x="190" y="460" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">NVMe-oF / VirtIO</text>
+  <text x="190" y="476" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">网络策略 / 防火墙</text>
+  <line x1="100" y1="495" x2="280" y2="495" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="2,2"/>
+  <text x="190" y="515" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32" font-weight="600">卸载后（DPU 承担）</text>
+  <text x="190" y="533" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">CPU 100% 用于业务</text>
+  <text x="190" y="549" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">TCO 降低 ~30%</text>
+  <text x="190" y="565" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">性能提升 + 隔离增强</text>
+  <text x="190" y="585" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#555">零信任边界硬件隔离</text>
+
+  <!-- ====== DPU Block ====== -->
+  <rect x="460" y="70" width="490" height="560" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M460,78 Q460,70 468,70 H942 Q950,70 950,78 V100 H460 Z" fill="#F57C00"/>
+  <text x="705" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">DPU（数据处理单元）</text>
+
+  <!-- ARM Core Cluster -->
+  <rect x="490" y="125" width="430" height="120" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="705" y="148" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#F57C00">ARM Core 集群（控制平面）</text>
+  <text x="705" y="168" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">16–64 核 ARM Cortex / Neoverse</text>
+
+  <!-- 4 sub-boxes -->
+  <rect x="505" y="180" width="95" height="50" rx="4" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="552" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333">OVS / vRouter</text>
+  <text x="552" y="216" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#777">流表 / 隧道</text>
+
+  <rect x="610" y="180" width="95" height="50" rx="4" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="657" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333">SDN Agent</text>
+  <text x="657" y="216" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#777">控制平面</text>
+
+  <rect x="715" y="180" width="95" height="50" rx="4" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="762" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333">Storage Stack</text>
+  <text x="762" y="216" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#777">NVMe-oF</text>
+
+  <rect x="820" y="180" width="95" height="50" rx="4" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="867" y="198" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333">Security Agent</text>
+  <text x="867" y="216" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#777">策略 / 审计</text>
+
+  <!-- Hardware Accelerators -->
+  <rect x="490" y="260" width="430" height="160" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="705" y="283" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#F57C00">硬件加速引擎（数据平面卸载）</text>
+  <text x="705" y="302" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">可编程硬件管线 / DPU 流水线</text>
+
+  <!-- 6 accelerator boxes in 2 rows -->
+  <rect x="505" y="315" width="130" height="45" rx="4" fill="#FFB74D" stroke="#F57C00" stroke-width="1"/>
+  <text x="570" y="335" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#FFF">Crypto 引擎</text>
+  <text x="570" y="351" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#FFF3E0">IPsec / TLS / AES</text>
+
+  <rect x="645" y="315" width="130" height="45" rx="4" fill="#FFB74D" stroke="#F57C00" stroke-width="1"/>
+  <text x="710" y="335" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#FFF">压缩引擎</text>
+  <text x="710" y="351" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#FFF3E0">Deflate / Zstd</text>
+
+  <rect x="785" y="315" width="130" height="45" rx="4" fill="#FFB74D" stroke="#F57C00" stroke-width="1"/>
+  <text x="850" y="335" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#FFF">VirtIO 加速</text>
+  <text x="850" y="351" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#FFF3E0">vDPA / SR-IOV</text>
+
+  <rect x="505" y="370" width="130" height="45" rx="4" fill="#FFB74D" stroke="#F57C00" stroke-width="1"/>
+  <text x="570" y="390" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#FFF">OVS Offload</text>
+  <text x="570" y="406" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#FFF3E0">硬件流表</text>
+
+  <rect x="645" y="370" width="130" height="45" rx="4" fill="#FFB74D" stroke="#F57C00" stroke-width="1"/>
+  <text x="710" y="390" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#FFF">eBPF Offload</text>
+  <text x="710" y="406" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#FFF3E0">P4 / eBPF 硬件</text>
+
+  <rect x="785" y="370" width="130" height="45" rx="4" fill="#FFB74D" stroke="#F57C00" stroke-width="1"/>
+  <text x="850" y="390" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#FFF">存储虚拟化</text>
+  <text x="850" y="406" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#FFF3E0">NVMe-oF Target</text>
+
+  <!-- High-bandwidth NIC -->
+  <rect x="490" y="435" width="430" height="60" rx="6" fill="#FFE0B2" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="705" y="455" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#E65100">高带宽网络接口</text>
+  <text x="705" y="478" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">100 / 200 / 400 Gbps Ethernet + PCIe Gen5</text>
+
+  <!-- External Network/Storage -->
+  <rect x="490" y="515" width="210" height="55" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5"/>
+  <text x="595" y="535" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#37474F">外部网络</text>
+  <text x="595" y="555" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#777">数据中心 / WAN / Edge</text>
+
+  <rect x="710" y="515" width="210" height="55" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5"/>
+  <text x="815" y="535" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" fill="#37474F">分布式存储</text>
+  <text x="815" y="555" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#777">Ceph / NVMe-oF / S3</text>
+
+  <!-- Arrows: NIC -> external -->
+  <line x1="595" y1="495" x2="595" y2="513" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="815" y1="495" x2="815" y2="513" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- PCIe connection between Host and DPU -->
+  <line x1="340" y1="280" x2="455" y2="280" stroke="#37474F" stroke-width="3"/>
+  <line x1="340" y1="290" x2="455" y2="290" stroke="#37474F" stroke-width="3"/>
+  <rect x="355" y="265" width="90" height="40" rx="4" fill="#37474F"/>
+  <text x="400" y="280" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#FFFFFF">PCIe Gen5</text>
+  <text x="400" y="297" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#FFF">64 GB/s</text>
+
+  <!-- Offload arrow (Host Freed CPU -> DPU Hardware Accelerators) -->
+  <line x1="310" y1="295" x2="487" y2="340" stroke="#F57C00" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#ahorange)"/>
+  <rect x="360" y="355" width="80" height="22" rx="3" fill="#F57C00"/>
+  <text x="400" y="366" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#FFFFFF">硬件卸载</text>
+
+  <!-- DPU examples -->
+  <rect x="490" y="595" width="430" height="30" rx="4" fill="#FFFFFF" stroke="#F57C00" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="705" y="610" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">典型代表：NVIDIA BlueField-3 / AWS Nitro / AMD Pensando / Intel IPU</text>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow2"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="680" height="400" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="350" y="35" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="#263238">CI/CD 工具全景</text>
+
+  <!-- Column 1: CI 引擎 (blue) -->
+  <rect x="30" y="60" width="190" height="340" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#shadow2)"/>
+  <path d="M38,60 H212 Q220,60 220,68 V100 H30 V68 Q30,60 38,60 Z" fill="#1E88E5"/>
+  <text x="125" y="80" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">CI 引擎</text>
+
+  <!-- Column 2: CD 工具 (green) -->
+  <rect x="255" y="60" width="190" height="340" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#shadow2)"/>
+  <path d="M263,60 H437 Q445,60 445,68 V100 H255 V68 Q255,60 263,60 Z" fill="#43A047"/>
+  <text x="350" y="80" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">CD 工具</text>
+
+  <!-- Column 3: 一体化平台 (purple) -->
+  <rect x="480" y="60" width="190" height="340" rx="8" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5" filter="url(#shadow2)"/>
+  <path d="M488,60 H662 Q670,60 670,68 V100 H480 V68 Q480,60 488,60 Z" fill="#7B1FA2"/>
+  <text x="575" y="80" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">一体化平台</text>
+
+  <!-- CI 引擎 tool cards (5 cards) -->
+  <rect x="40" y="105" width="170" height="50" rx="4" fill="#F5F9FF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="125" y="123" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Jenkins</text>
+  <text x="125" y="140" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">插件生态丰富</text>
+
+  <rect x="40" y="165" width="170" height="50" rx="4" fill="#F5F9FF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="125" y="183" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">GitHub Actions</text>
+  <text x="125" y="200" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">GitHub 原生集成</text>
+
+  <rect x="40" y="225" width="170" height="50" rx="4" fill="#F5F9FF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="125" y="243" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">GitLab CI</text>
+  <text x="125" y="260" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">GitLab 内置 CI</text>
+
+  <rect x="40" y="285" width="170" height="50" rx="4" fill="#F5F9FF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="125" y="303" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Tekton</text>
+  <text x="125" y="320" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Kubernetes 原生</text>
+
+  <rect x="40" y="345" width="170" height="50" rx="4" fill="#F5F9FF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="125" y="363" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">CircleCI</text>
+  <text x="125" y="380" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">云原生 SaaS</text>
+
+  <!-- CD 工具 tool cards (3 cards, centered) -->
+  <rect x="265" y="165" width="170" height="50" rx="4" fill="#F1F8F2" stroke="#66BB6A" stroke-width="1"/>
+  <text x="350" y="183" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2E7D32">ArgoCD</text>
+  <text x="350" y="200" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">GitOps 持续部署</text>
+
+  <rect x="265" y="225" width="170" height="50" rx="4" fill="#F1F8F2" stroke="#66BB6A" stroke-width="1"/>
+  <text x="350" y="243" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2E7D32">Flux</text>
+  <text x="350" y="260" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">GitOps 自动化</text>
+
+  <rect x="265" y="285" width="170" height="50" rx="4" fill="#F1F8F2" stroke="#66BB6A" stroke-width="1"/>
+  <text x="350" y="303" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2E7D32">Spinnaker</text>
+  <text x="350" y="320" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">多云持续交付</text>
+
+  <!-- 一体化平台 tool cards (2 cards, centered) -->
+  <rect x="490" y="195" width="170" height="50" rx="4" fill="#FAF4FC" stroke="#AB47BC" stroke-width="1"/>
+  <text x="575" y="213" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#6A1B9A">Azure DevOps</text>
+  <text x="575" y="230" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">微软一体化平台</text>
+
+  <rect x="490" y="255" width="170" height="50" rx="4" fill="#FAF4FC" stroke="#AB47BC" stroke-width="1"/>
+  <text x="575" y="273" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#6A1B9A">Drone</text>
+  <text x="575" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">轻量容器化</text>
+</svg>

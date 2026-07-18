@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="460" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">Service Mesh 演进：Sidecar → Ambient → eBPF</text>
+
+  <!-- 三列对比 -->
+  <!-- Sidecar -->
+  <rect x="40" y="68" width="270" height="320" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,68 H302 Q310,68 310,76 V96 H40 V76 Q40,68 48,68Z" fill="#1E88E5"/>
+  <text x="175" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">Sidecar 模式</text>
+  <text x="175" y="116" text-anchor="middle" font-size="11" fill="#546E7A">代表：Istio(sidecar) · Linkerd</text>
+  <!-- Pod -->
+  <rect x="60" y="132" width="230" height="80" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="175" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">Pod</text>
+  <rect x="74" y="158" width="100" height="42" rx="4" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <text x="124" y="183" text-anchor="middle" font-size="10" fill="#1565C0">App 容器</text>
+  <rect x="184" y="158" width="96" height="42" rx="4" fill="#BBDEFB" stroke="#42A5F5" stroke-width="1"/>
+  <text x="232" y="183" text-anchor="middle" font-size="10" font-weight="600" fill="#0D47A1">Envoy</text>
+  <text x="175" y="234" text-anchor="middle" font-size="10" fill="#90A4AE">每 Pod 注入代理，iptables 拦截</text>
+  <rect x="60" y="250" width="230" height="120" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="175" y="270" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">特征</text>
+  <text x="70" y="290" font-size="10" fill="#546E7A">• 资源开销：per-Pod，最重</text>
+  <text x="70" y="308" font-size="10" fill="#546E7A">• 启动顺序：依赖 init 注入</text>
+  <text x="70" y="326" font-size="10" fill="#546E7A">• 升级：需重启 Pod</text>
+  <text x="70" y="344" font-size="10" fill="#546E7A">• 成熟度：最成熟，L7 全覆盖</text>
+  <text x="70" y="362" font-size="10" fill="#546E7A">• 调试：复杂（双跳代理）</text>
+
+  <!-- Ambient -->
+  <rect x="330" y="68" width="270" height="320" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M338,68 H592 Q600,68 600,76 V96 H330 V76 Q330,68 338,68Z" fill="#F57C00"/>
+  <text x="465" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">Ambient 模式（L4+L7 分离）</text>
+  <text x="465" y="116" text-anchor="middle" font-size="11" fill="#546E7A">代表：Istio Ambient（1.22 GA）</text>
+  <rect x="350" y="132" width="230" height="80" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="465" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#E65100">每节点 + 按需</text>
+  <rect x="360" y="158" width="100" height="42" rx="4" fill="#FFE0B2" stroke="#FFA726" stroke-width="1"/>
+  <text x="410" y="183" text-anchor="middle" font-size="10" font-weight="600" fill="#BF360C">ztunnel</text>
+  <rect x="470" y="158" width="100" height="42" rx="4" fill="#FFCC80" stroke="#FB8C00" stroke-width="1"/>
+  <text x="520" y="183" text-anchor="middle" font-size="10" font-weight="600" fill="#BF360C">waypoint</text>
+  <text x="465" y="234" text-anchor="middle" font-size="10" fill="#90A4AE">L4 全覆盖（Rust），L7 按需部署</text>
+  <rect x="350" y="250" width="230" height="120" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="465" y="270" text-anchor="middle" font-size="11" font-weight="600" fill="#E65100">特征</text>
+  <text x="360" y="290" font-size="10" fill="#546E7A">• 资源开销：去除 per-Pod sidecar</text>
+  <text x="360" y="308" font-size="10" fill="#546E7A">• 升级：独立升级，不重启 Pod</text>
+  <text x="360" y="326" font-size="10" fill="#546E7A">• 协议：HBONE（HTTP/2 CONNECT）</text>
+  <text x="360" y="344" font-size="10" fill="#546E7A">• 无启动顺序/无 NET_ADMIN</text>
+  <text x="360" y="362" font-size="10" fill="#546E7A">• L7 无零停机迁移路径</text>
+
+  <!-- eBPF -->
+  <rect x="620" y="68" width="250" height="320" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M628,68 H862 Q870,68 870,76 V96 H620 V76 Q620,68 628,68Z" fill="#43A047"/>
+  <text x="745" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">eBPF 模式（无 sidecar）</text>
+  <text x="745" y="116" text-anchor="middle" font-size="11" fill="#546E7A">代表：Cilium Service Mesh</text>
+  <rect x="640" y="132" width="210" height="80" rx="6" fill="#FFF" stroke="#66BB6A" stroke-width="1"/>
+  <text x="745" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">内核态</text>
+  <rect x="654" y="158" width="90" height="42" rx="4" fill="#C8E6C9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="699" y="183" text-anchor="middle" font-size="10" font-weight="600" fill="#1B5E20">eBPF</text>
+  <rect x="754" y="158" width="86" height="42" rx="4" fill="#A5D6A7" stroke="#43A047" stroke-width="1"/>
+  <text x="797" y="183" text-anchor="middle" font-size="10" font-weight="600" fill="#1B5E20">Envoy</text>
+  <text x="745" y="234" text-anchor="middle" font-size="10" fill="#90A4AE">L3/L4 内核处理，L7 共享 Envoy</text>
+  <rect x="640" y="250" width="210" height="120" rx="6" fill="#FFF" stroke="#66BB6A" stroke-width="1"/>
+  <text x="745" y="270" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">特征</text>
+  <text x="650" y="290" font-size="10" fill="#546E7A">• 资源开销：最低（~50%↓）</text>
+  <text x="650" y="308" font-size="10" fill="#546E7A">• 延迟：内核级，无上下文切换</text>
+  <text x="650" y="326" font-size="10" fill="#546E7A">• 无启动顺序问题</text>
+  <text x="650" y="344" font-size="10" fill="#546E7A">• 与 CNI/内核强绑定</text>
+  <text x="650" y="362" font-size="10" fill="#546E7A">• L7 受 eBPF 能力限制</text>
+
+  <!-- 演进箭头 -->
+  <line x1="312" y1="400" x2="328" y2="400" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="602" y1="400" x2="618" y2="400" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="450" y="430" text-anchor="middle" font-size="11" fill="#546E7A">趋势：资源开销递减 · 运维简化 · 与内核/CNI 耦合递增</text>
+  <text x="450" y="450" text-anchor="middle" font-size="11" fill="#90A4AE">行业整合：Cisco 收购 Isovalent(Cilium) · OSM/App Mesh sunset · Linkerd 稳定版付费</text>
+</svg>

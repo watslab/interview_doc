@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahd" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="600" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="44" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">SDN 三层架构</text>
+
+  <!-- 应用层 -->
+  <rect x="70" y="70" width="760" height="120" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,70 H822 Q830,70 830,78 V98 H70 V78 Q70,70 78,70Z" fill="#43A047"/>
+  <text x="450" y="88" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">应用层（Application Layer）— 网络应用与业务逻辑</text>
+  <rect x="110" y="115" width="200" height="55" rx="6" fill="#FFF" stroke="#66BB6A" stroke-width="1"/>
+  <text x="210" y="138" text-anchor="middle" font-size="13" font-weight="600" fill="#2E7D32">网络虚拟化</text>
+  <text x="210" y="156" text-anchor="middle" font-size="10" fill="#757575">多租户隔离 / Overlay</text>
+  <rect x="350" y="115" width="200" height="55" rx="6" fill="#FFF" stroke="#66BB6A" stroke-width="1"/>
+  <text x="450" y="138" text-anchor="middle" font-size="13" font-weight="600" fill="#2E7D32">负载均衡</text>
+  <text x="450" y="156" text-anchor="middle" font-size="10" fill="#757575">流量调度 / QoS</text>
+  <rect x="590" y="115" width="200" height="55" rx="6" fill="#FFF" stroke="#66BB6A" stroke-width="1"/>
+  <text x="690" y="138" text-anchor="middle" font-size="13" font-weight="600" fill="#2E7D32">流量工程</text>
+  <text x="690" y="156" text-anchor="middle" font-size="10" fill="#757575">路径优化 / 安全策略</text>
+
+  <!-- 北向 API -->
+  <line x1="442" y1="198" x2="442" y2="226" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="458" y1="226" x2="458" y2="198" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="380" y="216" text-anchor="end" font-size="11" font-weight="600" fill="#546E7A">北向 API</text>
+  <text x="475" y="216" font-size="10" fill="#90A4AE">REST / RESTCONF（应用 ↔ 控制器）</text>
+
+  <!-- 控制层 -->
+  <rect x="70" y="230" width="760" height="140" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,230 H822 Q830,230 830,238 V258 H70 V238 Q70,230 78,230Z" fill="#1E88E5"/>
+  <text x="450" y="248" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">控制层（Control Layer）— SDN 控制器（网络操作系统）</text>
+  <rect x="110" y="278" width="680" height="76" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="450" y="300" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">SDN 控制器（集中式网络智能）</text>
+  <text x="450" y="320" text-anchor="middle" font-size="11" fill="#546E7A">全局网络视图 · 路径计算 · 策略下发 · 状态维护</text>
+  <text x="450" y="340" text-anchor="middle" font-size="10" fill="#90A4AE">代表实现：OpenDaylight · ONOS · Ryu · Floodlight</text>
+
+  <!-- 南向 API -->
+  <line x1="442" y1="378" x2="442" y2="406" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="458" y1="406" x2="458" y2="378" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="380" y="396" text-anchor="end" font-size="11" font-weight="600" fill="#546E7A">南向 API</text>
+  <text x="475" y="396" font-size="10" fill="#90A4AE">OpenFlow · P4 · OVSDB · NETCONF（控制器 ↔ 设备）</text>
+
+  <!-- 基础设施层 -->
+  <rect x="70" y="410" width="760" height="140" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,410 H822 Q830,410 830,418 V438 H70 V418 Q70,410 78,410Z" fill="#546E7A"/>
+  <text x="450" y="428" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">基础设施层（Infrastructure Layer）— 数据平面（转发设备）</text>
+  <rect x="100" y="458" width="160" height="70" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1"/>
+  <text x="180" y="484" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">交换机</text>
+  <text x="180" y="504" text-anchor="middle" font-size="10" fill="#90A4AE">流表匹配转发</text>
+  <rect x="290" y="458" width="160" height="70" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1"/>
+  <text x="370" y="484" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">路由器</text>
+  <text x="370" y="504" text-anchor="middle" font-size="10" fill="#90A4AE">三层转发</text>
+  <rect x="480" y="458" width="160" height="70" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1"/>
+  <text x="560" y="484" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">白盒交换机</text>
+  <text x="560" y="504" text-anchor="middle" font-size="10" fill="#90A4AE">软硬解耦 / SONiC</text>
+  <rect x="670" y="458" width="160" height="70" rx="6" fill="#FFF" stroke="#90A4AE" stroke-width="1"/>
+  <text x="750" y="484" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">虚拟交换机</text>
+  <text x="750" y="504" text-anchor="middle" font-size="10" fill="#90A4AE">OVS / vSwitch</text>
+
+  <text x="450" y="582" text-anchor="middle" font-size="11" fill="#90A4AE">三大核心特征：转控分离 · 逻辑集中控制 · 开放可编程接口</text>
+</svg>

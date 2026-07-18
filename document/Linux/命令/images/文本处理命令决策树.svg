@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 700" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="640" height="680" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- ============ Start node ============ -->
+  <g filter="url(#s1)">
+    <rect x="140" y="30" width="200" height="50" rx="25" fill="#43A047" stroke="#2E7D32" stroke-width="1"/>
+  </g>
+  <text x="240" y="55" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" dominant-baseline="central">需要处理文本？</text>
+
+  <!-- ============ Decision diamonds ============ -->
+  <!-- D1 -->
+  <g filter="url(#s1)">
+    <path d="M240,110 L340,150 L240,190 L140,150 Z" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1.2"/>
+  </g>
+  <text x="240" y="150" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">只是查看内容？</text>
+
+  <!-- D2 -->
+  <g filter="url(#s1)">
+    <path d="M240,230 L340,270 L240,310 L140,270 Z" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1.2"/>
+  </g>
+  <text x="240" y="270" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">只是过滤匹配行？</text>
+
+  <!-- D3 -->
+  <g filter="url(#s1)">
+    <path d="M240,350 L340,390 L240,430 L140,390 Z" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1.2"/>
+  </g>
+  <text x="240" y="390" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">需要编辑/替换？</text>
+
+  <!-- D4 -->
+  <g filter="url(#s1)">
+    <path d="M240,470 L340,510 L240,550 L140,510 Z" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1.2"/>
+  </g>
+  <text x="240" y="510" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">需要按字段处理？</text>
+
+  <!-- D5 -->
+  <g filter="url(#s1)">
+    <path d="M240,590 L340,630 L240,670 L140,630 Z" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1.2"/>
+  </g>
+  <text x="240" y="630" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">需要排序/去重/截取？</text>
+
+  <!-- ============ Command rectangles ============ -->
+  <g filter="url(#s1)">
+    <rect x="400" y="130" width="240" height="40" rx="6" fill="#fff" stroke="#43A047" stroke-width="1.2"/>
+    <text x="520" y="150" text-anchor="middle" fill="#1B5E20" font-size="13" font-weight="600" dominant-baseline="central">cat / less / head / tail</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="400" y="250" width="240" height="40" rx="6" fill="#fff" stroke="#43A047" stroke-width="1.2"/>
+    <text x="520" y="270" text-anchor="middle" fill="#1B5E20" font-size="13" font-weight="600" dominant-baseline="central">grep</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="400" y="370" width="240" height="40" rx="6" fill="#fff" stroke="#43A047" stroke-width="1.2"/>
+    <text x="520" y="390" text-anchor="middle" fill="#1B5E20" font-size="13" font-weight="600" dominant-baseline="central">sed</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="400" y="490" width="240" height="40" rx="6" fill="#fff" stroke="#43A047" stroke-width="1.2"/>
+    <text x="520" y="510" text-anchor="middle" fill="#1B5E20" font-size="13" font-weight="600" dominant-baseline="central">awk</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="400" y="610" width="240" height="40" rx="6" fill="#fff" stroke="#43A047" stroke-width="1.2"/>
+    <text x="520" y="630" text-anchor="middle" fill="#1B5E20" font-size="13" font-weight="600" dominant-baseline="central">sort / uniq / cut / tr</text>
+  </g>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <!-- Start -> D1 -->
+  <line x1="240" y1="80" x2="240" y2="110" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- D1 是 -> Cmd1 -->
+  <line x1="340" y1="150" x2="400" y2="150" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="370" y="141" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">是</text>
+  <!-- D1 否 -> D2 -->
+  <line x1="240" y1="190" x2="240" y2="230" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="255" y="210" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">否</text>
+
+  <!-- D2 是 -> Cmd2 -->
+  <line x1="340" y1="270" x2="400" y2="270" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="370" y="261" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">是</text>
+  <!-- D2 否 -> D3 -->
+  <line x1="240" y1="310" x2="240" y2="350" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="255" y="330" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">否</text>
+
+  <!-- D3 是 -> Cmd3 -->
+  <line x1="340" y1="390" x2="400" y2="390" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="370" y="381" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">是</text>
+  <!-- D3 否 -> D4 -->
+  <line x1="240" y1="430" x2="240" y2="470" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="255" y="450" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">否</text>
+
+  <!-- D4 是 -> Cmd4 -->
+  <line x1="340" y1="510" x2="400" y2="510" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="370" y="501" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">是</text>
+  <!-- D4 否 -> D5 -->
+  <line x1="240" y1="550" x2="240" y2="590" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="255" y="570" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">否</text>
+
+  <!-- D5 是 -> Cmd5 -->
+  <line x1="340" y1="630" x2="400" y2="630" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="370" y="621" text-anchor="middle" fill="#2E7D32" font-size="11" font-weight="600" dominant-baseline="central">是</text>
+</svg>

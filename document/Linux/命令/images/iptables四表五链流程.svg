@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="1180" height="700" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="600" y="38" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">iptables 四表五链与数据包流转</text>
+
+  <!-- 网卡入口 -->
+  <rect x="540" y="58" width="160" height="34" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="620" y="78" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">数据包进入网卡</text>
+  <line x1="620" y1="92" x2="620" y2="111" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- PREROUTING 链 -->
+  <rect x="520" y="115" width="200" height="42" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="620" y="140" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">PREROUTING（路由前）</text>
+  <!-- PREROUTING 表标注 -->
+  <rect x="730" y="113" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="759" y="122" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">raw</text>
+  <rect x="730" y="129" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="759" y="138" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">mangle</text>
+  <rect x="730" y="145" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="759" y="154" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">nat</text>
+  <line x1="620" y1="157" x2="620" y2="181" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 路由判断菱形 -->
+  <polygon points="620,185 715,220 620,255 525,220" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="620" y="214" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">目标是本机？</text>
+  <text x="620" y="230" text-anchor="middle" font-size="10" fill="#EF6C00">（路由判断）</text>
+
+  <!-- 路径A：到本机 -->
+  <path d="M525,220 C 420,220 290,220 290,276" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="400" y="206" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">是 · 路径A（到本机）</text>
+
+  <!-- 路径B：转发 -->
+  <path d="M715,220 C 820,220 920,220 920,276" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="820" y="206" text-anchor="middle" font-size="10" font-weight="600" fill="#1565C0">否 · 路径B（转发）</text>
+
+  <!-- INPUT 链 -->
+  <rect x="190" y="280" width="200" height="42" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="290" y="305" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">INPUT（入站）</text>
+  <rect x="400" y="286" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="429" y="295" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">mangle</text>
+  <rect x="400" y="302" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="429" y="311" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">filter</text>
+  <line x1="290" y1="322" x2="290" y2="356" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 本机进程 -->
+  <rect x="210" y="360" width="160" height="42" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="290" y="385" text-anchor="middle" font-size="13" font-weight="600" fill="#2E7D32">本机进程</text>
+  <line x1="290" y1="402" x2="290" y2="436" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- OUTPUT 链 -->
+  <rect x="190" y="440" width="200" height="42" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="290" y="465" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">OUTPUT（出站）</text>
+  <rect x="400" y="430" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="429" y="439" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">raw</text>
+  <rect x="400" y="446" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="429" y="455" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">mangle</text>
+  <rect x="400" y="462" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="429" y="471" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">nat</text>
+  <rect x="400" y="478" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="429" y="487" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">filter</text>
+
+  <!-- FORWARD 链 -->
+  <rect x="820" y="280" width="200" height="42" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="920" y="305" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">FORWARD（转发）</text>
+  <rect x="752" y="286" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="781" y="295" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">mangle</text>
+  <rect x="752" y="302" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="781" y="311" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">filter</text>
+
+  <!-- OUTPUT → POSTROUTING -->
+  <path d="M290,482 C 290,530 600,530 600,536" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <!-- FORWARD → POSTROUTING -->
+  <path d="M920,322 C 920,530 640,530 640,536" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- POSTROUTING 链 -->
+  <rect x="520" y="540" width="200" height="42" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="620" y="565" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">POSTROUTING（路由后）</text>
+  <rect x="730" y="546" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="759" y="555" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">mangle</text>
+  <rect x="730" y="562" width="58" height="14" rx="3" fill="#FFF3E0" stroke="#FB8C00" stroke-width="0.8"/>
+  <text x="759" y="571" text-anchor="middle" font-size="9" font-weight="600" fill="#E65100">nat</text>
+  <line x1="620" y1="582" x2="620" y2="606" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 流出网卡 -->
+  <rect x="540" y="610" width="160" height="34" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="620" y="630" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">数据包流出网卡</text>
+
+  <!-- 丢弃路径（红色虚线） -->
+  <path d="M190,301 C 95,301 95,450 95,601" fill="none" stroke="#E53935" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ahr)"/>
+  <text x="150" y="455" text-anchor="middle" font-size="10" font-weight="600" fill="#C62828">filter 表</text>
+  <text x="150" y="469" text-anchor="middle" font-size="10" font-weight="600" fill="#C62828">DROP</text>
+  <rect x="30" y="605" width="130" height="40" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="95" y="629" text-anchor="middle" font-size="12" font-weight="600" fill="#C62828">DROP / 丢弃</text>
+
+  <path d="M1020,301 C 1105,301 1105,450 1105,601" fill="none" stroke="#E53935" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ahr)"/>
+  <text x="1050" y="455" text-anchor="middle" font-size="10" font-weight="600" fill="#C62828">filter 表</text>
+  <text x="1050" y="469" text-anchor="middle" font-size="10" font-weight="600" fill="#C62828">DROP</text>
+  <rect x="1040" y="605" width="130" height="40" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1105" y="629" text-anchor="middle" font-size="12" font-weight="600" fill="#C62828">DROP / 丢弃</text>
+
+  <!-- 表优先级图例 -->
+  <rect x="360" y="666" width="480" height="30" rx="4" fill="#FFF8E1" stroke="#FFB74D" stroke-width="1"/>
+  <text x="600" y="685" text-anchor="middle" font-size="11" font-weight="600" fill="#E65100">表优先级（高 → 低）：raw &gt; mangle &gt; nat &gt; filter</text>
+</svg>

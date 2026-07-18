@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 540" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="900" height="520" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="460" y="33" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#333">Linux 目录树结构（FHS 3.0）</text>
+
+  <!-- Root box -->
+  <rect x="380" y="50" width="160" height="50" rx="8" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="460" y="68" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="white">/</text>
+  <text x="460" y="87" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#E3F2FD">根目录 (root)</text>
+
+  <!-- Arrow root -> container -->
+  <line x1="460" y1="100" x2="460" y2="118" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Container -->
+  <rect x="20" y="120" width="880" height="400" rx="10" fill="#F1F8E9" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M30,120 H890 Q900,120 900,130 V150 H20 V130 Q20,120 30,120Z" fill="#43A047"/>
+  <text x="460" y="135" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">FHS 3.0 标准一级目录（共 16 个）</text>
+
+  <!-- Row 1 -->
+  <rect x="70" y="163" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M76,163 H244 Q250,163 250,169 V189 H70 V169 Q70,163 76,163Z" fill="#43A047"/>
+  <text x="160" y="176" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/bin</text>
+  <text x="160" y="211" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">基本命令</text>
+
+  <rect x="270" y="163" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M276,163 H444 Q450,163 450,169 V189 H270 V169 Q270,163 276,163Z" fill="#43A047"/>
+  <text x="360" y="176" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/sbin</text>
+  <text x="360" y="211" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">系统管理命令</text>
+
+  <rect x="470" y="163" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M476,163 H644 Q650,163 650,169 V189 H470 V169 Q470,163 476,163Z" fill="#43A047"/>
+  <text x="560" y="176" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/etc</text>
+  <text x="560" y="211" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">配置文件</text>
+
+  <rect x="670" y="163" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M676,163 H844 Q850,163 850,169 V189 H670 V169 Q670,163 676,163Z" fill="#43A047"/>
+  <text x="760" y="176" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/home</text>
+  <text x="760" y="211" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">用户主目录</text>
+
+  <!-- Row 2 -->
+  <rect x="70" y="251" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M76,251 H244 Q250,251 250,257 V277 H70 V257 Q70,251 76,251Z" fill="#43A047"/>
+  <text x="160" y="264" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/root</text>
+  <text x="160" y="299" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">管理员主目录</text>
+
+  <rect x="270" y="251" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M276,251 H444 Q450,251 450,257 V277 H270 V257 Q270,251 276,251Z" fill="#43A047"/>
+  <text x="360" y="264" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/var</text>
+  <text x="360" y="299" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">可变数据</text>
+
+  <rect x="470" y="251" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M476,251 H644 Q650,251 650,257 V277 H470 V257 Q470,251 476,251Z" fill="#43A047"/>
+  <text x="560" y="264" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/usr</text>
+  <text x="560" y="299" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">用户程序与资源</text>
+
+  <rect x="670" y="251" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M676,251 H844 Q850,251 850,257 V277 H670 V257 Q670,251 676,251Z" fill="#43A047"/>
+  <text x="760" y="264" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/tmp</text>
+  <text x="760" y="299" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">临时文件</text>
+
+  <!-- Row 3 -->
+  <rect x="70" y="339" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M76,339 H244 Q250,339 250,345 V365 H70 V345 Q70,339 76,339Z" fill="#43A047"/>
+  <text x="160" y="352" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/proc</text>
+  <text x="160" y="387" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">进程与内核信息</text>
+
+  <rect x="270" y="339" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M276,339 H444 Q450,339 450,345 V365 H270 V345 Q270,339 276,339Z" fill="#43A047"/>
+  <text x="360" y="352" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/sys</text>
+  <text x="360" y="387" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">设备与内核模型</text>
+
+  <rect x="470" y="339" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M476,339 H644 Q650,339 650,345 V365 H470 V345 Q470,339 476,339Z" fill="#43A047"/>
+  <text x="560" y="352" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/dev</text>
+  <text x="560" y="387" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">设备文件</text>
+
+  <rect x="670" y="339" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M676,339 H844 Q850,339 850,345 V365 H670 V345 Q670,339 676,339Z" fill="#43A047"/>
+  <text x="760" y="352" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/opt</text>
+  <text x="760" y="387" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">第三方软件</text>
+
+  <!-- Row 4 -->
+  <rect x="70" y="427" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M76,427 H244 Q250,427 250,433 V453 H70 V433 Q70,427 76,427Z" fill="#43A047"/>
+  <text x="160" y="440" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/mnt</text>
+  <text x="160" y="475" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">临时挂载点</text>
+
+  <rect x="270" y="427" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M276,427 H444 Q450,427 450,433 V453 H270 V433 Q270,427 276,427Z" fill="#43A047"/>
+  <text x="360" y="440" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/media</text>
+  <text x="360" y="475" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">可移动介质</text>
+
+  <rect x="470" y="427" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M476,427 H644 Q650,427 650,433 V453 H470 V433 Q470,427 476,427Z" fill="#43A047"/>
+  <text x="560" y="440" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/boot</text>
+  <text x="560" y="475" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">启动文件</text>
+
+  <rect x="670" y="427" width="180" height="70" rx="6" fill="white" stroke="#66BB6A" stroke-width="1"/>
+  <path d="M676,427 H844 Q850,427 850,433 V453 H670 V433 Q670,427 676,427Z" fill="#43A047"/>
+  <text x="760" y="440" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="white">/lib</text>
+  <text x="760" y="475" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">共享库</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="520" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="44" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">SDN 与 NFV 的关系：互补而非替代</text>
+
+  <!-- SDN 列 -->
+  <rect x="60" y="70" width="370" height="300" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M68,70 H422 Q430,70 430,78 V100 H60 V78 Q60,70 68,70Z" fill="#1E88E5"/>
+  <text x="245" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">SDN — 网络架构革新</text>
+  <rect x="80" y="118" width="330" height="56" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="245" y="140" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">关注对象：网络本身（连接控制方式）</text>
+  <text x="245" y="160" text-anchor="middle" font-size="10" fill="#90A4AE">控制平面与数据平面解耦</text>
+  <rect x="80" y="186" width="330" height="56" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="245" y="208" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">核心技术：OpenFlow · P4 · 控制器</text>
+  <text x="245" y="228" text-anchor="middle" font-size="10" fill="#90A4AE">集中式网络操作系统 + 可编程数据面</text>
+  <rect x="80" y="254" width="330" height="56" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="245" y="276" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">解决问题：流量拥塞 · 厂商锁定</text>
+  <text x="245" y="296" text-anchor="middle" font-size="10" fill="#90A4AE">全局流量工程 · 白盒化</text>
+  <text x="245" y="346" text-anchor="middle" font-size="11" fill="#546E7A">标准组织：ONF · IETF · Linux Foundation</text>
+
+  <!-- NFV 列 -->
+  <rect x="470" y="70" width="370" height="300" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M478,70 H832 Q840,70 840,78 V100 H470 V78 Q470,70 478,70Z" fill="#F57C00"/>
+  <text x="655" y="90" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">NFV — 网元形态革新</text>
+  <rect x="490" y="118" width="330" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="655" y="140" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">关注对象：网络功能（部署形态）</text>
+  <text x="655" y="160" text-anchor="middle" font-size="10" fill="#90A4AE">软硬件解耦 · 功能软件化</text>
+  <rect x="490" y="186" width="330" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="655" y="208" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">核心技术：VNF/CNF · MANO</text>
+  <text x="655" y="228" text-anchor="middle" font-size="10" fill="#90A4AE">NFVO / VNFM / VIM + 通用服务器</text>
+  <rect x="490" y="254" width="330" height="56" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="655" y="276" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">解决问题：专用硬件 · CAPEX/OPEX</text>
+  <text x="655" y="296" text-anchor="middle" font-size="10" fill="#90A4AE">弹性伸缩 · 快速业务上线</text>
+  <text x="655" y="346" text-anchor="middle" font-size="11" fill="#546E7A">标准组织：ETSI ISG NFV · 3GPP</text>
+
+  <!-- 协同箭头 -->
+  <path d="M245,370 C245,400 350,410 430,420" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M655,370 C655,400 550,410 470,420" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- 协同应用 -->
+  <rect x="200" y="424" width="500" height="86" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M208,424 H692 Q700,424 700,432 V452 H200 V432 Q200,424 208,424Z" fill="#43A047"/>
+  <text x="450" y="444" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFF">协同：NFV 提供功能，SDN 提供可编程连接</text>
+  <rect x="220" y="462" width="210" height="36" rx="6" fill="#FFF" stroke="#66BB6A" stroke-width="1"/>
+  <text x="325" y="485" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">5G 网络切片</text>
+  <rect x="450" y="462" width="230" height="36" rx="6" fill="#FFF" stroke="#66BB6A" stroke-width="1"/>
+  <text x="565" y="485" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">Service Chaining（业务链）</text>
+</svg>

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 570" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="880" height="550" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="450" y="33" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#333">Linux 权限位结构</text>
+
+  <!-- ============ Group labels ============ -->
+  <rect x="55" y="50" width="70" height="26" rx="5" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1"/>
+  <text x="90" y="63" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#546E7A">文件类型</text>
+  <rect x="135" y="50" width="230" height="26" rx="5" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="250" y="63" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">所有者权限</text>
+  <rect x="375" y="50" width="230" height="26" rx="5" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="490" y="63" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">所属组权限</text>
+  <rect x="615" y="50" width="230" height="26" rx="5" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="730" y="63" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">其他用户权限</text>
+
+  <!-- ============ 10 permission bit boxes ============ -->
+  <!-- bit0: file type -->
+  <rect x="55" y="90" width="70" height="70" rx="6" fill="#1565C0" filter="url(#s1)"/>
+  <text x="90" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">-</text>
+  <text x="90" y="180" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">类型</text>
+
+  <!-- bits 1-3: owner rwx -->
+  <rect x="135" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="170" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">r</text>
+  <text x="170" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">4</text>
+
+  <rect x="215" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="250" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">w</text>
+  <text x="250" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">2</text>
+
+  <rect x="295" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="330" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">x</text>
+  <text x="330" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">1</text>
+
+  <!-- bits 4-6: group rwx -->
+  <rect x="375" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="410" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">r</text>
+  <text x="410" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">4</text>
+
+  <rect x="455" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="490" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">w</text>
+  <text x="490" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">2</text>
+
+  <rect x="535" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="570" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">x</text>
+  <text x="570" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">1</text>
+
+  <!-- bits 7-9: others rwx -->
+  <rect x="615" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="650" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">r</text>
+  <text x="650" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">4</text>
+
+  <rect x="695" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="730" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">w</text>
+  <text x="730" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">2</text>
+
+  <rect x="775" y="90" width="70" height="70" rx="6" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="810" y="125" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="white">x</text>
+  <text x="810" y="180" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">1</text>
+
+  <!-- numeric annotation -->
+  <text x="450" y="205" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">数字标注：r = 4（read），w = 2（write），x = 1（execute）</text>
+
+  <!-- ============ Numeric calculation examples ============ -->
+  <text x="450" y="230" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#333">数字法计算示例</text>
+
+  <rect x="105" y="245" width="230" height="44" rx="6" fill="white" stroke="#FFB74D" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="220" y="267" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">rwx = 4+2+1 = <tspan fill="#F57C00" font-weight="bold">7</tspan></text>
+
+  <rect x="355" y="245" width="210" height="44" rx="6" fill="white" stroke="#FFB74D" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="460" y="267" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">r-x = 4+0+1 = <tspan fill="#F57C00" font-weight="bold">5</tspan></text>
+
+  <rect x="585" y="245" width="210" height="44" rx="6" fill="white" stroke="#FFB74D" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="690" y="267" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">rw- = 4+2+0 = <tspan fill="#F57C00" font-weight="bold">6</tspan></text>
+
+  <rect x="105" y="300" width="690" height="36" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.2"/>
+  <text x="450" y="318" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#E65100">示例：rwxr-xr-x → 7（所有者）+ 5（所属组）+ 5（其他）= 755</text>
+
+  <!-- ============ Special permission bits ============ -->
+  <text x="450" y="358" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#C62828">特殊权限位（SUID / SGID / Sticky）</text>
+
+  <!-- SUID box -->
+  <rect x="50" y="372" width="260" height="180" rx="8" fill="white" stroke="#EF9A9A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M58,372 H302 Q310,372 310,380 V408 H50 V380 Q50,372 58,372Z" fill="#E53935"/>
+  <text x="180" y="390" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">SUID（4）</text>
+  <text x="180" y="428" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333">作用于可执行文件</text>
+  <text x="180" y="450" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">以文件所有者身份运行</text>
+  <text x="180" y="472" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">示例：/usr/bin/passwd</text>
+  <text x="180" y="498" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828">设置：chmod u+s 或 4xxx</text>
+
+  <!-- SGID box -->
+  <rect x="330" y="372" width="260" height="180" rx="8" fill="white" stroke="#EF9A9A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M338,372 H582 Q590,372 590,380 V408 H330 V380 Q330,372 338,372Z" fill="#E53935"/>
+  <text x="460" y="390" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">SGID（2）</text>
+  <text x="460" y="428" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333">作用于目录</text>
+  <text x="460" y="450" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">新建文件继承目录属组</text>
+  <text x="460" y="472" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">示例：共享团队目录</text>
+  <text x="460" y="498" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828">设置：chmod g+s 或 2xxx</text>
+
+  <!-- Sticky box -->
+  <rect x="610" y="372" width="260" height="180" rx="8" fill="white" stroke="#EF9A9A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M618,372 H862 Q870,372 870,380 V408 H610 V380 Q610,372 618,372Z" fill="#E53935"/>
+  <text x="740" y="390" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="white">Sticky（1）</text>
+  <text x="740" y="428" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333">作用于目录</text>
+  <text x="740" y="450" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">仅文件所有者可删除</text>
+  <text x="740" y="472" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">示例：/tmp</text>
+  <text x="740" y="498" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C62828">设置：chmod +t 或 1xxx</text>
+</svg>

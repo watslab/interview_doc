@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 640" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="740" height="620" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="380" y="36" text-anchor="middle" dominant-baseline="central" font-size="17" font-weight="bold" fill="#263238">Linux 进程状态转换图</text>
+  <text x="380" y="56" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">Process State Transition · R / S / D / Z / T</text>
+
+  <!-- fork() entry (dashed external entity) -->
+  <rect x="80" y="128" width="120" height="44" rx="8" fill="#FAFAFA" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#s1)"/>
+  <text x="140" y="150" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#546E7A">fork() 创建</text>
+
+  <!-- 释放 terminal (dashed external entity) -->
+  <rect x="555" y="128" width="130" height="44" rx="8" fill="#FAFAFA" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#s1)"/>
+  <text x="620" y="150" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#546E7A">进程表项释放</text>
+
+  <!-- Z (zombie) RED -->
+  <rect x="310" y="115" width="140" height="70" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M318,115 H442 Q450,115 450,123 V141 H310 V123 Q310,115 318,115 Z" fill="#E53935"/>
+  <text x="380" y="128" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">Z</text>
+  <text x="380" y="163" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#C62828">僵尸进程 Zombie</text>
+
+  <!-- T (stopped) GRAY -->
+  <rect x="70" y="295" width="140" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,295 H202 Q210,295 210,303 V321 H70 V303 Q70,295 78,295 Z" fill="#546E7A"/>
+  <text x="140" y="308" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">T</text>
+  <text x="140" y="343" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">停止 Stopped</text>
+
+  <!-- R (running/runnable) BLUE hub -->
+  <rect x="310" y="295" width="140" height="70" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8" filter="url(#s1)"/>
+  <path d="M318,295 H442 Q450,295 450,303 V321 H310 V303 Q310,295 318,295 Z" fill="#1E88E5"/>
+  <text x="380" y="308" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">R</text>
+  <text x="380" y="343" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">运行 / 就绪 Running</text>
+
+  <!-- S (interruptible sleep) BLUE -->
+  <rect x="550" y="295" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M558,295 H682 Q690,295 690,303 V321 H550 V303 Q550,295 558,295 Z" fill="#1E88E5"/>
+  <text x="620" y="308" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">S</text>
+  <text x="620" y="343" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">可中断睡眠 Sleep</text>
+
+  <!-- D (uninterruptible sleep) BLUE -->
+  <rect x="310" y="475" width="140" height="70" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M318,475 H442 Q450,475 450,483 V501 H310 V483 Q310,475 318,475 Z" fill="#1E88E5"/>
+  <text x="380" y="488" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">D</text>
+  <text x="380" y="523" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">不可中断睡眠 Disk</text>
+
+  <!-- Connection lines (drawn after nodes for correct z-order) -->
+  <!-- 1. fork() -> R -->
+  <path d="M140,172 C140,235 340,250 340,295" fill="none" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <text x="225" y="240" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">fork()</text>
+
+  <!-- 2. R -> Z (exit) -->
+  <path d="M380,295 L380,185" fill="none" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <text x="372" y="240" text-anchor="end" dominant-baseline="central" font-size="11" font-weight="600" fill="#E53935">exit()</text>
+
+  <!-- 3. Z -> 释放 (parent wait) -->
+  <path d="M450,150 L555,150" fill="none" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <text x="502" y="139" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E53935">父进程 wait()</text>
+
+  <!-- 4. R self-loop (time slice scheduling) -->
+  <path d="M420,295 C420,260 450,260 450,295" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="435" y="253" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#1E88E5">时间片调度</text>
+
+  <!-- 5. R -> S (wait event) -->
+  <path d="M450,320 L550,320" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="500" y="310" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1E88E5">等待事件</text>
+
+  <!-- 6. S -> R (event done) -->
+  <path d="M550,340 L450,340" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="500" y="352" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1E88E5">事件完成</text>
+
+  <!-- 7. R -> D (disk I/O wait) -->
+  <path d="M370,365 L370,475" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="362" y="420" text-anchor="end" dominant-baseline="central" font-size="10" fill="#1E88E5">等待磁盘 I/O</text>
+
+  <!-- 8. D -> R (I/O done) -->
+  <path d="M390,475 L390,365" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="398" y="420" text-anchor="start" dominant-baseline="central" font-size="10" fill="#1E88E5">I/O 完成</text>
+
+  <!-- 9. R -> T (SIGSTOP) -->
+  <path d="M310,320 L210,320" fill="none" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <text x="260" y="310" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">SIGSTOP / Ctrl+Z</text>
+
+  <!-- 10. T -> R (SIGCONT) -->
+  <path d="M210,340 L310,340" fill="none" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <text x="260" y="352" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">SIGCONT</text>
+
+  <!-- Legend -->
+  <rect x="120" y="578" width="520" height="34" rx="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="140" y="588" width="14" height="14" rx="2" fill="#1E88E5"/>
+  <text x="161" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">主流程 R / S / D</text>
+  <rect x="300" y="588" width="14" height="14" rx="2" fill="#E53935"/>
+  <text x="321" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">僵尸进程 Z</text>
+  <rect x="450" y="588" width="14" height="14" rx="2" fill="#546E7A"/>
+  <text x="471" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">停止 T</text>
+</svg>

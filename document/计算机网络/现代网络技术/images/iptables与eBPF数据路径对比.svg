@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="440" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">iptables vs eBPF：Service 实现对比</text>
+
+  <!-- iptables 路径 -->
+  <rect x="40" y="68" width="400" height="300" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,68 H432 Q440,68 440,76 V96 H40 V76 Q40,68 48,68Z" fill="#E53935"/>
+  <text x="240" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">iptables 模式（kube-proxy 默认）</text>
+  <rect x="60" y="112" width="360" height="40" rx="5" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="240" y="137" text-anchor="middle" font-size="12" font-weight="600" fill="#C62828">数据包到达</text>
+  <line x1="240" y1="154" x2="240" y2="168" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="60" y="170" width="360" height="40" rx="5" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="240" y="195" text-anchor="middle" font-size="12" font-weight="600" fill="#C62828">KUBE-SERVICES 链（按 ClusterIP 匹配）</text>
+  <line x1="240" y1="212" x2="240" y2="226" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="60" y="228" width="360" height="40" rx="5" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="240" y="253" text-anchor="middle" font-size="12" font-weight="600" fill="#C62828">KUBE-SVC 链（递减概率线性遍历）</text>
+  <line x1="240" y1="270" x2="240" y2="284" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="60" y="286" width="360" height="40" rx="5" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="240" y="311" text-anchor="middle" font-size="12" font-weight="600" fill="#C62828">KUBE-SEP 链（DNAT 到 Pod IP）</text>
+  <text x="240" y="348" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">O(n) 线性扫描 · 规则数 = Service × Endpoint</text>
+  <text x="240" y="342" text-anchor="middle" font-size="1" fill="#FFF">.</text>
+  <text x="240" y="356" text-anchor="middle" font-size="1" fill="#FFF">.</text>
+
+  <!-- eBPF 路径 -->
+  <rect x="460" y="68" width="400" height="300" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M468,68 H852 Q860,68 860,76 V96 H460 V76 Q460,68 468,68Z" fill="#43A047"/>
+  <text x="660" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">eBPF 模式（Cilium kube-proxy 替代）</text>
+  <rect x="480" y="112" width="360" height="40" rx="5" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="660" y="137" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">数据包到达 / socket 层拦截</text>
+  <line x1="660" y1="154" x2="660" y2="168" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="480" y="170" width="360" height="40" rx="5" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="660" y="195" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">eBPF Map 哈希查找（key = ClusterIP:Port）</text>
+  <line x1="660" y1="212" x2="660" y2="226" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="480" y="228" width="360" height="40" rx="5" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="660" y="253" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">直接 DNAT / socket-LB 重定向</text>
+  <line x1="660" y1="270" x2="660" y2="284" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="480" y="286" width="360" height="40" rx="5" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="660" y="311" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">直达 Pod（保留客户端源 IP）</text>
+  <text x="660" y="348" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">O(1) 哈希查找 · 增量更新 · 内核态执行</text>
+  <text x="660" y="342" text-anchor="middle" font-size="1" fill="#FFF">.</text>
+  <text x="660" y="356" text-anchor="middle" font-size="1" fill="#FFF">.</text>
+
+  <text x="450" y="400" text-anchor="middle" font-size="12" fill="#546E7A">iptables 规则随 Service/Endpoint 数量线性增长，大规模集群开销巨大；eBPF 内核态哈希查找性能稳定</text>
+  <text x="450" y="422" text-anchor="middle" font-size="11" fill="#90A4AE">Cilium 实测：5K 节点 / 100K Pod 控制面稳定；kube-proxy IPVS 模式自 K8s 1.35 起弃用，nftables 自 1.33 起 stable</text>
+</svg>

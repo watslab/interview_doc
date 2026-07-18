@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="580" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">HTTP 版本演进与队头阻塞</text>
+
+  <!-- Column headers -->
+  <rect x="50" y="70" width="280" height="36" rx="4" fill="#1565C0"/>
+  <text x="190" y="88" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/1.1（1997）</text>
+
+  <rect x="350" y="70" width="280" height="36" rx="4" fill="#1B5E20"/>
+  <text x="490" y="88" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/2（2015）</text>
+
+  <rect x="650" y="70" width="280" height="36" rx="4" fill="#E65100"/>
+  <text x="790" y="88" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/3（2022）</text>
+
+  <!-- HTTP/1.1 column -->
+  <!-- Connection boxes (multiple TCP connections) -->
+  <rect x="70" y="120" width="100" height="160" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="120" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">TCP 连接 1</text>
+  <rect x="80" y="150" width="80" height="34" rx="3" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1"/>
+  <text x="120" y="167" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">请求 A</text>
+  <rect x="80" y="188" width="80" height="34" rx="3" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1"/>
+  <text x="120" y="205" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">请求 B</text>
+  <rect x="80" y="226" width="80" height="34" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="120" y="243" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">阻塞!</text>
+
+  <rect x="190" y="120" width="100" height="160" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="240" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">TCP 连接 2</text>
+  <rect x="200" y="150" width="80" height="34" rx="3" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1"/>
+  <text x="240" y="167" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">请求 C</text>
+  <rect x="200" y="188" width="80" height="34" rx="3" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1"/>
+  <text x="240" y="205" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">请求 D</text>
+
+  <!-- HTTP/1.1 note -->
+  <rect x="50" y="295" width="280" height="56" rx="4" fill="#FFF8E1" stroke="#FFA000" stroke-width="1"/>
+  <text x="190" y="313" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#5D4037">TCP 层队头阻塞</text>
+  <text x="190" y="330" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">同一连接请求串行处理</text>
+  <text x="190" y="345" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">默认最多 6 个连接并行</text>
+
+  <!-- HTTP/2 column -->
+  <rect x="370" y="120" width="240" height="160" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="490" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1B5E20">单一 TCP 连接（多路复用）</text>
+
+  <!-- Streams -->
+  <rect x="385" y="150" width="210" height="30" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1"/>
+  <text x="490" y="165" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1B5E20">Stream 1: 请求 A</text>
+
+  <rect x="385" y="184" width="210" height="30" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1"/>
+  <text x="490" y="199" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1B5E20">Stream 3: 请求 B</text>
+
+  <rect x="385" y="218" width="210" height="30" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="490" y="233" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">Stream 5: 请求 C（丢包）</text>
+
+  <rect x="385" y="252" width="210" height="20" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1"/>
+  <text x="490" y="262" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="600" fill="#B71C1C">Stream 1/3 阻塞等待重传</text>
+
+  <!-- HTTP/2 note -->
+  <rect x="350" y="295" width="280" height="56" rx="4" fill="#FFF8E1" stroke="#FFA000" stroke-width="1"/>
+  <text x="490" y="313" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#5D4037">仍存在 TCP 层队头阻塞</text>
+  <text x="490" y="330" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">单包丢失阻塞所有 Stream</text>
+  <text x="490" y="345" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">引入头部压缩 HPACK</text>
+
+  <!-- HTTP/3 column -->
+  <rect x="670" y="120" width="240" height="160" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="790" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">QUIC（UDP 多路复用）</text>
+
+  <!-- Independent streams -->
+  <rect x="685" y="150" width="210" height="30" rx="3" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="790" y="165" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E65100">Stream 1: 请求 A（独立）</text>
+
+  <rect x="685" y="184" width="210" height="30" rx="3" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="790" y="199" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E65100">Stream 3: 请求 B（独立）</text>
+
+  <rect x="685" y="218" width="210" height="30" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="790" y="233" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">Stream 5: 请求 C（丢包）</text>
+
+  <rect x="685" y="252" width="210" height="20" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="790" y="262" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="600" fill="#1B5E20">其他 Stream 不受影响</text>
+
+  <!-- HTTP/3 note -->
+  <rect x="650" y="295" width="280" height="56" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="790" y="313" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">彻底解决队头阻塞</text>
+  <text x="790" y="330" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1B5E20">Stream 间独立，丢包仅影响自身</text>
+  <text x="790" y="345" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1B5E20">0-RTT 建连，连接迁移</text>
+
+  <!-- Feature comparison table -->
+  <text x="480" y="378" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#37474F">关键特性对比</text>
+
+  <!-- Table header -->
+  <rect x="50" y="395" width="200" height="30" rx="3" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1"/>
+  <text x="150" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">特性</text>
+
+  <rect x="250" y="395" width="230" height="30" rx="3" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="365" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">HTTP/1.1</text>
+
+  <rect x="480" y="395" width="230" height="30" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="595" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1B5E20">HTTP/2</text>
+
+  <rect x="710" y="395" width="220" height="30" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="820" y="410" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">HTTP/3</text>
+
+  <!-- Table rows -->
+  <rect x="50" y="425" width="200" height="26" rx="3" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="150" y="438" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">传输层</text>
+  <rect x="250" y="425" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="365" y="438" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">TCP</text>
+  <rect x="480" y="425" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="595" y="438" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">TCP</text>
+  <rect x="710" y="425" width="220" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="820" y="438" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">QUIC（UDP）</text>
+
+  <rect x="50" y="451" width="200" height="26" rx="3" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="150" y="464" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">多路复用</text>
+  <rect x="250" y="451" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="365" y="464" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">不支持（多连接）</text>
+  <rect x="480" y="451" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="595" y="464" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">支持</text>
+  <rect x="710" y="451" width="220" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="820" y="464" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">支持（独立 Stream）</text>
+
+  <rect x="50" y="477" width="200" height="26" rx="3" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="150" y="490" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">队头阻塞</text>
+  <rect x="250" y="477" width="230" height="26" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="0.5"/>
+  <text x="365" y="490" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#B71C1C">TCP + 应用层</text>
+  <rect x="480" y="477" width="230" height="26" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="0.5"/>
+  <text x="595" y="490" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#B71C1C">TCP 层</text>
+  <rect x="710" y="477" width="220" height="26" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="0.5"/>
+  <text x="820" y="490" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1B5E20">无</text>
+
+  <rect x="50" y="503" width="200" height="26" rx="3" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="150" y="516" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">头部压缩</text>
+  <rect x="250" y="503" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="365" y="516" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">无</text>
+  <rect x="480" y="503" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="595" y="516" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">HPACK</text>
+  <rect x="710" y="503" width="220" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="820" y="516" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">QPACK</text>
+
+  <rect x="50" y="529" width="200" height="26" rx="3" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="150" y="542" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">连接建立 RTT</text>
+  <rect x="250" y="529" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="365" y="542" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">1~2 RTT</text>
+  <rect x="480" y="529" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="595" y="542" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">1~2 RTT</text>
+  <rect x="710" y="529" width="220" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="820" y="542" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">0~1 RTT</text>
+
+  <rect x="50" y="555" width="200" height="26" rx="3" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="150" y="568" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">服务端推送</text>
+  <rect x="250" y="555" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="365" y="568" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">无</text>
+  <rect x="480" y="555" width="230" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="595" y="568" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">支持</text>
+  <rect x="710" y="555" width="220" height="26" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+  <text x="820" y="568" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">支持</text>
+</svg>

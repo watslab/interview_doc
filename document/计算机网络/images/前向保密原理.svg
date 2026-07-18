@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="800" height="380" fill="#FAFAFA"/>
+
+  <!-- Vertical dashed divider between two columns -->
+  <line x1="400" y1="15" x2="400" y2="360" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- Left title bar (red: no forward secrecy, RSA) -->
+  <path d="M40,15 Q30,15 30,25 V45 H390 V25 Q390,15 380,15 Z" fill="#E53935" filter="url(#shadow1)"/>
+  <text x="210" y="30" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFF">无前向保密（RSA）</text>
+
+  <!-- Right title bar (green: forward secrecy, ECDHE) -->
+  <path d="M440,15 Q430,15 430,25 V45 H790 V25 Q790,15 780,15 Z" fill="#43A047" filter="url(#shadow1)"/>
+  <text x="610" y="30" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFF">有前向保密（ECDHE）</text>
+
+  <!-- Left step boxes (RSA flow, red borders) -->
+  <rect x="60" y="55" width="280" height="28" rx="6" fill="#FFF" stroke="#EF9A9A" stroke-width="1.5"/>
+  <text x="200" y="69" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">Client 生成预主密钥</text>
+
+  <rect x="60" y="98" width="280" height="28" rx="6" fill="#FFF" stroke="#EF9A9A" stroke-width="1.5"/>
+  <text x="200" y="112" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">用服务器公钥加密</text>
+
+  <rect x="60" y="141" width="280" height="28" rx="6" fill="#FFF" stroke="#EF9A9A" stroke-width="1.5"/>
+  <text x="200" y="155" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">发送给服务器</text>
+
+  <rect x="60" y="184" width="280" height="28" rx="6" fill="#FFF" stroke="#EF9A9A" stroke-width="1.5"/>
+  <text x="200" y="198" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">服务器用私钥解密</text>
+
+  <rect x="60" y="227" width="280" height="28" rx="6" fill="#FFF" stroke="#EF9A9A" stroke-width="1.5"/>
+  <text x="200" y="241" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">得到会话密钥</text>
+
+  <!-- Left annotation (risk warning, red) -->
+  <rect x="40" y="265" width="320" height="35" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#shadow1)"/>
+  <text x="200" y="275" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#C62828">风险：私钥泄露 → 攻击者可解密历史流量</text>
+  <text x="200" y="290" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#C62828">（被截获的密文 + 私钥 = 明文）</text>
+
+  <!-- Right step boxes (ECDHE flow, green borders) -->
+  <rect x="460" y="55" width="280" height="28" rx="6" fill="#FFF" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="600" y="69" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">Client 生成临时密钥 x</text>
+
+  <rect x="460" y="98" width="280" height="28" rx="6" fill="#FFF" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="600" y="112" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">Server 生成临时密钥 y</text>
+
+  <rect x="460" y="141" width="280" height="28" rx="6" fill="#FFF" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="600" y="155" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">交换公钥</text>
+
+  <rect x="460" y="184" width="280" height="28" rx="6" fill="#FFF" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="600" y="198" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">各自计算共享密钥</text>
+
+  <rect x="460" y="227" width="280" height="28" rx="6" fill="#FFF" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="600" y="241" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333">会话结束销毁 x, y</text>
+
+  <!-- Right annotation (safety, green) -->
+  <rect x="440" y="265" width="320" height="35" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#shadow1)"/>
+  <text x="600" y="275" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">安全：私钥泄露 → 无法解密历史流量</text>
+  <text x="600" y="290" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#2E7D32">（临时密钥 x, y 已销毁）</text>
+
+  <!-- Left arrows (vertical, red) - drawn AFTER boxes for correct z-order -->
+  <line x1="200" y1="83" x2="200" y2="98" stroke="#E53935" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <line x1="200" y1="126" x2="200" y2="141" stroke="#E53935" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <line x1="200" y1="169" x2="200" y2="184" stroke="#E53935" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+  <line x1="200" y1="212" x2="200" y2="227" stroke="#E53935" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+
+  <!-- Right arrows (vertical, green) -->
+  <line x1="600" y1="83" x2="600" y2="98" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="600" y1="126" x2="600" y2="141" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="600" y1="169" x2="600" y2="184" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <line x1="600" y1="212" x2="600" y2="227" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Bottom definition box (full width, gray) -->
+  <rect x="40" y="325" width="720" height="35" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#shadow1)"/>
+  <text x="400" y="342" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">前向保密定义：即使长期私钥泄露，过去会话仍安全</text>
+</svg>

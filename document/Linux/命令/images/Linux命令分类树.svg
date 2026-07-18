@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 480" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1320" height="460" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="670" y="26" text-anchor="middle" font-size="13" font-weight="bold" fill="#546E7A">Linux 命令分类体系总览</text>
+
+  <!-- Root node -->
+  <rect x="590" y="40" width="160" height="44" rx="8" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="670" y="62" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">Linux 命令</text>
+
+  <!-- ===== Category headers (blue title bars, top-rounded via path) ===== -->
+  <!-- col 0: 文件与目录管理 -->
+  <path d="M37,148 H151 Q159,148 159,156 V186 H29 V156 Q29,148 37,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="94" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">文件与目录管理</text>
+  <!-- col 1: 文本处理 -->
+  <path d="M181,148 H295 Q303,148 303,156 V186 H173 V156 Q173,148 181,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="238" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">文本处理</text>
+  <!-- col 2: 系统与进程管理 -->
+  <path d="M325,148 H439 Q447,148 447,156 V186 H317 V156 Q317,148 325,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="382" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">系统与进程管理</text>
+  <!-- col 3: 网络管理 -->
+  <path d="M469,148 H583 Q591,148 591,156 V186 H461 V156 Q461,148 469,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="526" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">网络管理</text>
+  <!-- col 4: 磁盘管理 -->
+  <path d="M613,148 H727 Q735,148 735,156 V186 H605 V156 Q605,148 613,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="670" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">磁盘管理</text>
+  <!-- col 5: 用户与权限 -->
+  <path d="M757,148 H871 Q879,148 879,156 V186 H749 V156 Q749,148 757,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="814" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">用户与权限</text>
+  <!-- col 6: 压缩归档 -->
+  <path d="M901,148 H1015 Q1023,148 1023,156 V186 H893 V156 Q893,148 901,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="958" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">压缩归档</text>
+  <!-- col 7: 包管理 -->
+  <path d="M1045,148 H1159 Q1167,148 1167,156 V186 H1037 V156 Q1037,148 1045,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="1102" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">包管理</text>
+  <!-- col 8: 帮助与信息 -->
+  <path d="M1189,148 H1303 Q1311,148 1311,156 V186 H1181 V156 Q1181,148 1189,148Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="1246" y="167" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">帮助与信息</text>
+
+  <!-- ===== Command chips (green) ===== -->
+  <!-- col 0: 9 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="29" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="206" text-anchor="middle" dominant-baseline="central">pwd</text>
+    <rect x="29" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="235" text-anchor="middle" dominant-baseline="central">cd</text>
+    <rect x="29" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="264" text-anchor="middle" dominant-baseline="central">ls</text>
+    <rect x="29" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="293" text-anchor="middle" dominant-baseline="central">cp</text>
+    <rect x="29" y="310" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="322" text-anchor="middle" dominant-baseline="central">mv</text>
+    <rect x="29" y="339" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="351" text-anchor="middle" dominant-baseline="central">rm</text>
+    <rect x="29" y="368" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="380" text-anchor="middle" dominant-baseline="central">mkdir</text>
+    <rect x="29" y="397" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="409" text-anchor="middle" dominant-baseline="central">ln</text>
+    <rect x="29" y="426" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="94" y="438" text-anchor="middle" dominant-baseline="central">find</text>
+  </g>
+
+  <!-- col 1: 8 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="173" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="206" text-anchor="middle" dominant-baseline="central">cat</text>
+    <rect x="173" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="235" text-anchor="middle" dominant-baseline="central">grep</text>
+    <rect x="173" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="264" text-anchor="middle" dominant-baseline="central">sed</text>
+    <rect x="173" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="293" text-anchor="middle" dominant-baseline="central">awk</text>
+    <rect x="173" y="310" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="322" text-anchor="middle" dominant-baseline="central">sort</text>
+    <rect x="173" y="339" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="351" text-anchor="middle" dominant-baseline="central">cut</text>
+    <rect x="173" y="368" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="380" text-anchor="middle" dominant-baseline="central">tr</text>
+    <rect x="173" y="397" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="238" y="409" text-anchor="middle" dominant-baseline="central">wc</text>
+  </g>
+
+  <!-- col 2: 6 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="317" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="382" y="206" text-anchor="middle" dominant-baseline="central">ps</text>
+    <rect x="317" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="382" y="235" text-anchor="middle" dominant-baseline="central">top</text>
+    <rect x="317" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="382" y="264" text-anchor="middle" dominant-baseline="central">kill</text>
+    <rect x="317" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="382" y="293" text-anchor="middle" dominant-baseline="central">systemctl</text>
+    <rect x="317" y="310" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="382" y="322" text-anchor="middle" dominant-baseline="central">free</text>
+    <rect x="317" y="339" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="382" y="351" text-anchor="middle" dominant-baseline="central">crontab</text>
+  </g>
+
+  <!-- col 3: 7 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="461" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="526" y="206" text-anchor="middle" dominant-baseline="central">ip</text>
+    <rect x="461" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="526" y="235" text-anchor="middle" dominant-baseline="central">ss</text>
+    <rect x="461" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="526" y="264" text-anchor="middle" dominant-baseline="central">ping</text>
+    <rect x="461" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="526" y="293" text-anchor="middle" dominant-baseline="central">curl</text>
+    <rect x="461" y="310" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="526" y="322" text-anchor="middle" dominant-baseline="central">ssh</text>
+    <rect x="461" y="339" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="526" y="351" text-anchor="middle" dominant-baseline="central">iptables</text>
+    <rect x="461" y="368" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="526" y="380" text-anchor="middle" dominant-baseline="central">dig</text>
+  </g>
+
+  <!-- col 4: 6 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="605" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="670" y="206" text-anchor="middle" dominant-baseline="central">fdisk</text>
+    <rect x="605" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="670" y="235" text-anchor="middle" dominant-baseline="central">mkfs</text>
+    <rect x="605" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="670" y="264" text-anchor="middle" dominant-baseline="central">mount</text>
+    <rect x="605" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="670" y="293" text-anchor="middle" dominant-baseline="central">df</text>
+    <rect x="605" y="310" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="670" y="322" text-anchor="middle" dominant-baseline="central">du</text>
+    <rect x="605" y="339" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="670" y="351" text-anchor="middle" dominant-baseline="central">lvcreate</text>
+  </g>
+
+  <!-- col 5: 6 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="749" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="814" y="206" text-anchor="middle" dominant-baseline="central">su</text>
+    <rect x="749" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="814" y="235" text-anchor="middle" dominant-baseline="central">sudo</text>
+    <rect x="749" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="814" y="264" text-anchor="middle" dominant-baseline="central">useradd</text>
+    <rect x="749" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="814" y="293" text-anchor="middle" dominant-baseline="central">chmod</text>
+    <rect x="749" y="310" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="814" y="322" text-anchor="middle" dominant-baseline="central">chown</text>
+    <rect x="749" y="339" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="814" y="351" text-anchor="middle" dominant-baseline="central">passwd</text>
+  </g>
+
+  <!-- col 6: 5 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="893" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="958" y="206" text-anchor="middle" dominant-baseline="central">tar</text>
+    <rect x="893" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="958" y="235" text-anchor="middle" dominant-baseline="central">gzip</text>
+    <rect x="893" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="958" y="264" text-anchor="middle" dominant-baseline="central">zip</text>
+    <rect x="893" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="958" y="293" text-anchor="middle" dominant-baseline="central">xz</text>
+    <rect x="893" y="310" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="958" y="322" text-anchor="middle" dominant-baseline="central">bzip2</text>
+  </g>
+
+  <!-- col 7: 4 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="1037" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1102" y="206" text-anchor="middle" dominant-baseline="central">apt</text>
+    <rect x="1037" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1102" y="235" text-anchor="middle" dominant-baseline="central">yum</text>
+    <rect x="1037" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1102" y="264" text-anchor="middle" dominant-baseline="central">dnf</text>
+    <rect x="1037" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1102" y="293" text-anchor="middle" dominant-baseline="central">pacman</text>
+  </g>
+
+  <!-- col 8: 4 commands -->
+  <g font-size="12" font-weight="500" fill="#1B5E20">
+    <rect x="1181" y="194" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1246" y="206" text-anchor="middle" dominant-baseline="central">man</text>
+    <rect x="1181" y="223" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1246" y="235" text-anchor="middle" dominant-baseline="central">info</text>
+    <rect x="1181" y="252" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1246" y="264" text-anchor="middle" dominant-baseline="central">help</text>
+    <rect x="1181" y="281" width="130" height="24" rx="4" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/><text x="1246" y="293" text-anchor="middle" dominant-baseline="central">--help</text>
+  </g>
+
+  <!-- ===== Tree connectors (drawn last for correct z-order) ===== -->
+  <!-- root down to bus -->
+  <line x1="670" y1="84" x2="670" y2="118" stroke="#90A4AE" stroke-width="1.5"/>
+  <!-- horizontal bus -->
+  <line x1="94" y1="118" x2="1246" y2="118" stroke="#90A4AE" stroke-width="1.5"/>
+  <!-- drops to each category header (with arrow) -->
+  <line x1="94" y1="118" x2="94" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="238" y1="118" x2="238" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="382" y1="118" x2="382" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="526" y1="118" x2="526" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="670" y1="118" x2="670" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="814" y1="118" x2="814" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="958" y1="118" x2="958" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="1102" y1="118" x2="1102" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="1246" y1="118" x2="1246" y2="146" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg>

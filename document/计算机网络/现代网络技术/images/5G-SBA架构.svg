@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="600" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">5G 核心网 SBA 服务化架构</text>
+
+  <!-- UE / RAN -->
+  <rect x="60" y="68" width="780" height="56" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M68,68 H832 Q840,68 840,76 V96 H60 V76 Q60,68 68,68Z" fill="#43A047"/>
+  <text x="450" y="86" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">UE（终端） + NG-RAN（gNB，CU/DU/RU 分离）</text>
+  <text x="450" y="112" text-anchor="middle" font-size="11" fill="#2E7D32">N1（UE-AMF NAS） · N2（RAN-AMF，NGAP） · N3（RAN-UPF，GTP-U）</text>
+
+  <line x1="450" y1="126" x2="450" y2="144" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 控制面 NF -->
+  <rect x="60" y="146" width="780" height="200" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M68,146 H832 Q840,146 840,154 V174 H60 V154 Q60,146 68,146Z" fill="#1E88E5"/>
+  <text x="450" y="164" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">控制面（Control Plane）— SBI 服务化接口（HTTP/2 + JSON + RESTful）</text>
+
+  <rect x="80" y="186" width="170" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="165" y="208" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">AMF</text>
+  <text x="165" y="226" text-anchor="middle" font-size="10" fill="#546E7A">接入与移动性管理</text>
+  <text x="165" y="242" text-anchor="middle" font-size="10" fill="#90A4AE">NAS 信令终止</text>
+
+  <rect x="266" y="186" width="170" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="351" y="208" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">SMF</text>
+  <text x="351" y="226" text-anchor="middle" font-size="10" fill="#546E7A">会话管理</text>
+  <text x="351" y="242" text-anchor="middle" font-size="10" fill="#90A4AE">IP 分配 · UPF 选择</text>
+
+  <rect x="452" y="186" width="170" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="537" y="208" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">PCF</text>
+  <text x="537" y="226" text-anchor="middle" font-size="10" fill="#546E7A">策略控制</text>
+  <text x="537" y="242" text-anchor="middle" font-size="10" fill="#90A4AE">QoS · 计费规则</text>
+
+  <rect x="638" y="186" width="180" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="728" y="208" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">NSSF</text>
+  <text x="728" y="226" text-anchor="middle" font-size="10" fill="#546E7A">切片选择</text>
+  <text x="728" y="242" text-anchor="middle" font-size="10" fill="#90A4AE">S-NSSAI 映射</text>
+
+  <rect x="80" y="266" width="170" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="165" y="288" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">UDM</text>
+  <text x="165" y="306" text-anchor="middle" font-size="10" fill="#546E7A">统一数据管理</text>
+  <text x="165" y="322" text-anchor="middle" font-size="10" fill="#90A4AE">签约 · 认证凭证</text>
+
+  <rect x="266" y="266" width="170" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="351" y="288" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">AUSF</text>
+  <text x="351" y="306" text-anchor="middle" font-size="10" fill="#546E7A">鉴权服务</text>
+  <text x="351" y="322" text-anchor="middle" font-size="10" fill="#90A4AE">5G AKA / EAP-AKA'</text>
+
+  <rect x="452" y="266" width="170" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="537" y="288" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">NEF</text>
+  <text x="537" y="306" text-anchor="middle" font-size="10" fill="#546E7A">能力开放</text>
+  <text x="537" y="322" text-anchor="middle" font-size="10" fill="#90A4AE">第三方 API 暴露</text>
+
+  <rect x="638" y="266" width="180" height="68" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="728" y="288" text-anchor="middle" font-size="13" font-weight="600" fill="#1565C0">NRF</text>
+  <text x="728" y="306" text-anchor="middle" font-size="10" fill="#546E7A">NF 注册发现</text>
+  <text x="728" y="322" text-anchor="middle" font-size="10" fill="#90A4AE">SBA 核心（4G 无）</text>
+
+  <line x1="450" y1="348" x2="450" y2="366" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="460" y="360" font-size="10" fill="#90A4AE">N4（SMF-UPF，PFCP）</text>
+
+  <!-- 用户面 -->
+  <rect x="60" y="368" width="780" height="70" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M68,368 H832 Q840,368 840,376 V396 H60 V376 Q60,368 68,368Z" fill="#F57C00"/>
+  <text x="450" y="386" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">用户面（User Plane）— CUPS 控制面/用户面分离，可分布式下沉</text>
+  <rect x="200" y="404" width="500" height="30" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="450" y="424" text-anchor="middle" font-size="13" font-weight="600" fill="#E65100">UPF（用户面功能）— 路由转发 · QoS 执行 · 流量上报 · 分支到 DN</text>
+
+  <line x1="450" y1="440" x2="450" y2="458" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="460" y="452" font-size="10" fill="#90A4AE">N6（UPF-DN）</text>
+
+  <!-- DN / MEC -->
+  <rect x="60" y="460" width="780" height="56" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M68,460 H832 Q840,460 840,468 V488 H60 V468 Q60,460 68,460Z" fill="#546E7A"/>
+  <text x="450" y="478" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">DN（数据网络） / MEC（边缘计算）</text>
+  <text x="450" y="504" text-anchor="middle" font-size="11" fill="#37474F">UPF 下沉至边缘 DC · UL-CL 本地分流 · LADN 本地数据网</text>
+
+  <text x="450" y="548" text-anchor="middle" font-size="12" font-weight="600" fill="#546E7A">SBA 三大优点：拆分（NF 独立自治）· 直达（NF 间直接通信）· 智能化（NRF 自动注册发现）</text>
+  <text x="450" y="572" text-anchor="middle" font-size="11" fill="#90A4AE">vs 4G EPC：参考点点对点 → SBA 服务化；MME 集中 → AMF+SMF 分离；S-GW+P-GW → UPF 统一可下沉；不支持切片 → 端到端切片</text>
+</svg>

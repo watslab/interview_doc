@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1100" height="540" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- ============ Column 1: grep (green) ============ -->
+  <rect x="30" y="30" width="340" height="500" rx="10" fill="#F1F8E9" stroke="#A5D6A7" stroke-width="1.2"/>
+  <path d="M40,30 H360 Q370,30 370,40 V64 H30 V40 Q30,30 40,30Z" fill="#43A047"/>
+  <text x="200" y="47" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" dominant-baseline="central">grep — 过滤器模式</text>
+
+  <g filter="url(#s1)">
+    <rect x="60" y="86" width="280" height="56" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="200" y="103" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">输入流</text>
+    <text x="200" y="121" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">stdin / 文件</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="60" y="164" width="280" height="56" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="200" y="181" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">逐行读取</text>
+    <text x="200" y="199" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">按行扫描输入</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="60" y="242" width="280" height="56" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="200" y="259" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">正则匹配</text>
+    <text x="200" y="277" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">BRE / ERE / PCRE</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="60" y="320" width="280" height="56" rx="6" fill="#fff" stroke="#A5D6A7" stroke-width="1"/>
+    <text x="200" y="337" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">输出匹配行</text>
+    <text x="200" y="355" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">默认打印命中行</text>
+  </g>
+
+  <rect x="60" y="400" width="280" height="90" rx="8" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="200" y="423" text-anchor="middle" fill="#2E7D32" font-size="13" font-weight="bold" dominant-baseline="central">过滤器模式</text>
+  <text x="200" y="448" text-anchor="middle" fill="#558B2F" font-size="11" dominant-baseline="central">只输出匹配行，不修改内容</text>
+  <text x="200" y="470" text-anchor="middle" fill="#558B2F" font-size="11" dominant-baseline="central">退出码：0 命中 / 1 未命中</text>
+
+  <!-- ============ Column 2: sed (blue) ============ -->
+  <rect x="390" y="30" width="340" height="500" rx="10" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.2"/>
+  <path d="M400,30 H720 Q730,30 730,40 V64 H390 V40 Q390,30 400,30Z" fill="#1E88E5"/>
+  <text x="560" y="47" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" dominant-baseline="central">sed — 流编辑器模式</text>
+
+  <g filter="url(#s1)">
+    <rect x="420" y="86" width="280" height="56" rx="6" fill="#fff" stroke="#90CAF9" stroke-width="1"/>
+    <text x="560" y="103" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">输入流</text>
+    <text x="560" y="121" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">stdin / 文件</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="420" y="164" width="280" height="56" rx="6" fill="#fff" stroke="#90CAF9" stroke-width="1"/>
+    <text x="560" y="181" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">读入模式空间</text>
+    <text x="560" y="199" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">pattern space</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="420" y="242" width="280" height="56" rx="6" fill="#fff" stroke="#90CAF9" stroke-width="1"/>
+    <text x="560" y="259" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">执行编辑命令</text>
+    <text x="560" y="277" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">s / d / p / a / i / c</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="420" y="320" width="280" height="56" rx="6" fill="#fff" stroke="#90CAF9" stroke-width="1"/>
+    <text x="560" y="337" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">输出并清空模式空间</text>
+    <text x="560" y="355" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">单遍流处理</text>
+  </g>
+
+  <rect x="420" y="400" width="280" height="90" rx="8" fill="#E1F0FE" stroke="#42A5F5" stroke-width="1"/>
+  <text x="560" y="423" text-anchor="middle" fill="#1565C0" font-size="13" font-weight="bold" dominant-baseline="central">流编辑器模式</text>
+  <text x="560" y="448" text-anchor="middle" fill="#1976D2" font-size="11" dominant-baseline="central">模式空间 + 保持空间</text>
+  <text x="560" y="470" text-anchor="middle" fill="#1976D2" font-size="11" dominant-baseline="central">支持原地编辑 (-i)</text>
+
+  <!-- ============ Column 3: awk (purple) ============ -->
+  <rect x="750" y="30" width="340" height="500" rx="10" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1.2"/>
+  <path d="M760,30 H1080 Q1090,30 1090,40 V64 H750 V40 Q750,30 760,30Z" fill="#7B1FA2"/>
+  <text x="920" y="47" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold" dominant-baseline="central">awk — 编程语言模式</text>
+
+  <g filter="url(#s1)">
+    <rect x="780" y="86" width="280" height="56" rx="6" fill="#fff" stroke="#CE93D8" stroke-width="1"/>
+    <text x="920" y="103" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">输入流</text>
+    <text x="920" y="121" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">stdin / 文件</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="780" y="164" width="280" height="56" rx="6" fill="#fff" stroke="#CE93D8" stroke-width="1"/>
+    <text x="920" y="181" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">读行并分字段</text>
+    <text x="920" y="199" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">$1, $2, … $NF</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="780" y="242" width="280" height="56" rx="6" fill="#fff" stroke="#CE93D8" stroke-width="1"/>
+    <text x="920" y="259" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">匹配 pattern 执行 {action}</text>
+    <text x="920" y="277" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">pattern { action }</text>
+  </g>
+  <g filter="url(#s1)">
+    <rect x="780" y="320" width="280" height="56" rx="6" fill="#fff" stroke="#CE93D8" stroke-width="1"/>
+    <text x="920" y="337" text-anchor="middle" fill="#333" font-size="13" font-weight="600" dominant-baseline="central">输出结果</text>
+    <text x="920" y="355" text-anchor="middle" fill="#999" font-size="10" dominant-baseline="central">BEGIN → 主循环 → END</text>
+  </g>
+
+  <rect x="780" y="400" width="280" height="90" rx="8" fill="#EDE7F6" stroke="#AB47BC" stroke-width="1"/>
+  <text x="920" y="423" text-anchor="middle" fill="#6A1B9A" font-size="13" font-weight="bold" dominant-baseline="central">编程语言模式</text>
+  <text x="920" y="448" text-anchor="middle" fill="#7B1FA2" font-size="11" dominant-baseline="central">字段处理 + 内置变量</text>
+  <text x="920" y="470" text-anchor="middle" fill="#7B1FA2" font-size="11" dominant-baseline="central">支持流程控制与数组</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <!-- grep arrows -->
+  <line x1="200" y1="142" x2="200" y2="164" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="200" y1="220" x2="200" y2="242" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="200" y1="298" x2="200" y2="320" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <!-- sed arrows -->
+  <line x1="560" y1="142" x2="560" y2="164" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="560" y1="220" x2="560" y2="242" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="560" y1="298" x2="560" y2="320" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <!-- awk arrows -->
+  <line x1="920" y1="142" x2="920" y2="164" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="920" y1="220" x2="920" y2="242" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="920" y1="298" x2="920" y2="320" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg>

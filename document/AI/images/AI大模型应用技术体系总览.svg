@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 820" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1280" height="800" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="580" y="40" text-anchor="middle" dominant-baseline="central" font-size="22" font-weight="bold" fill="#263238">AI 大模型应用技术体系总览</text>
+  <text x="580" y="68" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#78909C">从模型基座到生产工程：五层体系化架构（2022 — 2026）</text>
+
+  <!-- ========== Layer 5 (top): 生产工程层 (Purple) ========== -->
+  <rect x="45" y="100" width="1100" height="125" rx="8" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M53,100 H1137 Q1145,100 1145,108 V138 H45 V108 Q45,100 53,100Z" fill="#7B1FA2"/>
+  <text x="65" y="119" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#F3E5F5">第五层 · 生产工程层</text>
+  <text x="1125" y="119" text-anchor="end" dominant-baseline="central" font-size="12" fill="#E1BEE7">Production Engineering</text>
+
+  <text x="65" y="158" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心技术</text>
+  <circle cx="70" cy="183" r="3" fill="#7B1FA2"/>
+  <text x="82" y="183" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">Harness Engineering（驾驭工程） · Loop Engineering（循环工程）</text>
+  <circle cx="70" cy="206" r="3" fill="#7B1FA2"/>
+  <text x="82" y="206" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">Evaluation Harness（评估框架） · 可观测性 · 持续评测</text>
+
+  <line x1="760" y1="150" x2="760" y2="215" stroke="#F3E5F5" stroke-width="1.5"/>
+  <text x="780" y="158" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心问题</text>
+  <text x="780" y="183" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#7B1FA2">如何让系统可靠、</text>
+  <text x="780" y="206" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#7B1FA2">可观测、可持续？</text>
+
+  <!-- ========== Layer 4: Agent 框架层 (Orange) ========== -->
+  <rect x="45" y="240" width="1100" height="125" rx="8" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M53,240 H1137 Q1145,240 1145,248 V278 H45 V248 Q45,240 53,240Z" fill="#F57C00"/>
+  <text x="65" y="259" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFF3E0">第四层 · Agent 框架层</text>
+  <text x="1125" y="259" text-anchor="end" dominant-baseline="central" font-size="12" fill="#FFE0B2">Agent Framework</text>
+
+  <text x="65" y="298" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心技术</text>
+  <circle cx="70" cy="323" r="3" fill="#F57C00"/>
+  <text x="82" y="323" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">ReAct · Plan-and-Execute · Reflection（反思范式）</text>
+  <circle cx="70" cy="346" r="3" fill="#F57C00"/>
+  <text x="82" y="346" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">LangChain · AutoGen · CrewAI · MCP（Model Context Protocol）</text>
+
+  <line x1="760" y1="290" x2="760" y2="355" stroke="#FFF3E0" stroke-width="1.5"/>
+  <text x="780" y="298" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心问题</text>
+  <text x="780" y="323" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#F57C00">如何让模型自主完成</text>
+  <text x="780" y="346" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#F57C00">多步任务？</text>
+
+  <!-- ========== Layer 3: 增强工程层 (Green) ========== -->
+  <rect x="45" y="380" width="1100" height="125" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M53,380 H1137 Q1145,380 1145,388 V418 H45 V388 Q45,380 53,380Z" fill="#43A047"/>
+  <text x="65" y="399" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#E8F5E9">第三层 · 增强工程层</text>
+  <text x="1125" y="399" text-anchor="end" dominant-baseline="central" font-size="12" fill="#C8E6C9">Augmentation Engineering</text>
+
+  <text x="65" y="438" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心技术</text>
+  <circle cx="70" cy="463" r="3" fill="#43A047"/>
+  <text x="82" y="463" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">RAG（检索增强生成） · Tool Use / Function Calling（工具调用）</text>
+  <circle cx="70" cy="486" r="3" fill="#43A047"/>
+  <text x="82" y="486" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">Fine-tuning（微调） · 知识注入与能力扩展</text>
+
+  <line x1="760" y1="430" x2="760" y2="495" stroke="#E8F5E9" stroke-width="1.5"/>
+  <text x="780" y="438" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心问题</text>
+  <text x="780" y="463" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#43A047">如何让模型有知识、</text>
+  <text x="780" y="486" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#43A047">有能力？</text>
+
+  <!-- ========== Layer 2: 交互工程层 (Blue) ========== -->
+  <rect x="45" y="520" width="1100" height="125" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M53,520 H1137 Q1145,520 1145,528 V558 H45 V528 Q45,520 53,520Z" fill="#1E88E5"/>
+  <text x="65" y="539" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#E3F2FD">第二层 · 交互工程层</text>
+  <text x="1125" y="539" text-anchor="end" dominant-baseline="central" font-size="12" fill="#BBDEFB">Interaction Engineering</text>
+
+  <text x="65" y="578" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心技术</text>
+  <circle cx="70" cy="603" r="3" fill="#1E88E5"/>
+  <text x="82" y="603" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">Prompt Engineering（提示工程） · 上下文设计</text>
+  <circle cx="70" cy="626" r="3" fill="#1E88E5"/>
+  <text x="82" y="626" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">Context Engineering（上下文工程） · 信息组织与传递</text>
+
+  <line x1="760" y1="570" x2="760" y2="635" stroke="#E3F2FD" stroke-width="1.5"/>
+  <text x="780" y="578" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心问题</text>
+  <text x="780" y="603" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#1E88E5">如何让模型听懂、</text>
+  <text x="780" y="626" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#1E88E5">记得住、用得对？</text>
+
+  <!-- ========== Layer 1 (bottom): 模型层 (Gray) ========== -->
+  <rect x="45" y="660" width="1100" height="125" rx="8" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M53,660 H1137 Q1145,660 1145,668 V698 H45 V668 Q45,660 53,660Z" fill="#546E7A"/>
+  <text x="65" y="679" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#ECEFF1">第一层 · 模型层（基座）</text>
+  <text x="1125" y="679" text-anchor="end" dominant-baseline="central" font-size="12" fill="#CFD8DC">Foundation Model</text>
+
+  <text x="65" y="718" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心技术</text>
+  <circle cx="70" cy="743" r="3" fill="#546E7A"/>
+  <text x="82" y="743" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">GPT · Claude · Llama 等基座大模型</text>
+  <circle cx="70" cy="766" r="3" fill="#546E7A"/>
+  <text x="82" y="766" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">提供基础能力：理解 · 生成 · 推理</text>
+
+  <line x1="760" y1="710" x2="760" y2="775" stroke="#ECEFF1" stroke-width="1.5"/>
+  <text x="780" y="718" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600" letter-spacing="1">核心问题</text>
+  <text x="780" y="743" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#546E7A">如何提供通用智能</text>
+  <text x="780" y="766" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" font-weight="600" fill="#546E7A">基础能力？</text>
+
+  <!-- ========== Right side: evolution arrow ========== -->
+  <line x1="1200" y1="720" x2="1200" y2="175" stroke="#546E7A" stroke-width="2.5" marker-end="url(#ah)"/>
+  <text x="1218" y="445" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F" transform="rotate(-90 1218 445)">从单点优化到体系化管控</text>
+  <text x="1200" y="745" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE">单点优化</text>
+  <text x="1200" y="155" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE">体系化管控</text>
+</svg>

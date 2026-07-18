@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 640" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1280" height="620" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="650" y="40" text-anchor="middle" dominant-baseline="central" font-size="22" font-weight="bold" fill="#263238">RAG 架构演进</text>
+  <text x="650" y="68" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#78909C">从关键词匹配到 Agentic RAG：四代检索增强技术变迁（1990s — 2025）</text>
+
+  <!-- ========== Gen 1: 关键词检索 (Gray) ========== -->
+  <rect x="45" y="95" width="280" height="335" rx="8" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M53,95 H317 Q325,95 325,103 V145 H45 V103 Q45,95 53,95Z" fill="#546E7A"/>
+  <text x="185" y="115" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#ECEFF1">第 1 代</text>
+  <text x="185" y="133" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#CFD8DC">1990s — 2010s</text>
+
+  <text x="185" y="170" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#546E7A">关键词检索</text>
+  <text x="185" y="190" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE">Lexical Retrieval</text>
+  <line x1="65" y1="207" x2="305" y2="207" stroke="#ECEFF1" stroke-width="1"/>
+
+  <text x="65" y="227" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心技术</text>
+  <text x="65" y="247" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="bold" fill="#546E7A">TF-IDF · BM25</text>
+
+  <text x="65" y="277" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心思想</text>
+  <text x="65" y="297" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" fill="#37474F">"匹配字面"</text>
+  <text x="65" y="315" text-anchor="start" dominant-baseline="central" font-size="11" fill="#78909C">基于词频与逆文档频率排序</text>
+
+  <line x1="65" y1="335" x2="305" y2="335" stroke="#ECEFF1" stroke-width="1"/>
+  <text x="65" y="355" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">局限</text>
+  <circle cx="70" cy="378" r="3" fill="#546E7A"/>
+  <text x="82" y="378" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">无法理解语义</text>
+  <circle cx="70" cy="400" r="3" fill="#546E7A"/>
+  <text x="82" y="400" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">同义词、多义词失效</text>
+  <text x="65" y="420" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">代表：Lucene · Elasticsearch</text>
+
+  <!-- ========== Gen 2: 语义检索 (Blue) ========== -->
+  <rect x="350" y="95" width="280" height="335" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M358,95 H622 Q630,95 630,103 V145 H350 V103 Q350,95 358,95Z" fill="#1E88E5"/>
+  <text x="490" y="115" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#E3F2FD">第 2 代</text>
+  <text x="490" y="133" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#BBDEFB">2010s — 2020</text>
+
+  <text x="490" y="170" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#1E88E5">语义检索</text>
+  <text x="490" y="190" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE">Semantic Retrieval</text>
+  <line x1="370" y1="207" x2="610" y2="207" stroke="#E3F2FD" stroke-width="1"/>
+
+  <text x="370" y="227" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心技术</text>
+  <text x="370" y="247" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1E88E5">Word2Vec · BERT Embedding</text>
+
+  <text x="370" y="277" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心思想</text>
+  <text x="370" y="297" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" fill="#37474F">"理解意思"</text>
+  <text x="370" y="315" text-anchor="start" dominant-baseline="central" font-size="11" fill="#78909C">向量相似度匹配语义近邻</text>
+
+  <line x1="370" y1="335" x2="610" y2="335" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="370" y="355" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">局限</text>
+  <circle cx="375" cy="378" r="3" fill="#1E88E5"/>
+  <text x="387" y="378" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">只有检索没有生成</text>
+  <circle cx="375" cy="400" r="3" fill="#1E88E5"/>
+  <text x="387" y="400" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">需独立下游理解模型</text>
+  <text x="370" y="420" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">代表：FAISS · ScaNN · DPR</text>
+
+  <!-- ========== Gen 3: Naive RAG (Green) ========== -->
+  <rect x="655" y="95" width="280" height="335" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M663,95 H927 Q935,95 935,103 V145 H655 V103 Q655,95 663,95Z" fill="#43A047"/>
+  <text x="795" y="115" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#E8F5E9">第 3 代</text>
+  <text x="795" y="133" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C8E6C9">2020 — 2023</text>
+
+  <text x="795" y="170" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#43A047">Naive RAG</text>
+  <text x="795" y="190" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE">基础检索增强生成</text>
+  <line x1="675" y1="207" x2="915" y2="207" stroke="#E8F5E9" stroke-width="1"/>
+
+  <text x="675" y="227" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心技术</text>
+  <text x="675" y="247" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="bold" fill="#43A047">DPR + BART（Lewis 2020）</text>
+
+  <text x="675" y="277" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心思想</text>
+  <text x="675" y="297" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" fill="#37474F">"检索 + 生成"</text>
+  <text x="675" y="315" text-anchor="start" dominant-baseline="central" font-size="11" fill="#78909C">检索文档拼接到 Prompt 中</text>
+
+  <line x1="675" y1="335" x2="915" y2="335" stroke="#E8F5E9" stroke-width="1"/>
+  <text x="675" y="355" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">解决</text>
+  <circle cx="680" cy="378" r="3" fill="#43A047"/>
+  <text x="692" y="378" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">缓解模型幻觉</text>
+  <circle cx="680" cy="400" r="3" fill="#43A047"/>
+  <text x="692" y="400" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">突破知识截止日期</text>
+  <text x="675" y="420" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">代表：LangChain · LlamaIndex</text>
+
+  <!-- ========== Gen 4: Advanced RAG (Orange) ========== -->
+  <rect x="960" y="95" width="280" height="335" rx="8" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M968,95 H1232 Q1240,95 1240,103 V145 H960 V103 Q960,95 968,95Z" fill="#F57C00"/>
+  <text x="1100" y="115" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#FFF3E0">第 4 代</text>
+  <text x="1100" y="133" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#FFE0B2">2023 — 2025</text>
+
+  <text x="1100" y="170" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#F57C00">Advanced RAG</text>
+  <text x="1100" y="190" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE">高级检索增强生成</text>
+  <line x1="980" y1="207" x2="1220" y2="207" stroke="#FFF3E0" stroke-width="1"/>
+
+  <text x="980" y="227" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心技术</text>
+  <text x="980" y="247" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="bold" fill="#F57C00">Hybrid Retrieval · Reranking</text>
+  <text x="980" y="265" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#F57C00">GraphRAG · Multi-modal RAG</text>
+
+  <text x="980" y="290" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心思想</text>
+  <text x="980" y="310" text-anchor="start" dominant-baseline="central" font-size="12" font-style="italic" fill="#37474F">"精准检索 + 深度融合"</text>
+  <text x="980" y="328" text-anchor="start" dominant-baseline="central" font-size="11" fill="#78909C">查询改写 · 重排 · 多路召回</text>
+
+  <line x1="980" y1="345" x2="1220" y2="345" stroke="#FFF3E0" stroke-width="1"/>
+  <text x="980" y="362" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">前沿方向</text>
+  <circle cx="985" cy="383" r="3" fill="#F57C00"/>
+  <text x="997" y="383" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">Agentic RAG（自主检索）</text>
+  <circle cx="985" cy="403" r="3" fill="#F57C00"/>
+  <text x="997" y="403" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">知识图谱 · 多模态融合</text>
+  <text x="980" y="421" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">代表：GraphRAG · CRAG · Self-RAG</text>
+
+  <!-- ========== Arrows between generations ========== -->
+  <line x1="330" y1="262" x2="346" y2="262" stroke="#90A4AE" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="635" y1="262" x2="651" y2="262" stroke="#90A4AE" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="940" y1="262" x2="956" y2="262" stroke="#90A4AE" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ========== Bottom timeline ========== -->
+  <line x1="60" y1="460" x2="1230" y2="460" stroke="#546E7A" stroke-width="2" marker-end="url(#ah)"/>
+  <circle cx="185" cy="460" r="5" fill="#546E7A"/>
+  <text x="185" y="478" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A" font-weight="600">1990s</text>
+  <circle cx="490" cy="460" r="5" fill="#1E88E5"/>
+  <text x="490" y="478" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1E88E5" font-weight="600">2010s</text>
+  <circle cx="795" cy="460" r="5" fill="#43A047"/>
+  <text x="795" y="478" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#43A047" font-weight="600">2020</text>
+  <circle cx="1100" cy="460" r="5" fill="#F57C00"/>
+  <text x="1100" y="478" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#F57C00" font-weight="600">2023-2025</text>
+
+  <!-- ========== Bottom summary ========== -->
+  <rect x="45" y="498" width="1200" height="115" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="65" y="522" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">演进核心趋势：从字面匹配到语义融合，从检索工具到智能体</text>
+
+  <circle cx="73" cy="550" r="3" fill="#546E7A"/>
+  <text x="85" y="550" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">检索能力：字面匹配 → 语义理解 → 检索+生成 → 精准融合，逐步逼近"理解用户意图"</text>
+
+  <circle cx="73" cy="575" r="3" fill="#43A047"/>
+  <text x="85" y="575" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">系统形态：独立检索库 → 向量数据库 → RAG 流水线 → Agentic RAG，从工具演化为自主智能体</text>
+
+  <circle cx="73" cy="600" r="3" fill="#F57C00"/>
+  <text x="85" y="600" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">融合深度：拼接上下文 → 重排筛选 → 知识图谱推理 → 多模态深度融合，知识与模型结合日益紧密</text>
+</svg>

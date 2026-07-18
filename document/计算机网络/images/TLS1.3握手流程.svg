@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 440" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="arrowGray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#607D8B"/></marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="580" height="420" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="300" y="30" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#37474F">TLS 1.3 握手流程</text>
+
+  <!-- 1-RTT badge -->
+  <rect x="500" y="9" width="80" height="22" rx="11" fill="#1E88E5"/>
+  <text x="540" y="20" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFF">1-RTT</text>
+
+  <!-- Encrypted region background (light green) -->
+  <rect x="30" y="180" width="540" height="160" rx="6" fill="#E8F5E9" opacity="0.5"/>
+
+  <!-- RTT 1 horizontal dashed divider -->
+  <line x1="30" y1="175" x2="570" y2="175" stroke="#F57C00" stroke-width="1" stroke-dasharray="6,4" opacity="0.7"/>
+  <text x="565" y="170" text-anchor="end" font-size="9" font-weight="bold" fill="#F57C00">RTT 1 结束（明文阶段）</text>
+
+  <!-- Encrypted region label -->
+  <text x="35" y="192" text-anchor="start" font-size="9" font-weight="bold" fill="#43A047">加密阶段：以下消息已加密</text>
+
+  <!-- Client header (blue) -->
+  <path d="M35,42 Q25,42 25,52 V75 H165 V52 Q165,42 155,42 Z" fill="#1E88E5" filter="url(#shadow1)"/>
+  <text x="95" y="59" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFF">Client</text>
+
+  <!-- Server header (purple) -->
+  <path d="M445,42 Q435,42 435,52 V75 H575 V52 Q575,42 565,42 Z" fill="#7B1FA2" filter="url(#shadow1)"/>
+  <text x="505" y="59" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFF">Server</text>
+
+  <!-- Lifelines (dashed) -->
+  <line x1="95" y1="75" x2="95" y2="345" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="505" y1="75" x2="505" y2="345" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Step number circles -->
+  <circle cx="15" cy="110" r="8" fill="#607D8B"/>
+  <text x="15" y="110" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFF">1</text>
+  <circle cx="15" cy="150" r="8" fill="#607D8B"/>
+  <text x="15" y="150" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFF">2</text>
+  <circle cx="15" cy="215" r="8" fill="#43A047"/>
+  <text x="15" y="215" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFF">3</text>
+  <circle cx="15" cy="245" r="8" fill="#43A047"/>
+  <text x="15" y="245" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFF">4</text>
+  <circle cx="15" cy="275" r="8" fill="#43A047"/>
+  <text x="15" y="275" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFF">5</text>
+  <circle cx="15" cy="305" r="8" fill="#43A047"/>
+  <text x="15" y="305" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFF">6</text>
+  <circle cx="15" cy="335" r="8" fill="#43A047"/>
+  <text x="15" y="335" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFF">7</text>
+
+  <!-- Step labels (above arrows) -->
+  <text x="300" y="92" text-anchor="middle" font-size="11" font-weight="600" fill="#333">ClientHello + KeyShare</text>
+  <text x="300" y="103" text-anchor="middle" font-size="9" fill="#999">ECDHE 公钥 + 随机数</text>
+
+  <text x="300" y="132" text-anchor="middle" font-size="11" font-weight="600" fill="#333">ServerHello + KeyShare</text>
+  <text x="300" y="143" text-anchor="middle" font-size="9" fill="#999">ECDHE 公钥 + 随机数</text>
+
+  <text x="300" y="197" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">{EncryptedExtensions}</text>
+  <text x="300" y="227" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">{Certificate}</text>
+  <text x="300" y="257" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">{CertificateVerify}</text>
+  <text x="300" y="287" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">{Finished}</text>
+  <text x="300" y="327" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">{Finished}</text>
+
+  <!-- Arrow lines (drawn LAST for correct z-order) -->
+  <!-- Step 1: Client -&gt; Server -->
+  <line x1="98" y1="110" x2="500" y2="110" stroke="#607D8B" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <!-- Step 2: Server -&gt; Client -->
+  <line x1="502" y1="150" x2="100" y2="150" stroke="#607D8B" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <!-- Step 3: Server -&gt; Client (encrypted) -->
+  <line x1="502" y1="215" x2="100" y2="215" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <!-- Step 4 -->
+  <line x1="502" y1="245" x2="100" y2="245" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <!-- Step 5 -->
+  <line x1="502" y1="275" x2="100" y2="275" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <!-- Step 6 -->
+  <line x1="502" y1="305" x2="100" y2="305" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <!-- Step 7: Client -&gt; Server (encrypted) -->
+  <line x1="98" y1="335" x2="500" y2="335" stroke="#43A047" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- Start encrypted communication box -->
+  <rect x="80" y="355" width="440" height="30" rx="6" fill="#43A047" filter="url(#shadow1)"/>
+  <text x="300" y="370" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFF">开始加密通信</text>
+
+  <!-- TLS 1.2 comparison note -->
+  <text x="580" y="420" text-anchor="end" font-size="9" fill="#757575" font-style="italic">相比 TLS 1.2 减少 1-RTT，握手消息加密</text>
+</svg>

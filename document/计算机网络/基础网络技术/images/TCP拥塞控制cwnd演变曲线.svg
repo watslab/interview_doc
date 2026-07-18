@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="540" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">TCP 拥塞控制 cwnd 演变曲线（RFC 5681）</text>
+
+  <!-- Plot area -->
+  <rect x="100" y="80" width="780" height="380" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Axes -->
+  <line x1="100" y1="460" x2="880" y2="460" stroke="#546E7A" stroke-width="1.5"/>
+  <line x1="100" y1="80" x2="100" y2="460" stroke="#546E7A" stroke-width="1.5"/>
+
+  <!-- Axis labels -->
+  <text x="490" y="490" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">传输轮次（RTT）</text>
+  <text x="60" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F" transform="rotate(-90 60 270)">拥塞窗口 cwnd（MSS）</text>
+
+  <!-- Y-axis ticks -->
+  <text x="92" y="460" text-anchor="end" dominant-baseline="central" font-size="10" fill="#757575">0</text>
+  <text x="92" y="380" text-anchor="end" dominant-baseline="central" font-size="10" fill="#757575">10</text>
+  <text x="92" y="300" text-anchor="end" dominant-baseline="central" font-size="10" fill="#757575">20</text>
+  <text x="92" y="220" text-anchor="end" dominant-baseline="central" font-size="10" fill="#757575">30</text>
+  <text x="92" y="140" text-anchor="end" dominant-baseline="central" font-size="10" fill="#757575">40</text>
+
+  <!-- Y-axis grid lines -->
+  <line x1="100" y1="380" x2="880" y2="380" stroke="#ECEFF1" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="100" y1="300" x2="880" y2="300" stroke="#ECEFF1" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="100" y1="220" x2="880" y2="220" stroke="#ECEFF1" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="100" y1="140" x2="880" y2="140" stroke="#ECEFF1" stroke-width="0.5" stroke-dasharray="3,3"/>
+
+  <!-- X-axis ticks -->
+  <text x="100" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">0</text>
+  <text x="200" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">5</text>
+  <text x="300" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">10</text>
+  <text x="400" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">15</text>
+  <text x="500" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">20</text>
+  <text x="600" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">25</text>
+  <text x="700" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">30</text>
+  <text x="800" y="475" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">35</text>
+
+  <!-- ssthresh line (initial threshold) -->
+  <line x1="100" y1="240" x2="500" y2="240" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="510" y="240" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#7B1FA2">ssthresh = 28</text>
+
+  <!-- ssthresh after loss -->
+  <line x1="500" y1="340" x2="880" y2="340" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="510" y="340" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#7B1FA2">ssthresh = cwnd/2 = 14</text>
+
+  <!-- Phase 1: Slow Start (exponential growth) from (100,460) to (340,240) -->
+  <path d="M100,460 Q200,400 260,320 T340,240" stroke="#1E88E5" stroke-width="3" fill="none"/>
+
+  <!-- Phase 2: Congestion Avoidance (linear growth) from (340,240) to (500,160) -->
+  <line x1="340" y1="240" x2="500" y2="160" stroke="#43A047" stroke-width="3"/>
+
+  <!-- Loss event marker -->
+  <circle cx="500" cy="160" r="6" fill="#E53935" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="500" y="140" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#B71C1C">丢包事件</text>
+  <text x="500" y="125" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#B71C1C">(3 个重复 ACK)</text>
+
+  <!-- Phase 3: Fast Recovery - cwnd drops to ssthresh (500,340) -->
+  <line x1="500" y1="160" x2="500" y2="340" stroke="#E53935" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="525" y="250" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">cwnd 减半</text>
+
+  <!-- Phase 4: Congestion Avoidance again from (500,340) to (880,200) -->
+  <line x1="500" y1="340" x2="880" y2="200" stroke="#43A047" stroke-width="3"/>
+
+  <!-- Phase labels -->
+  <rect x="160" y="395" width="100" height="22" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="210" y="406" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1565C0">慢开始</text>
+
+  <rect x="380" y="195" width="100" height="22" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="430" y="206" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">拥塞避免</text>
+
+  <rect x="700" y="295" width="100" height="22" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="750" y="306" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">拥塞避免</text>
+
+  <rect x="540" y="365" width="100" height="22" rx="4" fill="#FFEBEE" stroke="#E53935" stroke-width="1"/>
+  <text x="590" y="376" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">快恢复</text>
+
+  <!-- Legend -->
+  <rect x="640" y="80" width="240" height="100" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="760" y="98" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">图例</text>
+
+  <line x1="655" y1="115" x2="685" y2="115" stroke="#1E88E5" stroke-width="3"/>
+  <text x="695" y="115" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">慢开始（指数增长）</text>
+
+  <line x1="655" y1="135" x2="685" y2="135" stroke="#43A047" stroke-width="3"/>
+  <text x="695" y="135" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">拥塞避免（线性增长）</text>
+
+  <line x1="655" y1="155" x2="685" y2="155" stroke="#E53935" stroke-width="2" stroke-dasharray="4,3"/>
+  <text x="695" y="155" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">快恢复（cwnd 减半）</text>
+
+  <line x1="655" y1="172" x2="685" y2="172" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="695" y="172" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">ssthresh 阈值</text>
+
+  <!-- Footer note -->
+  <rect x="100" y="510" width="780" height="32" rx="4" fill="#FFF8E1" stroke="#FFA000" stroke-width="1"/>
+  <text x="490" y="526" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">规则：cwnd &lt; ssthresh 时慢开始；cwnd ≥ ssthresh 时拥塞避免；3 次重复 ACK 触发快重传+快恢复；超时则 ssthresh=cwnd/2，cwnd=1</text>
+</svg>

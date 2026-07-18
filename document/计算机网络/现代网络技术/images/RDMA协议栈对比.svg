@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahred" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
+    <marker id="ahgreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="640" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">TCP/IP 与 RDMA 协议栈对比</text>
+
+  <!-- ====== TCP/IP Column ====== -->
+  <rect x="40" y="70" width="400" height="560" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M40,78 Q40,70 48,70 H432 Q440,70 440,78 V100 H40 Z" fill="#E53935"/>
+  <text x="240" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">TCP/IP（传统内核栈）</text>
+
+  <!-- App -->
+  <rect x="80" y="125" width="320" height="55" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="145" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">应用 Application</text>
+  <text x="240" y="164" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">用户缓冲区</text>
+
+  <!-- API -->
+  <rect x="80" y="195" width="320" height="55" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="215" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">Socket API</text>
+  <text x="240" y="234" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">read / write / send / recv</text>
+
+  <!-- Boundary line -->
+  <line x1="60" y1="270" x2="420" y2="270" stroke="#E53935" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="430" y="270" text-anchor="start" dominant-baseline="central" font-size="10" fill="#E53935" font-weight="600">用户态 / 内核态</text>
+
+  <!-- Protocol -->
+  <rect x="80" y="285" width="320" height="55" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="305" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">TCP/IP 协议栈</text>
+  <text x="240" y="324" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">Kernel Networking Stack</text>
+
+  <!-- Driver -->
+  <rect x="80" y="355" width="320" height="55" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="375" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">网卡驱动</text>
+  <text x="240" y="394" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">NIC Driver（中断驱动）</text>
+
+  <!-- NIC -->
+  <rect x="80" y="425" width="320" height="55" rx="6" fill="#FFCDD2" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="445" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">NIC</text>
+  <text x="240" y="464" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">标准以太网卡</text>
+
+  <!-- Down arrow on TCP/IP side -->
+  <line x1="240" y1="180" x2="240" y2="193" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+  <line x1="240" y1="250" x2="240" y2="283" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+  <line x1="240" y1="340" x2="240" y2="353" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+  <line x1="240" y1="410" x2="240" y2="423" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+
+  <!-- TCP/IP summary -->
+  <rect x="80" y="500" width="320" height="110" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="240" y="520" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#E53935">问题</text>
+  <text x="240" y="540" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">2 次数据拷贝（App↔Kernel）</text>
+  <text x="240" y="558" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">系统调用 + 上下文切换开销</text>
+  <text x="240" y="576" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">中断驱动，延迟抖动大</text>
+  <text x="240" y="594" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">CPU 参与所有数据搬运</text>
+
+  <!-- ====== RDMA Column ====== -->
+  <rect x="520" y="70" width="400" height="560" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M520,78 Q520,70 528,70 H912 Q920,70 920,78 V100 H520 Z" fill="#43A047"/>
+  <text x="720" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">RDMA（内核旁路）</text>
+
+  <!-- App -->
+  <rect x="560" y="125" width="320" height="55" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="720" y="145" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">应用 Application</text>
+  <text x="720" y="164" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">用户缓冲区</text>
+
+  <!-- API -->
+  <rect x="560" y="195" width="320" height="55" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="720" y="215" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">Verbs API / libibverbs</text>
+  <text x="720" y="234" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">ibv_post_send / ibv_post_recv</text>
+
+  <!-- Boundary line -->
+  <line x1="540" y1="270" x2="900" y2="270" stroke="#43A047" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="530" y="270" text-anchor="end" dominant-baseline="central" font-size="10" fill="#43A047" font-weight="600">用户态 / 内核态</text>
+
+  <!-- Faded Protocol -->
+  <rect x="560" y="285" width="320" height="55" rx="6" fill="#F1F8E9" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="720" y="305" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#888">TCP/IP 协议栈</text>
+  <text x="720" y="324" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#AAA">内核协议栈（旁路）</text>
+
+  <!-- Faded Driver -->
+  <rect x="560" y="355" width="320" height="55" rx="6" fill="#F1F8E9" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="720" y="375" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#888">网卡驱动</text>
+  <text x="720" y="394" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#AAA">NIC Driver（旁路）</text>
+
+  <!-- RNIC -->
+  <rect x="560" y="425" width="320" height="55" rx="6" fill="#C8E6C9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="720" y="445" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">RNIC</text>
+  <text x="720" y="464" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">RDMA 网卡（含硬件传输引擎）</text>
+
+  <!-- Bypass arrow (App API directly to RNIC) -->
+  <path d="M885,225 C940,225 940,455 885,455" fill="none" stroke="#43A047" stroke-width="2.5" marker-end="url(#ahgreen)"/>
+  <rect x="895" y="325" width="55" height="30" rx="4" fill="#43A047"/>
+  <text x="922" y="340" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#FFFFFF">零拷贝</text>
+  <text x="922" y="378" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#43A047" font-weight="600">内核旁路</text>
+
+  <!-- Small arrows inside RDMA stack (showing normal path is bypassed) -->
+  <line x1="720" y1="180" x2="720" y2="193" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ah)"/>
+
+  <!-- RDMA summary -->
+  <rect x="560" y="500" width="320" height="110" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="720" y="520" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#43A047">优势</text>
+  <text x="720" y="540" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">零拷贝：App 缓冲区直接 DMA 至 RNIC</text>
+  <text x="720" y="558" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">内核旁路：无系统调用、无上下文切换</text>
+  <text x="720" y="576" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">轮询模式：硬件完成传输，延迟稳定</text>
+  <text x="720" y="594" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">CPU 卸载：传输由 RNIC 硬件完成</text>
+</svg>

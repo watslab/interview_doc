@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1180" height="540" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" dominant-baseline="central" font-size="22" font-weight="bold" fill="#263238">RLHF 三阶段训练流程</text>
+
+  <!-- ========== Stage 1: SFT 监督微调 (Blue) ========== -->
+  <rect x="40" y="50" width="800" height="130" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,50 H832 Q840,50 840,58 V86 H40 V58 Q40,50 48,50Z" fill="#1E88E5"/>
+  <circle cx="72" cy="68" r="13" fill="#FFFFFF"/>
+  <text x="72" y="68" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1E88E5">1</text>
+  <text x="440" y="68" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">SFT · 监督微调（Supervised Fine-Tuning）</text>
+
+  <!-- Feature points -->
+  <circle cx="70" cy="105" r="3" fill="#1E88E5"/>
+  <text x="85" y="105" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">指令-回答对数据</text>
+  <text x="820" y="105" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">高质量人工标注的指令-响应样本</text>
+
+  <circle cx="70" cy="132" r="3" fill="#1E88E5"/>
+  <text x="85" y="132" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">学习对话格式</text>
+  <text x="820" y="132" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">适应交互式问答与多轮对话</text>
+
+  <circle cx="70" cy="159" r="3" fill="#1E88E5"/>
+  <text x="85" y="159" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">监督学习训练基座</text>
+  <text x="820" y="159" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">在预训练模型上交叉熵微调</text>
+
+  <!-- Arrow 1: Stage 1 → Stage 2 -->
+  <line x1="440" y1="180" x2="440" y2="210" stroke="#90A4AE" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ========== Stage 2: RM 奖励模型训练 (Orange) ========== -->
+  <rect x="40" y="210" width="800" height="130" rx="8" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,210 H832 Q840,210 840,218 V246 H40 V218 Q40,210 48,210Z" fill="#F57C00"/>
+  <circle cx="72" cy="228" r="13" fill="#FFFFFF"/>
+  <text x="72" y="228" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">2</text>
+  <text x="440" y="228" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">RM · 奖励模型训练（Reward Model）</text>
+
+  <circle cx="70" cy="265" r="3" fill="#F57C00"/>
+  <text x="85" y="265" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">偏好排序数据</text>
+  <text x="820" y="265" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">人工对多个回答进行 A/B 偏好标注</text>
+
+  <circle cx="70" cy="292" r="3" fill="#F57C00"/>
+  <text x="85" y="292" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">Bradley-Terry 模型</text>
+  <text x="820" y="292" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">基于成对比较的概率模型建模偏好</text>
+
+  <circle cx="70" cy="319" r="3" fill="#F57C00"/>
+  <text x="85" y="319" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">学习打分函数</text>
+  <text x="820" y="319" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">输出回答质量的标量奖励值 r(x, y)</text>
+
+  <!-- Arrow 2: Stage 2 → Stage 3 -->
+  <line x1="440" y1="340" x2="440" y2="370" stroke="#90A4AE" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- ========== Stage 3: PPO 强化学习 (Green) ========== -->
+  <rect x="40" y="370" width="800" height="130" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,370 H832 Q840,370 840,378 V406 H40 V378 Q40,370 48,370Z" fill="#43A047"/>
+  <circle cx="72" cy="388" r="13" fill="#FFFFFF"/>
+  <text x="72" y="388" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#43A047">3</text>
+  <text x="440" y="388" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">PPO · 强化学习优化（Proximal Policy Optimization）</text>
+
+  <circle cx="70" cy="425" r="3" fill="#43A047"/>
+  <text x="85" y="425" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">奖励信号优化</text>
+  <text x="820" y="425" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">用 RM 打分作为奖励，PPO 策略梯度更新</text>
+
+  <circle cx="70" cy="452" r="3" fill="#43A047"/>
+  <text x="85" y="452" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">KL 散度约束</text>
+  <text x="820" y="452" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">限制策略偏离 SFT 参考模型，防止崩坏</text>
+
+  <circle cx="70" cy="479" r="3" fill="#43A047"/>
+  <text x="85" y="479" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">对齐人类偏好</text>
+  <text x="820" y="479" text-anchor="end" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">最终模型输出符合人类意图与价值观</text>
+
+  <!-- ========== Right Goal Panel ========== -->
+  <rect x="880" y="50" width="280" height="450" rx="8" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M888,50 H1152 Q1160,50 1160,58 V100 H880 V58 Q880,50 888,50Z" fill="#7B1FA2"/>
+  <text x="1020" y="75" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">RLHF 最终目标</text>
+
+  <!-- 3H items -->
+  <circle cx="910" cy="140" r="10" fill="#1E88E5"/>
+  <text x="910" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">H</text>
+  <text x="930" y="140" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#1E88E5">Helpful</text>
+  <text x="930" y="160" text-anchor="start" dominant-baseline="central" font-size="11" fill="#546E7A">有用 · 满足用户需求</text>
+
+  <circle cx="910" cy="210" r="10" fill="#43A047"/>
+  <text x="910" y="210" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">H</text>
+  <text x="930" y="210" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#43A047">Harmless</text>
+  <text x="930" y="230" text-anchor="start" dominant-baseline="central" font-size="11" fill="#546E7A">无害 · 不产生有害内容</text>
+
+  <circle cx="910" cy="280" r="10" fill="#F57C00"/>
+  <text x="910" y="280" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">H</text>
+  <text x="930" y="280" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#F57C00">Honest</text>
+  <text x="930" y="300" text-anchor="start" dominant-baseline="central" font-size="11" fill="#546E7A">诚实 · 不编造虚假信息</text>
+
+  <!-- Divider -->
+  <line x1="900" y1="335" x2="1140" y2="335" stroke="#F3E5F5" stroke-width="1"/>
+
+  <!-- Summary -->
+  <text x="1020" y="360" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">三阶段递进训练</text>
+  <text x="1020" y="385" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#7B1FA2">实现人类意图对齐</text>
+
+  <!-- Target icon -->
+  <circle cx="1020" cy="430" r="18" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2"/>
+  <circle cx="1020" cy="430" r="10" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.5"/>
+  <circle cx="1020" cy="430" r="4" fill="#7B1FA2"/>
+
+  <!-- Arrow from Stage 3 to Goal Panel -->
+  <line x1="840" y1="435" x2="995" y2="435" stroke="#7B1FA2" stroke-width="2" marker-end="url(#ahr)"/>
+  <text x="917" y="422" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#7B1FA2" font-style="italic" font-weight="600">对齐目标</text>
+
+  <!-- Footer note -->
+  <text x="600" y="535" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-style="italic">SFT 提供对话能力基础 · RM 学习人类偏好 · PPO 在 RM 引导下优化策略 · 三者协同实现 3H 对齐</text>
+</svg>

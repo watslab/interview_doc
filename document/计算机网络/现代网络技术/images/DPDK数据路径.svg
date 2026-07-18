@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahred" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
+    <marker id="ahgreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+    <marker id="ahredrev" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#E53935"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="640" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">DPDK 内核旁路数据路径</text>
+
+  <!-- ====== Kernel Path Column ====== -->
+  <rect x="40" y="70" width="400" height="560" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M40,78 Q40,70 48,70 H432 Q440,70 440,78 V100 H40 Z" fill="#E53935"/>
+  <text x="240" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">内核网络栈路径</text>
+
+  <!-- App (user) -->
+  <rect x="80" y="125" width="320" height="60" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="148" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">应用</text>
+  <text x="240" y="167" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">用户缓冲区（待发送数据）</text>
+
+  <!-- Boundary -->
+  <line x1="60" y1="205" x2="420" y2="205" stroke="#E53935" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="430" y="205" text-anchor="start" dominant-baseline="central" font-size="10" fill="#E53935" font-weight="600">用户态 / 内核态</text>
+
+  <!-- Copy 1 label -->
+  <rect x="100" y="218" width="280" height="30" rx="4" fill="#FFCDD2" stroke="#E53935" stroke-width="1"/>
+  <text x="240" y="233" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#C62828">拷贝 1：App → 内核（系统调用 + 上下文切换）</text>
+
+  <!-- Kernel buffer + stack -->
+  <rect x="80" y="262" width="320" height="65" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="284" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">Socket 缓冲区 + TCP/IP 协议栈</text>
+  <text x="240" y="304" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">sk_buff / 协议头封装 / 路由查找</text>
+
+  <!-- Driver -->
+  <rect x="80" y="345" width="320" height="60" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="368" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">网卡驱动（中断驱动）</text>
+  <text x="240" y="387" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">NAPI / IRQ Handler</text>
+
+  <!-- Copy 2 label -->
+  <rect x="100" y="418" width="280" height="30" rx="4" fill="#FFCDD2" stroke="#E53935" stroke-width="1"/>
+  <text x="240" y="433" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#C62828">拷贝 2：内核 → NIC（DMA + 中断通知）</text>
+
+  <!-- NIC -->
+  <rect x="80" y="462" width="320" height="55" rx="6" fill="#FFCDD2" stroke="#E53935" stroke-width="1.5"/>
+  <text x="240" y="482" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">NIC</text>
+  <text x="240" y="501" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">硬件网卡</text>
+
+  <!-- Arrows -->
+  <line x1="240" y1="185" x2="240" y2="217" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+  <line x1="240" y1="248" x2="240" y2="261" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+  <line x1="240" y1="327" x2="240" y2="344" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+  <line x1="240" y1="405" x2="240" y2="417" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+  <line x1="240" y1="448" x2="240" y2="461" stroke="#E53935" stroke-width="1.5" marker-end="url(#ahred)"/>
+
+  <!-- IRQ notification arrow (NIC up to driver) -->
+  <path d="M340,475 C400,475 400,375 340,375" fill="none" stroke="#E53935" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ahred)"/>
+  <text x="412" y="425" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E53935" font-weight="600">硬中断</text>
+
+  <!-- Kernel summary -->
+  <rect x="80" y="535" width="320" height="80" rx="6" fill="#FFFFFF" stroke="#E53935" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="240" y="553" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#E53935">瓶颈</text>
+  <text x="240" y="572" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">2 次拷贝 + 系统调用 + 上下文切换</text>
+  <text x="240" y="590" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">中断驱动：每包触发中断，延迟抖动大</text>
+  <text x="240" y="608" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">CPU 占用高：参与所有数据搬运</text>
+
+  <!-- ====== DPDK Path Column ====== -->
+  <rect x="520" y="70" width="400" height="560" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M520,78 Q520,70 528,70 H912 Q920,70 920,78 V100 H520 Z" fill="#43A047"/>
+  <text x="720" y="85" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">DPDK 用户态轮询路径</text>
+
+  <!-- App + PMD (user) -->
+  <rect x="560" y="125" width="320" height="85" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="720" y="148" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">应用 + PMD 轮询线程</text>
+  <text x="720" y="167" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">用户态应用 + DPDK Poll Mode Driver</text>
+  <text x="720" y="186" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">持续轮询 Rx 队列，无阻塞、无中断</text>
+
+  <!-- Boundary -->
+  <line x1="540" y1="230" x2="900" y2="230" stroke="#43A047" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="530" y="230" text-anchor="end" dominant-baseline="central" font-size="10" fill="#43A047" font-weight="600">用户态 / 内核态</text>
+
+  <!-- Zero-copy label -->
+  <rect x="580" y="243" width="280" height="30" rx="4" fill="#C8E6C9" stroke="#43A047" stroke-width="1"/>
+  <text x="720" y="258" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#1B5E20">零拷贝：用户缓冲区直接 DMA 至 NIC</text>
+
+  <!-- Faded kernel (UIO/VFIO) -->
+  <rect x="560" y="287" width="320" height="60" rx="6" fill="#F1F8E9" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="720" y="308" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#888">UIO / VFIO 驱动</text>
+  <text x="720" y="327" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#AAA">仅初始化阶段映射寄存器与内存</text>
+
+  <!-- Faded protocol stack -->
+  <rect x="560" y="365" width="320" height="55" rx="6" fill="#F1F8E9" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="720" y="385" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#888">TCP/IP 协议栈</text>
+  <text x="720" y="404" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#AAA">完全旁路</text>
+
+  <!-- HugePages memory pool -->
+  <rect x="560" y="438" width="320" height="55" rx="6" fill="#C8E6C9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="720" y="458" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">HugePages 内存池</text>
+  <text x="720" y="477" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">2MB 大页，mempool 预分配</text>
+
+  <!-- NIC -->
+  <rect x="560" y="513" width="320" height="55" rx="6" fill="#C8E6C9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="720" y="533" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#333">NIC（DPDK 兼容）</text>
+  <text x="720" y="552" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">支持 VFIO/UIO + 用户态驱动</text>
+
+  <!-- Zero-copy direct arrow from PMD to NIC (bypassing faded layers) -->
+  <path d="M600,210 C500,210 500,540 600,540" fill="none" stroke="#43A047" stroke-width="2.5" marker-end="url(#ahgreen)"/>
+  <rect x="475" y="358" width="55" height="30" rx="4" fill="#43A047"/>
+  <text x="502" y="373" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#FFFFFF">零拷贝</text>
+  <text x="502" y="395" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#43A047" font-weight="600">用户态</text>
+  <text x="502" y="410" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#43A047" font-weight="600">轮询</text>
+
+  <!-- DPDK summary -->
+  <rect x="560" y="585" width="320" height="40" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="720" y="598" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="#43A047">优势</text>
+  <text x="720" y="615" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#555">零拷贝 + 无中断 + 无系统调用 + CPU 卸载</text>
+</svg>

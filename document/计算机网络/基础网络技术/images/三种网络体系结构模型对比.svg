@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="600" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="16" font-weight="bold">三种网络体系结构模型对比</text>
+
+  <!-- Column headers -->
+  <rect x="25" y="60" width="280" height="30" rx="4" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="165" y="75" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="13" font-weight="bold">OSI 七层模型 (ISO/IEC 7498-1)</text>
+
+  <rect x="340" y="60" width="280" height="30" rx="4" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="480" y="75" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="13" font-weight="bold">TCP/IP 四层模型 (RFC 1122)</text>
+
+  <rect x="655" y="60" width="280" height="30" rx="4" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="795" y="75" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="13" font-weight="bold">五层混合模型 (教学模型)</text>
+
+  <!-- Correspondence dashed lines -->
+  <line x1="305" y1="100" x2="340" y2="100" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="620" y1="100" x2="655" y2="100" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="305" y1="304" x2="340" y2="304" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="620" y1="304" x2="655" y2="304" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="305" y1="372" x2="340" y2="372" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="620" y1="372" x2="655" y2="372" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="305" y1="440" x2="340" y2="440" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="620" y1="440" x2="655" y2="440" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- OSI Layer 7: Application -->
+  <rect x="25" y="100" width="280" height="62" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="50" cy="131" r="14" fill="#1E88E5"/>
+  <text x="50" y="131" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">7</text>
+  <text x="170" y="120" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="13" font-weight="bold">应用层 Application</text>
+  <text x="170" y="140" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Data | HTTP, FTP, DNS</text>
+
+  <!-- OSI Layer 6: Presentation -->
+  <rect x="25" y="168" width="280" height="62" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="50" cy="199" r="14" fill="#1E88E5"/>
+  <text x="50" y="199" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">6</text>
+  <text x="170" y="188" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="13" font-weight="bold">表示层 Presentation</text>
+  <text x="170" y="208" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Data | 加密, 压缩, 编码转换</text>
+
+  <!-- OSI Layer 5: Session -->
+  <rect x="25" y="236" width="280" height="62" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="50" cy="267" r="14" fill="#1E88E5"/>
+  <text x="50" y="267" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">5</text>
+  <text x="170" y="256" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="13" font-weight="bold">会话层 Session</text>
+  <text x="170" y="276" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Data | 会话管理, 同步点</text>
+
+  <!-- OSI Layer 4: Transport -->
+  <rect x="25" y="304" width="280" height="62" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="50" cy="335" r="14" fill="#43A047"/>
+  <text x="50" y="335" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">4</text>
+  <text x="170" y="324" text-anchor="middle" dominant-baseline="central" fill="#2E7D32" font-size="13" font-weight="bold">传输层 Transport</text>
+  <text x="170" y="344" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Segment | TCP, UDP</text>
+
+  <!-- OSI Layer 3: Network -->
+  <rect x="25" y="372" width="280" height="62" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="50" cy="403" r="14" fill="#F57C00"/>
+  <text x="50" y="403" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">3</text>
+  <text x="170" y="392" text-anchor="middle" dominant-baseline="central" fill="#E65100" font-size="13" font-weight="bold">网络层 Network</text>
+  <text x="170" y="412" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Packet | IP, ICMP, OSPF</text>
+
+  <!-- OSI Layer 2: Data Link -->
+  <rect x="25" y="440" width="280" height="62" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="50" cy="471" r="14" fill="#7B1FA2"/>
+  <text x="50" y="471" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">2</text>
+  <text x="170" y="460" text-anchor="middle" dominant-baseline="central" fill="#6A1B9A" font-size="13" font-weight="bold">数据链路层 Data Link</text>
+  <text x="170" y="480" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Frame | Ethernet, PPP, Wi-Fi</text>
+
+  <!-- OSI Layer 1: Physical -->
+  <rect x="25" y="508" width="280" height="62" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="50" cy="539" r="14" fill="#546E7A"/>
+  <text x="50" y="539" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">1</text>
+  <text x="170" y="528" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="13" font-weight="bold">物理层 Physical</text>
+  <text x="170" y="548" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Bit | 双绞线, 光纤, 编码</text>
+
+  <!-- TCP/IP Layer 4: Application (spans L7-L5) -->
+  <rect x="340" y="100" width="280" height="204" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="365" cy="202" r="14" fill="#1E88E5"/>
+  <text x="365" y="202" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">4</text>
+  <text x="490" y="170" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="14" font-weight="bold">应用层 Application</text>
+  <text x="490" y="195" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="11">合并 OSI L5-L7</text>
+  <text x="490" y="215" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Data</text>
+  <text x="490" y="235" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">HTTP, DNS, SMTP, FTP, SSH</text>
+
+  <!-- TCP/IP Layer 3: Transport -->
+  <rect x="340" y="304" width="280" height="62" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="365" cy="335" r="14" fill="#43A047"/>
+  <text x="365" y="335" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">3</text>
+  <text x="490" y="324" text-anchor="middle" dominant-baseline="central" fill="#2E7D32" font-size="13" font-weight="bold">传输层 Transport</text>
+  <text x="490" y="344" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Segment | TCP, UDP, SCTP</text>
+
+  <!-- TCP/IP Layer 2: Internet -->
+  <rect x="340" y="372" width="280" height="62" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="365" cy="403" r="14" fill="#F57C00"/>
+  <text x="365" y="403" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">2</text>
+  <text x="490" y="392" text-anchor="middle" dominant-baseline="central" fill="#E65100" font-size="13" font-weight="bold">网际层 Internet</text>
+  <text x="490" y="412" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Packet | IP, ICMP, ARP</text>
+
+  <!-- TCP/IP Layer 1: Network Access (spans L2-L1) -->
+  <rect x="340" y="440" width="280" height="130" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="365" cy="505" r="14" fill="#7B1FA2"/>
+  <text x="365" y="505" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">1</text>
+  <text x="490" y="475" text-anchor="middle" dominant-baseline="central" fill="#6A1B9A" font-size="14" font-weight="bold">网络接口层 Link</text>
+  <text x="490" y="500" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="11">合并 OSI L1-L2</text>
+  <text x="490" y="520" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Frame / Bit</text>
+  <text x="490" y="540" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">Ethernet, Wi-Fi, PPP</text>
+
+  <!-- 5-layer Layer 5: Application (spans L7-L5) -->
+  <rect x="655" y="100" width="280" height="204" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="680" cy="202" r="14" fill="#1E88E5"/>
+  <text x="680" y="202" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">5</text>
+  <text x="805" y="170" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="14" font-weight="bold">应用层 Application</text>
+  <text x="805" y="195" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="11">合并 OSI L5-L7</text>
+  <text x="805" y="215" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Data</text>
+  <text x="805" y="235" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">HTTP, DNS, SMTP, FTP, SSH</text>
+
+  <!-- 5-layer Layer 4: Transport -->
+  <rect x="655" y="304" width="280" height="62" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="680" cy="335" r="14" fill="#43A047"/>
+  <text x="680" y="335" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">4</text>
+  <text x="805" y="324" text-anchor="middle" dominant-baseline="central" fill="#2E7D32" font-size="13" font-weight="bold">传输层 Transport</text>
+  <text x="805" y="344" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Segment | TCP, UDP</text>
+
+  <!-- 5-layer Layer 3: Network -->
+  <rect x="655" y="372" width="280" height="62" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="680" cy="403" r="14" fill="#F57C00"/>
+  <text x="680" y="403" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">3</text>
+  <text x="805" y="392" text-anchor="middle" dominant-baseline="central" fill="#E65100" font-size="13" font-weight="bold">网络层 Network</text>
+  <text x="805" y="412" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Packet | IP, ICMP, 路由</text>
+
+  <!-- 5-layer Layer 2: Data Link -->
+  <rect x="655" y="440" width="280" height="62" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="680" cy="471" r="14" fill="#7B1FA2"/>
+  <text x="680" y="471" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">2</text>
+  <text x="805" y="460" text-anchor="middle" dominant-baseline="central" fill="#6A1B9A" font-size="13" font-weight="bold">数据链路层 Data Link</text>
+  <text x="805" y="480" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Frame | Ethernet, VLAN</text>
+
+  <!-- 5-layer Layer 1: Physical -->
+  <rect x="655" y="508" width="280" height="62" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="680" cy="539" r="14" fill="#546E7A"/>
+  <text x="680" y="539" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">1</text>
+  <text x="805" y="528" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="13" font-weight="bold">物理层 Physical</text>
+  <text x="805" y="548" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Bit | 信号, 介质, 编码</text>
+
+</svg>

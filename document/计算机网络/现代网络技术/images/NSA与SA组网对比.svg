@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="460" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">NSA（Option 3x）与 SA（Option 2）组网对比</text>
+
+  <!-- NSA Option 3x -->
+  <rect x="40" y="68" width="410" height="320" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,68 H442 Q450,68 450,76 V96 H40 V76 Q40,68 48,68Z" fill="#F57C00"/>
+  <text x="245" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">NSA — Option 3x（主流）</text>
+
+  <rect x="80" y="110" width="150" height="50" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="155" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">EPC（4G 核心网）</text>
+  <text x="155" y="150" text-anchor="middle" font-size="10" fill="#90A4AE">复用现有核心网</text>
+
+  <rect x="260" y="110" width="80" height="50" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="300" y="132" text-anchor="middle" font-size="11" font-weight="600" fill="#E65100">eNB</text>
+  <text x="300" y="150" text-anchor="middle" font-size="10" fill="#90A4AE">控制面锚点</text>
+
+  <rect x="360" y="110" width="80" height="50" rx="6" fill="#FFE0B2" stroke="#FB8C00" stroke-width="1"/>
+  <text x="400" y="132" text-anchor="middle" font-size="11" font-weight="600" fill="#BF360C">en-gNB</text>
+  <text x="400" y="150" text-anchor="middle" font-size="10" fill="#90A4AE">数据分流锚点</text>
+
+  <line x1="300" y1="162" x2="300" y2="184" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="400" y1="162" x2="400" y2="184" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="350" y="178" text-anchor="middle" font-size="10" fill="#90A4AE">EN-DC 双连接</text>
+
+  <rect x="60" y="190" width="370" height="180" rx="6" fill="#FFF" stroke="#FFB74D" stroke-width="1"/>
+  <text x="245" y="212" text-anchor="middle" font-size="12" font-weight="600" fill="#E65100">特征与局限</text>
+  <text x="70" y="234" font-size="11" fill="#546E7A">• 核心网：EPC（4G）</text>
+  <text x="70" y="252" font-size="11" fill="#546E7A">• 仅支持 eMBB，不支持网络切片</text>
+  <text x="70" y="270" font-size="11" fill="#546E7A">• 不支持完整 URLLC / MEC</text>
+  <text x="70" y="288" font-size="11" fill="#546E7A">• 语音走 VoLTE</text>
+  <text x="70" y="306" font-size="11" fill="#546E7A">• UE 功耗较高（双连接）</text>
+  <text x="70" y="328" font-size="11" fill="#43A047">✓ 优势：复用 EPC，5G 快速部署</text>
+  <text x="70" y="346" font-size="11" fill="#43A047">✓ 全球最普遍的早期商用方案</text>
+  <text x="70" y="364" font-size="11" fill="#90A4AE">演进：4G EPC → NSA 3x → SA Option 2</text>
+
+  <!-- SA Option 2 -->
+  <rect x="470" y="68" width="410" height="320" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M478,68 H872 Q880,68 880,76 V96 H470 V76 Q470,68 478,68Z" fill="#1E88E5"/>
+  <text x="675" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">SA — Option 2（目标架构）</text>
+
+  <rect x="510" y="110" width="150" height="50" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="585" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">5GC（SBA）</text>
+  <text x="585" y="150" text-anchor="middle" font-size="10" fill="#90A4AE">服务化架构</text>
+
+  <rect x="690" y="110" width="150" height="50" rx="6" fill="#BBDEFB" stroke="#1976D2" stroke-width="1"/>
+  <text x="765" y="132" text-anchor="middle" font-size="12" font-weight="600" fill="#0D47A1">gNB</text>
+  <text x="765" y="150" text-anchor="middle" font-size="10" fill="#90A4AE">直连 5GC（NG 接口）</text>
+
+  <line x1="765" y1="162" x2="765" y2="184" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="775" y="178" font-size="10" fill="#90A4AE">N2/N3</text>
+
+  <rect x="490" y="190" width="370" height="180" rx="6" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="675" y="212" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">特征与能力</text>
+  <text x="500" y="234" font-size="11" fill="#546E7A">• 核心网：5GC（SBA 服务化）</text>
+  <text x="500" y="252" font-size="11" fill="#546E7A">• 完整支持网络切片（S-NSSAI）</text>
+  <text x="500" y="270" font-size="11" fill="#546E7A">• 完整 URLLC（&lt;1ms）</text>
+  <text x="500" y="288" font-size="11" fill="#546E7A">• 原生 MEC（UPF 下沉、LADN）</text>
+  <text x="500" y="306" font-size="11" fill="#546E7A">• 语音 VoNR（或 EPS Fallback）</text>
+  <text x="500" y="324" font-size="11" fill="#546E7A">• UE 功耗低 15-30%</text>
+  <text x="500" y="346" font-size="11" fill="#43A047">✓ 解锁全部 5G 特性</text>
+  <text x="500" y="364" font-size="11" fill="#90A4AE">目标：纯 SA Option 2，EPC 退网</text>
+
+  <text x="450" y="418" text-anchor="middle" font-size="12" font-weight="600" fill="#546E7A">演进路径：4G EPC + eNB → NSA 3x → NSA+SA 混合（N26 互通） → 纯 SA Option 2</text>
+  <text x="450" y="440" text-anchor="middle" font-size="11" fill="#90A4AE">QoS 模型：EPS Bearer（per-bearer） → QoS Flow（per-flow，更细粒度，5QI）</text>
+</svg>

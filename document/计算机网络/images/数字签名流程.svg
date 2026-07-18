@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#546E7A"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="780" height="340" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#263238">数字签名与验签流程</text>
+
+  <!-- Left: Signing Process -->
+  <rect x="30" y="50" width="340" height="280" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M38,50 H362 Q370,50 370,58 V80 H30 V58 Q30,50 38,50 Z" fill="#1E88E5"/>
+  <text x="200" y="65" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">签名过程（发送方）</text>
+
+  <!-- Step 1: Original message -->
+  <rect x="55" y="95" width="130" height="35" rx="6" fill="#E3F2FD" stroke="#64B5F6" stroke-width="1"/>
+  <text x="120" y="112" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">原始消息</text>
+
+  <!-- Arrow down to hash -->
+  <line x1="120" y1="130" x2="120" y2="148" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="145" y="139" text-anchor="start" dominant-baseline="central" font-size="9" fill="#757575">Hash</text>
+
+  <!-- Step 2: Hash result -->
+  <rect x="55" y="152" width="130" height="35" rx="6" fill="#E3F2FD" stroke="#64B5F6" stroke-width="1"/>
+  <text x="120" y="169" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">消息摘要</text>
+
+  <!-- Arrow right to encrypt -->
+  <line x1="185" y1="169" x2="218" y2="169" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 3: Private key encrypt -->
+  <rect x="222" y="148" width="120" height="42" rx="6" fill="#FFEBEE" stroke="#EF5350" stroke-width="1.5"/>
+  <text x="282" y="164" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#C62828">私钥加密</text>
+  <text x="282" y="179" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#E53935">Private Key</text>
+
+  <!-- Arrow down to signature -->
+  <line x1="282" y1="190" x2="282" y2="210" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 4: Signature -->
+  <rect x="222" y="214" width="120" height="35" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="282" y="231" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">数字签名</text>
+
+  <!-- Send message + signature -->
+  <rect x="100" y="270" width="200" height="35" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="200" y="287" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">消息 + 签名</text>
+
+  <!-- Arrows to send box -->
+  <line x1="120" y1="249" x2="120" y2="268" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="282" y1="249" x2="282" y2="268" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Right: Verification Process -->
+  <rect x="430" y="50" width="340" height="280" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M438,50 H762 Q770,50 770,58 V80 H430 V58 Q430,50 438,50 Z" fill="#43A047"/>
+  <text x="600" y="65" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">验签过程（接收方）</text>
+
+  <!-- Step 1: Received message -->
+  <rect x="455" y="95" width="130" height="35" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="520" y="112" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#2E7D32">收到消息</text>
+
+  <!-- Arrow down to hash -->
+  <line x1="520" y1="130" x2="520" y2="148" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="545" y="139" text-anchor="start" dominant-baseline="central" font-size="9" fill="#757575">Hash</text>
+
+  <!-- Step 2: Hash result -->
+  <rect x="455" y="152" width="130" height="35" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="520" y="169" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#2E7D32">消息摘要 A</text>
+
+  <!-- Arrow right to decrypt -->
+  <line x1="585" y1="169" x2="618" y2="169" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 3: Public key decrypt -->
+  <rect x="622" y="148" width="120" height="42" rx="6" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1.5"/>
+  <text x="682" y="164" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">公钥解密</text>
+  <text x="682" y="179" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#43A047">Public Key</text>
+
+  <!-- Arrow down to hash B -->
+  <line x1="682" y1="190" x2="682" y2="210" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 4: Hash result B -->
+  <rect x="622" y="214" width="120" height="35" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="682" y="231" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#2E7D32">消息摘要 B</text>
+
+  <!-- Compare -->
+  <rect x="520" y="270" width="160" height="35" rx="6" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="600" y="287" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#6A1B9A">A = B ? 验证通过</text>
+
+  <!-- Arrows to compare box -->
+  <line x1="520" y1="187" x2="540" y2="268" stroke="#546E7A" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#ah)"/>
+  <line x1="682" y1="249" x2="660" y2="268" stroke="#546E7A" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#ah)"/>
+
+  <!-- Transmission arrow (left to right) -->
+  <line x1="305" y1="287" x2="425" y2="287" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+  <text x="365" y="278" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#757575">网络传输</text>
+</svg>

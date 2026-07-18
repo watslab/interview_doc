@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="500" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">IEEE 802.3 以太网帧格式结构</text>
+
+  <!-- Frame field boxes row (y=90) -->
+  <!-- 前导码 7B -->
+  <rect x="40" y="90" width="80" height="70" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="80" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1565C0">前导码</text>
+  <text x="80" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Preamble</text>
+  <text x="80" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">7 字节</text>
+
+  <!-- SFD 1B -->
+  <rect x="120" y="90" width="60" height="70" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="150" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1565C0">SFD</text>
+  <text x="150" y="138" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">帧起始定界符</text>
+  <text x="150" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">1 字节</text>
+
+  <!-- 目的MAC 6B -->
+  <rect x="180" y="90" width="110" height="70" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="235" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#E65100">目的 MAC</text>
+  <text x="235" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Destination</text>
+  <text x="235" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">6 字节</text>
+
+  <!-- 源MAC 6B -->
+  <rect x="290" y="90" width="110" height="70" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="345" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#E65100">源 MAC</text>
+  <text x="345" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Source</text>
+  <text x="345" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">6 字节</text>
+
+  <!-- 长度/类型 2B -->
+  <rect x="400" y="90" width="90" height="70" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="445" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#4A148C">长度/类型</text>
+  <text x="445" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Length/Type</text>
+  <text x="445" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">2 字节</text>
+
+  <!-- 数据 46-1500B -->
+  <rect x="490" y="90" width="280" height="70" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="630" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1B5E20">数据（载荷）</text>
+  <text x="630" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Data / Payload</text>
+  <text x="630" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">46 ~ 1500 字节</text>
+
+  <!-- FCS 4B -->
+  <rect x="770" y="90" width="90" height="70" rx="4" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="815" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#B71C1C">FCS</text>
+  <text x="815" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">帧校验序列</text>
+  <text x="815" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">4 字节</text>
+
+  <!-- Section brackets -->
+  <!-- 物理层添加 (前导码+SFD) -->
+  <path d="M40,215 H200 V225 H40 Z" fill="#ECEFF1" stroke="#546E7A" stroke-width="1" opacity="0.6"/>
+  <text x="120" y="220" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#37474F">物理层附加（非帧本体）</text>
+
+  <!-- 帧本体 -->
+  <path d="M180,215 H860 V225 H180 Z" fill="#ECEFF1" stroke="#546E7A" stroke-width="1" opacity="0.6"/>
+  <text x="520" y="220" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#37474F">MAC 帧本体（64 ~ 1518 字节）</text>
+
+  <!-- Field detail boxes -->
+  <text x="480" y="260" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#37474F">关键字段说明</text>
+
+  <!-- Detail rows -->
+  <rect x="40" y="280" width="880" height="36" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="40" y="280" width="120" height="36" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="100" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">前导码 / SFD</text>
+  <text x="170" y="298" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">前导码 7 字节 0x55 用于时钟同步；SFD 1 字节 0xD5 标识帧起始</text>
+
+  <rect x="40" y="320" width="880" height="36" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="40" y="320" width="120" height="36" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="100" y="338" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">MAC 地址</text>
+  <text x="170" y="338" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">目的/源 MAC 各 6 字节，全局唯一（EUI-48），支持单播/组播/广播</text>
+
+  <rect x="40" y="360" width="880" height="36" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="40" y="360" width="120" height="36" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="100" y="378" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#4A148C">长度/类型</text>
+  <text x="170" y="378" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">值 ≤ 1500 为长度（IEEE 802.3）；值 ≥ 1536 为类型（EtherType，如 0x0800=IPv4）</text>
+
+  <rect x="40" y="400" width="880" height="36" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="40" y="400" width="120" height="36" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="100" y="418" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1B5E20">数据</text>
+  <text x="170" y="418" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">上层 PDU；不足 46 字节需填充（Padding），最大 1500 字节（MTU）</text>
+
+  <rect x="40" y="440" width="880" height="36" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="40" y="440" width="120" height="36" rx="4" fill="#FFEBEE" stroke="#E53935" stroke-width="1"/>
+  <text x="100" y="458" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#B71C1C">FCS</text>
+  <text x="170" y="458" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">32 位 CRC-32 校验，覆盖目的 MAC 到数据字段，接收方用于检错</text>
+
+  <!-- Footer note -->
+  <text x="480" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">帧最小 64 字节（含 FCS），最大 1518 字节；含 VLAN Tag 时为 1522 字节</text>
+</svg>

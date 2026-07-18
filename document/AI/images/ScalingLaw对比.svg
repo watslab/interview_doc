@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 650" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1080" height="630" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="550" y="45" text-anchor="middle" dominant-baseline="central" font-size="24" font-weight="bold" fill="#263238">Scaling Law 对比</text>
+  <text x="550" y="75" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#78909C">Kaplan (2020) vs Chinchilla (2022) · 缩放定律的修正与验证</text>
+
+  <!-- ========== Left Container: Kaplan Scaling Law (Orange) ========== -->
+  <rect x="40" y="120" width="480" height="280" rx="8" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,120 H512 Q520,120 520,128 V170 H40 V128 Q40,120 48,120Z" fill="#F57C00"/>
+  <text x="280" y="140" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">Kaplan Scaling Law</text>
+  <text x="280" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#FFE0B2">2020 · OpenAI</text>
+
+  <!-- Formula section -->
+  <text x="280" y="195" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">最优缩放公式</text>
+  <text x="280" y="222" text-anchor="middle" dominant-baseline="central" font-size="15" font-style="italic" fill="#37474F">N<tspan font-size="10" dy="4">opt</tspan><tspan dy="-4"> ∝ C</tspan><tspan font-size="10" dy="-6">0.73</tspan></text>
+  <text x="280" y="248" text-anchor="middle" dominant-baseline="central" font-size="15" font-style="italic" fill="#37474F">D<tspan font-size="10" dy="4">opt</tspan><tspan dy="-4"> ∝ C</tspan><tspan font-size="10" dy="-6">0.27</tspan></text>
+
+  <!-- Divider -->
+  <line x1="80" y1="270" x2="480" y2="270" stroke="#FFF3E0" stroke-width="1"/>
+
+  <!-- Core conclusion -->
+  <text x="280" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心结论</text>
+  <text x="280" y="312" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#F57C00">大模型比大数据更重要</text>
+
+  <!-- Representative model -->
+  <line x1="80" y1="335" x2="480" y2="335" stroke="#FFF3E0" stroke-width="1"/>
+  <text x="280" y="355" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">代表模型</text>
+  <text x="280" y="378" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">GPT-3 (175B 参数 · 300B tokens)</text>
+
+  <!-- ========== Middle Arrow ========== -->
+  <line x1="525" y1="260" x2="575" y2="260" stroke="#90A4AE" stroke-width="2.5" marker-end="url(#ah)"/>
+  <text x="550" y="240" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#546E7A">修正与验证</text>
+  <text x="550" y="280" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-style="italic">2 年后</text>
+
+  <!-- ========== Right Container: Chinchilla Scaling Law (Green) ========== -->
+  <rect x="580" y="120" width="480" height="280" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M588,120 H1052 Q1060,120 1060,128 V170 H580 V128 Q580,120 588,120Z" fill="#43A047"/>
+  <text x="820" y="140" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">Chinchilla Scaling Law</text>
+  <text x="820" y="158" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#C8E6C9">2022 · DeepMind</text>
+
+  <!-- Formula section -->
+  <text x="820" y="195" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">最优缩放公式</text>
+  <text x="820" y="222" text-anchor="middle" dominant-baseline="central" font-size="15" font-style="italic" fill="#37474F">N<tspan font-size="10" dy="4">opt</tspan><tspan dy="-4"> ∝ C</tspan><tspan font-size="10" dy="-6">0.50</tspan></text>
+  <text x="820" y="248" text-anchor="middle" dominant-baseline="central" font-size="15" font-style="italic" fill="#37474F">D<tspan font-size="10" dy="4">opt</tspan><tspan dy="-4"> ∝ C</tspan><tspan font-size="10" dy="-6">0.50</tspan></text>
+
+  <line x1="620" y1="270" x2="1020" y2="270" stroke="#E8F5E9" stroke-width="1"/>
+
+  <text x="820" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">核心结论</text>
+  <text x="820" y="312" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#43A047">模型与数据等比缩放</text>
+
+  <line x1="620" y1="335" x2="1020" y2="335" stroke="#E8F5E9" stroke-width="1"/>
+  <text x="820" y="355" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">代表模型</text>
+  <text x="820" y="378" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">Chinchilla (70B 参数 · 1.4T tokens)</text>
+
+  <!-- ========== Bottom Comparison Table ========== -->
+  <rect x="40" y="430" width="1020" height="190" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Table header row -->
+  <rect x="40" y="430" width="1020" height="36" rx="8" fill="#ECEFF1"/>
+  <rect x="40" y="454" width="1020" height="12" fill="#ECEFF1"/>
+  <text x="115" y="448" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">对比维度</text>
+  <line x1="190" y1="430" x2="190" y2="620" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="410" y="448" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#F57C00">Kaplan (2020)</text>
+  <line x1="630" y1="430" x2="630" y2="620" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="845" y="448" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#43A047">Chinchilla (2022)</text>
+
+  <!-- Row 1: 最优N缩放 -->
+  <text x="115" y="485" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A" font-weight="600">最优 N 缩放</text>
+  <text x="410" y="485" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">N ∝ C^0.73（参数优先）</text>
+  <text x="845" y="485" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">N ∝ C^0.50（等比增长）</text>
+  <line x1="50" y1="500" x2="1050" y2="500" stroke="#F5F5F5" stroke-width="1"/>
+
+  <!-- Row 2: 最优D缩放 -->
+  <text x="115" y="520" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A" font-weight="600">最优 D 缩放</text>
+  <text x="410" y="520" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">D ∝ C^0.27（数据次要）</text>
+  <text x="845" y="520" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">D ∝ C^0.50（等比增长）</text>
+  <line x1="50" y1="535" x2="1050" y2="535" stroke="#F5F5F5" stroke-width="1"/>
+
+  <!-- Row 3: 核心结论 -->
+  <text x="115" y="555" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A" font-weight="600">核心结论</text>
+  <text x="410" y="555" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">大模型优先，数据相对不重要</text>
+  <text x="845" y="555" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">模型与数据同等重要</text>
+  <line x1="50" y1="570" x2="1050" y2="570" stroke="#F5F5F5" stroke-width="1"/>
+
+  <!-- Row 4: 代表模型 -->
+  <text x="115" y="590" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A" font-weight="600">代表模型</text>
+  <text x="410" y="590" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">GPT-3（参数远多于数据）</text>
+  <text x="845" y="590" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#37474F">Chinchilla（参数数据 10:1）</text>
+
+  <!-- Footer note -->
+  <text x="550" y="635" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#90A4AE" font-style="italic">Chinchilla 修正了 Kaplan 的实验设计（学习率调度设置），证明在固定算力下模型与数据应等比缩放</text>
+</svg>

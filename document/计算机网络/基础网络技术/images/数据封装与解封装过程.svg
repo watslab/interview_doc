@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="540" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="16" font-weight="bold">数据封装与解封装过程</text>
+
+  <!-- Sub-headers -->
+  <rect x="25" y="62" width="350" height="26" rx="4" fill="#E3F2FD" stroke="#1E88E5"/>
+  <text x="200" y="75" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="12" font-weight="bold">发送端：封装（自上而下添加头部）</text>
+
+  <rect x="585" y="62" width="350" height="26" rx="4" fill="#FFF3E0" stroke="#F57C00"/>
+  <text x="760" y="75" text-anchor="middle" dominant-baseline="central" fill="#E65100" font-size="12" font-weight="bold">接收端：解封装（自下而上剥离头部）</text>
+
+  <!-- ===== Left side: Encapsulation ===== -->
+
+  <!-- Step 1: Application -->
+  <text x="35" y="115" text-anchor="start" dominant-baseline="central" fill="#1565C0" font-size="11" font-weight="600">应用层</text>
+  <rect x="180" y="100" width="160" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1" filter="url(#s1)"/>
+  <text x="260" y="116" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <text x="355" y="116" text-anchor="start" dominant-baseline="central" fill="#546E7A" font-size="11">Data</text>
+
+  <line x1="260" y1="137" x2="260" y2="160" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 2: Transport -->
+  <text x="35" y="180" text-anchor="start" dominant-baseline="central" fill="#2E7D32" font-size="11" font-weight="600">传输层</text>
+  <rect x="130" y="165" width="55" height="32" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1" filter="url(#s1)"/>
+  <text x="157" y="181" text-anchor="middle" dominant-baseline="central" fill="#1B5E20" font-size="10" font-weight="600">TCP Hdr</text>
+  <rect x="185" y="165" width="155" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="262" y="181" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <text x="355" y="181" text-anchor="start" dominant-baseline="central" fill="#546E7A" font-size="11">Segment</text>
+
+  <line x1="262" y1="202" x2="262" y2="225" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 3: Network -->
+  <text x="35" y="245" text-anchor="start" dominant-baseline="central" fill="#E65100" font-size="11" font-weight="600">网络层</text>
+  <rect x="85" y="230" width="50" height="32" rx="3" fill="#FFE0B2" stroke="#F57C00" stroke-width="1" filter="url(#s1)"/>
+  <text x="110" y="246" text-anchor="middle" dominant-baseline="central" fill="#BF360C" font-size="10" font-weight="600">IP Hdr</text>
+  <rect x="135" y="230" width="55" height="32" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1"/>
+  <text x="162" y="246" text-anchor="middle" dominant-baseline="central" fill="#1B5E20" font-size="10" font-weight="600">TCP Hdr</text>
+  <rect x="190" y="230" width="150" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="265" y="246" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <text x="355" y="246" text-anchor="start" dominant-baseline="central" fill="#546E7A" font-size="11">Packet</text>
+
+  <line x1="265" y1="267" x2="265" y2="290" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 4: Data Link -->
+  <text x="35" y="310" text-anchor="start" dominant-baseline="central" fill="#6A1B9A" font-size="11" font-weight="600">链路层</text>
+  <rect x="50" y="295" width="40" height="32" rx="3" fill="#E1BEE7" stroke="#7B1FA2" stroke-width="1" filter="url(#s1)"/>
+  <text x="70" y="311" text-anchor="middle" dominant-baseline="central" fill="#4A148C" font-size="9" font-weight="600">Frm Hdr</text>
+  <rect x="90" y="295" width="50" height="32" rx="3" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="115" y="311" text-anchor="middle" dominant-baseline="central" fill="#BF360C" font-size="10" font-weight="600">IP Hdr</text>
+  <rect x="140" y="295" width="55" height="32" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1"/>
+  <text x="167" y="311" text-anchor="middle" dominant-baseline="central" fill="#1B5E20" font-size="10" font-weight="600">TCP Hdr</text>
+  <rect x="195" y="295" width="120" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="255" y="311" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <rect x="315" y="295" width="35" height="32" rx="3" fill="#FFCDD2" stroke="#E53935" stroke-width="1"/>
+  <text x="332" y="311" text-anchor="middle" dominant-baseline="central" fill="#B71C1C" font-size="10" font-weight="600">FCS</text>
+  <text x="355" y="311" text-anchor="start" dominant-baseline="central" fill="#546E7A" font-size="11">Frame</text>
+
+  <line x1="255" y1="332" x2="255" y2="355" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 5: Physical -->
+  <text x="35" y="375" text-anchor="start" dominant-baseline="central" fill="#37474F" font-size="11" font-weight="600">物理层</text>
+  <rect x="85" y="360" width="250" height="32" rx="3" fill="#ECEFF1" stroke="#546E7A" stroke-width="1" filter="url(#s1)"/>
+  <text x="210" y="376" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12" font-family="monospace">0 1 0 1 1 0 1 0 0 1 1 0 ...</text>
+  <text x="355" y="376" text-anchor="start" dominant-baseline="central" fill="#546E7A" font-size="11">Bits</text>
+
+  <!-- ===== Middle: Physical medium ===== -->
+  <line x1="350" y1="376" x2="610" y2="376" stroke="#546E7A" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="420" y="362" width="120" height="28" rx="4" fill="#ECEFF1" stroke="#546E7A" stroke-width="1"/>
+  <text x="480" y="376" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="10" font-weight="600">物理介质传输</text>
+
+  <!-- ===== Right side: Decapsulation ===== -->
+
+  <!-- Step 5: Physical -->
+  <text x="925" y="375" text-anchor="end" dominant-baseline="central" fill="#37474F" font-size="11" font-weight="600">物理层</text>
+  <rect x="625" y="360" width="250" height="32" rx="3" fill="#ECEFF1" stroke="#546E7A" stroke-width="1" filter="url(#s1)"/>
+  <text x="750" y="376" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12" font-family="monospace">0 1 0 1 1 0 1 0 0 1 1 0 ...</text>
+  <text x="605" y="376" text-anchor="end" dominant-baseline="central" fill="#546E7A" font-size="11">Bits</text>
+
+  <line x1="750" y1="355" x2="750" y2="332" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 4: Data Link -->
+  <text x="925" y="310" text-anchor="end" dominant-baseline="central" fill="#6A1B9A" font-size="11" font-weight="600">链路层</text>
+  <rect x="625" y="295" width="40" height="32" rx="3" fill="#FFCDD2" stroke="#E53935" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="645" y="311" text-anchor="middle" dominant-baseline="central" fill="#B71C1C" font-size="9" font-weight="600">FCS</text>
+  <rect x="665" y="295" width="50" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="690" y="311" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <rect x="715" y="295" width="55" height="32" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1"/>
+  <text x="742" y="311" text-anchor="middle" dominant-baseline="central" fill="#1B5E20" font-size="10" font-weight="600">TCP Hdr</text>
+  <rect x="770" y="295" width="50" height="32" rx="3" fill="#FFE0B2" stroke="#F57C00" stroke-width="1"/>
+  <text x="795" y="311" text-anchor="middle" dominant-baseline="central" fill="#BF360C" font-size="10" font-weight="600">IP Hdr</text>
+  <rect x="820" y="295" width="40" height="32" rx="3" fill="#E1BEE7" stroke="#7B1FA2" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="840" y="311" text-anchor="middle" dominant-baseline="central" fill="#4A148C" font-size="9" font-weight="600">Frm</text>
+  <text x="605" y="311" text-anchor="end" dominant-baseline="central" fill="#546E7A" font-size="10">剥离帧头/FCS</text>
+
+  <line x1="750" y1="290" x2="750" y2="267" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 3: Network -->
+  <text x="925" y="245" text-anchor="end" dominant-baseline="central" fill="#E65100" font-size="11" font-weight="600">网络层</text>
+  <rect x="690" y="230" width="50" height="32" rx="3" fill="#FFE0B2" stroke="#F57C00" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="715" y="246" text-anchor="middle" dominant-baseline="central" fill="#BF360C" font-size="10" font-weight="600">IP Hdr</text>
+  <rect x="740" y="230" width="55" height="32" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1"/>
+  <text x="767" y="246" text-anchor="middle" dominant-baseline="central" fill="#1B5E20" font-size="10" font-weight="600">TCP Hdr</text>
+  <rect x="795" y="230" width="150" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="870" y="246" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <text x="605" y="246" text-anchor="end" dominant-baseline="central" fill="#546E7A" font-size="10">剥离 IP 头</text>
+
+  <line x1="750" y1="225" x2="750" y2="202" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 2: Transport -->
+  <text x="925" y="180" text-anchor="end" dominant-baseline="central" fill="#2E7D32" font-size="11" font-weight="600">传输层</text>
+  <rect x="725" y="165" width="55" height="32" rx="3" fill="#C8E6C9" stroke="#43A047" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="752" y="181" text-anchor="middle" dominant-baseline="central" fill="#1B5E20" font-size="10" font-weight="600">TCP Hdr</text>
+  <rect x="780" y="165" width="155" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="857" y="181" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <text x="605" y="181" text-anchor="end" dominant-baseline="central" fill="#546E7A" font-size="10">剥离 TCP 头</text>
+
+  <line x1="750" y1="160" x2="750" y2="137" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Step 1: Application -->
+  <text x="925" y="115" text-anchor="end" dominant-baseline="central" fill="#1565C0" font-size="11" font-weight="600">应用层</text>
+  <rect x="780" y="100" width="155" height="32" rx="3" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1" filter="url(#s1)"/>
+  <text x="857" y="116" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="12">Data</text>
+  <text x="605" y="116" text-anchor="end" dominant-baseline="central" fill="#546E7A" font-size="10">交付应用进程</text>
+
+</svg>

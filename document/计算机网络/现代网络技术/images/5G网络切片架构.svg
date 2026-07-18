@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="500" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">5G 网络切片：端到端三域逻辑隔离</text>
+
+  <!-- 共享基础设施 -->
+  <rect x="40" y="410" width="820" height="60" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,410 H852 Q860,410 860,418 V438 H40 V418 Q40,410 48,410Z" fill="#546E7A"/>
+  <text x="450" y="428" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">共享物理基础设施（NFV + SDN 通用资源池）</text>
+  <text x="450" y="456" text-anchor="middle" font-size="11" fill="#37474F">COTS 服务器 · 通用网络设备 — 依赖 NFV（功能虚拟化）+ SDN（连接可编程）</text>
+
+  <!-- 三个切片 -->
+  <!-- eMBB -->
+  <rect x="40" y="68" width="270" height="330" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,68 H302 Q310,68 310,76 V96 H40 V76 Q40,68 48,68Z" fill="#1E88E5"/>
+  <text x="175" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">eMBB 切片（SST=1）</text>
+  <text x="175" y="116" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">增强移动宽带</text>
+  <rect x="60" y="130" width="230" height="30" rx="5" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="175" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">RAN 切片（PRB 调度）</text>
+  <rect x="60" y="168" width="230" height="30" rx="5" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="175" y="188" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">传输网切片（SRv6 隧道）</text>
+  <rect x="60" y="206" width="230" height="30" rx="5" fill="#FFF" stroke="#64B5F6" stroke-width="1"/>
+  <text x="175" y="226" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">核心网切片（专用 AMF/SMF/UPF）</text>
+  <text x="175" y="258" text-anchor="middle" font-size="11" fill="#546E7A">峰值 20Gbps · 时延 &lt;20ms</text>
+  <text x="175" y="278" text-anchor="middle" font-size="11" fill="#546E7A">可靠性 99.9%</text>
+  <text x="175" y="310" text-anchor="middle" font-size="11" font-weight="600" fill="#1565C0">典型应用</text>
+  <text x="175" y="330" text-anchor="middle" font-size="10" fill="#90A4AE">4K/8K 视频 · VR/AR</text>
+  <text x="175" y="348" text-anchor="middle" font-size="10" fill="#90A4AE">高铁宽带 · 云游戏</text>
+  <text x="175" y="378" text-anchor="middle" font-size="10" fill="#546E7A">5QI=9（默认 Internet）</text>
+
+  <!-- URLLC -->
+  <rect x="330" y="68" width="270" height="330" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M338,68 H592 Q600,68 600,76 V96 H330 V76 Q330,68 338,68Z" fill="#E53935"/>
+  <text x="465" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">URLLC 切片（SST=2）</text>
+  <text x="465" y="116" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">超可靠低时延</text>
+  <rect x="350" y="130" width="230" height="30" rx="5" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="465" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">RAN 切片（资源预留 + 抢占）</text>
+  <rect x="350" y="168" width="230" height="30" rx="5" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="465" y="188" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">传输网切片（硬隔离）</text>
+  <rect x="350" y="206" width="230" height="30" rx="5" fill="#FFF" stroke="#EF9A9A" stroke-width="1"/>
+  <text x="465" y="226" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">核心网切片（UPF 边缘下沉）</text>
+  <text x="465" y="258" text-anchor="middle" font-size="11" fill="#546E7A">空口时延 1ms · 可靠性 99.999%</text>
+  <text x="465" y="278" text-anchor="middle" font-size="11" fill="#546E7A">移动性 0-30 km/h</text>
+  <text x="465" y="310" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">典型应用</text>
+  <text x="465" y="330" text-anchor="middle" font-size="10" fill="#90A4AE">工业自动化 · 远程手术</text>
+  <text x="465" y="348" text-anchor="middle" font-size="10" fill="#90A4AE">自动驾驶 · 智能电网</text>
+  <text x="465" y="378" text-anchor="middle" font-size="10" fill="#546E7A">5QI=85（高压配电网，5ms）</text>
+
+  <!-- mMTC -->
+  <rect x="620" y="68" width="240" height="330" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M628,68 H852 Q860,68 860,76 V96 H620 V76 Q620,68 628,68Z" fill="#43A047"/>
+  <text x="740" y="88" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">mMTC 切片（SST=3）</text>
+  <text x="740" y="116" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">海量机器通信</text>
+  <rect x="640" y="130" width="200" height="30" rx="5" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="740" y="150" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">RAN 切片（海量连接）</text>
+  <rect x="640" y="168" width="200" height="30" rx="5" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="740" y="188" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">传输网切片（共享）</text>
+  <rect x="640" y="206" width="200" height="30" rx="5" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="740" y="226" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">核心网切片（轻量 NF）</text>
+  <text x="740" y="258" text-anchor="middle" font-size="11" fill="#546E7A">连接密度 10⁶/km²</text>
+  <text x="740" y="278" text-anchor="middle" font-size="11" fill="#546E7A">时延 &lt;10s（容忍）</text>
+  <text x="740" y="310" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">典型应用</text>
+  <text x="740" y="330" text-anchor="middle" font-size="10" fill="#90A4AE">智能计量 · 智慧城市</text>
+  <text x="740" y="348" text-anchor="middle" font-size="10" fill="#90A4AE">传感器网络 · 智慧农业</text>
+  <text x="740" y="378" text-anchor="middle" font-size="10" fill="#546E7A">5QI=9（Non-GBR）</text>
+
+  <text x="450" y="494" text-anchor="middle" font-size="11" fill="#90A4AE">S-NSSAI = SST（8 bit）+ SD（24 bit）；切片 = 端到端逻辑网络隔离（粗粒度），QoS Flow = 切片内按流粒度差异化（细粒度，5QI）</text>
+</svg>

@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1180" height="700" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" dominant-baseline="central" font-size="22" font-weight="bold" fill="#263238">Agent 四大设计范式</text>
+  <text x="600" y="68" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#78909C">Andrew Ng 提出的 Agent 设计模式（2024）：构建自主智能体的四类核心范式</text>
+
+  <!-- ========== Quadrant 1: Reflection (Blue, left-top) ========== -->
+  <rect x="50" y="105" width="470" height="250" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M58,105 H512 Q520,105 520,113 V145 H50 V113 Q50,105 58,105Z" fill="#1E88E5"/>
+  <text x="68" y="125" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#E3F2FD">Reflection · 反思</text>
+  <text x="502" y="125" text-anchor="end" dominant-baseline="central" font-size="11" fill="#BBDEFB">范式 1</text>
+
+  <text x="285" y="170" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1E88E5">"草稿 → 批评 → 修订" 循环</text>
+
+  <circle cx="75" cy="205" r="3" fill="#1E88E5"/>
+  <text x="87" y="205" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">模型自我审视输出，发现缺陷并修订</text>
+
+  <circle cx="75" cy="232" r="3" fill="#1E88E5"/>
+  <text x="87" y="232" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">通过迭代反思逐步提升输出质量</text>
+
+  <circle cx="75" cy="259" r="3" fill="#1E88E5"/>
+  <text x="87" y="259" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">无需更换模型即可显著提升质量</text>
+
+  <line x1="70" y1="285" x2="500" y2="285" stroke="#E3F2FD" stroke-width="1"/>
+  <text x="70" y="305" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">典型应用</text>
+  <text x="70" y="325" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#1E88E5">代码生成 · 文案打磨 · 数学推理</text>
+  <text x="70" y="345" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">"让模型成为自己的审稿人"</text>
+
+  <!-- ========== Quadrant 2: Tool Use (Green, right-top) ========== -->
+  <rect x="680" y="105" width="470" height="250" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M688,105 H1142 Q1150,105 1150,113 V145 H680 V113 Q680,105 688,105Z" fill="#43A047"/>
+  <text x="698" y="125" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#E8F5E9">Tool Use · 工具使用</text>
+  <text x="1132" y="125" text-anchor="end" dominant-baseline="central" font-size="11" fill="#C8E6C9">范式 2</text>
+
+  <text x="915" y="170" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#43A047">"LLM 变成 Agent 的关键一步"</text>
+
+  <circle cx="705" cy="205" r="3" fill="#43A047"/>
+  <text x="717" y="205" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">搜索 · 计算器 · 代码执行 · API</text>
+
+  <circle cx="705" cy="232" r="3" fill="#43A047"/>
+  <text x="717" y="232" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">模型决定调用什么工具、传什么参数</text>
+
+  <circle cx="705" cy="259" r="3" fill="#43A047"/>
+  <text x="717" y="259" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">Function Calling / MCP 标准化</text>
+
+  <line x1="700" y1="285" x2="1130" y2="285" stroke="#E8F5E9" stroke-width="1"/>
+  <text x="700" y="305" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">典型应用</text>
+  <text x="700" y="325" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#43A047">浏览器代理 · 数据分析 · 自动化运维</text>
+  <text x="700" y="345" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">"让模型拥有手脚与外部世界"</text>
+
+  <!-- ========== Quadrant 3: Planning (Orange, left-bottom) ========== -->
+  <rect x="50" y="405" width="470" height="250" rx="8" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M58,405 H512 Q520,405 520,413 V445 H50 V413 Q50,405 58,405Z" fill="#F57C00"/>
+  <text x="68" y="425" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFF3E0">Planning · 规划</text>
+  <text x="502" y="425" text-anchor="end" dominant-baseline="central" font-size="11" fill="#FFE0B2">范式 3</text>
+
+  <text x="285" y="470" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#F57C00">"先规划再执行"（Plan-and-Execute）</text>
+
+  <circle cx="75" cy="505" r="3" fill="#F57C00"/>
+  <text x="87" y="505" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">先拆解任务为子步骤，再逐步执行</text>
+
+  <circle cx="75" cy="532" r="3" fill="#F57C00"/>
+  <text x="87" y="532" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">比 ReAct 边想边做更高效、更可控</text>
+
+  <circle cx="75" cy="559" r="3" fill="#F57C00"/>
+  <text x="87" y="559" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">支持中途重规划与错误恢复</text>
+
+  <line x1="70" y1="585" x2="500" y2="585" stroke="#FFF3E0" stroke-width="1"/>
+  <text x="70" y="605" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">典型应用</text>
+  <text x="70" y="625" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#F57C00">复杂项目交付 · 多文件代码重构</text>
+  <text x="70" y="645" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">"先有蓝图，再动砖瓦"</text>
+
+  <!-- ========== Quadrant 4: Multi-Agent (Purple, right-bottom) ========== -->
+  <rect x="680" y="405" width="470" height="250" rx="8" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M688,405 H1142 Q1150,405 1150,413 V445 H680 V413 Q680,405 688,405Z" fill="#7B1FA2"/>
+  <text x="698" y="425" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="bold" fill="#F3E5F5">Multi-Agent · 多智能体</text>
+  <text x="1132" y="425" text-anchor="end" dominant-baseline="central" font-size="11" fill="#E1BEE7">范式 4</text>
+
+  <text x="915" y="470" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#7B1FA2">"分工协作"（Manager-Worker / Debate）</text>
+
+  <circle cx="705" cy="505" r="3" fill="#7B1FA2"/>
+  <text x="717" y="505" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">Manager-Worker · Debate · Writer-Editor</text>
+
+  <circle cx="705" cy="532" r="3" fill="#7B1FA2"/>
+  <text x="717" y="532" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">多角色分工，各司其职协同完成</text>
+
+  <circle cx="705" cy="559" r="3" fill="#7B1FA2"/>
+  <text x="717" y="559" text-anchor="start" dominant-baseline="central" font-size="12" fill="#37474F">缓解单 Agent 上下文溢出问题</text>
+
+  <line x1="700" y1="585" x2="1130" y2="585" stroke="#F3E5F5" stroke-width="1"/>
+  <text x="700" y="605" text-anchor="start" dominant-baseline="central" font-size="10" fill="#90A4AE" font-weight="600">典型应用</text>
+  <text x="700" y="625" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#7B1FA2">软件开发流水线 · 研究报告协作</text>
+  <text x="700" y="645" text-anchor="start" dominant-baseline="central" font-size="10" fill="#78909C" font-style="italic">"让一群专家而非一个通才"</text>
+
+  <!-- ========== Center circle: Agent Design Patterns ========== -->
+  <circle cx="600" cy="380" r="70" fill="#FFFFFF" stroke="#37474F" stroke-width="2.5" filter="url(#s1)"/>
+  <circle cx="600" cy="380" r="62" fill="#263238"/>
+  <text x="600" y="362" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Agent</text>
+  <text x="600" y="382" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#ECEFF1">Design Patterns</text>
+  <text x="600" y="403" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#B0BEC5">Andrew Ng, 2024</text>
+
+  <!-- ========== Bottom note ========== -->
+  <text x="600" y="690" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#90A4AE" font-style="italic">四大范式可组合使用：Reflection 提升质量，Tool Use 扩展能力，Planning 控制流程，Multi-Agent 分工协作</text>
+</svg>

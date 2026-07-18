@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="880" height="500" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="450" y="42" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">SASE 架构：SD-WAN + SSE 融合云服务</text>
+
+  <!-- 用户/边缘 -->
+  <rect x="40" y="68" width="200" height="60" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M48,68 H232 Q240,68 240,76 V96 H40 V76 Q40,68 48,68Z" fill="#43A047"/>
+  <text x="140" y="86" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFF">用户/边缘</text>
+  <text x="140" y="116" text-anchor="middle" font-size="10" fill="#2E7D32">远程办公 · 分支机构 · 移动设备</text>
+
+  <rect x="660" y="68" width="200" height="60" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M668,68 H852 Q860,68 860,76 V96 H660 V76 Q660,68 668,68Z" fill="#546E7A"/>
+  <text x="760" y="86" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFF">应用/资源</text>
+  <text x="760" y="116" text-anchor="middle" font-size="10" fill="#37474F">SaaS · 私有应用 · IaaS · Internet</text>
+
+  <!-- SASE 云 -->
+  <rect x="270" y="160" width="360" height="300" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M278,160 H622 Q630,160 630,168 V188 H270 V168 Q270,160 278,160Z" fill="#1E88E5"/>
+  <text x="450" y="178" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">SASE 云服务（全球分布式边缘 POP）</text>
+
+  <!-- SD-WAN 层 -->
+  <rect x="290" y="200" width="320" height="44" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <path d="M298,200 H602 Q610,200 610,208 V228 H290 V208 Q290,200 298,200Z" fill="#F57C00"/>
+  <text x="450" y="218" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFF">SD-WAN（网络能力）</text>
+  <text x="450" y="238" text-anchor="middle" font-size="10" fill="#E65100">智能选路 · 多链路 · QoS · IPsec</text>
+
+  <!-- SSE 层 -->
+  <rect x="290" y="258" width="320" height="180" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <path d="M298,258 H602 Q610,258 610,266 V286 H290 V266 Q290,258 298,258Z" fill="#7B1FA2"/>
+  <text x="450" y="276" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFF">SSE（安全能力子集）</text>
+
+  <rect x="305" y="296" width="140" height="40" rx="5" fill="#FFF" stroke="#CE93D8" stroke-width="1"/>
+  <text x="375" y="313" text-anchor="middle" font-size="11" font-weight="600" fill="#6A1B9A">ZTNA</text>
+  <text x="375" y="328" text-anchor="middle" font-size="9" fill="#90A4AE">零信任访问（替代 VPN）</text>
+  <rect x="455" y="296" width="140" height="40" rx="5" fill="#FFF" stroke="#CE93D8" stroke-width="1"/>
+  <text x="525" y="313" text-anchor="middle" font-size="11" font-weight="600" fill="#6A1B9A">SWG</text>
+  <text x="525" y="328" text-anchor="middle" font-size="9" fill="#90A4AE">安全 Web 网关</text>
+
+  <rect x="305" y="344" width="140" height="40" rx="5" fill="#FFF" stroke="#CE93D8" stroke-width="1"/>
+  <text x="375" y="361" text-anchor="middle" font-size="11" font-weight="600" fill="#6A1B9A">CASB</text>
+  <text x="375" y="376" text-anchor="middle" font-size="9" fill="#90A4AE">云访问安全代理</text>
+  <rect x="455" y="344" width="140" height="40" rx="5" fill="#FFF" stroke="#CE93D8" stroke-width="1"/>
+  <text x="525" y="361" text-anchor="middle" font-size="11" font-weight="600" fill="#6A1B9A">FWaaS</text>
+  <text x="525" y="376" text-anchor="middle" font-size="9" fill="#90A4AE">防火墙即服务</text>
+
+  <rect x="305" y="392" width="290" height="36" rx="5" fill="#FFF" stroke="#CE93D8" stroke-width="1"/>
+  <text x="450" y="415" text-anchor="middle" font-size="11" font-weight="600" fill="#6A1B9A">DLP（数据防泄漏，横切能力）</text>
+
+  <!-- 连接箭头 -->
+  <path d="M180,98 C220,98 230,180 268,180" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M632,180 C670,180 680,98 658,98" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <text x="220" y="150" font-size="10" fill="#90A4AE">就近接入</text>
+  <text x="640" y="150" font-size="10" fill="#90A4AE">直连应用</text>
+
+  <!-- 四大特征 -->
+  <rect x="40" y="160" width="210" height="300" rx="8" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="145" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="#546E7A">SASE 四大特征</text>
+  <text x="55" y="210" font-size="10" fill="#546E7A">① 身份驱动</text>
+  <text x="55" y="232" font-size="10" fill="#546E7A">② 云原生架构</text>
+  <text x="55" y="254" font-size="10" fill="#546E7A">③ 支持所有边缘</text>
+  <text x="55" y="276" font-size="10" fill="#546E7A">④ 全球分布式</text>
+  <text x="55" y="312" font-size="10" font-weight="600" fill="#546E7A">关系：</text>
+  <text x="55" y="332" font-size="10" fill="#546E7A">SASE = SD-WAN + SSE</text>
+  <text x="55" y="354" font-size="10" fill="#546E7A">SSE = SWG + CASB</text>
+  <text x="55" y="374" font-size="10" fill="#546E7A">      + ZTNA + FWaaS</text>
+  <text x="55" y="410" font-size="9" fill="#90A4AE">零信任=战略理念</text>
+  <text x="55" y="428" font-size="9" fill="#90A4AE">SASE=架构实现</text>
+  <text x="55" y="446" font-size="9" fill="#90A4AE">SSE=SASE 安全子集</text>
+
+  <text x="660" y="200" text-anchor="middle" font-size="10" fill="#90A4AE">.</text>
+  <rect x="660" y="160" width="210" height="300" rx="8" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="765" y="184" text-anchor="middle" font-size="12" font-weight="bold" fill="#546E7A">vs 传统 VPN</text>
+  <text x="675" y="210" font-size="10" fill="#546E7A">VPN：广域网络访问</text>
+  <text x="675" y="228" font-size="10" fill="#546E7A">ZTNA：应用级最小权限</text>
+  <text x="675" y="252" font-size="10" fill="#E53935">VPN：位置信任</text>
+  <text x="675" y="270" font-size="10" fill="#43A047">ZTNA：身份+上下文</text>
+  <text x="675" y="294" font-size="10" fill="#E53935">VPN：流量回流数据中心</text>
+  <text x="675" y="312" font-size="10" fill="#43A047">ZTNA：直连应用，低延迟</text>
+  <text x="675" y="336" font-size="10" fill="#E53935">VPN：攻击面大</text>
+  <text x="675" y="354" font-size="10" fill="#43A047">ZTNA：应用隐藏，攻击面小</text>
+  <text x="675" y="388" font-size="10" font-weight="600" fill="#546E7A">演进：</text>
+  <text x="675" y="408" font-size="10" fill="#90A4AE">2019 SASE → 2021 SSE</text>
+  <text x="675" y="426" font-size="10" fill="#90A4AE">→ 2022 ZTNA 2.0</text>
+
+  <text x="450" y="494" text-anchor="middle" font-size="11" fill="#90A4AE">安全不再回流至数据中心，而在靠近用户/端点的网络边缘执行；统一安全策略，无论用户位置</text>
+</svg>
