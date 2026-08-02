@@ -2,8 +2,10 @@
   <defs>
     <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
     <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahb2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
     <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
     <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/></marker>
+    <marker id="ahg2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/></marker>
   </defs>
 
   <!-- Background -->
@@ -53,7 +55,7 @@
 
   <!-- Connection lines (drawn after nodes for correct z-order) -->
   <!-- 1. fork() -> R -->
-  <path d="M140,172 C140,235 340,250 340,295" fill="none" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <path d="M140,172 C140,230 340,240 340,282" fill="none" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ahg2)"/>
   <text x="225" y="240" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">fork()</text>
 
   <!-- 2. R -> Z (exit) -->
@@ -65,7 +67,7 @@
   <text x="502" y="139" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#E53935">父进程 wait()</text>
 
   <!-- 4. R self-loop (time slice scheduling) -->
-  <path d="M420,295 C420,260 450,260 450,295" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <path d="M420,295 C420,258 450,258 450,282" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb2)"/>
   <text x="435" y="253" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#1E88E5">时间片调度</text>
 
   <!-- 5. R -> S (wait event) -->

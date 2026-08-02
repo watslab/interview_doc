@@ -3,6 +3,7 @@
     <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
     <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
     <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahb2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
   </defs>
 
   <!-- Background -->
@@ -97,7 +98,7 @@
   <!-- 主循环 -> END -->
   <line x1="270" y1="495" x2="270" y2="530" stroke="#1E88E5" stroke-width="1.8" marker-end="url(#ahb)"/>
 
-  <!-- Loop arrow: Step4 right -> Step1 right (within container right margin) -->
-  <path d="M460,458 C488,458 460,280 460,227" fill="none" stroke="#1E88E5" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ahb)"/>
+  <!-- Loop arrow: Step4 right -> Step1 right (two-segment curve for horizontal entry) -->
+  <path d="M460,458 C510,458 530,400 530,342 C530,284 510,227 474,227" fill="none" stroke="#1E88E5" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ahb2)"/>
   <text transform="translate(496,342) rotate(-90)" text-anchor="middle" font-size="10" fill="#1565C0">循环至 EOF</text>
 </svg>

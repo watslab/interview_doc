@@ -7,75 +7,75 @@
   <rect x="10" y="10" width="980" height="680" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
   <text x="500" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#263238">LVM 三层结构：PV → VG → LV</text>
 
-  <!-- 文件系统（顶层） -->
-  <rect x="340" y="60" width="320" height="36" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="500" y="82" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">文件系统（已挂载使用）</text>
+  <!-- 文件系统（顶层） y=56, h=36 → 56-92 -->
+  <rect x="340" y="56" width="320" height="36" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="500" y="78" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">文件系统（已挂载使用）</text>
 
-  <!-- LV→FS 箭头 -->
-  <line x1="500" y1="118" x2="500" y2="98" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <text x="515" y="108" font-size="11" font-weight="600" fill="#E65100">mkfs · mount</text>
-  <text x="515" y="120" font-size="9" fill="#EF6C00">格式化 + 挂载</text>
+  <!-- LV→FS 箭头 gap=38px, center=111 -->
+  <line x1="500" y1="128" x2="500" y2="94" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="515" y="105" font-size="11" font-weight="600" fill="#E65100">mkfs · mount</text>
+  <text x="515" y="117" font-size="9" fill="#EF6C00">格式化 + 挂载</text>
 
-  <!-- LV 容器（顶层） -->
-  <rect x="160" y="120" width="680" height="80" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
-  <path d="M168,120 H832 Q840,120 840,128 V146 H160 V128 Q160,120 168,120Z" fill="#43A047"/>
-  <text x="500" y="138" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">LV（Logical Volume）逻辑卷</text>
-  <rect x="200" y="156" width="280" height="34" rx="4" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
-  <text x="340" y="177" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">/dev/vg0/lv_data  (ext4)</text>
-  <rect x="520" y="156" width="280" height="34" rx="4" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
-  <text x="660" y="177" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">/dev/vg0/lv_app  (xfs)</text>
+  <!-- LV 容器 y=130, h=80 → 130-210 -->
+  <rect x="160" y="130" width="680" height="80" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M168,130 H832 Q840,130 840,138 V156 H160 V138 Q160,130 168,130Z" fill="#43A047"/>
+  <text x="500" y="148" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">LV（Logical Volume）逻辑卷</text>
+  <rect x="200" y="166" width="280" height="34" rx="4" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="340" y="187" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">/dev/vg0/lv_data  (ext4)</text>
+  <rect x="520" y="166" width="280" height="34" rx="4" fill="#FFF" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="660" y="187" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">/dev/vg0/lv_app  (xfs)</text>
 
-  <!-- VG→LV 箭头 -->
-  <line x1="500" y1="238" x2="500" y2="202" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <text x="515" y="225" font-size="11" font-weight="600" fill="#E65100">lvcreate</text>
-  <text x="515" y="237" font-size="9" fill="#EF6C00">从 VG 分配空间</text>
+  <!-- VG→LV 箭头 gap=38px, center=229 -->
+  <line x1="500" y1="246" x2="500" y2="212" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="515" y="223" font-size="11" font-weight="600" fill="#E65100">lvcreate</text>
+  <text x="515" y="235" font-size="9" fill="#EF6C00">从 VG 分配空间</text>
 
-  <!-- VG 容器（中层） -->
-  <rect x="160" y="240" width="680" height="110" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
-  <path d="M168,240 H832 Q840,240 840,248 V266 H160 V248 Q160,240 168,240Z" fill="#1E88E5"/>
-  <text x="500" y="258" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">VG（Volume Group）卷组 vg0</text>
-  <!-- PE 网格 -->
+  <!-- VG 容器 y=248, h=120 → 248-368 -->
+  <rect x="160" y="248" width="680" height="120" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M168,248 H832 Q840,248 840,256 V274 H160 V256 Q160,248 168,248Z" fill="#1E88E5"/>
+  <text x="500" y="266" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">VG（Volume Group）卷组 vg0</text>
+  <!-- PE 网格（水平居中：左边距=右边距=82px） -->
   <g fill="#BBDEFB" stroke="#1E88E5" stroke-width="0.5">
-    <rect x="200" y="278" width="22" height="16"/><rect x="226" y="278" width="22" height="16"/><rect x="252" y="278" width="22" height="16"/><rect x="278" y="278" width="22" height="16"/><rect x="304" y="278" width="22" height="16"/><rect x="330" y="278" width="22" height="16"/><rect x="356" y="278" width="22" height="16"/><rect x="382" y="278" width="22" height="16"/><rect x="408" y="278" width="22" height="16"/><rect x="434" y="278" width="22" height="16"/><rect x="460" y="278" width="22" height="16"/><rect x="486" y="278" width="22" height="16"/><rect x="512" y="278" width="22" height="16"/><rect x="538" y="278" width="22" height="16"/><rect x="564" y="278" width="22" height="16"/><rect x="590" y="278" width="22" height="16"/><rect x="616" y="278" width="22" height="16"/><rect x="642" y="278" width="22" height="16"/><rect x="668" y="278" width="22" height="16"/><rect x="694" y="278" width="22" height="16"/>
-    <rect x="200" y="298" width="22" height="16"/><rect x="226" y="298" width="22" height="16"/><rect x="252" y="298" width="22" height="16"/><rect x="278" y="298" width="22" height="16"/><rect x="304" y="298" width="22" height="16"/><rect x="330" y="298" width="22" height="16"/><rect x="356" y="298" width="22" height="16"/><rect x="382" y="298" width="22" height="16"/><rect x="408" y="298" width="22" height="16"/><rect x="434" y="298" width="22" height="16"/><rect x="460" y="298" width="22" height="16"/><rect x="486" y="298" width="22" height="16"/><rect x="512" y="298" width="22" height="16"/><rect x="538" y="298" width="22" height="16"/><rect x="564" y="298" width="22" height="16"/><rect x="590" y="298" width="22" height="16"/><rect x="616" y="298" width="22" height="16"/><rect x="642" y="298" width="22" height="16"/><rect x="668" y="298" width="22" height="16"/><rect x="694" y="298" width="22" height="16"/>
+    <rect x="242" y="289" width="22" height="16"/><rect x="268" y="289" width="22" height="16"/><rect x="294" y="289" width="22" height="16"/><rect x="320" y="289" width="22" height="16"/><rect x="346" y="289" width="22" height="16"/><rect x="372" y="289" width="22" height="16"/><rect x="398" y="289" width="22" height="16"/><rect x="424" y="289" width="22" height="16"/><rect x="450" y="289" width="22" height="16"/><rect x="476" y="289" width="22" height="16"/><rect x="502" y="289" width="22" height="16"/><rect x="528" y="289" width="22" height="16"/><rect x="554" y="289" width="22" height="16"/><rect x="580" y="289" width="22" height="16"/><rect x="606" y="289" width="22" height="16"/><rect x="632" y="289" width="22" height="16"/><rect x="658" y="289" width="22" height="16"/><rect x="684" y="289" width="22" height="16"/><rect x="710" y="289" width="22" height="16"/><rect x="736" y="289" width="22" height="16"/>
+    <rect x="242" y="309" width="22" height="16"/><rect x="268" y="309" width="22" height="16"/><rect x="294" y="309" width="22" height="16"/><rect x="320" y="309" width="22" height="16"/><rect x="346" y="309" width="22" height="16"/><rect x="372" y="309" width="22" height="16"/><rect x="398" y="309" width="22" height="16"/><rect x="424" y="309" width="22" height="16"/><rect x="450" y="309" width="22" height="16"/><rect x="476" y="309" width="22" height="16"/><rect x="502" y="309" width="22" height="16"/><rect x="528" y="309" width="22" height="16"/><rect x="554" y="309" width="22" height="16"/><rect x="580" y="309" width="22" height="16"/><rect x="606" y="309" width="22" height="16"/><rect x="632" y="309" width="22" height="16"/><rect x="658" y="309" width="22" height="16"/><rect x="684" y="309" width="22" height="16"/><rect x="710" y="309" width="22" height="16"/><rect x="736" y="309" width="22" height="16"/>
   </g>
-  <text x="500" y="332" text-anchor="middle" font-size="10" fill="#546E7A">PE（Physical Extent）= 4MiB，VG 内最小分配单元</text>
+  <text x="500" y="350" text-anchor="middle" font-size="10" fill="#546E7A">PE（Physical Extent）= 4MiB，VG 内最小分配单元</text>
 
-  <!-- PV→VG 箭头 -->
-  <line x1="500" y1="378" x2="500" y2="352" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <text x="515" y="368" font-size="11" font-weight="600" fill="#E65100">vgcreate</text>
-  <text x="515" y="380" font-size="9" fill="#EF6C00">PV 组成 VG</text>
+  <!-- PV→VG 箭头 gap=38px, center=387 -->
+  <line x1="500" y1="404" x2="500" y2="370" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="515" y="381" font-size="11" font-weight="600" fill="#E65100">vgcreate</text>
+  <text x="515" y="393" font-size="9" fill="#EF6C00">PV 组成 VG</text>
 
-  <!-- PV 容器（底层） -->
-  <rect x="160" y="380" width="680" height="80" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
-  <path d="M168,380 H832 Q840,380 840,388 V406 H160 V388 Q160,380 168,380Z" fill="#546E7A"/>
-  <text x="500" y="398" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">PV（Physical Volume）物理卷</text>
-  <rect x="200" y="416" width="280" height="34" rx="4" fill="#FFF" stroke="#B0BEC5" stroke-width="1"/>
-  <text x="340" y="437" text-anchor="middle" font-size="12" font-weight="600" fill="#37474F">/dev/sdb1  (PV)</text>
-  <rect x="520" y="416" width="280" height="34" rx="4" fill="#FFF" stroke="#B0BEC5" stroke-width="1"/>
-  <text x="660" y="437" text-anchor="middle" font-size="12" font-weight="600" fill="#37474F">/dev/sdc1  (PV)</text>
+  <!-- PV 容器 y=406, h=80 → 406-486 -->
+  <rect x="160" y="406" width="680" height="80" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M168,406 H832 Q840,406 840,414 V432 H160 V414 Q160,406 168,406Z" fill="#546E7A"/>
+  <text x="500" y="424" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">PV（Physical Volume）物理卷</text>
+  <rect x="200" y="442" width="280" height="34" rx="4" fill="#FFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="340" y="463" text-anchor="middle" font-size="12" font-weight="600" fill="#37474F">/dev/sdb1  (PV)</text>
+  <rect x="520" y="442" width="280" height="34" rx="4" fill="#FFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="660" y="463" text-anchor="middle" font-size="12" font-weight="600" fill="#37474F">/dev/sdc1  (PV)</text>
 
-  <!-- 磁盘→PV 箭头 -->
-  <line x1="500" y1="498" x2="500" y2="462" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <text x="515" y="485" font-size="11" font-weight="600" fill="#E65100">pvcreate</text>
-  <text x="515" y="497" font-size="9" fill="#EF6C00">初始化分区</text>
+  <!-- 磁盘→PV 箭头 gap=38px, center=505 -->
+  <line x1="500" y1="522" x2="500" y2="488" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="515" y="499" font-size="11" font-weight="600" fill="#E65100">pvcreate</text>
+  <text x="515" y="511" font-size="9" fill="#EF6C00">初始化分区</text>
 
-  <!-- 磁盘分区 -->
-  <rect x="340" y="500" width="320" height="36" rx="6" fill="#ECEFF1" stroke="#78909C" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="500" y="522" text-anchor="middle" font-size="12" font-weight="600" fill="#455A64">磁盘 /dev/sdb、/dev/sdc → 分区 sdb1、sdc1</text>
+  <!-- 磁盘分区 y=524, h=36 → 524-560 -->
+  <rect x="340" y="524" width="320" height="36" rx="6" fill="#ECEFF1" stroke="#78909C" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="500" y="546" text-anchor="middle" font-size="12" font-weight="600" fill="#455A64">磁盘 /dev/sdb、/dev/sdc → 分区 sdb1、sdc1</text>
 
-  <!-- 底部对比：传统分区 vs LVM -->
-  <rect x="80" y="560" width="400" height="110" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
-  <path d="M88,560 H472 Q480,560 480,568 V586 H80 V568 Q80,560 88,560Z" fill="#E53935"/>
-  <text x="280" y="578" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">传统分区</text>
-  <text x="100" y="606" font-size="11" fill="#C62828">• 固定大小，分区边界不可变</text>
-  <text x="100" y="626" font-size="11" fill="#C62828">• 扩展需重新分区 / 数据迁移</text>
-  <text x="100" y="646" font-size="11" fill="#C62828">• 无快照，跨盘聚合困难</text>
+  <!-- 底部对比：传统分区 vs LVM y=580, h=100 → 580-680 -->
+  <rect x="80" y="580" width="400" height="100" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M88,580 H472 Q480,580 480,588 V606 H80 V588 Q80,580 88,580Z" fill="#E53935"/>
+  <text x="280" y="598" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">传统分区</text>
+  <text x="100" y="626" font-size="11" fill="#C62828">• 固定大小，分区边界不可变</text>
+  <text x="100" y="646" font-size="11" fill="#C62828">• 扩展需重新分区 / 数据迁移</text>
+  <text x="100" y="666" font-size="11" fill="#C62828">• 无快照，跨盘聚合困难</text>
 
-  <rect x="520" y="560" width="400" height="110" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
-  <path d="M528,560 H912 Q920,560 920,568 V586 H520 V568 Q520,560 528,560Z" fill="#43A047"/>
-  <text x="720" y="578" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">LVM 逻辑卷</text>
-  <text x="540" y="606" font-size="11" fill="#2E7D32">• 动态扩展（在线扩容，无需停机）</text>
-  <text x="540" y="626" font-size="11" fill="#2E7D32">• 多盘聚合为统一存储池</text>
-  <text x="540" y="646" font-size="11" fill="#2E7D32">• 支持快照备份，保障数据一致性</text>
+  <rect x="520" y="580" width="400" height="100" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M528,580 H912 Q920,580 920,588 V606 H520 V588 Q520,580 528,580Z" fill="#43A047"/>
+  <text x="720" y="598" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFF">LVM 逻辑卷</text>
+  <text x="540" y="626" font-size="11" fill="#2E7D32">• 动态扩展（在线扩容，无需停机）</text>
+  <text x="540" y="646" font-size="11" fill="#2E7D32">• 多盘聚合为统一存储池</text>
+  <text x="540" y="666" font-size="11" fill="#2E7D32">• 支持快照备份，保障数据一致性</text>
 </svg>
