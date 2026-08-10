@@ -96,10 +96,10 @@
 
   <!-- Legend -->
   <rect x="120" y="578" width="520" height="34" rx="6" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
-  <rect x="140" y="588" width="14" height="14" rx="2" fill="#1E88E5"/>
-  <text x="161" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">主流程 R / S / D</text>
-  <rect x="300" y="588" width="14" height="14" rx="2" fill="#E53935"/>
-  <text x="321" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">僵尸进程 Z</text>
-  <rect x="450" y="588" width="14" height="14" rx="2" fill="#546E7A"/>
-  <text x="471" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">停止 T</text>
+  <rect x="191" y="588" width="14" height="14" rx="2" fill="#1E88E5"/>
+  <text x="212" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">主流程 R / S / D</text>
+  <rect x="372" y="588" width="14" height="14" rx="2" fill="#E53935"/>
+  <text x="393" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">僵尸进程 Z</text>
+  <rect x="517" y="588" width="14" height="14" rx="2" fill="#546E7A"/>
+  <text x="538" y="595" text-anchor="start" dominant-baseline="central" font-size="11" fill="#37474F">停止 T</text>
 </svg>

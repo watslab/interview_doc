@@ -28,8 +28,8 @@ Shell 是用户与 Linux 内核之间的命令解释器，它读取输入、解�
 
 | 类型 | 触发方式 | bash 启动文件加载顺序 |
 |------|----------|----------------------|
-| **登录 Shell** | `ssh` 登录、`su -`、`bash --login` | `/etc/profile` → `~/.bash_profile`（若不存在则 `~/.bash_login`，再否则 `~/.profile`）→ 退出时加载 `~/.bash_logout` |
-| **非登录交互 Shell** | 终端窗口打开、`bash` 新会话 | `/etc/bash.bashrc` → `~/.bashrc` |
+| **登录 Shell** | `ssh` 登录、`su -`、`bash --login` | 登录时加载/etc/profile <br/> →~/.bash_profile <br/> →~/.bash_login（前者不存在时） <br/> →~/.profile（前者不存在时） <br/> 退出时加载 ~/.bash_logout |
+| **非登录交互 Shell** | 桌面终端窗口打开、`su`、`bash` | `/etc/bash.bashrc` → `~/.bashrc` |
 | **非交互 Shell** | 执行脚本 `bash script.sh` | 继承父 Shell 环境，并加载 `$BASH_ENV` 指向的文件 |
 
 ### 1.3 交互式与非交互式 Shell
@@ -403,7 +403,7 @@ unalias ll                # 删除别名
 
 - 别名仅在交互式 Shell 生效，脚本中默认不展开别名（除非 `shopt -s expand_aliases`）。
 - 别名不能接收位置参数，复杂逻辑应改用函数。
-- 危险别名可能掩盖真实命令：如将 `rm` 别名为 `rm -i` 虽能防误删，但养成依赖后在没有别名的环境（如脚本、其他用户）易出事故。建议不别名危险命令，或使用函数显式确认。
+- 危险别名可能掩盖真实命令：如将 `rm` 别名为 `rm -i` 虽能在当前交互式 Shell 中防误删，但养成依赖后，在无别名的环境（如脚本、其他用户、新 Shell）中习惯性操作反而更易出事故。用同名函数包装危险命令也存在相同问题——函数定义同样只存在于定义它的 Shell 中。建议不对危险命令设置别名或同名函数，避免养成"有保护"的心理依赖。
 
 ---
 
