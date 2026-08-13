@@ -20,16 +20,6 @@
   <rect x="655" y="60" width="280" height="30" rx="4" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
   <text x="795" y="75" text-anchor="middle" dominant-baseline="central" fill="#37474F" font-size="13" font-weight="bold">五层混合模型 (教学模型)</text>
 
-  <!-- Correspondence dashed lines -->
-  <line x1="305" y1="100" x2="340" y2="100" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="620" y1="100" x2="655" y2="100" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="305" y1="304" x2="340" y2="304" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="620" y1="304" x2="655" y2="304" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="305" y1="372" x2="340" y2="372" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="620" y1="372" x2="655" y2="372" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="305" y1="440" x2="340" y2="440" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="620" y1="440" x2="655" y2="440" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="4,3"/>
-
   <!-- OSI Layer 7: Application -->
   <rect x="25" y="100" width="280" height="62" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
   <circle cx="50" cy="131" r="14" fill="#1E88E5"/>
@@ -80,7 +70,7 @@
   <text x="170" y="548" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">PDU: Bit | 双绞线, 光纤, 编码</text>
 
   <!-- TCP/IP Layer 4: Application (spans L7-L5) -->
-  <rect x="340" y="100" width="280" height="204" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <rect x="340" y="100" width="280" height="198" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
   <circle cx="365" cy="202" r="14" fill="#1E88E5"/>
   <text x="365" y="202" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">4</text>
   <text x="490" y="170" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="14" font-weight="bold">应用层 Application</text>
@@ -112,7 +102,7 @@
   <text x="490" y="540" text-anchor="middle" dominant-baseline="central" fill="#546E7A" font-size="10">Ethernet, Wi-Fi, PPP</text>
 
   <!-- 5-layer Layer 5: Application (spans L7-L5) -->
-  <rect x="655" y="100" width="280" height="204" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <rect x="655" y="100" width="280" height="198" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
   <circle cx="680" cy="202" r="14" fill="#1E88E5"/>
   <text x="680" y="202" text-anchor="middle" dominant-baseline="central" fill="#FFF" font-size="12" font-weight="bold">5</text>
   <text x="805" y="170" text-anchor="middle" dominant-baseline="central" fill="#1565C0" font-size="14" font-weight="bold">应用层 Application</text>
