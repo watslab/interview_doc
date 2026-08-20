@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 740" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahp" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1240" height="720" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Main title -->
+  <text x="630" y="38" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="#263238">生产部署与可观测性体系</text>
+
+  <!-- Region containers -->
+  <rect x="20" y="64" width="390" height="650" rx="10" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5"/>
+  <rect x="440" y="64" width="380" height="650" rx="10" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <rect x="850" y="64" width="390" height="650" rx="10" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+
+  <!-- Region title bars -->
+  <path d="M30,64 H400 Q410,64 410,74 V100 H20 V74 Q20,64 30,64Z" fill="#1E88E5"/>
+  <text x="215" y="82" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">部署交付</text>
+
+  <path d="M450,64 H810 Q820,64 820,74 V100 H440 V74 Q440,64 450,64Z" fill="#43A047"/>
+  <text x="630" y="82" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">运行集群</text>
+
+  <path d="M860,64 H1230 Q1240,64 1240,74 V100 H850 V74 Q850,64 860,64Z" fill="#7B1FA2"/>
+  <text x="1045" y="82" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">可观测性</text>
+
+  <!-- Left region: deployment boxes -->
+  <rect x="32" y="100" width="366" height="170" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="215" y="132" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1565C0">kubeadm 集群引导</text>
+  <text x="215" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">kubeadm init → 控制平面</text>
+  <text x="215" y="183" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">kubeadm join → 工作节点</text>
+  <text x="215" y="215" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">证书 / kubeconfig / 静态 Pod</text>
+
+  <rect x="32" y="317" width="366" height="170" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="215" y="349" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1565C0">Helm 包管理</text>
+  <text x="215" y="377" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">Chart（模板）→ Release</text>
+  <text x="215" y="400" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">values.yaml 覆盖默认值</text>
+  <text x="215" y="432" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">无 Tiller（Helm 3）</text>
+
+  <rect x="32" y="534" width="366" height="170" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="215" y="566" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1565C0">GitOps 持续部署</text>
+  <text x="215" y="594" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">Git 仓库 → ArgoCD / Flux</text>
+  <text x="215" y="617" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">自动拉取并同步集群</text>
+  <text x="215" y="649" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">声明式 / 版本控制 / 持续协调</text>
+
+  <!-- Middle region: cluster -->
+  <rect x="452" y="160" width="356" height="480" rx="10" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="630" y="185" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#2E7D32">Kubernetes 集群</text>
+
+  <rect x="472" y="210" width="316" height="130" rx="8" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="630" y="240" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#2E7D32">控制平面</text>
+  <text x="630" y="270" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">apiserver · etcd</text>
+  <text x="630" y="295" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">scheduler · controller-manager</text>
+
+  <rect x="472" y="360" width="316" height="130" rx="8" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="630" y="390" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#2E7D32">Pod（工作负载）</text>
+  <text x="630" y="420" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">Deployment · StatefulSet</text>
+  <text x="630" y="445" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">Service · Ingress 路由</text>
+
+  <rect x="472" y="510" width="316" height="110" rx="8" fill="#E8F5E9" stroke="#66BB6A" stroke-width="1"/>
+  <text x="630" y="540" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#2E7D32">节点组件</text>
+  <text x="630" y="570" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">kubelet · kube-proxy</text>
+  <text x="630" y="595" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">容器运行时（CRI）</text>
+
+  <!-- Right region: observability boxes -->
+  <rect x="862" y="100" width="366" height="170" rx="8" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="1045" y="132" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#6A1B9A">Prometheus 监控指标</text>
+  <text x="1045" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">Metrics 采集</text>
+  <text x="1045" y="183" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">kube-state-metrics / cAdvisor</text>
+  <text x="1045" y="215" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">PromQL · Alertmanager 告警</text>
+
+  <rect x="862" y="317" width="366" height="170" rx="8" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="1045" y="349" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#6A1B9A">Loki / EFK 日志</text>
+  <text x="1045" y="377" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">Logs 采集</text>
+  <text x="1045" y="400" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">DaemonSet 采集节点日志</text>
+  <text x="1045" y="432" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Promtail / Fluentd → 存储</text>
+
+  <rect x="862" y="534" width="366" height="170" rx="8" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="1045" y="566" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#6A1B9A">Jaeger 链路追踪</text>
+  <text x="1045" y="594" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">Traces 采集</text>
+  <text x="1045" y="617" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">OpenTelemetry SDK</text>
+  <text x="1045" y="649" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">跨服务调用链路</text>
+
+  <!-- Arrows: left -> middle (blue, deployment flow) -->
+  <line x1="398" y1="185" x2="452" y2="185" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="398" y1="402" x2="452" y2="402" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="398" y1="619" x2="452" y2="619" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+
+  <!-- Arrows: middle -> right (purple, telemetry flow) -->
+  <line x1="808" y1="185" x2="862" y2="185" stroke="#7B1FA2" stroke-width="1.5" marker-end="url(#ahp)"/>
+  <line x1="808" y1="402" x2="862" y2="402" stroke="#7B1FA2" stroke-width="1.5" marker-end="url(#ahp)"/>
+  <line x1="808" y1="619" x2="862" y2="619" stroke="#7B1FA2" stroke-width="1.5" marker-end="url(#ahp)"/>
+
+  <!-- Arrow labels -->
+  <text x="425" y="177" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">引导</text>
+  <text x="425" y="394" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">安装</text>
+  <text x="425" y="611" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">同步</text>
+  <text x="835" y="177" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Metrics</text>
+  <text x="835" y="394" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Logs</text>
+  <text x="835" y="611" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Traces</text>
+</svg>

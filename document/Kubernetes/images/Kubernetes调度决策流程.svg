@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 580" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1100" height="580" fill="#FFFFFF"/>
+  <text x="550" y="30" text-anchor="middle" dominant-baseline="central" font-size="17" font-weight="bold" fill="#263238">Kubernetes 调度决策流程</text>
+
+  <!-- 新 Pod -->
+  <rect x="28" y="178" width="104" height="68" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="80" y="205" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1565C0">新 Pod</text>
+  <text x="80" y="223" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1976D2">状态 Pending</text>
+
+  <!-- Filter 容器 -->
+  <rect x="168" y="64" width="272" height="296" rx="10" fill="#F5F9FF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M178,64 H430 Q440,64 440,74 V92 H168 V74 Q168,64 178,64 Z" fill="#1E88E5"/>
+  <text x="304" y="78" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">Filter 过滤阶段（预选）</text>
+
+  <!-- Node-A pass (green) -->
+  <rect x="182" y="106" width="116" height="56" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="240" y="124" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Node-A</text>
+  <text x="240" y="142" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">8C 16G 可用</text>
+
+  <!-- Node-B excluded (gray) + X -->
+  <rect x="310" y="106" width="116" height="56" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1.5"/>
+  <text x="362" y="124" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#455A64">Node-B</text>
+  <text x="362" y="142" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#607D8B">资源不足</text>
+  <g stroke="#E53935" stroke-width="2.4" stroke-linecap="round">
+    <line x1="406" y1="110" x2="422" y2="126"/>
+    <line x1="422" y1="110" x2="406" y2="126"/>
+  </g>
+
+  <!-- Node-C pass (green) -->
+  <rect x="182" y="178" width="116" height="56" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="240" y="196" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Node-C</text>
+  <text x="240" y="214" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">16C 32G 可用</text>
+
+  <!-- Node-D excluded (gray) + X -->
+  <rect x="310" y="178" width="116" height="56" rx="6" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1.5"/>
+  <text x="362" y="196" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#455A64">Node-D</text>
+  <text x="362" y="214" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#607D8B">污点不容忍</text>
+  <g stroke="#E53935" stroke-width="2.4" stroke-linecap="round">
+    <line x1="406" y1="182" x2="422" y2="198"/>
+    <line x1="422" y1="182" x2="406" y2="198"/>
+  </g>
+
+  <!-- Filter summary -->
+  <text x="304" y="270" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">可行节点 2 / 4 · 排除 2</text>
+  <text x="304" y="290" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">排除原因：资源不足 / 污点不容忍</text>
+  <text x="304" y="310" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">nodeSelector · nodeAffinity 不匹配</text>
+
+  <!-- Score 容器 -->
+  <rect x="476" y="64" width="272" height="296" rx="10" fill="#F5F9FF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M486,64 H738 Q748,64 748,74 V92 H476 V74 Q476,64 486,64 Z" fill="#1E88E5"/>
+  <text x="612" y="78" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">Score 打分阶段（优选）</text>
+
+  <!-- Node-A score card (lower) -->
+  <rect x="490" y="108" width="244" height="70" rx="6" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="502" y="128" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Node-A</text>
+  <rect x="502" y="148" width="180" height="12" rx="3" fill="#ECEFF1"/>
+  <rect x="502" y="148" width="130" height="12" rx="3" fill="#66BB6A"/>
+  <text x="692" y="154" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="600" fill="#2E7D32">72分</text>
+
+  <!-- Node-C score card (highest, highlighted) -->
+  <rect x="490" y="190" width="244" height="70" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="2.2"/>
+  <text x="502" y="210" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1B5E20">Node-C</text>
+  <text x="722" y="210" text-anchor="end" dominant-baseline="central" font-size="10" font-weight="bold" fill="#F57C00">★ 最高分</text>
+  <rect x="502" y="230" width="180" height="12" rx="3" fill="#ECEFF1"/>
+  <rect x="502" y="230" width="158" height="12" rx="3" fill="#43A047"/>
+  <text x="692" y="236" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#1B5E20">88分</text>
+
+  <!-- Score summary -->
+  <text x="612" y="288" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">打分维度：资源均衡 · 亲和性权重 · 拓扑分布</text>
+  <text x="612" y="308" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">→ 选取得分最高的 Node-C</text>
+
+  <!-- 选最高分节点 (green highlighted) -->
+  <rect x="784" y="178" width="128" height="68" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="2.5" filter="url(#s1)"/>
+  <text x="848" y="200" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1B5E20">Node-C</text>
+  <text x="848" y="220" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">最高分 88</text>
+
+  <!-- Bind (blue) -->
+  <rect x="948" y="178" width="116" height="68" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="1006" y="200" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1565C0">Bind 绑定</text>
+  <text x="1006" y="220" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#1976D2">写回 nodeName</text>
+
+  <!-- 影响调度的关键因素 block (orange) -->
+  <rect x="168" y="400" width="896" height="148" rx="10" fill="#FFF8EF" stroke="#FFB74D" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M178,400 H1054 Q1064,400 1064,410 V428 H168 V410 Q168,400 178,400 Z" fill="#F57C00"/>
+  <text x="616" y="414" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">影响调度的关键因素（作用于 Filter 与 Score）</text>
+
+  <!-- factor card 1 -->
+  <rect x="188" y="448" width="196" height="80" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="286" y="474" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">资源 requests</text>
+  <text x="286" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#8D6E63">调度依据·声明最小资源</text>
+
+  <!-- factor card 2 -->
+  <rect x="408" y="448" width="196" height="80" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="506" y="474" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">nodeAffinity</text>
+  <text x="506" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#8D6E63">节点标签硬/软约束</text>
+
+  <!-- factor card 3 -->
+  <rect x="628" y="448" width="196" height="80" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="726" y="474" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">taints 污点</text>
+  <text x="726" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#8D6E63">NoSchedule/NoExecute 过滤</text>
+
+  <!-- factor card 4 -->
+  <rect x="848" y="448" width="196" height="80" rx="6" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="946" y="474" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">podAffinity</text>
+  <text x="946" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#8D6E63">Pod 亲和与反亲和</text>
+
+  <!-- Connection lines (drawn last) -->
+  <line x1="134" y1="212" x2="166" y2="212" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="442" y1="212" x2="474" y2="212" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="750" y1="212" x2="782" y2="212" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="914" y1="212" x2="946" y2="212" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg>

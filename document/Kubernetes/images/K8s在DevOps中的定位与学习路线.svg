@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="470" fill="#FFFFFF"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="17" font-weight="bold" fill="#263238">Kubernetes 在 DevOps 体系中的定位与学习路径</text>
+
+  <!-- 上：DevOps 持续交付链路 -->
+  <rect x="30" y="58" width="900" height="140" rx="8" fill="#E3F2FD" filter="url(#s1)"/>
+  <path d="M38,58 H922 Q930,58 930,66 V84 H30 V66 Q30,58 38,58 Z" fill="#1E88E5"/>
+  <rect x="30" y="58" width="900" height="140" rx="8" fill="none" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="480" y="71" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">DevOps 持续交付链路与 Kubernetes 落点</text>
+
+  <!-- 6 步骤框 w=126 gap=24 x:42,192,342,492,642,792 -->
+  <rect x="42" y="104" width="126" height="68" rx="6" fill="#FFFFFF" stroke="#90A4AE" stroke-width="1.5"/>
+  <text x="105" y="129" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">代码提交</text>
+  <text x="105" y="147" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Git 仓库</text>
+
+  <rect x="192" y="104" width="126" height="68" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="255" y="129" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">CI 构建/测试</text>
+  <text x="255" y="147" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">编译·单元测试·扫描</text>
+
+  <rect x="342" y="104" width="126" height="68" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="405" y="129" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">镜像仓库</text>
+  <text x="405" y="147" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">不可变制品</text>
+
+  <rect x="492" y="104" width="126" height="68" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="555" y="129" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">CD 部署</text>
+  <text x="555" y="147" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">清单·GitOps</text>
+
+  <rect x="642" y="104" width="126" height="68" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="2.5"/>
+  <text x="705" y="129" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1B5E20">Kubernetes 集群</text>
+  <text x="705" y="147" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#2E7D32">编排·调度·自愈</text>
+
+  <rect x="792" y="104" width="126" height="68" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="855" y="129" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">监控运维</text>
+  <text x="855" y="147" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">指标·日志·告警</text>
+
+  <!-- 上行箭头 y=138 -->
+  <line x1="170" y1="138" x2="190" y2="138" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="320" y1="138" x2="340" y2="138" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="470" y1="138" x2="490" y2="138" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="620" y1="138" x2="640" y2="138" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <line x1="770" y1="138" x2="790" y2="138" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 中部衔接说明 -->
+  <text x="480" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">本文档体系以 Kubernetes 集群为核心，覆盖其学习与生产运维的完整路径</text>
+
+  <!-- 下：Kubernetes 学习路径 -->
+  <rect x="30" y="232" width="900" height="140" rx="8" fill="#E8F5E9" filter="url(#s1)"/>
+  <path d="M38,232 H922 Q930,232 930,240 V258 H30 V240 Q30,232 38,232 Z" fill="#43A047"/>
+  <rect x="30" y="232" width="900" height="140" rx="8" fill="none" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="480" y="245" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">Kubernetes 学习路径（本文档体系）</text>
+
+  <!-- 7 步骤框 w=104 gap=24 x:44,172,300,428,556,684,812 -->
+  <rect x="44" y="278" width="104" height="68" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="62" cy="296" r="9" fill="#43A047"/>
+  <text x="62" y="296" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="96" y="313" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333333">容器与编排基础</text>
+
+  <rect x="172" y="278" width="104" height="68" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="190" cy="296" r="9" fill="#43A047"/>
+  <text x="190" y="296" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="224" y="313" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333333">集群架构</text>
+
+  <rect x="300" y="278" width="104" height="68" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="318" cy="296" r="9" fill="#43A047"/>
+  <text x="318" y="296" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="352" y="313" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333333">工作负载对象</text>
+
+  <rect x="428" y="278" width="104" height="68" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="446" cy="296" r="9" fill="#43A047"/>
+  <text x="446" y="296" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">4</text>
+  <text x="480" y="313" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333333">服务路由与存储</text>
+
+  <rect x="556" y="278" width="104" height="68" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="574" cy="296" r="9" fill="#43A047"/>
+  <text x="574" y="296" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">5</text>
+  <text x="608" y="313" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333333">调度与资源</text>
+
+  <rect x="684" y="278" width="104" height="68" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="702" cy="296" r="9" fill="#43A047"/>
+  <text x="702" y="296" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">6</text>
+  <text x="736" y="313" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333333">安全与访问控制</text>
+
+  <rect x="812" y="278" width="104" height="68" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <circle cx="830" cy="296" r="9" fill="#43A047"/>
+  <text x="830" y="296" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">7</text>
+  <text x="864" y="313" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#333333">部署与运维</text>
+
+  <!-- 下行箭头 y=312 -->
+  <line x1="150" y1="312" x2="170" y2="312" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="278" y1="312" x2="298" y2="312" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="406" y1="312" x2="426" y2="312" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="534" y1="312" x2="554" y2="312" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="662" y1="312" x2="682" y2="312" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="790" y1="312" x2="810" y2="312" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 底部图注 -->
+  <text x="480" y="408" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#9E9E9E">上：Kubernetes 作为交付链路落点　|　下：本文档体系的七篇学习路径</text>
+</svg>

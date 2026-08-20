@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="880" height="710" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H860 Q870,20 870,30 V62 H30 V30 Q30,20 40,20Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="450" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">Service 与 Endpoint 流量转发</text>
+  <text x="450" y="72" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">客户端经 Service 虚拟 IP 访问，kube-proxy 依据 EndpointSlice 将流量负载均衡至后端 Pod</text>
+
+  <!-- ============ Row 1: ClusterIP (cy=90) ============ -->
+  <rect x="30" y="90" width="840" height="180" rx="8" fill="#F7F9FC" stroke="#DDE3EA" stroke-width="1"/>
+  <rect x="45" y="102" width="300" height="26" rx="13" fill="#1E88E5"/>
+  <text x="195" y="115" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">场景一 · ClusterIP（集群内访问）</text>
+
+  <rect x="60" y="165" width="130" height="50" rx="6" fill="#FAFAFA" stroke="#455A64" stroke-width="1.5"/>
+  <text x="125" y="190" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">集群内客户端</text>
+
+  <rect x="235" y="165" width="175" height="50" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="323" y="182" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#1565C0">Service · ClusterIP</text>
+  <text x="323" y="198" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">10.96.x.x : Port</text>
+
+  <rect x="460" y="165" width="145" height="50" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="533" y="182" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#37474F">kube-proxy</text>
+  <text x="533" y="198" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">iptables / IPVS 规则</text>
+
+  <text x="745" y="123" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">后端 Pod（EndpointSlice）</text>
+  <rect x="680" y="135" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="150" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 1</text>
+  <rect x="680" y="175" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="190" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 2</text>
+  <rect x="680" y="215" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="230" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 3</text>
+
+  <!-- ============ Row 2: NodePort (cy=285) ============ -->
+  <rect x="30" y="285" width="840" height="180" rx="8" fill="#F7F9FC" stroke="#DDE3EA" stroke-width="1"/>
+  <rect x="45" y="297" width="300" height="26" rx="13" fill="#1E88E5"/>
+  <text x="195" y="310" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">场景二 · NodePort（节点端口访问）</text>
+
+  <rect x="60" y="360" width="130" height="50" rx="6" fill="#FAFAFA" stroke="#455A64" stroke-width="1.5"/>
+  <text x="125" y="385" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">集群外客户端</text>
+
+  <rect x="235" y="360" width="175" height="50" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="323" y="377" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#1565C0">Service · NodePort</text>
+  <text x="323" y="393" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">NodeIP : 30000-32767</text>
+
+  <rect x="460" y="360" width="145" height="50" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="533" y="377" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#37474F">kube-proxy</text>
+  <text x="533" y="393" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">iptables / IPVS 规则</text>
+
+  <text x="745" y="318" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">后端 Pod（EndpointSlice）</text>
+  <rect x="680" y="330" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="345" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 1</text>
+  <rect x="680" y="370" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="385" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 2</text>
+  <rect x="680" y="410" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="425" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 3</text>
+
+  <!-- ============ Row 3: LoadBalancer (cy=480) ============ -->
+  <rect x="30" y="480" width="840" height="180" rx="8" fill="#F7F9FC" stroke="#DDE3EA" stroke-width="1"/>
+  <rect x="45" y="492" width="300" height="26" rx="13" fill="#1E88E5"/>
+  <text x="195" y="505" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">场景三 · LoadBalancer（云负载均衡）</text>
+
+  <rect x="60" y="555" width="130" height="50" rx="6" fill="#FAFAFA" stroke="#455A64" stroke-width="1.5"/>
+  <text x="125" y="580" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">外部客户端</text>
+
+  <rect x="235" y="555" width="175" height="50" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="323" y="572" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#1565C0">Service · LoadBalancer</text>
+  <text x="323" y="588" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">云 LB → NodePort</text>
+
+  <rect x="460" y="555" width="145" height="50" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="533" y="572" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#37474F">kube-proxy</text>
+  <text x="533" y="588" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">iptables / IPVS 规则</text>
+
+  <text x="745" y="513" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">后端 Pod（EndpointSlice）</text>
+  <rect x="680" y="525" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="540" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 1</text>
+  <rect x="680" y="565" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="580" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 2</text>
+  <rect x="680" y="605" width="130" height="30" rx="5" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="745" y="620" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">Pod 3</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <!-- Row 1 arrows -->
+  <path d="M190,190 L233,190" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M410,190 L458,190" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,190 C605,150 650,150 678,150" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,190 L678,190" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,190 C605,230 650,230 678,230" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <!-- Row 2 arrows -->
+  <path d="M190,385 L233,385" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M410,385 L458,385" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,385 C605,345 650,345 678,345" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,385 L678,385" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,385 C605,425 650,425 678,425" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <!-- Row 3 arrows -->
+  <path d="M190,580 L233,580" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M410,580 L458,580" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,580 C605,540 650,540 678,540" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,580 L678,580" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M605,580 C605,620 650,620 678,620" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- ============ Annotations ============ -->
+  <text x="211" y="158" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">访问 Service 端点</text>
+  <text x="435" y="158" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">命中转发规则</text>
+  <text x="533" y="230" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">依据 EndpointSlice 负载均衡</text>
+  <text x="211" y="353" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">访问 Service 端点</text>
+  <text x="435" y="353" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">命中转发规则</text>
+  <text x="533" y="425" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">依据 EndpointSlice 负载均衡</text>
+  <text x="211" y="548" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">访问 Service 端点</text>
+  <text x="435" y="548" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">命中转发规则</text>
+  <text x="533" y="620" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">依据 EndpointSlice 负载均衡</text>
+
+  <!-- ============ Legend ============ -->
+  <rect x="30" y="668" width="840" height="42" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="55" y="678" width="14" height="14" rx="3" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="75" y="685" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">Service 访问入口（VIP）</text>
+  <rect x="250" y="678" width="14" height="14" rx="3" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5"/>
+  <text x="270" y="685" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">kube-proxy 转发规则</text>
+  <rect x="430" y="678" width="14" height="14" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="450" y="685" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">后端 Pod</text>
+  <rect x="560" y="678" width="14" height="14" rx="3" fill="#FAFAFA" stroke="#455A64" stroke-width="1.5"/>
+  <text x="580" y="685" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">客户端</text>
+  <text x="660" y="685" text-anchor="start" dominant-baseline="central" font-size="9" font-style="italic" fill="#999">EndpointSlice 维护后端 Pod 列表</text>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 330" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E53935"/></marker>
+    <marker id="ahp" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1220" height="330" fill="#FFFFFF"/>
+  <text x="610" y="26" text-anchor="middle" dominant-baseline="central" font-size="17" font-weight="bold" fill="#263238">API 请求安全处理链路（认证 → 鉴权 → 准入 → 持久化）</text>
+
+  <!-- 主流程：请求进入 -->
+  <rect x="30" y="58" width="120" height="110" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="90" y="82" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">请求进入</text>
+  <text x="90" y="132" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#616161">客户端 API 调用</text>
+
+  <!-- 认证（橙） -->
+  <rect x="186" y="58" width="140" height="110" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="256" y="82" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#E65100">认证 Authentication</text>
+  <text x="256" y="132" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#616161">X.509 · SA Token · OIDC</text>
+
+  <!-- 鉴权（红） -->
+  <rect x="362" y="58" width="160" height="110" rx="8" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="442" y="82" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#B71C1C">鉴权 Authorization</text>
+  <text x="442" y="132" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#616161">RBAC: Role/ClusterRole</text>
+
+  <!-- 准入控制（紫）容器 -->
+  <rect x="558" y="58" width="300" height="110" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="708" y="78" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#4A148C">准入控制 Admission</text>
+  <!-- Mutating 子框 -->
+  <rect x="573" y="98" width="125" height="54" rx="6" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.2"/>
+  <text x="635.5" y="117" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#4A148C">Mutating</text>
+  <text x="635.5" y="134" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#757575">可修改对象</text>
+  <!-- Validating 子框 -->
+  <rect x="718" y="98" width="125" height="54" rx="6" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.2"/>
+  <text x="780.5" y="117" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#4A148C">Validating</text>
+  <text x="780.5" y="134" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#757575">仅校验</text>
+  <!-- Mutating → Validating 箭头 -->
+  <line x1="700" y1="125" x2="716" y2="125" stroke="#7B1FA2" stroke-width="1.5" marker-end="url(#ahp)"/>
+
+  <!-- 写入 etcd（绿） -->
+  <rect x="894" y="58" width="120" height="110" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="954" y="82" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1B5E20">写入 etcd</text>
+  <text x="954" y="132" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#616161">持久化集群状态</text>
+
+  <!-- 响应返回（灰） -->
+  <rect x="1050" y="58" width="140" height="110" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1120" y="82" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">响应返回</text>
+  <text x="1120" y="132" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#616161">返回操作结果</text>
+
+  <!-- 主流程横向箭头（y=113） -->
+  <line x1="152" y1="113" x2="184" y2="113" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="328" y1="113" x2="360" y2="113" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="524" y1="113" x2="556" y2="113" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="860" y1="113" x2="892" y2="113" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="1016" y1="113" x2="1048" y2="113" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 拒绝分支：红色虚线箭头（垂直） -->
+  <line x1="256" y1="170" x2="256" y2="208" stroke="#E53935" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ahr)"/>
+  <line x1="442" y1="170" x2="442" y2="208" stroke="#E53935" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ahr)"/>
+  <line x1="708" y1="170" x2="708" y2="208" stroke="#E53935" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ahr)"/>
+
+  <!-- 拒绝结果框 -->
+  <rect x="186" y="210" width="140" height="50" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="1.2"/>
+  <text x="256" y="226" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#B71C1C">401 Unauthorized</text>
+  <text x="256" y="244" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#B71C1C">认证失败</text>
+
+  <rect x="362" y="210" width="160" height="50" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="1.2"/>
+  <text x="442" y="226" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#B71C1C">403 Forbidden</text>
+  <text x="442" y="244" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#B71C1C">鉴权失败</text>
+
+  <rect x="638" y="210" width="140" height="50" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="1.2"/>
+  <text x="708" y="226" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#B71C1C">拒绝 Rejected</text>
+  <text x="708" y="244" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#B71C1C">准入未通过</text>
+
+  <!-- 底部说明 -->
+  <text x="610" y="295" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">任一安全阶段失败即终止请求，不进入下一阶段；通过认证、鉴权、准入后写入 etcd 并返回响应。</text>
+</svg>

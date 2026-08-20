@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="560" fill="#FFFFFF"/>
+  <text x="500" y="28" text-anchor="middle" dominant-baseline="central" font-size="17" font-weight="bold" fill="#263238">Kubernetes 核心技术体系全景图</text>
+
+  <!-- 中心枢纽 -->
+  <rect x="400" y="245" width="200" height="80" rx="10" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" filter="url(#s1)"/>
+  <text x="500" y="272" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#4A148C">Kubernetes</text>
+  <text x="500" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#6A1B9A">声明式 API · 调谐循环</text>
+
+  <!-- 左列三域 -->
+  <!-- 集群架构与组件 gray -->
+  <rect x="40" y="55" width="250" height="130" rx="8" fill="#ECEFF1" filter="url(#s1)"/>
+  <path d="M46,55 H284 Q290,55 290,61 V81 H40 V61 Q40,55 46,55 Z" fill="#546E7A"/>
+  <rect x="40" y="55" width="250" height="130" rx="8" fill="none" stroke="#B0BEC5" stroke-width="1.5"/>
+  <text x="165" y="68" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">集群架构与组件</text>
+  <text x="56" y="98" font-size="11" fill="#37474F">· kube-apiserver</text>
+  <text x="56" y="116" font-size="11" fill="#37474F">· etcd</text>
+  <text x="56" y="134" font-size="11" fill="#37474F">· kube-scheduler</text>
+  <text x="56" y="152" font-size="11" fill="#37474F">· kube-controller-manager</text>
+  <text x="56" y="170" font-size="11" fill="#37474F">· kubelet 与 kube-proxy</text>
+
+  <!-- 安全与访问控制 red -->
+  <rect x="40" y="215" width="250" height="130" rx="8" fill="#FFEBEE" filter="url(#s1)"/>
+  <path d="M46,215 H284 Q290,215 290,221 V241 H40 V221 Q40,215 46,215 Z" fill="#E53935"/>
+  <rect x="40" y="215" width="250" height="130" rx="8" fill="none" stroke="#EF9A9A" stroke-width="1.5"/>
+  <text x="165" y="228" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">安全与访问控制</text>
+  <text x="56" y="258" font-size="11" fill="#4A1B1B">· RBAC（Role / ClusterRole）</text>
+  <text x="56" y="276" font-size="11" fill="#4A1B1B">· ServiceAccount</text>
+  <text x="56" y="294" font-size="11" fill="#4A1B1B">· Secret</text>
+  <text x="56" y="312" font-size="11" fill="#4A1B1B">· Pod Security Admission</text>
+  <text x="56" y="330" font-size="11" fill="#4A1B1B">· NetworkPolicy</text>
+
+  <!-- 调度与资源管理 orange -->
+  <rect x="40" y="375" width="250" height="130" rx="8" fill="#FFF3E0" filter="url(#s1)"/>
+  <path d="M46,375 H284 Q290,375 290,381 V401 H40 V381 Q40,375 46,375 Z" fill="#F57C00"/>
+  <rect x="40" y="375" width="250" height="130" rx="8" fill="none" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="165" y="388" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">调度与资源管理</text>
+  <text x="56" y="418" font-size="11" fill="#4E342E">· 调度器（Filter / Score）</text>
+  <text x="56" y="436" font-size="11" fill="#4E342E">· 节点亲和性 / 反亲和性</text>
+  <text x="56" y="454" font-size="11" fill="#4E342E">· 污点与容忍</text>
+  <text x="56" y="472" font-size="11" fill="#4E342E">· QoS 等级</text>
+  <text x="56" y="490" font-size="11" fill="#4E342E">· ResourceQuota 与 LimitRange</text>
+
+  <!-- 右列三域 -->
+  <!-- 工作负载对象 blue -->
+  <rect x="710" y="55" width="250" height="130" rx="8" fill="#E3F2FD" filter="url(#s1)"/>
+  <path d="M716,55 H954 Q960,55 960,61 V81 H710 V61 Q710,55 716,55 Z" fill="#1E88E5"/>
+  <rect x="710" y="55" width="250" height="130" rx="8" fill="none" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="835" y="68" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">工作负载对象</text>
+  <text x="726" y="98" font-size="11" fill="#0D47A1">· Pod</text>
+  <text x="726" y="116" font-size="11" fill="#0D47A1">· Deployment</text>
+  <text x="726" y="134" font-size="11" fill="#0D47A1">· StatefulSet</text>
+  <text x="726" y="152" font-size="11" fill="#0D47A1">· DaemonSet</text>
+  <text x="726" y="170" font-size="11" fill="#0D47A1">· Job 与 CronJob</text>
+
+  <!-- 服务路由与存储 green -->
+  <rect x="710" y="215" width="250" height="130" rx="8" fill="#E8F5E9" filter="url(#s1)"/>
+  <path d="M716,215 H954 Q960,215 960,221 V241 H710 V221 Q710,215 716,215 Z" fill="#43A047"/>
+  <rect x="710" y="215" width="250" height="130" rx="8" fill="none" stroke="#A5D6A7" stroke-width="1.5"/>
+  <text x="835" y="228" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">服务路由与存储</text>
+  <text x="726" y="258" font-size="11" fill="#1B5E20">· Service（ClusterIP 等）</text>
+  <text x="726" y="276" font-size="11" fill="#1B5E20">· Ingress</text>
+  <text x="726" y="294" font-size="11" fill="#1B5E20">· PersistentVolume / PVC</text>
+  <text x="726" y="312" font-size="11" fill="#1B5E20">· StorageClass（动态供给）</text>
+  <text x="726" y="330" font-size="11" fill="#1B5E20">· CSI（容器存储接口）</text>
+
+  <!-- 部署与运维实践 teal -->
+  <rect x="710" y="375" width="250" height="130" rx="8" fill="#E0F2F1" filter="url(#s1)"/>
+  <path d="M716,375 H954 Q960,375 960,381 V401 H710 V381 Q710,375 716,375 Z" fill="#00897B"/>
+  <rect x="710" y="375" width="250" height="130" rx="8" fill="none" stroke="#80CBC4" stroke-width="1.5"/>
+  <text x="835" y="388" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">部署与运维实践</text>
+  <text x="726" y="418" font-size="11" fill="#004D40">· kubeadm 集群部署</text>
+  <text x="726" y="436" font-size="11" fill="#004D40">· Helm 包管理</text>
+  <text x="726" y="454" font-size="11" fill="#004D40">· GitOps（ArgoCD / Flux）</text>
+  <text x="726" y="472" font-size="11" fill="#004D40">· Prometheus 监控</text>
+  <text x="726" y="490" font-size="11" fill="#004D40">· 日志与链路追踪</text>
+
+  <!-- 中心枢纽到六域的辐条 -->
+  <line x1="430" y1="245" x2="290" y2="120" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="400" y1="285" x2="290" y2="280" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="430" y1="325" x2="290" y2="440" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="570" y1="245" x2="710" y2="120" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="600" y1="285" x2="710" y2="280" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="570" y1="325" x2="710" y2="440" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 图注 -->
+  <text x="500" y="535" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#9E9E9E">中心：平台核心思想　|　六域：本文档体系六大分论主题</text>
+</svg>

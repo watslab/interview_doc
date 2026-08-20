@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 750" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1080" height="750" fill="#FFFFFF"/>
+  <text x="540" y="32" text-anchor="middle" dominant-baseline="central" font-size="17" font-weight="bold" fill="#263238">Kubernetes 集群架构与组件交互</text>
+
+  <!-- 控制平面容器 -->
+  <rect x="40" y="60" width="1000" height="260" rx="10" fill="#E3F2FD" filter="url(#s1)"/>
+  <path d="M50,60 H1030 Q1040,60 1040,70 V86 H40 V70 Q40,60 50,60 Z" fill="#1E88E5"/>
+  <rect x="40" y="60" width="1000" height="260" rx="10" fill="none" stroke="#90CAF9" stroke-width="1.5"/>
+  <text x="540" y="73" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">控制平面 Control Plane</text>
+
+  <!-- etcd -->
+  <rect x="80" y="150" width="160" height="100" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="160" y="191" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#4A148C">etcd</text>
+  <text x="160" y="211" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#6A1B9A">端口 2379 / 2380</text>
+
+  <!-- kube-apiserver -->
+  <rect x="340" y="140" width="220" height="120" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="450" y="191" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#0D47A1">kube-apiserver</text>
+  <text x="450" y="211" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1565C0">端口 6443</text>
+
+  <!-- kube-scheduler -->
+  <rect x="660" y="110" width="200" height="80" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="760" y="141" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#0D47A1">kube-scheduler</text>
+  <text x="760" y="161" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1565C0">端口 10259</text>
+
+  <!-- kube-controller-manager -->
+  <rect x="660" y="220" width="240" height="80" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="780" y="251" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#0D47A1">kube-controller-manager</text>
+  <text x="780" y="271" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1565C0">端口 10257</text>
+
+  <!-- Node 1 容器 -->
+  <rect x="40" y="380" width="480" height="320" rx="10" fill="#ECEFF1" filter="url(#s1)"/>
+  <path d="M50,380 H510 Q520,380 520,390 V406 H40 V390 Q40,380 50,380 Z" fill="#546E7A"/>
+  <rect x="40" y="380" width="480" height="320" rx="10" fill="none" stroke="#B0BEC5" stroke-width="1.5"/>
+  <text x="280" y="393" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Node 1</text>
+
+  <!-- Node 2 容器 -->
+  <rect x="560" y="380" width="480" height="320" rx="10" fill="#ECEFF1" filter="url(#s1)"/>
+  <path d="M570,380 H1030 Q1040,380 1040,390 V406 H560 V390 Q560,380 570,380 Z" fill="#546E7A"/>
+  <rect x="560" y="380" width="480" height="320" rx="10" fill="none" stroke="#B0BEC5" stroke-width="1.5"/>
+  <text x="800" y="393" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#FFFFFF">Node 2</text>
+
+  <!-- Node 1 组件 -->
+  <rect x="70" y="470" width="180" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="160" y="496" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">kubelet</text>
+  <text x="160" y="516" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#607D8B">端口 10250</text>
+
+  <rect x="290" y="470" width="200" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="390" y="496" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">kube-proxy</text>
+  <text x="390" y="516" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#607D8B">端口 10256</text>
+
+  <rect x="70" y="580" width="180" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="160" y="606" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">容器运行时 (CRI)</text>
+  <text x="160" y="626" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#607D8B">containerd / CRI-O</text>
+
+  <rect x="290" y="580" width="200" height="70" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="390" y="606" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1B5E20">Pod</text>
+  <text x="390" y="626" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32">工作负载</text>
+
+  <!-- Node 2 组件 -->
+  <rect x="590" y="470" width="180" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="680" y="496" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">kubelet</text>
+  <text x="680" y="516" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#607D8B">端口 10250</text>
+
+  <rect x="810" y="470" width="200" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="910" y="496" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">kube-proxy</text>
+  <text x="910" y="516" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#607D8B">端口 10256</text>
+
+  <rect x="590" y="580" width="180" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="680" y="606" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">容器运行时 (CRI)</text>
+  <text x="680" y="626" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#607D8B">containerd / CRI-O</text>
+
+  <rect x="810" y="580" width="200" height="70" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="910" y="606" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1B5E20">Pod</text>
+  <text x="910" y="626" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32">工作负载</text>
+
+  <!-- 连接线（最后绘制，保证 z-order 在上） -->
+  <!-- apiserver ↔ etcd 双向（两条平行线） -->
+  <line x1="340" y1="180" x2="240" y2="180" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="240" y1="220" x2="340" y2="220" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <text x="290" y="170" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">读写状态</text>
+
+  <!-- apiserver ↔ kube-scheduler 双向（watch） -->
+  <line x1="560" y1="160" x2="660" y2="160" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="660" y1="180" x2="560" y2="180" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <text x="610" y="148" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">watch</text>
+
+  <!-- apiserver ↔ kube-controller-manager 双向（watch） -->
+  <line x1="560" y1="225" x2="660" y2="225" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="660" y1="245" x2="560" y2="245" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <text x="610" y="213" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">watch</text>
+
+  <!-- apiserver ↔ kubelet（Node 1）双向 -->
+  <path d="M380,260 C380,360 150,380 150,470" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M170,470 C170,380 400,360 400,260" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ahr)"/>
+
+  <!-- apiserver ↔ kubelet（Node 2）双向 -->
+  <path d="M520,260 C520,360 680,380 680,470" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M660,470 C660,380 500,360 500,260" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ahr)"/>
+  <text x="455" y="345" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">watch · 状态上报</text>
+
+  <!-- kubelet → 容器运行时 -->
+  <line x1="160" y1="540" x2="160" y2="580" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="680" y1="540" x2="680" y2="580" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="185" y="560" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">CRI</text>
+  <text x="705" y="560" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">CRI</text>
+
+  <!-- 容器运行时 → Pod -->
+  <line x1="250" y1="615" x2="290" y2="615" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="770" y1="615" x2="810" y2="615" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="270" y="605" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">运行</text>
+  <text x="790" y="605" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">运行</text>
+
+  <!-- 图注 -->
+  <text x="540" y="730" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#9E9E9E">箭头表示数据/控制流向　|　控制平面（蓝）· etcd 数据存储（紫）· 节点组件（灰）· Pod 工作负载（绿）</text>
+</svg>

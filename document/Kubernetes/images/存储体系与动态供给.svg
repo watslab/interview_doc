@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 660" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="640" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar (purple: storage theme) -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#7B1FA2" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">存储体系与动态供给</text>
+  <text x="480" y="72" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">左：静态供给（管理员预创建 PV）；右：动态供给（StorageClass + CSI 自动创建 PV）</text>
+
+  <!-- ============ Left panel: Static Provisioning ============ -->
+  <rect x="30" y="90" width="380" height="500" rx="10" fill="#FAF7FC" stroke="#E1BEE7" stroke-width="1"/>
+  <rect x="45" y="102" width="260" height="26" rx="13" fill="#7B1FA2"/>
+  <text x="175" y="115" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">静态供给（Static Provisioning）</text>
+
+  <text x="220" y="150" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">管理员预先创建 PV，PVC 匹配后绑定</text>
+
+  <!-- PV (purple) -->
+  <rect x="115" y="170" width="210" height="48" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="220" y="187" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#4A148C">PV（持久卷）</text>
+  <text x="220" y="203" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#6A1B9A">管理员预创建</text>
+
+  <!-- PVC (purple) -->
+  <rect x="115" y="280" width="210" height="48" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="220" y="297" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#4A148C">PVC（声明）</text>
+  <text x="220" y="313" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#6A1B9A">用户申请</text>
+
+  <!-- Pod (green) -->
+  <rect x="115" y="400" width="210" height="48" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="220" y="417" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1B5E20">Pod</text>
+  <text x="220" y="433" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#2E7D32">挂载使用</text>
+
+  <text x="220" y="475" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-style="italic" fill="#757575">无 Provisioner，PV 须手动管理</text>
+
+  <!-- ============ Right panel: Dynamic Provisioning ============ -->
+  <rect x="440" y="90" width="490" height="500" rx="10" fill="#F4F8FC" stroke="#CFD8DC" stroke-width="1"/>
+  <rect x="455" y="102" width="280" height="26" rx="13" fill="#7B1FA2"/>
+  <text x="595" y="115" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#FFFFFF">动态供给（Dynamic Provisioning）</text>
+
+  <!-- PVC (purple) -->
+  <rect x="575" y="150" width="220" height="48" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="685" y="167" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#4A148C">PVC（声明）</text>
+  <text x="685" y="183" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#6A1B9A">引用 StorageClass</text>
+
+  <!-- StorageClass (purple) -->
+  <rect x="575" y="230" width="220" height="48" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="685" y="247" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#4A148C">StorageClass</text>
+  <text x="685" y="263" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#6A1B9A">存储类别 + Provisioner</text>
+
+  <!-- Provisioner (blue) -->
+  <rect x="575" y="310" width="220" height="48" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="685" y="327" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#0D47A1">Provisioner</text>
+  <text x="685" y="343" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#1565C0">CSI 驱动</text>
+
+  <!-- PV (purple) -->
+  <rect x="575" y="390" width="220" height="48" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="685" y="407" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#4A148C">PV（自动创建）</text>
+  <text x="685" y="423" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#6A1B9A">动态供给</text>
+
+  <!-- Pod (green) -->
+  <rect x="575" y="500" width="220" height="48" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8" filter="url(#s1)"/>
+  <text x="685" y="517" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1B5E20">Pod</text>
+  <text x="685" y="533" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#2E7D32">挂载使用</text>
+
+  <text x="685" y="572" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-style="italic" fill="#757575">StorageClass 驱动整个供给流程</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <!-- Left panel: PV -> PVC -> Pod -->
+  <path d="M220,218 L220,278" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M220,328 L220,398" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <!-- Right panel: downward chain -->
+  <path d="M685,198 L685,228" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M685,278 L685,308" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M685,358 L685,388" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <!-- Right panel: bind-back PV -> PVC (right side, up) -->
+  <path d="M795,414 H825 V174 H797" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <!-- Right panel: mount PVC -> Pod (left side, down) -->
+  <path d="M575,174 H545 V524 H573" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- ============ Step labels ============ -->
+  <!-- Left panel -->
+  <text x="220" y="248" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">匹配并绑定</text>
+  <text x="220" y="363" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Pod 挂载</text>
+  <!-- Right panel -->
+  <text x="700" y="213" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#757575">1 引用 StorageClass</text>
+  <text x="700" y="293" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#757575">2 触发供给</text>
+  <text x="700" y="373" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#757575">3 自动创建 PV</text>
+  <text x="840" y="294" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#757575">4 绑定回 PVC</text>
+  <text x="530" y="349" text-anchor="end" dominant-baseline="central" font-size="9.5" fill="#757575">5 Pod 挂载</text>
+
+  <!-- ============ Bottom note + Legend ============ -->
+  <text x="480" y="605" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#616161">静态供给：管理员手动创建并维护 PV；动态供给：CSI Provisioner 按 PVC 需求自动创建 PV（生产推荐）</text>
+
+  <rect x="235" y="623" width="14" height="14" rx="3" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="255" y="630" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">存储资源（PV / PVC / StorageClass）</text>
+  <rect x="495" y="623" width="14" height="14" rx="3" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="515" y="630" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">Provisioner（CSI 驱动）</text>
+  <rect x="705" y="623" width="14" height="14" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="725" y="630" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">Pod</text>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 600" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- ============ Left Panel: Reconciliation Loop ============ -->
+  <rect x="20" y="30" width="500" height="540" rx="10" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1" filter="url(#s1)"/>
+  <path d="M30,30 H510 Q520,30 520,40 V66 H20 V40 Q20,30 30,30 Z" fill="#1E88E5"/>
+  <text x="270" y="48" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="15" font-weight="bold">调谐循环（Reconciliation Loop）</text>
+
+  <!-- Box 1: 期望状态 (purple = metadata/config) -->
+  <rect x="120" y="120" width="300" height="64" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="270" y="144" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">期望状态（YAML 声明）</text>
+  <text x="270" y="164" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11">Desired State · replicas: 3</text>
+
+  <!-- Box 2: 观察实际状态 (blue = controller) -->
+  <rect x="120" y="224" width="300" height="64" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="270" y="248" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">控制器观察实际状态</text>
+  <text x="270" y="268" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11">Observe · 实际运行 Pod 数</text>
+
+  <!-- Box 3: 对比差异 (blue = controller) -->
+  <rect x="120" y="328" width="300" height="64" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="270" y="352" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">对比期望与实际差异</text>
+  <text x="270" y="372" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11">Diff · 期望 3 实际 2</text>
+
+  <!-- Box 4: 修正操作 (blue = controller) -->
+  <rect x="120" y="432" width="300" height="64" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="270" y="456" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">修正操作（创建/删除 Pod）</text>
+  <text x="270" y="476" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11">Reconcile · 新建 1 个 Pod</text>
+
+  <!-- Note -->
+  <text x="270" y="525" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11">控制器持续运行此循环，驱动实际状态向期望状态收敛</text>
+
+  <!-- ============ Right Panel: Workload Hierarchy ============ -->
+  <rect x="540" y="30" width="600" height="540" rx="10" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1" filter="url(#s1)"/>
+  <path d="M550,30 H1130 Q1140,30 1140,40 V66 H540 V40 Q540,30 550,30 Z" fill="#1E88E5"/>
+  <text x="840" y="48" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="15" font-weight="bold">工作负载对象层级关系</text>
+
+  <!-- Column Headers -->
+  <text x="645" y="92" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11" font-weight="600">控制器</text>
+  <text x="830" y="92" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11" font-weight="600">中间层</text>
+  <text x="1015" y="92" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="11" font-weight="600">Pod</text>
+
+  <!-- Col1: Controllers (blue) -->
+  <rect x="570" y="120" width="150" height="60" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="645" y="150" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">Deployment</text>
+
+  <rect x="570" y="220" width="150" height="60" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="645" y="250" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">StatefulSet</text>
+
+  <rect x="570" y="320" width="150" height="60" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="645" y="350" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">DaemonSet</text>
+
+  <rect x="570" y="420" width="150" height="60" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="645" y="450" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">Job</text>
+
+  <!-- Col2: ReplicaSet (blue, only row 1) -->
+  <rect x="760" y="120" width="140" height="60" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="830" y="150" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">ReplicaSet</text>
+
+  <!-- Col3: Pods (green) -->
+  <rect x="950" y="120" width="130" height="60" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1015" y="150" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">Pod</text>
+
+  <rect x="950" y="220" width="130" height="60" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1015" y="250" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">Pod</text>
+
+  <rect x="950" y="320" width="130" height="60" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1015" y="350" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">Pod</text>
+
+  <rect x="950" y="420" width="130" height="60" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1015" y="450" text-anchor="middle" dominant-baseline="central" fill="#333" font-size="13" font-weight="600">Pod</text>
+
+  <!-- Legend -->
+  <rect x="595" y="510" width="14" height="12" rx="2" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="616" y="516" text-anchor="start" dominant-baseline="central" fill="#757575" font-size="11">控制器</text>
+  <rect x="700" y="510" width="14" height="12" rx="2" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="721" y="516" text-anchor="start" dominant-baseline="central" fill="#757575" font-size="11">Pod</text>
+  <line x1="780" y1="516" x2="810" y2="516" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="820" y="516" text-anchor="start" dominant-baseline="central" fill="#757575" font-size="11">管理关系</text>
+
+  <!-- ============ Connection Lines (drawn last for correct z-order) ============ -->
+  <!-- Left panel: downward arrows between loop steps -->
+  <line x1="270" y1="184" x2="270" y2="222" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="270" y1="288" x2="270" y2="326" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="270" y1="392" x2="270" y2="430" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Left panel: return arrow (from 修正操作 back to 观察实际状态) -->
+  <path d="M420,464 C485,464 485,256 420,256" fill="none" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+  <text x="498" y="360" text-anchor="middle" dominant-baseline="central" fill="#757575" font-size="10">持续调谐</text>
+
+  <!-- Right panel: management relationship arrows -->
+  <line x1="721" y1="150" x2="758" y2="150" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="901" y1="150" x2="948" y2="150" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="721" y1="250" x2="948" y2="250" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="721" y1="350" x2="948" y2="350" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="721" y1="450" x2="948" y2="450" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg>
