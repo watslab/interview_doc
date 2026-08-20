@@ -1,12 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="'Segoe UI',Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 645" font-family="'Segoe UI',Arial,sans-serif">
   <defs>
     <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
     <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
-    <marker id="ahr" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#90A4AE"/></marker>
   </defs>
 
   <!-- Background -->
-  <rect x="10" y="10" width="940" height="540" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="10" y="10" width="940" height="625" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
 
   <!-- Title bar -->
   <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
@@ -16,7 +15,7 @@
   <rect x="60" y="80" width="180" height="100" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
   <text x="150" y="108" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#1565C0">主机 A</text>
   <text x="150" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">IP: 192.168.1.10</text>
-  <text x="150" y="148" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">MAC: AA-AA-AA-AA-AA-AA</text>
+  <text x="150" y="148" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333" font-family="monospace">MAC: AA AA AA AA AA AA</text>
   <text x="150" y="166" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">已知自身 MAC，查询 B 的 MAC</text>
 
   <!-- Switch (middle) -->
@@ -30,13 +29,13 @@
   <rect x="720" y="80" width="180" height="100" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
   <text x="810" y="108" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="bold" fill="#1B5E20">主机 B</text>
   <text x="810" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">IP: 192.168.1.20</text>
-  <text x="810" y="148" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333">MAC: BB-BB-BB-BB-BB-BB</text>
+  <text x="810" y="148" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333" font-family="monospace">MAC: BB BB BB BB BB BB</text>
   <text x="810" y="166" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">接收请求并应答自身 MAC</text>
 
   <!-- Vertical lifelines -->
-  <line x1="150" y1="180" x2="150" y2="510" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="480" y1="180" x2="480" y2="510" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
-  <line x1="810" y1="180" x2="810" y2="510" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="150" y1="180" x2="150" y2="575" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="480" y1="180" x2="480" y2="575" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="810" y1="180" x2="810" y2="575" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
 
   <!-- Step 1: ARP cache miss check -->
   <rect x="60" y="210" width="180" height="50" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
@@ -44,46 +43,55 @@
   <text x="150" y="248" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">未命中 B 的 MAC</text>
 
   <!-- Step 2: ARP Request broadcast (A -> Switch) -->
-  <path d="M150,275 L480,275" stroke="#F57C00" stroke-width="2" marker-end="url(#ah)"/>
-  <rect x="220" y="258" width="190" height="20" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="0.5"/>
-  <text x="315" y="268" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">② ARP 请求（广播）</text>
+  <path d="M150,285 L480,285" stroke="#F57C00" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="220" y="272" width="190" height="20" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="0.5"/>
+  <text x="315" y="282" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">② ARP 请求（广播）</text>
 
   <!-- Step 3: Switch floods (Switch -> B) -->
-  <path d="M480,305 L810,305" stroke="#F57C00" stroke-width="2" marker-end="url(#ah)"/>
-  <rect x="540" y="288" width="210" height="20" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="0.5"/>
-  <text x="645" y="298" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">③ 交换机泛洪至所有端口</text>
+  <path d="M480,315 L810,315" stroke="#F57C00" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="540" y="302" width="210" height="20" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="0.5"/>
+  <text x="645" y="312" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">③ 交换机泛洪至所有端口</text>
 
   <!-- ARP Request content -->
-  <rect x="540" y="325" width="340" height="60" rx="4" fill="#FFFFFF" stroke="#F57C00" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="710" y="342" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">ARP Request 报文内容</text>
-  <text x="710" y="360" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">源 IP: 192.168.1.10  源 MAC: AA-AA-AA-AA-AA-AA</text>
-  <text x="710" y="376" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">目标 IP: 192.168.1.20  目标 MAC: FF-FF-FF-FF-FF-FF</text>
+  <rect x="540" y="335" width="340" height="65" rx="4" fill="#FFFFFF" stroke="#F57C00" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="710" y="350" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">ARP Request 报文内容</text>
+  <text x="574" y="370" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">源 IP/MAC</text>
+  <text x="644" y="370" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">:</text>
+  <text x="654" y="370" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">192.168.1.10 / AA AA AA AA AA AA</text>
+  <text x="574" y="385" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">目标 IP/MAC</text>
+  <text x="644" y="385" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">:</text>
+  <text x="654" y="385" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">192.168.1.20 / 00 00 00 00 00 00</text>
 
   <!-- Step 4: B receives, matches IP, replies (B -> Switch) -->
-  <path d="M810,410 L480,410" stroke="#43A047" stroke-width="2" marker-end="url(#ah)"/>
-  <rect x="540" y="393" width="190" height="20" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="0.5"/>
-  <text x="635" y="403" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">④ ARP 应答（单播）</text>
+  <path d="M810,420 L480,420" stroke="#43A047" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="540" y="407" width="190" height="20" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="0.5"/>
+  <text x="635" y="417" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">④ ARP 应答（单播）</text>
 
   <!-- Step 5: Switch forwards to A (Switch -> A) -->
-  <path d="M480,440 L150,440" stroke="#43A047" stroke-width="2" marker-end="url(#ah)"/>
-  <rect x="220" y="423" width="190" height="20" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="0.5"/>
-  <text x="315" y="433" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">⑤ 交换机单播转发至 A</text>
+  <path d="M480,450 L150,450" stroke="#43A047" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="220" y="437" width="190" height="20" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="0.5"/>
+  <text x="315" y="447" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">⑤ 交换机单播转发至 A</text>
 
   <!-- ARP Reply content -->
-  <rect x="80" y="460" width="320" height="50" rx="4" fill="#FFFFFF" stroke="#43A047" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="240" y="477" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">ARP Reply 报文内容</text>
-  <text x="240" y="495" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">源 IP/MAC: B 的地址  →  目标 IP/MAC: A 的地址</text>
+  <rect x="80" y="465" width="340" height="65" rx="4" fill="#FFFFFF" stroke="#43A047" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="250" y="480" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">ARP Reply 报文内容</text>
+  <text x="114" y="500" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">源 IP/MAC</text>
+  <text x="184" y="500" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">:</text>
+  <text x="194" y="500" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">192.168.1.20 / BB BB BB BB BB BB</text>
+  <text x="114" y="515" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">目标 IP/MAC</text>
+  <text x="184" y="515" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">:</text>
+  <text x="194" y="515" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333" font-family="monospace">192.168.1.10 / AA AA AA AA AA AA</text>
 
   <!-- Step 6: A updates cache -->
-  <rect x="60" y="460" width="14" height="50" rx="2" fill="#1B5E20"/>
-  <text x="67" y="485" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="bold" fill="#FFFFFF">⑥</text>
+  <rect x="60" y="545" width="180" height="30" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="150" y="560" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1B5E20">⑥ A 更新 ARP 缓存</text>
 
-  <!-- Legend -->
-  <rect x="420" y="460" width="14" height="14" rx="2" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
-  <text x="442" y="467" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">广播请求</text>
-  <rect x="420" y="482" width="14" height="14" rx="2" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
-  <text x="442" y="489" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">单播应答</text>
+  <!-- Legend (horizontal at bottom) -->
+  <rect x="380" y="590" width="14" height="14" rx="2" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="400" y="597" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">广播请求</text>
+  <rect x="480" y="590" width="14" height="14" rx="2" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="500" y="597" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">单播应答</text>
 
   <!-- Footer -->
-  <text x="480" y="535" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">RFC 826：ARP 缓存条目通常存活 15~20 分钟，超时后需重新解析</text>
+  <text x="480" y="625" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">RFC 826：ARP 缓存条目通常存活 15~20 分钟，超时后需重新解析</text>
 </svg>

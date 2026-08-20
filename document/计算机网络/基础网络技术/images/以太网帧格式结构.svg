@@ -19,40 +19,40 @@
   <text x="80" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">7 字节</text>
 
   <!-- SFD 1B -->
-  <rect x="120" y="90" width="60" height="70" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="150" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1565C0">SFD</text>
-  <text x="150" y="138" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">帧起始定界符</text>
-  <text x="150" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">1 字节</text>
+  <rect x="120" y="90" width="80" height="70" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="160" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1565C0">SFD</text>
+  <text x="160" y="138" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">帧起始定界符</text>
+  <text x="160" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">1 字节</text>
 
   <!-- 目的MAC 6B -->
-  <rect x="180" y="90" width="110" height="70" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="235" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#E65100">目的 MAC</text>
-  <text x="235" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Destination</text>
-  <text x="235" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">6 字节</text>
+  <rect x="200" y="90" width="120" height="70" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="260" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#E65100">目的 MAC</text>
+  <text x="260" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Destination</text>
+  <text x="260" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">6 字节</text>
 
   <!-- 源MAC 6B -->
-  <rect x="290" y="90" width="110" height="70" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="345" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#E65100">源 MAC</text>
-  <text x="345" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Source</text>
-  <text x="345" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">6 字节</text>
+  <rect x="320" y="90" width="120" height="70" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="380" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#E65100">源 MAC</text>
+  <text x="380" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Source</text>
+  <text x="380" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">6 字节</text>
 
   <!-- 长度/类型 2B -->
-  <rect x="400" y="90" width="90" height="70" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="445" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#4A148C">长度/类型</text>
-  <text x="445" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Length/Type</text>
-  <text x="445" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">2 字节</text>
+  <rect x="440" y="90" width="100" height="70" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="490" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#4A148C">长度/类型</text>
+  <text x="490" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Length/Type</text>
+  <text x="490" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">2 字节</text>
 
   <!-- 数据 46-1500B -->
-  <rect x="490" y="90" width="280" height="70" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="630" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1B5E20">数据（载荷）</text>
-  <text x="630" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Data / Payload</text>
-  <text x="630" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">46 ~ 1500 字节</text>
+  <rect x="540" y="90" width="290" height="70" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="685" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#1B5E20">数据（载荷）</text>
+  <text x="685" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">Data / Payload</text>
+  <text x="685" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">46 ~ 1500 字节</text>
 
   <!-- FCS 4B -->
-  <rect x="770" y="90" width="90" height="70" rx="4" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="815" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#B71C1C">FCS</text>
-  <text x="815" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">帧校验序列</text>
-  <text x="815" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">4 字节</text>
+  <rect x="830" y="90" width="90" height="70" rx="4" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="875" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#B71C1C">FCS</text>
+  <text x="875" y="138" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">帧校验序列</text>
+  <text x="875" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">4 字节</text>
 
   <!-- Section brackets -->
   <!-- 物理层添加 (前导码+SFD) -->
@@ -60,8 +60,8 @@
   <text x="120" y="220" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#37474F">物理层附加（非帧本体）</text>
 
   <!-- 帧本体 -->
-  <path d="M180,215 H860 V225 H180 Z" fill="#ECEFF1" stroke="#546E7A" stroke-width="1" opacity="0.6"/>
-  <text x="520" y="220" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#37474F">MAC 帧本体（64 ~ 1518 字节）</text>
+  <path d="M200,215 H920 V225 H200 Z" fill="#ECEFF1" stroke="#546E7A" stroke-width="1" opacity="0.6"/>
+  <text x="560" y="220" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#37474F">MAC 帧本体（64 ~ 1518 字节）</text>
 
   <!-- Field detail boxes -->
   <text x="480" y="260" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#37474F">关键字段说明</text>

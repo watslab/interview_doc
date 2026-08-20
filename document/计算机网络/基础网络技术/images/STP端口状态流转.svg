@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah_gray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#546E7A"/>
+    </marker>
+    <marker id="ah_red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6Z" fill="#E53935"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="780" height="540" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#333">STP 端口状态流转</text>
+  <text x="400" y="55" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#999">IEEE 802.1D</text>
+
+  <!-- State Boxes -->
+  <!-- Disabled -->
+  <rect x="330" y="80" width="140" height="50" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#s1)"/>
+  <text x="400" y="100" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">Disabled</text>
+  <text x="400" y="118" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">管理关闭</text>
+
+  <!-- Blocking -->
+  <rect x="330" y="170" width="140" height="50" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="400" y="190" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#E65100">Blocking</text>
+  <text x="400" y="208" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#A1887F">收 BPDU，不转发</text>
+
+  <!-- Listening -->
+  <rect x="330" y="260" width="140" height="50" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="400" y="280" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#E65100">Listening</text>
+  <text x="400" y="298" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#A1887F">收发 BPDU，不转发</text>
+
+  <!-- Learning -->
+  <rect x="330" y="350" width="140" height="50" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="400" y="370" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#E65100">Learning</text>
+  <text x="400" y="388" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#A1887F">学习 MAC，不转发</text>
+
+  <!-- Forwarding -->
+  <rect x="330" y="440" width="140" height="50" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="400" y="460" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#1B5E20">Forwarding</text>
+  <text x="400" y="478" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#4CAF50">学习 MAC，转发数据</text>
+
+  <!-- Forward Arrows (drawn after boxes for correct z-order) -->
+  <line x1="400" y1="130" x2="400" y2="170" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah_gray)"/>
+  <text x="415" y="150" text-anchor="start" dominant-baseline="central" font-size="10" fill="#617478">端口启用</text>
+
+  <line x1="400" y1="220" x2="400" y2="260" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah_gray)"/>
+  <text x="415" y="240" text-anchor="start" dominant-baseline="central" font-size="10" fill="#617478">被选为根/指定端口</text>
+
+  <line x1="400" y1="310" x2="400" y2="350" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah_gray)"/>
+  <text x="415" y="330" text-anchor="start" dominant-baseline="central" font-size="10" fill="#617478">Forward Delay 15s</text>
+
+  <line x1="400" y1="400" x2="400" y2="440" stroke="#546E7A" stroke-width="1.5" marker-end="url(#ah_gray)"/>
+  <text x="415" y="420" text-anchor="start" dominant-baseline="central" font-size="10" fill="#617478">Forward Delay 15s</text>
+
+  <!-- Backward Arrow (Forwarding to Blocking) -->
+  <path d="M470,465 C560,465 560,195 470,195" fill="none" stroke="#E53935" stroke-width="1.5" marker-end="url(#ah_red)"/>
+  <text x="570" y="330" text-anchor="start" dominant-baseline="central" font-size="10" fill="#E53935">收到更优 BPDU</text>
+
+  <!-- Bottom Annotation -->
+  <text x="400" y="520" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#757575">从 Blocking 到 Forwarding 共需 2×Forward Delay ≈ 30s（收敛时间）</text>
+</svg>
