@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 500" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ab" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ao" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+    <marker id="alb" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#64B5F6"/></marker>
+    <marker id="alo" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#FFB74D"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1060" height="480" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H1058 Q1070,10 1070,22 V50 H10 Z" fill="#37474F"/>
+  <text x="540" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">NAPT 工作机制：地址与端口改写</text>
+
+  <!-- Private zone -->
+  <rect x="35" y="85" width="235" height="250" rx="10" fill="#F1F8E9" stroke="#66BB6A" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="152" y="103" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#2E7D32">私网</text>
+
+  <!-- Public zone -->
+  <rect x="810" y="85" width="235" height="250" rx="10" fill="#E3F2FD" stroke="#42A5F5" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="927" y="103" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">公网</text>
+
+  <!-- Host A -->
+  <rect x="60" y="120" width="180" height="55" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="150" y="138" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="600" fill="#1B5E20">内部主机 A</text>
+  <text x="150" y="160" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#616161">10.1.1.1:1234</text>
+
+  <!-- Host B -->
+  <rect x="60" y="230" width="180" height="55" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="150" y="248" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="600" fill="#1B5E20">内部主机 B</text>
+  <text x="150" y="270" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#616161">10.1.1.2:1234</text>
+
+  <!-- Public server -->
+  <rect x="845" y="120" width="180" height="165" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="935" y="193" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="600" fill="#0D47A1">公网服务器</text>
+  <text x="935" y="218" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#616161">198.51.100.10:80</text>
+
+  <!-- NAT device -->
+  <rect x="380" y="100" width="320" height="230" rx="8" fill="#FFFFFF" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M380,108 Q380,100 388,100 H692 Q700,100 700,108 V135 H380 Z" fill="#546E7A"/>
+  <text x="540" y="118" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">NAT 设备</text>
+  <text x="540" y="151" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">公网地址：203.0.113.5</text>
+
+  <!-- Mapping table -->
+  <text x="672" y="158" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">映射表</text>
+  <rect x="400" y="165" width="280" height="26" fill="#ECEFF1"/>
+  <rect x="400" y="165" width="280" height="140" fill="none" stroke="#90A4AE" stroke-width="1"/>
+  <line x1="400" y1="191" x2="680" y2="191" stroke="#90A4AE" stroke-width="1"/>
+  <line x1="400" y1="248" x2="680" y2="248" stroke="#90A4AE" stroke-width="1"/>
+  <line x1="540" y1="165" x2="540" y2="305" stroke="#90A4AE" stroke-width="1"/>
+  <text x="470" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">内部端点</text>
+  <text x="610" y="178" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">改写后公网端点</text>
+  <text x="470" y="219" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333333">10.1.1.1:1234</text>
+  <text x="610" y="219" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333333">203.0.113.5:5001</text>
+  <text x="470" y="276" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333333">10.1.1.2:1234</text>
+  <text x="610" y="276" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#333333">203.0.113.5:5002</text>
+
+  <!-- Arrows: Host A session (dark) -->
+  <path d="M244,135 L367,135" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <path d="M704,135 L832,135" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <path d="M841,160 L713,160" stroke="#F57C00" stroke-width="1.5" marker-end="url(#ao)"/>
+  <path d="M384,160 L253,160" stroke="#F57C00" stroke-width="1.5" marker-end="url(#ao)"/>
+
+  <!-- Arrows: Host B session (light) -->
+  <path d="M244,245 L367,245" stroke="#64B5F6" stroke-width="1.5" marker-end="url(#alb)"/>
+  <path d="M704,245 L832,245" stroke="#64B5F6" stroke-width="1.5" marker-end="url(#alb)"/>
+  <path d="M841,270 L713,270" stroke="#FFB74D" stroke-width="1.5" marker-end="url(#alo)"/>
+  <path d="M384,270 L253,270" stroke="#FFB74D" stroke-width="1.5" marker-end="url(#alo)"/>
+
+  <!-- Step circles on Host A session -->
+  <circle cx="305" cy="135" r="10" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="305" y="135" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#1565C0">1</text>
+  <circle cx="765" cy="135" r="10" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="765" y="135" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#1565C0">2</text>
+  <circle cx="780" cy="160" r="10" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="780" y="160" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#E65100">3</text>
+  <circle cx="318" cy="160" r="10" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="318" y="160" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#E65100">4</text>
+
+  <!-- Arrow labels: Host A session -->
+  <text x="305" y="119" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#1565C0">源 10.1.1.1:1234</text>
+  <text x="765" y="119" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#1565C0">源 203.0.113.5:5001</text>
+  <text x="780" y="176" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#E65100">目的 203.0.113.5:5001</text>
+  <text x="318" y="176" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#E65100">目的 10.1.1.1:1234</text>
+
+  <!-- Arrow labels: Host B session -->
+  <text x="305" y="232" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#1976D2">源 10.1.1.2:1234</text>
+  <text x="765" y="232" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#1976D2">源 203.0.113.5:5002</text>
+  <text x="780" y="283" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#EF6C00">目的 203.0.113.5:5002</text>
+  <text x="318" y="283" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#EF6C00">目的 10.1.1.2:1234</text>
+
+  <!-- Legend -->
+  <path d="M60,372 L98,372" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <text x="112" y="372" dominant-baseline="central" font-size="11" fill="#616161">出方向（内 → 外）</text>
+  <path d="M285,372 L323,372" stroke="#F57C00" stroke-width="1.5" marker-end="url(#ao)"/>
+  <text x="337" y="372" dominant-baseline="central" font-size="11" fill="#616161">入方向（外 → 内）</text>
+  <path d="M510,372 L548,372" stroke="#64B5F6" stroke-width="1.5" marker-end="url(#alb)"/>
+  <text x="562" y="372" dominant-baseline="central" font-size="11" fill="#616161">主机 B 会话（浅色）</text>
+  <circle cx="760" cy="372" r="10" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="760" y="372" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#1565C0">1</text>
+  <text x="777" y="372" dominant-baseline="central" font-size="11" fill="#616161">主机 A 会话的步骤序号</text>
+
+  <!-- Key point note -->
+  <rect x="35" y="395" width="1010" height="70" rx="8" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1"/>
+  <text x="540" y="418" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#333333">两台主机的源端口相同（均为 1234），改写后的公网端口不同（5001 与 5002）——多台主机由此共享同一公网地址</text>
+  <text x="540" y="443" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#616161">外网响应依据目的端口查映射表，唯一定位内部端点；映射表项在会话发起时创建，会话空闲超时后删除</text>
+</svg>

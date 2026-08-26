@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 520" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1060" height="500" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H1058 Q1070,10 1070,22 V50 H10 Z" fill="#37474F"/>
+  <text x="540" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">ICMP 报文结构（RFC 792）</text>
+
+  <!-- Bit position scale (30px per bit) -->
+  <text x="60" y="72" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">0</text>
+  <text x="300" y="72" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">8</text>
+  <text x="540" y="72" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">16</text>
+  <text x="1020" y="72" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">31</text>
+  <line x1="60" y1="80" x2="60" y2="87" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="300" y1="80" x2="300" y2="87" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="540" y1="80" x2="540" y2="87" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="1020" y1="80" x2="1020" y2="87" stroke="#90A4AE" stroke-width="0.5"/>
+
+  <!-- Row 1: Type(8) | Code(8) | Checksum(16) -->
+  <rect x="60" y="87" width="240" height="44" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="180" y="109" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Type（8 位）</text>
+
+  <rect x="300" y="87" width="240" height="44" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="420" y="109" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Code（8 位）</text>
+
+  <rect x="540" y="87" width="480" height="44" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="780" y="109" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#E65100">Checksum（16 位）</text>
+
+  <!-- Header range bracket -->
+  <path d="M60,143 L60,149 L1020,149 L1020,143" fill="none" stroke="#90A4AE" stroke-width="1"/>
+  <text x="540" y="162" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">首部（4 字节）</text>
+
+  <!-- Row 2: Data (variable) -->
+  <rect x="60" y="178" width="960" height="44" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#s1)"/>
+  <text x="540" y="200" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#4A148C">数据部分（长度可变）</text>
+
+  <!-- Encapsulation note -->
+  <rect x="60" y="232" width="960" height="44" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="540" y="254" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">封装于 IP 数据报中（ICMPv4：Protocol = 1；ICMPv6：Protocol = 58）</text>
+
+  <!-- Separator -->
+  <line x1="60" y1="298" x2="1020" y2="298" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Field detail table title -->
+  <text x="540" y="319" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="600" fill="#37474F">关键字段说明</text>
+
+  <!-- Detail rows -->
+  <rect x="60" y="334" width="960" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="334" width="160" height="30" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1"/>
+  <text x="140" y="349" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1565C0">Type</text>
+  <text x="240" y="349" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">报文类别：0=应答，3=目的不可达，5=重定向，8=请求，11=超时，12=参数问题</text>
+
+  <rect x="60" y="364" width="960" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="364" width="160" height="30" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1"/>
+  <text x="140" y="379" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#1B5E20">Code</text>
+  <text x="240" y="379" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">同一 Type 下的细分场景，如 Type 3：0=网络不可达，1=主机不可达，4=需分片</text>
+
+  <rect x="60" y="394" width="960" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="394" width="160" height="30" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="140" y="409" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">Checksum</text>
+  <text x="240" y="409" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">覆盖整个 ICMP 报文（首部+数据），用于差错检测</text>
+
+  <rect x="60" y="424" width="960" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="424" width="160" height="30" rx="4" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+  <text x="140" y="439" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#4A148C">数据部分</text>
+  <text x="240" y="439" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">差错报告类：原始 IP 首部与数据前 8 字节；查询类：随查询内容而定（如 Echo 的标识符与序号）</text>
+
+  <rect x="60" y="454" width="960" height="30" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="60" y="454" width="160" height="30" rx="4" fill="#ECEFF1" stroke="#546E7A" stroke-width="1"/>
+  <text x="140" y="469" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">两级编号</text>
+  <text x="240" y="469" text-anchor="start" dominant-baseline="central" font-size="11" fill="#333">Type 定大类、Code 细分场景，组合唯一确定报文类型（如 Type 3 + Code 4 = 需要分片）</text>
+</svg>
