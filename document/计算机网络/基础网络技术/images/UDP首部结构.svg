@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="700" height="450" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H698 Q710,10 710,22 V50 H10 Z" fill="#37474F"/>
+  <text x="360" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">UDP 首部结构（固定 8 字节，RFC 768）</text>
+
+  <!-- Bit ruler -->
+  <text x="72" y="80" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">0</text>
+  <text x="357" y="80" text-anchor="end" dominant-baseline="central" font-size="10" fill="#757575">15</text>
+  <text x="363" y="80" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">16</text>
+  <text x="648" y="80" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">31</text>
+  <line x1="72" y1="88" x2="72" y2="95" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="360" y1="88" x2="360" y2="95" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="648" y1="88" x2="648" y2="95" stroke="#90A4AE" stroke-width="0.5"/>
+
+  <!-- Row 1: Source Port | Destination Port -->
+  <rect x="72" y="95" width="288" height="52" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="216" y="114" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Source Port（源端口）</text>
+  <text x="216" y="132" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <rect x="360" y="95" width="288" height="52" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="504" y="114" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Destination Port（目的端口）</text>
+  <text x="504" y="132" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <!-- Row 2: Length | Checksum -->
+  <rect x="72" y="147" width="288" height="52" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="216" y="166" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Length（长度）</text>
+  <text x="216" y="184" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <rect x="360" y="147" width="288" height="52" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="504" y="166" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Checksum（校验和）</text>
+  <text x="504" y="184" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <!-- Row 3: Data -->
+  <rect x="72" y="199" width="576" height="46" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#s1)"/>
+  <text x="360" y="222" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#37474F">Data（数据，长度可变，不计入首部）</text>
+
+  <!-- Field notes -->
+  <rect x="72" y="270" width="278" height="58" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="82" y="288" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">Source Port：分用时定位发送进程</text>
+  <text x="82" y="306" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">接收方回复时的目的端口；可置全 0</text>
+
+  <rect x="370" y="270" width="278" height="58" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="380" y="288" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">Destination Port：接收方分用依据</text>
+  <text x="380" y="306" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">依据目的端口号交付到对应进程</text>
+
+  <rect x="72" y="338" width="278" height="58" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="82" y="356" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">Length：报文总长度（首部+数据）</text>
+  <text x="82" y="374" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">最小值 8；数据长度 = Length − 8</text>
+
+  <rect x="370" y="338" width="278" height="58" rx="4" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="380" y="356" text-anchor="start" dominant-baseline="central" font-size="10" font-weight="600" fill="#1B5E20">Checksum：差错检测</text>
+  <text x="380" y="374" text-anchor="start" dominant-baseline="central" font-size="10" fill="#333">覆盖伪首部+首部+数据；IPv4 可全 0</text>
+
+  <!-- Footer -->
+  <text x="360" y="428" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">首部仅含 4 个字段、固定 8 字节，无选项字段</text>
+</svg>

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 650" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="700" height="630" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H698 Q710,10 710,22 V50 H10 Z" fill="#37474F"/>
+  <text x="360" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">TCP 首部结构（20~60 字节，RFC 9293）</text>
+
+  <!-- Bit ruler -->
+  <text x="72" y="80" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">0</text>
+  <text x="357" y="80" text-anchor="end" dominant-baseline="central" font-size="10" fill="#757575">15</text>
+  <text x="363" y="80" text-anchor="start" dominant-baseline="central" font-size="10" fill="#757575">16</text>
+  <text x="648" y="80" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">31</text>
+  <line x1="72" y1="88" x2="72" y2="95" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="360" y1="88" x2="360" y2="95" stroke="#90A4AE" stroke-width="0.5"/>
+  <line x1="648" y1="88" x2="648" y2="95" stroke="#90A4AE" stroke-width="0.5"/>
+
+  <!-- Row 1: Source Port | Destination Port -->
+  <rect x="72" y="95" width="288" height="50" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="216" y="113" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Source Port（源端口）</text>
+  <text x="216" y="131" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <rect x="360" y="95" width="288" height="50" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="504" y="113" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1565C0">Destination Port（目的端口）</text>
+  <text x="504" y="131" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <!-- Row 2: Sequence Number -->
+  <rect x="72" y="145" width="576" height="50" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="360" y="163" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Sequence Number（序列号）</text>
+  <text x="360" y="181" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">32 位</text>
+
+  <!-- Row 3: Acknowledgment Number -->
+  <rect x="72" y="195" width="576" height="50" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="360" y="213" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#1B5E20">Acknowledgment Number（确认号）</text>
+  <text x="360" y="231" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">32 位</text>
+
+  <!-- Row 4: Data Offset(4) | Reserved(3) | Flags(9) | Window Size(16) -->
+  <rect x="72" y="245" width="72" height="50" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="108" y="263" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">Data Offset</text>
+  <text x="108" y="281" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">4 位</text>
+
+  <rect x="144" y="245" width="54" height="50" fill="#FAFAFA" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="3,2" filter="url(#s1)"/>
+  <text x="171" y="263" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#757575">Reserved</text>
+  <text x="171" y="281" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#757575">3 位</text>
+
+  <rect x="198" y="245" width="162" height="50" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="279" y="263" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">Flags（标志位）</text>
+  <text x="279" y="281" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#546E7A">9 位，见下方展开</text>
+
+  <rect x="360" y="245" width="288" height="50" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="504" y="263" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#4A148C">Window Size（窗口大小）</text>
+  <text x="504" y="281" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <!-- Row 5: Checksum | Urgent Pointer -->
+  <rect x="72" y="295" width="288" height="50" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="216" y="313" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#B71C1C">Checksum（校验和）</text>
+  <text x="216" y="331" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <rect x="360" y="295" width="288" height="50" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="504" y="313" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="600" fill="#B71C1C">Urgent Pointer（紧急指针）</text>
+  <text x="504" y="331" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#546E7A">16 位</text>
+
+  <!-- Row 6: Options + Padding -->
+  <rect x="72" y="345" width="576" height="44" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#s1)"/>
+  <text x="360" y="367" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">Options + Padding（选项与填充，0~40 字节，需 4 字节对齐）</text>
+
+  <!-- Row 7: Data -->
+  <rect x="72" y="389" width="576" height="44" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" stroke-dasharray="4,3" filter="url(#s1)"/>
+  <text x="360" y="411" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#37474F">Data（数据，长度可变，不计入首部）</text>
+
+  <!-- Flags detail box -->
+  <rect x="72" y="452" width="576" height="140" rx="4" fill="#FFFFFF" stroke="#F57C00" stroke-width="1"/>
+  <text x="360" y="472" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#E65100">Flags 标志位（9 位，上方 Flags 字段的展开）</text>
+
+  <rect x="160" y="485" width="40" height="26" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="180" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">NS</text>
+
+  <rect x="205" y="485" width="40" height="26" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="225" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">CWR</text>
+
+  <rect x="250" y="485" width="40" height="26" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="270" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">ECE</text>
+
+  <rect x="295" y="485" width="40" height="26" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+  <text x="315" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">URG</text>
+
+  <rect x="340" y="485" width="40" height="26" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="360" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">ACK</text>
+
+  <rect x="385" y="485" width="40" height="26" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="405" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">PSH</text>
+
+  <rect x="430" y="485" width="40" height="26" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="450" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">RST</text>
+
+  <rect x="475" y="485" width="40" height="26" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="495" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">SYN</text>
+
+  <rect x="520" y="485" width="40" height="26" rx="3" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5"/>
+  <text x="540" y="498" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="600" fill="#B71C1C">FIN</text>
+
+  <text x="360" y="533" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">SYN 同步序号 · ACK 确认号有效 · FIN 关闭连接</text>
+  <text x="360" y="553" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">RST 重置连接 · PSH 立即推送 · URG 紧急指针有效</text>
+  <text x="360" y="573" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#333">ECE/CWR 显式拥塞通知（ECN）· NS ECN Nonce</text>
+
+  <!-- Footer -->
+  <text x="360" y="622" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#757575">Data Offset 以 4 字节为单位指示首部长度：取值 5~15，对应首部 20~60 字节</text>
+</svg>
