@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="440" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H938 Q950,10 950,22 V50 H10 Z" fill="#37474F"/>
+  <text x="480" y="30" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">HTTP 版本演进路线</text>
+
+  <!-- Timeline years -->
+  <text x="112" y="72" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">1991</text>
+  <text x="296" y="72" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">1996</text>
+  <text x="480" y="72" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">1997</text>
+  <text x="664" y="72" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">2015</text>
+  <text x="848" y="72" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">2022</text>
+
+  <!-- Timeline axis -->
+  <line x1="40" y1="90" x2="925" y2="90" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <circle cx="112" cy="90" r="6" fill="#546E7A"/>
+  <circle cx="296" cy="90" r="6" fill="#1565C0"/>
+  <circle cx="480" cy="90" r="6" fill="#1565C0"/>
+  <circle cx="664" cy="90" r="6" fill="#1565C0"/>
+  <circle cx="848" cy="90" r="6" fill="#2E7D32"/>
+
+  <!-- Card: HTTP/0.9 -->
+  <rect x="32" y="105" width="160" height="160" rx="4" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M32,109 Q32,105 36,105 H188 Q192,105 192,109 V133 H32 Z" fill="#546E7A"/>
+  <text x="112" y="119" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/0.9</text>
+  <text x="112" y="145" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#546E7A">未标准化</text>
+  <line x1="44" y1="157" x2="180" y2="157" stroke="#B0BEC5" stroke-width="0.75"/>
+  <text x="112" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">仅 GET 方法</text>
+  <text x="112" y="193" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">纯文本响应</text>
+  <text x="112" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">无首部与状态码</text>
+
+  <!-- Card: HTTP/1.0 -->
+  <rect x="216" y="105" width="160" height="160" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M216,109 Q216,105 220,105 H372 Q376,105 376,109 V133 H216 Z" fill="#1565C0"/>
+  <text x="296" y="119" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/1.0</text>
+  <text x="296" y="145" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1565C0">RFC 1945</text>
+  <line x1="228" y1="157" x2="364" y2="157" stroke="#90CAF9" stroke-width="0.75"/>
+  <text x="296" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">首部与状态码</text>
+  <text x="296" y="193" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">多方法</text>
+  <text x="296" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">默认短连接</text>
+
+  <!-- Card: HTTP/1.1 -->
+  <rect x="400" y="105" width="160" height="160" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M400,109 Q400,105 404,105 H556 Q560,105 560,109 V133 H400 Z" fill="#1565C0"/>
+  <text x="480" y="119" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/1.1</text>
+  <text x="480" y="145" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1565C0">RFC 9112</text>
+  <line x1="412" y1="157" x2="548" y2="157" stroke="#90CAF9" stroke-width="0.75"/>
+  <text x="480" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">持久连接</text>
+  <text x="480" y="193" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">管道化</text>
+  <text x="480" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">Host 头</text>
+  <text x="480" y="239" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">分块传输</text>
+
+  <!-- Card: HTTP/2 -->
+  <rect x="584" y="105" width="160" height="160" rx="4" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M584,109 Q584,105 588,105 H740 Q744,105 744,109 V133 H584 Z" fill="#1565C0"/>
+  <text x="664" y="119" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/2</text>
+  <text x="664" y="145" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#1565C0">RFC 9113</text>
+  <line x1="596" y1="157" x2="732" y2="157" stroke="#90CAF9" stroke-width="0.75"/>
+  <text x="664" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">二进制分帧</text>
+  <text x="664" y="193" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">多路复用</text>
+  <text x="664" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">头部压缩 HPACK</text>
+  <text x="664" y="239" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">服务端推送</text>
+
+  <!-- Card: HTTP/3 -->
+  <rect x="768" y="105" width="160" height="160" rx="4" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M768,109 Q768,105 772,105 H924 Q928,105 928,109 V133 H768 Z" fill="#2E7D32"/>
+  <text x="848" y="119" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">HTTP/3</text>
+  <text x="848" y="145" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32">RFC 9114</text>
+  <line x1="780" y1="157" x2="916" y2="157" stroke="#A5D6A7" stroke-width="0.75"/>
+  <text x="848" y="170" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">基于 QUIC（UDP）</text>
+  <text x="848" y="193" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">0-RTT 建连</text>
+  <text x="848" y="216" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">Stream 间无队头阻塞</text>
+
+  <!-- Stage annotations -->
+  <rect x="116" y="285" width="176" height="40" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="204" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#E65100">协议走向可扩展</text>
+  <text x="204" y="314" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">首部 · 状态码 · 多方法</text>
+
+  <rect x="300" y="285" width="176" height="40" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="388" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#E65100">连接走向高效</text>
+  <text x="388" y="314" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">持久连接 · Host · 分块传输</text>
+
+  <rect x="484" y="285" width="176" height="40" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="572" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#E65100">单连接并发</text>
+  <text x="572" y="314" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">二进制分帧 · 多路复用</text>
+
+  <rect x="668" y="285" width="176" height="40" rx="4" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="756" y="298" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#E65100">更换传输层</text>
+  <text x="756" y="314" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">QUIC 替代 TCP · Stream 独立</text>
+
+  <!-- Summary bar -->
+  <rect x="40" y="345" width="880" height="80" rx="4" fill="#FFF8E1" stroke="#FFA000" stroke-width="1"/>
+  <text x="480" y="371" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#5D4037">演进主线：语义完善（方法、状态码、首部）与传输性能提升（连接复用与并发）交替推进</text>
+  <text x="480" y="399" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5D4037">配色：灰色 = 标准化之前 · 蓝色 = 标准化版本（RFC） · 绿色 = 更换传输层（QUIC）</text>
+</svg>
