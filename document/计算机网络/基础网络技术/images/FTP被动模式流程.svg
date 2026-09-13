@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 340" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah-blue" markerWidth="6" markerHeight="4.5" refX="6" refY="2.25" orient="auto"><path d="M0,0 L6,2.25 L0,4.5Z" fill="#1E88E5"/></marker>
+    <marker id="ah-orange" markerWidth="6" markerHeight="4.5" refX="6" refY="2.25" orient="auto"><path d="M0,0 L6,2.25 L0,4.5Z" fill="#F57C00"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="640" height="320" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M10,22 Q10,10 22,10 H638 Q650,10 650,22 V50 H10 Z" fill="#37474F"/>
+  <text x="330" y="30" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="bold" fill="#FFFFFF">FTP 被动模式工作流程（PASV）</text>
+
+  <!-- Entity: 客户端 -->
+  <rect x="70" y="68" width="150" height="52" rx="6" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="145" y="88" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1565C0">客户端</text>
+  <text x="145" y="106" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">数据端口（随机）</text>
+
+  <!-- Entity: 服务器 -->
+  <rect x="440" y="68" width="150" height="52" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="515" y="88" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1B5E20">服务器</text>
+  <text x="515" y="106" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#546E7A">控制 21 · 数据 Q（随机高位）</text>
+
+  <!-- Lifelines -->
+  <line x1="145" y1="120" x2="145" y2="282" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="515" y1="120" x2="515" y2="282" stroke="#90A4AE" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- 步骤 1: 客户端 → 服务器，建立控制连接 -->
+  <path d="M145,148 L514,148" stroke="#1E88E5" stroke-width="2" marker-end="url(#ah-blue)"/>
+  <rect x="246" y="138" width="168" height="20" rx="3" fill="#E3F2FD" stroke="#1E88E5" stroke-width="0.5"/>
+  <circle cx="259" cy="148" r="8" fill="#1E88E5"/>
+  <text x="259" y="148" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="272" y="148" dominant-baseline="central" font-size="10" font-weight="600" fill="#1565C0">连接 21 端口，建立控制连接</text>
+
+  <!-- 步骤 2: 客户端 → 服务器，PASV 命令 -->
+  <path d="M145,186 L514,186" stroke="#1E88E5" stroke-width="2" marker-end="url(#ah-blue)"/>
+  <rect x="239" y="176" width="182" height="20" rx="3" fill="#E3F2FD" stroke="#1E88E5" stroke-width="0.5"/>
+  <circle cx="252" cy="186" r="8" fill="#1E88E5"/>
+  <text x="252" y="186" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="265" y="186" dominant-baseline="central" font-size="10" font-weight="600" fill="#1565C0">PASV 命令（请求进入被动模式）</text>
+
+  <!-- 步骤 3: 服务器 → 客户端，返回数据端口 -->
+  <path d="M515,224 L146,224" stroke="#F57C00" stroke-width="2" marker-end="url(#ah-orange)"/>
+  <rect x="247" y="214" width="166" height="20" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="0.5"/>
+  <circle cx="260" cy="224" r="8" fill="#F57C00"/>
+  <text x="260" y="224" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="273" y="224" dominant-baseline="central" font-size="10" font-weight="600" fill="#E65100">返回监听端口 Q（随机高位）</text>
+
+  <!-- 步骤 4: 客户端 → 服务器，建立数据连接（粗线） -->
+  <path d="M145,262 L514,262" stroke="#1E88E5" stroke-width="2.5" marker-end="url(#ah-blue)"/>
+  <rect x="253" y="252" width="154" height="20" rx="3" fill="#E3F2FD" stroke="#1E88E5" stroke-width="0.5"/>
+  <circle cx="266" cy="262" r="8" fill="#1E88E5"/>
+  <text x="266" y="262" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">4</text>
+  <text x="279" y="262" dominant-baseline="central" font-size="10" font-weight="600" fill="#1565C0">连接端口 Q，建立数据连接</text>
+
+  <!-- Footer note -->
+  <rect x="70" y="294" width="520" height="26" rx="4" fill="#FFF8E1" stroke="#FFA000" stroke-width="1"/>
+  <text x="330" y="307" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#5D4037">粗线表示数据连接的建立；控制连接全程保持，数据连接传输完成后即关闭</text>
+</svg>
