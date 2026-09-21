@@ -450,16 +450,24 @@ TLS 1.3 的 0-RTT（零往返时间）允许回访客户端在第一个消息中
 
 ---
 
-## 参考资料
+## 九、参考资料
 
-- E. Rescorla. [The Transport Layer Security (TLS) Protocol Version 1.3](https://datatracker.ietf.org/doc/html/rfc8446). RFC 8446, August 2018
-- T. Dierks, E. Rescorla. [The Transport Layer Security (TLS) Protocol Version 1.2](https://datatracker.ietf.org/doc/html/rfc5246). RFC 5246, August 2008
-- H. Krawczyk, P. Eronen. [HMAC-based Extract-and-Expand Key Derivation Function (HKDF)](https://datatracker.ietf.org/doc/html/rfc5869). RFC 5869, May 2010
-- ITU-T. [X.509: Information technology - Open Systems Interconnection - The Directory: Public-key and attribute certificate frameworks](https://www.itu.int/rec/T-REC-X.509)
-- CA/Browser Forum. [Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates](https://cabforum.org/baseline-requirements/)
-- Cloudflare. [What happens in a TLS handshake?](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/)
-- Google Cloud. [State of DevOps Report 2025 - DORA](https://dora.dev/research/2025/dora-report/)
-- NIST. [Post-Quantum Cryptography Standardization](https://csrc.nist.gov/projects/post-quantum-cryptography)
-- Let's Encrypt. [Documentation](https://letsencrypt.org/docs/)
-- Mozilla. [Mozilla SSL Configuration Generator](https://ssl-config.mozilla.org/)
-- Microsoft. [From Hello to Secure: The SSL/TLS Handshake Explained](https://techcommunity.microsoft.com/blog/iis-support-blog/from-hello-to-secure-the-ssl-tls-handshake-explained-like-a-conversation/4413208)
+### 9.1 核心标准
+
+| 标准 | 说明 |
+|------|------|
+| [RFC 5246](https://datatracker.ietf.org/doc/html/rfc5246) | TLS 1.2 协议规范 |
+| [RFC 5869](https://datatracker.ietf.org/doc/html/rfc5869) | HKDF 密钥派生函数规范 |
+| [RFC 8446](https://datatracker.ietf.org/doc/html/rfc8446) | TLS 1.3 协议规范 |
+| [ITU-T X.509](https://www.itu.int/rec/T-REC-X.509) | 公钥证书与属性证书框架标准 |
+| [CA/Browser Forum 基线要求](https://cabforum.org/baseline-requirements/) | 受公众信任证书的签发与管理基线 |
+
+### 9.2 实践与延伸
+
+| 资源 | 说明 |
+|------|------|
+| [Cloudflare：TLS 握手过程解析](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/) | TLS 握手流程科普 |
+| [Microsoft：From Hello to Secure](https://techcommunity.microsoft.com/blog/iis-support-blog/from-hello-to-secure-the-ssl-tls-handshake-explained-like-a-conversation/4413208) | TLS 握手对话式讲解 |
+| [Mozilla SSL Configuration Generator](https://ssl-config.mozilla.org/) | 服务器 TLS 配置在线生成工具 |
+| [Let's Encrypt 文档](https://letsencrypt.org/docs/) | 免费证书签发与自动化管理文档 |
+| [NIST 后量子密码标准化](https://csrc.nist.gov/projects/post-quantum-cryptography) | 后量子密码标准化项目 |
