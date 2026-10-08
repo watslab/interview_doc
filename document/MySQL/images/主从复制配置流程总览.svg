@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/>
+    </filter>
+    <marker id="ah-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ah-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+    <marker id="ah-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="10" y="10" width="780" height="600" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-size="16" font-weight="bold" fill="#37474F">主从复制配置流程总览</text>
+
+  <!-- 左泳道：主库 -->
+  <rect x="30" y="70" width="340" height="480" rx="10" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M40,70 H360 Q370,70 370,80 V102 H30 V80 Q30,70 40,70 Z" fill="#1E88E5"/>
+  <text x="200" y="91" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">主库（Source）</text>
+
+  <!-- 右泳道：从库 -->
+  <rect x="430" y="70" width="340" height="480" rx="10" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1.5" filter="url(#shadow)"/>
+  <path d="M440,70 H760 Q770,70 770,80 V102 H430 V80 Q430,70 440,70 Z" fill="#43A047"/>
+  <text x="600" y="91" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">从库（Replica）</text>
+
+  <!-- 左列步骤框 -->
+  <rect x="60" y="130" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <text x="200" y="151" text-anchor="middle" font-size="12" font-weight="600" fill="#333">1. 配置 server_id 与 log_bin</text>
+  <text x="200" y="170" text-anchor="middle" font-size="10" fill="#757575">编辑 my.cnf 后重启 MySQL</text>
+
+  <rect x="60" y="206" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <text x="200" y="227" text-anchor="middle" font-size="12" font-weight="600" fill="#333">2. 验证 Binlog 已启用</text>
+  <text x="200" y="246" text-anchor="middle" font-size="10" fill="#757575">SHOW VARIABLES LIKE 'log_bin'</text>
+
+  <rect x="60" y="282" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <text x="200" y="303" text-anchor="middle" font-size="12" font-weight="600" fill="#333">3. 创建复制专用账户</text>
+  <text x="200" y="322" text-anchor="middle" font-size="10" fill="#757575">GRANT REPLICATION SLAVE</text>
+
+  <rect x="60" y="358" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.2"/>
+  <text x="200" y="379" text-anchor="middle" font-size="12" font-weight="600" fill="#333">4. 导出数据快照与位点</text>
+  <text x="200" y="398" text-anchor="middle" font-size="10" fill="#757575">mysqldump --source-data=2</text>
+
+  <!-- 右列步骤框 -->
+  <rect x="460" y="130" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="151" text-anchor="middle" font-size="12" font-weight="600" fill="#333">5. 配置唯一 server_id 与只读</text>
+  <text x="600" y="170" text-anchor="middle" font-size="10" fill="#757575">编辑 my.cnf 后重启 MySQL</text>
+
+  <rect x="460" y="206" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="227" text-anchor="middle" font-size="12" font-weight="600" fill="#333">6. 导入数据快照</text>
+  <text x="600" y="246" text-anchor="middle" font-size="10" fill="#757575">mysql &lt; backup.sql</text>
+
+  <rect x="460" y="282" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="303" text-anchor="middle" font-size="12" font-weight="600" fill="#333">7. 建立复制关系</text>
+  <text x="600" y="322" text-anchor="middle" font-size="10" fill="#757575">CHANGE REPLICATION SOURCE TO</text>
+
+  <rect x="460" y="358" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="379" text-anchor="middle" font-size="12" font-weight="600" fill="#333">8. 启动复制线程</text>
+  <text x="600" y="398" text-anchor="middle" font-size="10" fill="#757575">START REPLICA</text>
+
+  <rect x="460" y="434" width="280" height="52" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="455" text-anchor="middle" font-size="12" font-weight="600" fill="#333">9. 验证复制状态</text>
+  <text x="600" y="474" text-anchor="middle" font-size="10" fill="#757575">SHOW REPLICA STATUS</text>
+
+  <!-- 左列垂直箭头 -->
+  <line x1="200" y1="182" x2="200" y2="205" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ah-blue)"/>
+  <line x1="200" y1="258" x2="200" y2="281" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ah-blue)"/>
+  <line x1="200" y1="334" x2="200" y2="357" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ah-blue)"/>
+
+  <!-- 右列垂直箭头 -->
+  <line x1="600" y1="182" x2="600" y2="205" stroke="#43A047" stroke-width="1.5" marker-end="url(#ah-green)"/>
+  <line x1="600" y1="258" x2="600" y2="281" stroke="#43A047" stroke-width="1.5" marker-end="url(#ah-green)"/>
+  <line x1="600" y1="334" x2="600" y2="357" stroke="#43A047" stroke-width="1.5" marker-end="url(#ah-green)"/>
+  <line x1="600" y1="410" x2="600" y2="433" stroke="#43A047" stroke-width="1.5" marker-end="url(#ah-green)"/>
+
+  <!-- 跨泳道交接 -->
+  <text x="400" y="370" text-anchor="middle" font-size="10" fill="#E65100">快照文件</text>
+  <line x1="372" y1="384" x2="428" y2="384" stroke="#F57C00" stroke-width="1.5" marker-end="url(#ah-orange)"/>
+  <text x="400" y="405" text-anchor="middle" font-size="10" fill="#E65100">位点与账户</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="580" text-anchor="middle" font-size="11" fill="#757575">全新环境（主库无存量数据）可省略步骤 4 与 6：从库无需导入快照，直接以主库当前位点开始复制</text>
+</svg>

@@ -32,6 +32,7 @@
 | [MySQL Binlog 二进制日志详解](./document/MySQL/MySQL%20Binlog%20二进制日志详解.md) | 深入解析 MySQL Binlog 二进制日志，包括三种格式（STATEMENT/ROW/MIXED）原理与对比、主从复制机制、数据恢复实践、Canal 数据订阅应用 |
 | [MySQL 集群架构详解](./document/MySQL/MySQL%20集群架构详解.md) | 系统介绍 MySQL 集群架构，包括主从复制架构、高可用方案（MHA、MGR、InnoDB Cluster）、分布式集群方案（NDB Cluster、PXC/Galera Cluster），详解认证复制原理、GCache 机制、状态同步方式 |
 | [MySQL 索引原理与失效场景详解](./document/MySQL/MySQL%20索引原理与失效场景详解.md) | 深入解析 MySQL 索引原理，包括 B+ 树数据结构（逻辑结构、物理存储、与 B 树/哈希索引/二叉树对比）、InnoDB 聚簇索引与二级索引实现、索引优化机制（覆盖索引、ICP、AHI、最左前缀原则）、索引失效场景全面分析（12 种场景及解决方案）、索引设计原则 |
+| [MySQL 主从复制集群配置流程详解](./document/MySQL/MySQL%20主从复制集群配置流程详解.md) | 系统讲解 MySQL 主从复制集群配置流程，涵盖术语与命令版本对照（source/replica 新旧命令）、主库配置、数据快照与位点获取、从库配置与复制建立、状态验证、GTID 模式配置、常见故障排查 |
 
 ### PostgreSQL
 
@@ -202,7 +203,8 @@ document/
 │   ├── MySQL 三大日志详解.md
 │   ├── MySQL 多粒度锁机制详解.md
 │   ├── MySQL 索引原理与失效场景详解.md
-│   └── MySQL 集群架构详解.md
+│   ├── MySQL 集群架构详解.md
+│   └── MySQL 主从复制集群配置流程详解.md
 ├── PostgreSQL/
 │   ├── PostgreSQL 分区表最佳实践与底层原理.md
 │   ├── PostgreSQL 分级锁机制详解.md
