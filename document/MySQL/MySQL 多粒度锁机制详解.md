@@ -352,27 +352,31 @@ flowchart TB
 | **自动获取** | 无需手动操作，InnoDB 自动维护 |
 | **与 MVCC 互补** | 快照读用 MVCC，当前读用锁机制 |
 
-### 5.3 锁机制全景图
+### 5.3 并发控制机制全景图
 
 ```mermaid
 flowchart TB
-    subgraph MySQLLock["MySQL InnoDB 锁机制"]
+    subgraph ConcurrencyControl["MySQL InnoDB 并发控制"]
         direction TB
         
-        subgraph TableLevel["表级锁"]
-            direction LR
-            TS["共享锁（S）"]
-            TX["排他锁（X）"]
-            TIS["意向共享锁（IS）"]
-            TIX["意向排他锁（IX）"]
-        end
-        
-        subgraph RowLevel["行级锁"]
-            direction LR
-            RS["行级共享锁"]
-            RX["行级排他锁"]
-            Gap["间隙锁"]
-            NextKey["临键锁"]
+        subgraph LockMechanism["锁机制"]
+            direction TB
+            
+            subgraph TableLevel["表级锁"]
+                direction LR
+                TS["共享锁（S）"]
+                TX["排他锁（X）"]
+                TIS["意向共享锁（IS）"]
+                TIX["意向排他锁（IX）"]
+            end
+            
+            subgraph RowLevel["行级锁"]
+                direction LR
+                RS["行级共享锁"]
+                RX["行级排他锁"]
+                Gap["间隙锁"]
+                NextKey["临键锁"]
+            end
         end
         
         subgraph MVCCMechanism["MVCC 机制"]

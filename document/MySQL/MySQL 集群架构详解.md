@@ -119,6 +119,8 @@ sequenceDiagram
     Slave-->>SQL: 执行完成
 ```
 
+> **时序简化说明**：图中"执行事务"与"写入 Binlog"分列两步是为聚焦复制链路；实际提交流程中，写 Binlog 属于事务提交的内部步骤（见 2.4 节注）。
+
 ### 2.4 复制模式对比
 
 | 模式 | 原理 | 优点 | 缺点 | 适用场景 |
@@ -126,6 +128,14 @@ sequenceDiagram
 | **异步复制** | 主库提交后立即返回，不等待从库 | 性能最佳 | 可能丢数据 | 非核心业务 |
 | **半同步复制** | 主库等待至少一个从库确认收到 Binlog | 数据更可靠 | 性能有损耗 | 核心业务 |
 | **全同步复制** | 主库等待所有从库确认 | 数据零丢失 | 性能最差 | 金融交易 |
+
+> 「提交」的流程与 Binlog 的粒度
+> 表中「主库提交」指完整的事务提交流程；启用 Binlog 后，提交是跨 InnoDB 层与 Server 层的两阶段提交：
+> 1. InnoDB 层将 Redo Log 刷盘，事务进入 prepare 状态；
+> 2. Server 层将该事务的 Binlog 刷盘写入 Binlog 文件；
+> 3. InnoDB 层将事务置为 committed 状态，向客户端返回成功。
+> 
+> 两阶段提交目的在于保证 Redo Log 和 Binlog 状态一致，避免主从数据不一致（详见 MySQL 三大日志机制详解 的第六章节）。因此写 Binlog 是提交路径的内部步骤（先于 InnoDB commit），并非与事务并列的独立行为；Binlog 以事务为单位记录，一个事务的 Binlog 事件连续且不可分割（并发事务的组提交仅合并刷盘 I/O，不改变这一粒度）。
 
 ### 2.5 GTID 全局事务标识
 
@@ -369,18 +379,22 @@ flowchart LR
 sequenceDiagram
     participant Client as 客户端
     participant Local as 本地节点
-    participant Group as 复制组
     participant Others as 其他节点
 
     Client->>Local: 执行事务
     Local->>Local: 本地执行
-    Local->>Group: 广播写集
-    Group->>Others: Paxos 共识
-    Others-->>Group: 确认
-    Group-->>Local: 多数确认
+    Local->>Others: 广播写集（经组通信层）
+    Others-->>Local: 多数确认（达成全局排序）
+    Local->>Local: 认证检测（见 3.2.5）
     Local->>Local: 提交事务
     Local-->>Client: 返回成功
 ```
+
+> 图中的**组通信层**（XCom）是 Group Replication 插件内嵌于各节点 MySQL 进程的 Paxos 协议实现，负责将写集广播至组内全体成员并达成全局排序；各节点经组通信层对等直连（本地节点本身也是组成员），不存在居中调度的实体。多数确认、认证检测与应用三个环节先后衔接，各自职责如下：
+>
+> - **多数确认——Paxos 层**：确认写集消息已被多数成员接受，据此确立全局顺序并保证可靠交付，不判断事务内容是否冲突；
+> - **认证检测——交付后、提交前**：各节点独立比对写集与本地已执行事务（见 3.2.5）；因交付顺序全局一致、认证规则相同，各节点认证结果天然一致，本地节点认证通过即提交事务并向客户端返回成功；
+> - **应用——本地节点提交后异步进行**：其余节点的重放线程按同一顺序对该事务认证并重放。
 
 #### 3.2.5 冲突检测机制
 

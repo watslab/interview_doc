@@ -38,8 +38,8 @@ flowchart TB
 
 | 问题       | 说明                  |
 | -------- | ------------------- |
-| **读阻塞写** | 写操作加锁后，读操作必须等待锁释放   |
-| **写阻塞读** | 读操作加共享锁后，写操作必须等待锁释放 |
+| **读阻塞写** | 读操作加共享锁后，写操作必须等待锁释放 |
+| **写阻塞读** | 写操作加锁后，读操作必须等待锁释放   |
 | **性能下降** | 锁竞争激烈时，并发性能急剧下降     |
 | **死锁风险** | 可能引发死锁问题            |
 
@@ -501,135 +501,69 @@ flowchart TB
 
 #### 5.4.3 Next-Key Lock 工作原理
 
-**核心规则**：Next-Key Lock 锁定的是**左开右闭区间** `(a, b]`，只要命中索引，就会按这个规则加锁。
+**核心规则**：在 RR 隔离级别下，只要查询走索引扫描，加锁的**基本单位**就是 Next-Key Lock（左开右闭区间 `(a, b]`）；在此之上存在两种退化场景：等值查询命中唯一索引时退化为行锁，等值查询向右遍历至不满足等值条件的记录时退化为间隙锁。
 
-```mermaid
-flowchart TB
-    subgraph DataRecords["数据记录（id 索引）"]
-        direction LR
-        R1["id=1"]
-        R2["id=5"]
-        R3["id=8"]
-        R4["id=15"]
-    end
-    
-    subgraph LockIntervals["Next-Key Lock 锁定区间"]
-        direction LR
-        I1["(-∞, 1]"]
-        I2["(1, 5]"]
-        I3["(5, 8]"]
-        I4["(8, 15]"]
-        I5["(15, +∞)"]
-    end
-    
-    DataRecords --> LockIntervals
-    
-    style I1 fill:#ffcdd2,stroke:#c62828,stroke-width:2px
-    style I2 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    style I3 fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
-    style I4 fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style I5 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
-```
+![数据记录（id 唯一索引）与 Next-Key Lock 锁定区间](./images/临键锁区间划分.svg)
 
-**示例**：假设数据表 user 有 id 索引，数据为：1、5、8、15
+**示例**：假设数据表 user 的 id 列为主键（唯一索引），数据为：1、5、8、15
 
 ```sql
 -- 场景 1：范围查询
 SELECT * FROM user WHERE id BETWEEN 5 AND 8 FOR UPDATE;
--- Next-Key Lock 锁定区间：(1, 5]、(5, 8]
--- 说明：
---   (1, 5]：锁住 id=5 记录及其前面间隙，防止在 (1, 5) 区间插入
---   (5, 8]：锁住 id=8 记录及其前面间隙，防止在 (5, 8) 区间插入
--- 其他事务无法插入 id=2,3,4,6,7 等数据
+-- 等价于 id >= 5 AND id <= 8，加锁分三步：
+--   步骤1：id >= 5 等值定位，命中已存在的 id = 5 记录
+--         Next-Key Lock (1, 5] 退化为行锁，只锁 id = 5 这条记录
+--   步骤2：继续扫描到 id = 8，满足条件，加 Next-Key Lock (5, 8]
+--   步骤3：继续扫描到 id = 15 以判断扫描结束（不满足 id <= 8）
+--         MySQL 8.0.17 及之前：加 Next-Key Lock (8, 15]（见下文说明）
+--         MySQL 8.0.18 及之后：不加锁
+-- 加锁效果：
+--   id = 5、id = 8 记录的修改和删除被阻塞；插入 id = 6、7 被阻塞（5 ~ 8 间隙）
+--   插入 id = 2、3、4 等数据不受影响（1 ~ 5 间隙未加锁，且这些值不满足查询条件）
+--   插入 id = 9 ~ 14：8.0.17 及之前被阻塞；8.0.18 及之后不受影响
 
 -- 场景 2：等值查询（命中唯一索引）
 SELECT * FROM user WHERE id = 5 FOR UPDATE;
--- 优化：降级为行锁，只锁 id=5 这一条记录
--- 其他事务可以插入 id=6、7 等数据
+-- 行锁：锁定 id = 5 记录
+-- 说明：id = 5 记录存在，Next-Key Lock (1, 5] 退化为行锁，只锁 id = 5 这条记录
+-- 其他事务可以插入 id = 3、4、6、7 等数据
 
 -- 场景 3：等值查询（未命中记录）
 SELECT * FROM user WHERE id = 6 FOR UPDATE;
--- 间隙锁：锁定 (5, 8] 区间（左开右闭）
--- 说明：id=6 不存在，位于 id=5 和 id=8 之间
---       Next-Key Lock 是左开右闭区间，所以锁定 (5, 8]
--- 其他事务无法插入 id=6、7 等数据
--- 注意：id=8 已存在，间隙锁不会阻止读取 id=8，但会阻止在 (5, 8) 区间插入
+-- 间隙锁：锁定 (5, 8) 区间（左开右开）
+-- 说明：id = 6 记录不存在，扫描向右遍历到 id = 8 时不满足等值条件
+--      Next-Key Lock (5, 8] 退化为间隙锁 (5, 8)，不含 id = 8 记录的行锁
+-- 其他事务插入 id = 6、7 被阻塞
 ```
 
-##### 为什么范围查询要锁定下界记录前面的间隙？
+**为什么下界 id = 5 只加行锁？**
 
-```mermaid
-flowchart TB
-    subgraph Question["问题：为什么锁定 (1, 5]？"]
-        Q["BETWEEN 5 AND 8 查询范围是 [5, 8]<br/>为什么还要锁定 (1, 5]？"]
-    end
-    
-    subgraph Answer["答案：Next-Key Lock 的加锁规则"]
-        A1["规则：扫描到一条记录<br/>锁定 (前一条记录, 当前记录]"]
-        A2["扫描到 id=5 时<br/>前一条记录是 id=1<br/>所以锁定 (1, 5]"]
-        A3["扫描到 id=8 时<br/>前一条记录是 id=5<br/>所以锁定 (5, 8]"]
-    end
-    
-    subgraph Reason["设计原因"]
-        R1["Next-Key Lock = 记录锁（行锁） + 间隙锁"]
-        R2["锁定记录本身的同时<br/>必须锁定前面的间隙"]
-        R3["这是 Next-Key Lock 的定义<br/>无法只锁记录不锁间隙"]
-    end
-    
-    Question --> Answer --> Reason
-    
-    style Question fill:#ffcdd2,stroke:#c62828
-    style Answer fill:#e3f2fd,stroke:#1565c0
-    style Reason fill:#fff3e0,stroke:#ef6c00
-```
+`id BETWEEN 5 AND 8` 等价于 `id >= 5 AND id <= 8`，扫描定位第一条记录时使用 `>=` 的等值定位。由于 id = 5 记录存在且 id 是唯一索引，依据"等值查询命中唯一索引时退化为行锁"，Next-Key Lock `(1, 5]` 退化为只锁 id = 5 这条记录。
+> id = 5 记录被等值定位直接命中；唯一性约束保证同值记录不可能再插入，间隙内的其他值又不满足查询条件，相应的间隙锁没有防护意义（插入 id = 2、3、4 等数据均不满足 `BETWEEN 5 AND 8`，因此不可能成为幻影行），而对于 id = 5 记录，其在结果集中，必须防止其被其他事务修改或删除，因此需要对其加行锁。
 
-**关键理解**：
+**为什么 8.0.17 及之前会多锁 `(8, 15]`？**
 
-| 问题 | 解释 |
-|------|------|
-| **为什么不能只锁 (5, 8]**？ | id=5 是查询下界，必须锁定 id=5 这条记录 |
-| **锁定 id=5 意味着什么** | Next-Key Lock 锁定的是 `(前一条记录, 当前记录]`，即 `(1, 5]` |
-| **(1, 5) 区间需要保护吗** | 不需要，但 Next-Key Lock 的设计无法"只锁记录不锁间隙" |
+范围扫描无法预知"id = 8 记录是最后一条匹配记录"，判定扫描结束的唯一方法是继续读取下一条记录（id = 15），发现不满足服务层设定的终止边界 `id <= 8` 后才停止（InnoDB 不分析 WHERE 条件，只接收扫描范围）。而加锁发生在"读取时"而非"匹配成功时"，因此 id = 15 记录被读取的那一刻，`(8, 15]` 已被加上。
 
-**总结**：锁定 `(1, 5]` 不是为了保护 `(1, 5)` 区间，而是因为 Next-Key Lock 的机制决定了**锁定 id=5 这条记录就必然锁定 `(1, 5]` 整个区间**。
+从防幻读的角度看，这个锁没有防护意义：插入 id = 9~14 等数据不满足查询条件，不可能成为幻影行。所以其属于过度加锁（只损失并发度，不破坏隔离性），因此 MySQL 8.0.18 起将其修复：唯一索引范围查询中，不满足条件的终止记录和相应间隙不再加锁。
 
-##### Next-Key Lock 加锁规则详解
+| 场景 | 终止记录 | 终止记录处的锁（8.0.18 及之后） | 原因 |
+|------|---------|------------------------------|------|
+| `id <= 8`（8 存在且命中） | id = 15 | 不加锁 | 插入 9~14 不满足条件，无幻影风险 |
+| `id <= 11`（11 不存在） | id = 15 | 间隙锁 `(8, 15)` | 插入 9~11 满足 `id <= 11`，是真实的幻影风险，但是 id = 15 不满足查询条件无需对其加行锁，所以仅需附加间隙锁 |
 
-```mermaid
-flowchart TB
-    subgraph Rules["Next-Key Lock 加锁规则"]
-        direction TB
-        
-        subgraph Rule1["规则 1：范围查询"]
-            R1A["查询命中多条记录"]
-            R1B["每条记录加 Next-Key Lock<br/>左开右闭区间 (a, b]"]
-            R1C["最后一条记录后加间隙锁"]
-            R1A --> R1B --> R1C
-        end
-        
-        subgraph Rule2["规则 2：等值查询命中唯一索引"]
-            R2A["查询命中唯一索引"]
-            R2B["优化：降级为行锁<br/>只锁该记录"]
-            R2A --> R2B
-        end
-        
-        subgraph Rule3["规则 3：等值查询未命中"]
-            R3A["查询未命中记录"]
-            R3B["加间隙锁<br/>锁定目标值所在区间"]
-            R3A --> R3B
-        end
-    end
-    
-    style Rule1 fill:#e3f2fd,stroke:#1565c0
-    style Rule2 fill:#c8e6c9,stroke:#2e7d32
-    style Rule3 fill:#fff3e0,stroke:#ef6c00
-```
+##### Next-Key Lock 加锁规则总结
 
-| 查询类型 | 条件 | 加锁方式 | 说明 |
-|---------|------|---------|------|
-| **范围查询** | `WHERE id BETWEEN 5 AND 8` | `(1, 5]` + `(5, 8]` | 每条记录加 Next-Key Lock |
-| **等值查询命中唯一索引** | `WHERE id = 5`（id=5 存在） | 只锁 id=5 这一行 | 优化为行锁 |
-| **等值查询未命中** | `WHERE id = 6`（id=6 不存在） | 间隙锁 `(5, 8]` | 锁定目标值所在区间 |
+**规则 1：范围查询**（查询命中多条记录）
+
+按扫描顺序加锁：
+
+1. 下界等值定位命中且记录存在时，退化为行锁；其余扫描到的匹配记录加 Next-Key Lock `(a, b]`。
+2. 终止记录处：8.0.17 及之前加 Next-Key Lock；8.0.18 及之后，上界命中则不附加锁，上界未命中则加间隙锁。
+
+**规则 2：等值查询命中唯一索引**：退化为行锁，只锁该记录。
+
+**规则 3：等值查询未命中**：退化为间隙锁，锁定目标值所在开区间。
 
 #### 5.4.4 RR 级别解决幻读的完整机制
 
@@ -695,10 +629,11 @@ COMMIT;
 
 | 注意点 | 说明 |
 |--------|------|
-| **生效前提** | InnoDB 引擎、RR 隔离级别、查询命中索引 |
+| **生效前提** | InnoDB 引擎、RR 隔离级别、查询走索引扫描 |
 | **唯一索引优化** | 唯一索引等值查询自动降级为行锁 |
 | **无索引风险** | 无索引范围查询会升级为表锁，导致性能问题 |
 | **死锁风险** | Next-Key Lock 可能增加死锁概率 |
+| **版本差异** | 范围查询中终止记录处的加锁行为在 8.0.18 起有修复变化（详见 5.4.3） |
 
 ### 5.5 RC 与 RR 的核心区别
 
@@ -947,6 +882,8 @@ flowchart TB
 ## 参考资料
 
 - [MySQL 官方文档：InnoDB Multi-Versioning](https://dev.mysql.com/doc/refman/8.0/en/innodb-multi-versioning.html)
+- [MySQL 官方文档：Locks Set by Different SQL Statements in InnoDB](https://dev.mysql.com/doc/refman/8.0/en/innodb-locks-set.html)
+- [小林 coding：MySQL 是怎么加锁的](https://xiaolincoding.com/mysql/lock/how_to_lock.html)
 - [深入理解 MySQL MVCC：多版本并发控制完整版](http://m.toutiao.com/group/7582034789566284339/)
 - [MySQL InnoDB 事务隔离与 MVCC、版本链与 ReadView 原理详解](http://m.toutiao.com/group/7578780736728089103/)
 - [MySQL 总结--MVCC(read view 和 undo log)](https://blog.csdn.net/huangzhilin2015/article/details/115195777)
