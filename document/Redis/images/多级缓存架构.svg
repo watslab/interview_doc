@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 502" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="482" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">多级缓存架构</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">请求逐级查找：本地缓存 → 分布式缓存 → 数据库，未命中逐级回源并回填</text>
+
+  <!-- ============ 请求 ============ -->
+  <rect x="400" y="90" width="160" height="42" rx="6" fill="#FAFAFA" stroke="#455A64" stroke-width="1.5"/>
+  <text x="480" y="111" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#37474F">请求</text>
+
+  <!-- ============ L1 一级缓存 ============ -->
+  <rect x="310" y="160" width="340" height="84" rx="8" fill="#F4FAF5" stroke="#C8E6C9" stroke-width="1"/>
+  <rect x="325" y="170" width="130" height="22" rx="11" fill="#43A047"/>
+  <text x="390" y="181" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">一级缓存（本地）</text>
+  <rect x="400" y="198" width="160" height="36" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="480" y="216" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Caffeine（进程内缓存）</text>
+
+  <!-- ============ L2 二级缓存 ============ -->
+  <rect x="310" y="274" width="340" height="84" rx="8" fill="#FFF9F2" stroke="#FFCC80" stroke-width="1"/>
+  <rect x="325" y="284" width="150" height="22" rx="11" fill="#F57C00"/>
+  <text x="400" y="295" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">二级缓存（分布式）</text>
+  <rect x="400" y="312" width="160" height="36" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="480" y="330" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Redis（分布式缓存）</text>
+
+  <!-- ============ L3 数据源 ============ -->
+  <rect x="310" y="388" width="340" height="84" rx="8" fill="#FEF6F6" stroke="#E57373" stroke-width="1"/>
+  <rect x="325" y="398" width="90" height="22" rx="11" fill="#C62828"/>
+  <text x="370" y="409" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">数据源</text>
+  <rect x="400" y="426" width="160" height="36" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.5"/>
+  <text x="480" y="445" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">MySQL（数据库）</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M480,134 L480,158" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M430,246 L430,272" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M530,272 L530,246" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M430,360 L430,386" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M530,386 L530,360" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- ============ Annotations ============ -->
+  <text x="442" y="259" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#757575">未命中</text>
+  <text x="518" y="259" text-anchor="end" dominant-baseline="central" font-size="9.5" fill="#757575">回填</text>
+  <text x="442" y="373" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#757575">未命中</text>
+  <text x="518" y="373" text-anchor="end" dominant-baseline="central" font-size="9.5" fill="#757575">回填</text>
+</svg>

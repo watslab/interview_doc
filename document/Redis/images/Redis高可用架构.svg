@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 484" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+    <marker id="ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="464" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">Redis 高可用架构（哨兵模式）</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">哨兵集群监控主节点，故障时自动主从切换；从节点复制主节点数据</text>
+
+  <!-- ============ Sentinel 层 ============ -->
+  <rect x="165" y="110" width="170" height="48" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.8"/>
+  <text x="250" y="128" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">Sentinel 1</text>
+  <text x="250" y="146" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">哨兵</text>
+
+  <rect x="395" y="110" width="170" height="48" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.8"/>
+  <text x="480" y="128" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">Sentinel 2</text>
+  <text x="480" y="146" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">哨兵</text>
+
+  <rect x="625" y="110" width="170" height="48" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.8"/>
+  <text x="710" y="128" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">Sentinel 3</text>
+  <text x="710" y="146" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">哨兵</text>
+
+  <!-- ============ Master ============ -->
+  <rect x="395" y="250" width="170" height="56" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="2" filter="url(#s1)"/>
+  <text x="480" y="272" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#2E7D32">Master</text>
+  <text x="480" y="290" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">主节点</text>
+
+  <!-- ============ Slaves ============ -->
+  <rect x="295" y="360" width="150" height="48" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="370" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#2E7D32">Slave 1</text>
+  <text x="370" y="396" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">从节点</text>
+
+  <rect x="515" y="360" width="150" height="48" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="590" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#2E7D32">Slave 2</text>
+  <text x="590" y="396" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">从节点</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M480,160 L480,246" stroke="#F57C00" stroke-width="1.5" stroke-dasharray="5,4" fill="none" marker-end="url(#aho)"/>
+  <path d="M252,162 L468,247" stroke="#F57C00" stroke-width="1.5" stroke-dasharray="5,4" fill="none" marker-end="url(#aho)"/>
+  <path d="M708,162 L492,247" stroke="#F57C00" stroke-width="1.5" stroke-dasharray="5,4" fill="none" marker-end="url(#aho)"/>
+  <path d="M445,308 L382,357" stroke="#43A047" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <path d="M515,308 L578,357" stroke="#43A047" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+
+  <!-- ============ Annotations ============ -->
+  <text x="492" y="205" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#E65100">监控 + 故障转移</text>
+  <text x="404" y="326" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#2E7D32">复制</text>
+  <text x="556" y="326" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#2E7D32">复制</text>
+
+  <!-- ============ Legend ============ -->
+  <rect x="30" y="428" width="900" height="36" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="55" y="439" width="14" height="14" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="75" y="446" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">Sentinel 哨兵节点</text>
+  <rect x="280" y="439" width="14" height="14" rx="3" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5"/>
+  <text x="300" y="446" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">Redis 数据节点（主 / 从）</text>
+  <path d="M540,446 L568,446" stroke="#F57C00" stroke-width="1.5" stroke-dasharray="5,4" fill="none"/>
+  <text x="576" y="446" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">监控 + 故障转移</text>
+  <path d="M760,446 L788,446" stroke="#43A047" stroke-width="1.5" fill="none"/>
+  <text x="796" y="446" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#455A64">数据复制</text>
+</svg>

@@ -4,41 +4,7 @@
 
 在使用 Redis 缓存的高并发系统中，缓存穿透、击穿、雪崩是三大经典问题，它们都会导致大量请求直接打到数据库，可能造成数据库崩溃、系统瘫痪。
 
-```mermaid
-flowchart TB
-    subgraph Problems["缓存三大问题"]
-        P1["缓存穿透<br/>Cache Penetration"]
-        P2["缓存击穿<br/>Cache Breakdown"]
-        P3["缓存雪崩<br/>Cache Avalanche"]
-    end
-    
-    subgraph P1Desc["穿透描述"]
-        P1D1["查询不存在的数据"]
-        P1D2["绕过缓存直接打库"]
-        P1D3["影响范围：中"]
-    end
-    
-    subgraph P2Desc["击穿描述"]
-        P2D1["热点 Key 过期"]
-        P2D2["大量并发请求打库"]
-        P2D3["影响范围：中高"]
-    end
-    
-    subgraph P3Desc["雪崩描述"]
-        P3D1["大量 Key 同时过期<br/>或 Redis 宕机"]
-        P3D2["所有请求穿透到数据库"]
-        P3D3["影响范围：最高"]
-    end
-    
-    P1 --> P1Desc
-    P2 --> P2Desc
-    P3 --> P3Desc
-    
-    style Problems fill:#e3f2fd,stroke:#1565c0
-    style P1Desc fill:#ffcdd2,stroke:#c62828
-    style P2Desc fill:#fff3e0,stroke:#ef6c00
-    style P3Desc fill:#f3e5f5,stroke:#7b1fa2
-```
+![缓存三大问题概览](./images/缓存三大问题概览.svg)
 
 ### 1.1 三大问题对比
 
@@ -145,137 +111,23 @@ public User getUserById(Long id) {
 布隆过滤器（Bloom Filter）是一种空间效率很高的概率型数据结构，用于判断一个元素是否在一个集合中。它的特点是：
 
 - **判断不存在**：100% 准确，元素一定不在集合中
-- **判断存在**：可能误判，元素可能在集合中（假阳性）
+- **判断存在**：可能误判（假阳性），元素可能在集合中
 
 ##### 工作原理图解
 
-```mermaid
-flowchart TB
-    subgraph BloomFilter["布隆过滤器架构"]
-        subgraph Init["初始化阶段"]
-            Load["加载数据库所有有效 ID"]
-            BF["写入布隆过滤器"]
-        end
-        
-        subgraph Query["查询阶段"]
-            Request["请求到达"]
-            Check{"布隆过滤器<br/>判断 ID 是否可能存在?"}
-            Reject["直接拒绝<br/>返回空"]
-            Cache["查询缓存/数据库"]
-        end
-    end
-    
-    Load --> BF
-    Request --> Check
-    Check -->|"不存在"| Reject
-    Check -->|"可能存在"| Cache
-    
-    style BloomFilter fill:#e3f2fd,stroke:#1565c0
-    style Init fill:#c8e6c9,stroke:#2e7d32
-    style Query fill:#fff3e0,stroke:#ef6c00
-```
+![布隆过滤器工作原理](./images/布隆过滤器工作原理.svg)
 
 ##### 存储过程详解
 
-```mermaid
-flowchart TB
-    subgraph Store["元素存储过程"]
-        Input["输入元素: user:123"]
-        HashFunc["使用 k 个哈希函数<br/>计算 k 个位置"]
-        Pos1["位置 1: 5"]
-        Pos2["位置 2: 17"]
-        Pos3["位置 3: 29"]
-        SetBits["将对应位置设为 1"]
-    end
-    
-    subgraph BitArray["位数组（初始全 0）"]
-        B0["0"]
-        B1["0"]
-        B2["0"]
-        B3["0"]
-        B4["0"]
-        B5["1"]
-        B6["0"]
-        B7["0"]
-        B8["..."]
-        B9["0"]
-        B10["1"]
-        B11["0"]
-        B12["..."]
-        B13["0"]
-        B14["1"]
-        B15["0"]
-    end
-    
-    Input --> HashFunc
-    HashFunc --> Pos1
-    HashFunc --> Pos2
-    HashFunc --> Pos3
-    Pos1 --> SetBits
-    Pos2 --> SetBits
-    Pos3 --> SetBits
-    SetBits --> BitArray
-    
-    style Store fill:#e3f2fd,stroke:#1565c0
-    style BitArray fill:#c8e6c9,stroke:#2e7d32
-```
+![布隆过滤器存储过程](./images/布隆过滤器存储过程.svg)
 
 ##### 查询过程详解
 
-```mermaid
-flowchart TB
-    subgraph QueryExist["查询存在的元素"]
-        Q1["查询: user:123"]
-        QHash1["计算哈希位置: 5, 17, 29"]
-        QCheck1["检查这些位置"]
-        QResult1["全部为 1 → 可能存在"]
-    end
-    
-    subgraph QueryNotExist["查询不存在的元素"]
-        Q2["查询: user:999"]
-        QHash2["计算哈希位置: 3, 8, 42"]
-        QCheck2["检查这些位置"]
-        QResult2["存在 0 → 一定不存在"]
-    end
-    
-    subgraph QueryFalse["误判场景"]
-        Q3["查询: user:888"]
-        QHash3["计算哈希位置: 5, 17, 29"]
-        QCheck3["检查这些位置"]
-        QResult3["全部为 1 → 误判为存在<br/>实际不存在"]
-    end
-    
-    style QueryExist fill:#c8e6c9,stroke:#2e7d32
-    style QueryNotExist fill:#ffcdd2,stroke:#c62828
-    style QueryFalse fill:#fff3e0,stroke:#ef6c00
-```
+![布隆过滤器查询过程](./images/布隆过滤器查询过程.svg)
 
 ##### 为什么会有误判
 
-```mermaid
-flowchart LR
-    subgraph Scenario["误判原因"]
-        A["元素 A 设置位置: 5, 17, 29"]
-        B["元素 B 设置位置: 3, 8, 42"]
-        C["元素 C 设置位置: 5, 8, 35"]
-    end
-    
-    subgraph BitArray["位数组状态"]
-        Bits["位置 5: 1 (A, C)<br/>位置 17: 1 (A)<br/>位置 29: 1 (A)<br/>位置 3: 1 (B)<br/>位置 8: 1 (B, C)<br/>位置 42: 1 (B)<br/>位置 35: 1 (C)"]
-    end
-    
-    subgraph FalsePositive["误判示例"]
-        D["查询元素 D<br/>哈希位置: 5, 17, 29"]
-        Result["位置 5, 17, 29 都为 1<br/>判断: 可能存在<br/>实际: 不存在（被 A 的位覆盖）"]
-    end
-    
-    Scenario --> BitArray
-    BitArray --> FalsePositive
-    
-    style Scenario fill:#e3f2fd,stroke:#1565c0
-    style BitArray fill:#c8e6c9,stroke:#2e7d32
-    style FalsePositive fill:#ffcdd2,stroke:#c62828
-```
+![布隆过滤器误判原因](./images/布隆过滤器误判原因.svg)
 
 **误判原因总结**：
 - 不同元素经过哈希函数计算后，可能得到相同的位置
@@ -663,35 +515,7 @@ flowchart TB
 
 ##### 为什么缓存不存在直接返回 null？
 
-```mermaid
-flowchart TB
-    subgraph Scenario["场景分析"]
-        Q1["缓存不存在的原因"]
-        A1["数据本身不存在"]
-        A2["缓存未预热"]
-        A3["缓存被清空"]
-    end
-    
-    subgraph Reason["设计原因"]
-        B1["逻辑过期方案适用于热点数据"]
-        B2["热点数据应提前预热到缓存"]
-        B3["缓存不存在说明非热点或数据无效"]
-        B4["直接返回 null 避免缓存穿透"]
-    end
-    
-    subgraph Solution["解决方案"]
-        C1["数据不存在 → 返回 null 正确"]
-        C2["缓存未预热 → 需要提前预热"]
-        C3["缓存清空 → 需要重新预热"]
-    end
-    
-    Scenario --> Reason
-    Reason --> Solution
-    
-    style Scenario fill:#e3f2fd,stroke:#1565c0
-    style Reason fill:#fff3e0,stroke:#ef6c00
-    style Solution fill:#c8e6c9,stroke:#2e7d32
-```
+![逻辑过期返回null分析](./images/逻辑过期返回null分析.svg)
 
 **关键说明**：
 
@@ -856,29 +680,7 @@ sequenceDiagram
 
 #### 方案一：过期时间随机化
 
-```mermaid
-flowchart TB
-    subgraph Problem["问题：相同过期时间"]
-        K1["Key1 过期时间: 3600s"]
-        K2["Key2 过期时间: 3600s"]
-        K3["Key3 过期时间: 3600s"]
-        K4["Key4 过期时间: 3600s"]
-        Same["同一时刻过期"]
-    end
-    
-    subgraph Solution["解决：随机过期时间"]
-        S1["Key1 过期时间: 3600s"]
-        S2["Key2 过期时间: 3700s"]
-        S3["Key3 过期时间: 3500s"]
-        S4["Key4 过期时间: 3800s"]
-        Diff["分散过期时间点"]
-    end
-    
-    Problem --> Solution
-    
-    style Problem fill:#ffcdd2,stroke:#c62828
-    style Solution fill:#c8e6c9,stroke:#2e7d32
-```
+![过期时间随机化](./images/过期时间随机化对比.svg)
 
 **代码示例**：
 
@@ -892,33 +694,7 @@ public void setWithRandomExpire(String key, String value, long baseExpire) {
 
 #### 方案二：多级缓存
 
-```mermaid
-flowchart TB
-    subgraph Architecture["多级缓存架构"]
-        subgraph L1["一级缓存（本地）"]
-            Caffeine["Caffeine<br/>进程内缓存"]
-        end
-        
-        subgraph L2["二级缓存（分布式）"]
-            Redis["Redis<br/>分布式缓存"]
-        end
-        
-        subgraph L3["数据源"]
-            DB["MySQL<br/>数据库"]
-        end
-    end
-    
-    Request["请求"] --> Caffeine
-    Caffeine -->|"未命中"| Redis
-    Redis -->|"未命中"| DB
-    DB --> Redis
-    Redis --> Caffeine
-    
-    style Architecture fill:#e3f2fd,stroke:#1565c0
-    style L1 fill:#c8e6c9,stroke:#2e7d32
-    style L2 fill:#fff3e0,stroke:#ef6c00
-    style L3 fill:#ffcdd2,stroke:#c62828
-```
+![多级缓存架构](./images/多级缓存架构.svg)
 
 **Spring Cache + Caffeine + Redis 实现**：
 
@@ -1041,35 +817,7 @@ sequenceDiagram
 
 #### 方案三：熔断降级
 
-```mermaid
-flowchart TB
-    subgraph CircuitBreaker["熔断降级机制"]
-        subgraph Normal["正常状态"]
-            N1["请求查询缓存"]
-            N2["缓存未命中查数据库"]
-        end
-        
-        subgraph Degrade["降级状态"]
-            D1["检测到数据库压力过大"]
-            D2["开启熔断"]
-            D3["返回默认值或错误"]
-        end
-        
-        subgraph Recover["恢复状态"]
-            R1["数据库压力降低"]
-            R2["关闭熔断"]
-            R3["恢复正常访问"]
-        end
-    end
-    
-    Normal --> Degrade
-    Degrade --> Recover
-    
-    style CircuitBreaker fill:#e3f2fd,stroke:#1565c0
-    style Normal fill:#c8e6c9,stroke:#2e7d32
-    style Degrade fill:#ffcdd2,stroke:#c62828
-    style Recover fill:#fff3e0,stroke:#ef6c00
-```
+![熔断降级机制](./images/熔断降级机制.svg)
 
 **Sentinel 熔断配置**：
 
@@ -1103,32 +851,7 @@ public class UserService {
 
 #### 方案四：Redis 高可用
 
-```mermaid
-flowchart TB
-    subgraph HA["Redis 高可用架构"]
-        subgraph Sentinel["哨兵模式"]
-            S1["Sentinel 1"]
-            S2["Sentinel 2"]
-            S3["Sentinel 3"]
-        end
-        
-        subgraph RedisNodes["Redis 节点"]
-            Master["Master<br/>主节点"]
-            Slave1["Slave 1<br/>从节点"]
-            Slave2["Slave 2<br/>从节点"]
-        end
-    end
-    
-    Sentinel --> Master
-    Master --> Slave1
-    Master --> Slave2
-    
-    Sentinel -->|"监控 + 故障转移"| RedisNodes
-    
-    style HA fill:#e3f2fd,stroke:#1565c0
-    style Sentinel fill:#fff3e0,stroke:#ef6c00
-    style RedisNodes fill:#c8e6c9,stroke:#2e7d32
-```
+![Redis 高可用架构](./images/Redis高可用架构.svg)
 
 ### 4.3 方案对比
 
@@ -1145,33 +868,7 @@ flowchart TB
 
 ### 5.1 三大问题对比总结
 
-```mermaid
-flowchart TB
-    subgraph Comparison["三大问题对比"]
-        subgraph Penetration["缓存穿透"]
-            P1["场景：查询不存在的数据"]
-            P2["特征：缓存和数据库都没有"]
-            P3["方案：布隆过滤器、缓存空值"]
-        end
-        
-        subgraph Breakdown["缓存击穿"]
-            B1["场景：热点 Key 过期"]
-            B2["特征：单点热点，高并发"]
-            B3["方案：互斥锁、逻辑过期"]
-        end
-        
-        subgraph Avalanche["缓存雪崩"]
-            A1["场景：大量 Key 同时过期"]
-            A2["特征：大面积失效"]
-            A3["方案：随机过期、多级缓存、熔断"]
-        end
-    end
-    
-    style Comparison fill:#e3f2fd,stroke:#1565c0
-    style Penetration fill:#ffcdd2,stroke:#c62828
-    style Breakdown fill:#fff3e0,stroke:#ef6c00
-    style Avalanche fill:#f3e5f5,stroke:#7b1fa2
-```
+![三大缓存问题对比](./images/三大缓存问题对比.svg)
 
 ### 5.2 最佳实践
 
@@ -1187,7 +884,7 @@ flowchart TB
 | 问题              | 答案要点                      |
 | --------------- | ------------------------- |
 | **三大问题区别**      | 穿透是数据不存在，击穿是热点过期，雪崩是大面积失效 |
-| **布隆过滤器原理**     | 位数组 + 多哈希，存在误判但不会漏判       |
+| **布隆过滤器原理**     | 位数组 + 多哈希，存在误判（假阳性）但不会漏判       |
 | **互斥锁 vs 逻辑过期** | 互斥锁强一致有阻塞，逻辑过期高性能最终一致     |
 | **如何设计缓存**      | 多级缓存 + 随机过期 + 熔断降级 + 高可用  |
 

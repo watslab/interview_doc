@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="900" height="280" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 上方时序带：Pipeline 执行过程 -->
+  <text x="40" y="60" font-size="14" font-weight="bold" fill="#1565C0">Pipeline 执行过程</text>
+  <rect x="758" y="44" width="120" height="22" rx="11" fill="#FFEBEE" stroke="#E57373" stroke-width="1"/>
+  <text x="818" y="59" text-anchor="middle" font-size="11" font-weight="600" fill="#C62828">不保证原子性</text>
+
+  <rect x="40" y="74" width="118" height="56" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="99" y="106" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">命令1 执行</text>
+
+  <rect x="184" y="74" width="118" height="56" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="243" y="106" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">回到事件循环</text>
+
+  <rect x="328" y="74" width="118" height="56" rx="8" fill="#FFF8E1" stroke="#EF6C00" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#s1)"/>
+  <text x="387" y="97" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">其他客户端命令</text>
+  <text x="387" y="115" text-anchor="middle" font-size="10" fill="#888888">可能穿插执行</text>
+
+  <rect x="472" y="74" width="118" height="56" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="531" y="106" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">命令2 执行</text>
+
+  <rect x="616" y="74" width="118" height="56" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="675" y="106" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">回到事件循环</text>
+
+  <rect x="760" y="74" width="118" height="56" rx="8" fill="#FFF8E1" stroke="#EF6C00" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#s1)"/>
+  <text x="819" y="97" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">其他客户端命令</text>
+  <text x="819" y="115" text-anchor="middle" font-size="10" fill="#888888">可能穿插执行</text>
+
+  <!-- 下方时序带：事务执行过程 -->
+  <text x="40" y="186" font-size="14" font-weight="bold" fill="#2E7D32">事务执行过程</text>
+  <rect x="758" y="170" width="120" height="22" rx="11" fill="#E8F5E9" stroke="#81C784" stroke-width="1"/>
+  <text x="818" y="185" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">保证原子性</text>
+
+  <rect x="40" y="194" width="118" height="56" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="99" y="226" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">MULTI 开始</text>
+
+  <rect x="184" y="194" width="118" height="56" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="243" y="217" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">命令1 执行</text>
+  <text x="243" y="235" text-anchor="middle" font-size="10" fill="#888888">（入队）</text>
+
+  <rect x="328" y="194" width="118" height="56" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="387" y="217" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">命令2 执行</text>
+  <text x="387" y="235" text-anchor="middle" font-size="10" fill="#888888">（入队）</text>
+
+  <rect x="472" y="194" width="118" height="56" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="531" y="226" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">EXEC 触发</text>
+
+  <rect x="616" y="194" width="118" height="56" rx="8" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="675" y="226" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">原子执行所有命令</text>
+
+  <rect x="760" y="194" width="118" height="56" rx="8" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#s1)"/>
+  <text x="819" y="226" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">其他命令才能插入</text>
+
+  <!-- 连接线（最后绘制） -->
+  <line x1="158" y1="102" x2="184" y2="102" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="302" y1="102" x2="328" y2="102" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="446" y1="102" x2="472" y2="102" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="590" y1="102" x2="616" y2="102" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="734" y1="102" x2="760" y2="102" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <line x1="158" y1="222" x2="184" y2="222" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="302" y1="222" x2="328" y2="222" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="446" y1="222" x2="472" y2="222" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="590" y1="222" x2="616" y2="222" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="734" y1="222" x2="760" y2="222" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg>

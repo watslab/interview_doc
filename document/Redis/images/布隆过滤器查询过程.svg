@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="520" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1565C0" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">布隆过滤器查询过程</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">判断不存在则一定不存在；判断存在时包含确判与误判两种情形</text>
+
+  <!-- ============ 查询入口 ============ -->
+  <rect x="365" y="90" width="200" height="40" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="465" y="110" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">输入查询元素</text>
+
+  <rect x="355" y="159" width="220" height="40" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="465" y="179" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">计算 k 个哈希位置</text>
+
+  <polygon points="465,228 565,268 465,308 365,268" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="465" y="268" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">位取值是否全为 1?</text>
+
+  <!-- ============ 左：存在 0 ============ -->
+  <rect x="30" y="246" width="270" height="264" rx="8" fill="#F4FAF5" stroke="#C8E6C9" stroke-width="1"/>
+  <rect x="45" y="256" width="110" height="24" rx="12" fill="#43A047"/>
+  <text x="100" y="268" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">否 · 存在 0</text>
+
+  <rect x="45" y="290" width="240" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8"/>
+  <text x="165" y="312" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#2E7D32">判断：一定不存在</text>
+
+  <text x="165" y="352" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">如查询 user:999（位置 3、8、42）</text>
+
+  <rect x="69" y="362" width="64" height="32" rx="4" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.2"/>
+  <text x="101" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#90A4AE">0</text>
+  <rect x="133" y="362" width="64" height="32" rx="4" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.2"/>
+  <text x="165" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#90A4AE">0</text>
+  <rect x="197" y="362" width="64" height="32" rx="4" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.2"/>
+  <text x="229" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#90A4AE">0</text>
+  <text x="101" y="406" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">位置 3</text>
+  <text x="165" y="406" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">位置 8</text>
+  <text x="229" y="406" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">位置 42</text>
+
+  <rect x="45" y="441" width="240" height="52" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="165" y="457" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">元素实际上一定不存在</text>
+  <text x="165" y="477" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">该判断不会发生误判</text>
+
+  <!-- ============ 右：全部为 1 ============ -->
+  <rect x="630" y="246" width="300" height="264" rx="8" fill="#FFF9F2" stroke="#FFCC80" stroke-width="1"/>
+  <rect x="645" y="256" width="110" height="24" rx="12" fill="#F57C00"/>
+  <text x="700" y="268" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">是 · 全部为 1</text>
+
+  <rect x="645" y="290" width="270" height="44" rx="6" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.8"/>
+  <text x="780" y="312" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">判断：可能存在</text>
+
+  <text x="780" y="352" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">如查询 user:123、user:888（位置 5、17、29）</text>
+
+  <rect x="684" y="362" width="64" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="716" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">1</text>
+  <rect x="748" y="362" width="64" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="780" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">1</text>
+  <rect x="812" y="362" width="64" height="32" rx="4" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="844" y="378" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#E65100">1</text>
+  <text x="716" y="406" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">位置 5</text>
+  <text x="780" y="406" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">位置 17</text>
+  <text x="844" y="406" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">位置 29</text>
+
+  <rect x="640" y="441" width="135" height="52" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8"/>
+  <text x="707" y="457" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#2E7D32">确判（真阳性）</text>
+  <text x="707" y="477" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#455A64">元素实际存在（user:123）</text>
+
+  <rect x="785" y="441" width="135" height="52" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.8"/>
+  <text x="852" y="457" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">误判（假阳性）</text>
+  <text x="852" y="477" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#455A64">元素实际不存在（user:888）</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M465,132 L465,157" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M465,201 L465,226" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M363,268 C333,268 330,312 288,312" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M567,268 C597,268 600,312 642,312" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <circle cx="780" cy="416" r="3" fill="#90A4AE"/>
+  <path d="M780,416 C780,430 708,416 708,426 L708,438" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M780,416 C780,430 852,416 852,426 L852,438" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+</svg>

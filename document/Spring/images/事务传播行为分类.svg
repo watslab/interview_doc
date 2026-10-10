@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="520" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">七种事务传播行为</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">按是否参与当前事务划分为三类</text>
+
+  <!-- ============ Group 1: 参与当前事务 ============ -->
+  <rect x="30" y="95" width="900" height="135" rx="8" fill="#F4F9FE" stroke="#BBDEFB" stroke-width="1"/>
+  <rect x="50" y="105" width="150" height="24" rx="12" fill="#1E88E5"/>
+  <text x="125" y="117" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">参与当前事务</text>
+
+  <rect x="50" y="142" width="270" height="66" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="185" y="165" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#1565C0">REQUIRED</text>
+  <text x="185" y="189" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">支持当前事务，无则新建</text>
+
+  <rect x="345" y="142" width="270" height="66" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="480" y="165" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#1565C0">SUPPORTS</text>
+  <text x="480" y="189" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">支持当前事务，无则非事务执行</text>
+
+  <rect x="640" y="142" width="270" height="66" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="775" y="165" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#1565C0">MANDATORY</text>
+  <text x="775" y="189" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">支持当前事务，无则抛异常</text>
+
+  <!-- ============ Group 2: 不参与当前事务 ============ -->
+  <rect x="30" y="250" width="900" height="135" rx="8" fill="#FFF9F2" stroke="#FFCC80" stroke-width="1"/>
+  <rect x="50" y="260" width="160" height="24" rx="12" fill="#F57C00"/>
+  <text x="130" y="272" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">不参与当前事务</text>
+
+  <rect x="50" y="297" width="270" height="66" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="185" y="320" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#E65100">REQUIRES_NEW</text>
+  <text x="185" y="344" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">新建事务，挂起当前事务</text>
+
+  <rect x="345" y="297" width="270" height="66" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="480" y="320" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#E65100">NOT_SUPPORTED</text>
+  <text x="480" y="344" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">非事务执行，挂起当前事务</text>
+
+  <rect x="640" y="297" width="270" height="66" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="775" y="320" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#E65100">NEVER</text>
+  <text x="775" y="344" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">非事务执行，有事务则抛异常</text>
+
+  <!-- ============ Group 3: 嵌套事务 ============ -->
+  <rect x="30" y="405" width="900" height="105" rx="8" fill="#F9F4FB" stroke="#E1BEE7" stroke-width="1"/>
+  <rect x="50" y="415" width="110" height="22" rx="11" fill="#7B1FA2"/>
+  <text x="105" y="426" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">嵌套事务</text>
+
+  <rect x="230" y="442" width="500" height="54" rx="6" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="480" y="462" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#6A1B9A">NESTED</text>
+  <text x="480" y="484" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">嵌套事务，基于 Savepoint</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="340" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">布隆过滤器工作原理</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">初始化阶段预热有效 ID，查询阶段经布隆过滤器拦截不存在数据</text>
+
+  <!-- ============ 初始化阶段 ============ -->
+  <rect x="30" y="90" width="900" height="90" rx="8" fill="#F4FAF5" stroke="#C8E6C9" stroke-width="1"/>
+  <rect x="50" y="100" width="110" height="24" rx="12" fill="#43A047"/>
+  <text x="105" y="112" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">初始化阶段</text>
+
+  <rect x="270" y="120" width="160" height="44" rx="6" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="350" y="142" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">加载数据库所有有效 ID</text>
+
+  <rect x="496" y="120" width="194" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8"/>
+  <text x="593" y="142" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#2E7D32">写入布隆过滤器</text>
+
+  <!-- ============ 查询阶段 ============ -->
+  <rect x="30" y="200" width="900" height="140" rx="8" fill="#FFF9F2" stroke="#FFCC80" stroke-width="1"/>
+  <rect x="50" y="210" width="100" height="24" rx="12" fill="#F57C00"/>
+  <text x="100" y="222" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">查询阶段</text>
+
+  <rect x="90" y="248" width="120" height="44" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="150" y="270" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">请求到达</text>
+
+  <polygon points="350,232 440,270 350,308 260,270" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="350" y="258" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">布隆过滤器</text>
+  <text x="350" y="280" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">判断 ID 是否可能存在?</text>
+
+  <rect x="518" y="248" width="150" height="44" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="593" y="262" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">直接拒绝</text>
+  <text x="593" y="281" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">返回空</text>
+
+  <rect x="700" y="248" width="180" height="44" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="790" y="270" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">查询缓存 / 数据库</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M432,142 L492,142" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M212,270 L258,270" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M442,270 L516,270" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M350,310 C350,326 360,326 375,326 L745,326 C760,326 760,318 760,296" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- ============ Annotations ============ -->
+  <text x="479" y="258" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">不存在</text>
+  <text x="560" y="314" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">可能存在</text>
+</svg>

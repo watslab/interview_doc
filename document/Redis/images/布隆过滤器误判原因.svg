@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 508" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="488" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#C62828" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">布隆过滤器误判原因</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">不同元素的哈希位重叠，使不存在元素的哈希位置恰好全部为 1</text>
+
+  <!-- ============ Band 1: 已存元素 ============ -->
+  <rect x="30" y="90" width="900" height="100" rx="8" fill="#F4F9FE" stroke="#BBDEFB" stroke-width="1"/>
+  <rect x="50" y="100" width="100" height="24" rx="12" fill="#1E88E5"/>
+  <text x="100" y="112" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">已存元素</text>
+
+  <rect x="50" y="134" width="270" height="48" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="185" y="150" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1565C0">元素 A</text>
+  <text x="185" y="170" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#455A64">设置位置：5、17、29</text>
+
+  <rect x="345" y="134" width="270" height="48" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="480" y="150" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1565C0">元素 B</text>
+  <text x="480" y="170" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#455A64">设置位置：3、8、42</text>
+
+  <rect x="640" y="134" width="270" height="48" rx="6" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="775" y="150" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#1565C0">元素 C</text>
+  <text x="775" y="170" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#455A64">设置位置：5、8、35</text>
+
+  <!-- ============ Band 2: 位数组状态 ============ -->
+  <rect x="30" y="224" width="900" height="100" rx="8" fill="#F4FAF5" stroke="#C8E6C9" stroke-width="1"/>
+  <rect x="50" y="234" width="110" height="24" rx="12" fill="#43A047"/>
+  <text x="105" y="246" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">位数组状态</text>
+
+  <rect x="45" y="268" width="114" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="102" y="283" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">位置 3 = 1</text>
+  <text x="102" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">由 B 置 1</text>
+
+  <rect x="171" y="268" width="114" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="228" y="283" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">位置 5 = 1</text>
+  <text x="228" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">由 A、C 置 1</text>
+
+  <rect x="297" y="268" width="114" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="354" y="283" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">位置 8 = 1</text>
+  <text x="354" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">由 B、C 置 1</text>
+
+  <rect x="423" y="268" width="114" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="480" y="283" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">位置 17 = 1</text>
+  <text x="480" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">由 A 置 1</text>
+
+  <rect x="549" y="268" width="114" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="606" y="283" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">位置 29 = 1</text>
+  <text x="606" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">由 A 置 1</text>
+
+  <rect x="675" y="268" width="114" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="732" y="283" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">位置 35 = 1</text>
+  <text x="732" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">由 C 置 1</text>
+
+  <rect x="801" y="268" width="114" height="44" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="858" y="283" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">位置 42 = 1</text>
+  <text x="858" y="303" text-anchor="middle" dominant-baseline="central" font-size="9" fill="#78909C">由 B 置 1</text>
+
+  <!-- ============ Band 3: 误判示例 ============ -->
+  <rect x="30" y="358" width="900" height="120" rx="8" fill="#FEF6F6" stroke="#E57373" stroke-width="1"/>
+  <rect x="50" y="368" width="100" height="24" rx="12" fill="#C62828"/>
+  <text x="100" y="380" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">误判示例</text>
+
+  <rect x="120" y="402" width="240" height="60" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.5"/>
+  <text x="240" y="422" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#C62828">查询元素 D</text>
+  <text x="240" y="444" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#455A64">哈希位置：5、17、29</text>
+
+  <rect x="430" y="398" width="390" height="68" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5"/>
+  <text x="625" y="418" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">位置 5、17、29 都为 1，判断可能存在</text>
+  <text x="625" y="442" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#455A64">实际不存在（被 A 的位覆盖）</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M480,192 L480,222" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M480,326 L480,356" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M362,432 L428,432" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+</svg>

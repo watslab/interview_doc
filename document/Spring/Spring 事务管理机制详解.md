@@ -13,41 +13,7 @@
 
 ### 1.2 事务并发问题
 
-```mermaid
-flowchart TB
-    subgraph Problems["事务并发问题"]
-        P1["脏读<br/>Dirty Read"]
-        P2["不可重复读<br/>Non-Repeatable Read"]
-        P3["幻读<br/>Phantom Read"]
-    end
-    
-    subgraph DirtyRead["脏读"]
-        D1["事务A读取了事务B<br/>未提交的数据"]
-        D2["事务B回滚"]
-        D3["事务A读取的是<br/>无效数据"]
-    end
-    
-    subgraph NonRepeatable["不可重复读"]
-        N1["事务A多次读取同一数据"]
-        N2["事务B修改并提交了该数据"]
-        N3["事务A两次读取结果不一致<br/>（针对修改/删除）"]
-    end
-    
-    subgraph PhantomRead["幻读"]
-        F1["事务A按条件查询"]
-        F2["事务B插入或删除了数据"]
-        F3["事务A再次查询<br/>结果集数量变化"]
-    end
-    
-    P1 --> DirtyRead
-    P2 --> NonRepeatable
-    P3 --> PhantomRead
-    
-    style Problems fill:#e3f2fd,stroke:#1565c0
-    style DirtyRead fill:#ffcdd2,stroke:#c62828
-    style NonRepeatable fill:#fff3e0,stroke:#ef6c00
-    style PhantomRead fill:#f3e5f5,stroke:#7b1fa2
-```
+![事务并发问题](./images/事务并发问题.svg)
 
 ### 1.3 事务隔离级别
 
@@ -64,47 +30,7 @@ flowchart TB
 
 ### 2.1 Spring 事务管理架构
 
-```mermaid
-flowchart TB
-    subgraph Application["应用程序"]
-        Service["Service 层<br/>@Transactional"]
-    end
-    
-    subgraph SpringTransaction["Spring 事务管理"]
-        subgraph CoreAPI["核心 API"]
-            PTM["PlatformTransactionManager<br/>事务管理器接口"]
-            TD["TransactionDefinition<br/>事务定义"]
-            TS["TransactionStatus<br/>事务状态"]
-        end
-        
-        subgraph Managers["事务管理器实现"]
-            DSTM["DataSourceTransactionManager<br/>JDBC/MyBatis"]
-            JTM["JtaTransactionManager<br/>分布式事务"]
-            HTM["HibernateTransactionManager<br/>Hibernate"]
-        end
-        
-        subgraph Proxy["代理机制"]
-            JDKProxy["JDK 动态代理<br/>接口实现"]
-            CGLibProxy["CGLib 代理<br/>类继承"]
-        end
-    end
-    
-    subgraph DataSource["数据源"]
-        Connection["数据库连接"]
-    end
-    
-    Service --> Proxy
-    Proxy --> PTM
-    PTM --> Managers
-    Managers --> DataSource
-    
-    PTM --> TD
-    PTM --> TS
-    
-    style Application fill:#f3e5f5,stroke:#7b1fa2
-    style SpringTransaction fill:#e3f2fd,stroke:#1565c0
-    style DataSource fill:#c8e6c9,stroke:#2e7d32
-```
+![Spring 事务管理架构](./images/Spring事务管理架构.svg)
 
 ### 2.2 事务管理方式
 
@@ -190,20 +116,9 @@ TransactionStatus 代表事务的运行状态：
 
 ### 4.1 七种传播行为
 
-```mermaid
-flowchart TB
-    subgraph Propagations["事务传播行为"]
-        REQUIRED["REQUIRED<br/>支持当前事务，无则新建"]
-        SUPPORTS["SUPPORTS<br/>支持当前事务，无则非事务执行"]
-        MANDATORY["MANDATORY<br/>支持当前事务，无则抛异常"]
-        REQUIRES_NEW["REQUIRES_NEW<br/>新建事务，挂起当前事务"]
-        NOT_SUPPORTED["NOT_SUPPORTED<br/>非事务执行，挂起当前事务"]
-        NEVER["NEVER<br/>非事务执行，有事务则抛异常"]
-        NESTED["NESTED<br/>嵌套事务"]
-    end
-    
-    style Propagations fill:#e3f2fd,stroke:#1565c0
-```
+Spring 按是否参与当前事务，将七种传播行为划分为三类：
+
+![七种事务传播行为](./images/事务传播行为分类.svg)
 
 ### 4.2 传播行为详解
 
@@ -219,40 +134,7 @@ flowchart TB
 
 ### 4.3 REQUIRED vs REQUIRES_NEW vs NESTED
 
-```mermaid
-flowchart TB
-    subgraph Scenario["场景：方法A调用方法B"]
-        A["方法A<br/>外层事务"]
-        B["方法B<br/>内层事务"]
-    end
-    
-    subgraph REQUIRED["REQUIRED 模式"]
-        R1["A和B在同一个事务中"]
-        R2["B异常导致A和B都回滚"]
-        R3["A异常导致A和B都回滚"]
-    end
-    
-    subgraph REQUIRES_NEW["REQUIRES_NEW 模式"]
-        RN1["B是独立的新事务"]
-        RN2["B提交后，A回滚不影响B"]
-        RN3["A和B完全独立"]
-    end
-    
-    subgraph NESTED["NESTED 模式"]
-        N1["B是A的嵌套子事务"]
-        N2["B回滚不影响A"]
-        N3["A回滚会导致B回滚"]
-    end
-    
-    Scenario --> REQUIRED
-    Scenario --> REQUIRES_NEW
-    Scenario --> NESTED
-    
-    style Scenario fill:#f3e5f5,stroke:#7b1fa2
-    style REQUIRED fill:#e3f2fd,stroke:#1565c0
-    style REQUIRES_NEW fill:#c8e6c9,stroke:#2e7d32
-    style NESTED fill:#fff3e0,stroke:#ef6c00
-```
+![REQUIRED、REQUIRES_NEW 与 NESTED 对比](./images/REQUIRED与REQUIRES_NEW与NESTED对比.svg)
 
 ### 4.4 传播行为对比表
 
@@ -272,48 +154,7 @@ flowchart TB
 
 Spring 事务通过 AOP 动态代理实现：
 
-```mermaid
-flowchart TB
-    subgraph Client["客户端"]
-        Call["方法调用"]
-    end
-    
-    subgraph ProxyLayer["代理层"]
-        subgraph JDKProxy["JDK 动态代理"]
-            JP["实现接口<br/>InvocationHandler"]
-        end
-        
-        subgraph CGLibProxy["CGLib 代理"]
-            CP["继承类<br/>MethodInterceptor"]
-        end
-    end
-    
-    TransactionInterceptor["TransactionInterceptor<br/>事务拦截器"]
-
-    subgraph TransactionFlow["事务处理流程"]
-        T1["1. 开启事务"]
-        T2["2. 执行目标方法"]
-        T3["3. 提交/回滚事务"]
-        subgraph Target["目标对象"]
-            TargetMethod["业务方法"]
-        end
-    end
-    
-    
-    
-    Call --> ProxyLayer
-    ProxyLayer --> TransactionInterceptor
-    TransactionInterceptor --> T1
-    T1 --> T2
-    T2 --> TargetMethod
-    TargetMethod --> T3
-    T3 --> Call
-    
-    style Client fill:#f3e5f5,stroke:#7b1fa2
-    style ProxyLayer fill:#e3f2fd,stroke:#1565c0
-    style TransactionFlow fill:#fff3e0,stroke:#ef6c00
-    style Target fill:#c8e6c9,stroke:#2e7d32
-```
+![事务 AOP 代理调用机制](./images/事务AOP代理机制.svg)
 
 ### 5.2 事务执行流程
 
@@ -450,21 +291,7 @@ public void saveUser(User user) throws Exception {
 
 ### 7.1 事务失效场景汇总
 
-```mermaid
-flowchart TB
-    subgraph FailureScenarios["事务失效场景"]
-        S1["1. 方法访问权限非 public"]
-        S2["2. 同类内部方法自调用"]
-        S3["3. 异常被 try-catch 捕获"]
-        S4["4. 异常类型不匹配"]
-        S5["5. 数据库引擎不支持事务"]
-        S6["6. 未配置事务管理器"]
-        S7["7. 传播行为配置错误"]
-        S8["8. 多数据源未指定事务管理器"]
-    end
-    
-    style FailureScenarios fill:#ffcdd2,stroke:#c62828
-```
+![事务失效场景汇总](./images/事务失效场景汇总.svg)
 
 ### 7.2 场景详解与解决方案
 
@@ -690,32 +517,7 @@ public class UserService {
 
 Spring 的声明式事务（@Transactional）在多线程场景下会失效，这是因为 Spring 事务上下文存储在 `ThreadLocal` 中，具有线程隔离特性。
 
-```mermaid
-flowchart TB
-    subgraph Problem["跨线程事务失效原因"]
-        MainThread["主线程<br/>持有事务上下文"]
-        ThreadLocal["ThreadLocal<br/>线程隔离存储"]
-        SubThread1["子线程 1<br/>无事务上下文"]
-        SubThread2["子线程 2<br/>无事务上下文"]
-    end
-    
-    subgraph Context["事务上下文内容"]
-        C1["数据库连接 Connection"]
-        C2["事务状态 TransactionStatus"]
-        C3["事务同步器 TransactionSynchronization"]
-    end
-    
-    MainThread --> ThreadLocal
-    ThreadLocal --> Context
-    MainThread -->|"创建"| SubThread1
-    MainThread -->|"创建"| SubThread2
-    
-    SubThread1 -.-x|"无法访问"| ThreadLocal
-    SubThread2 -.-x|"无法访问"| ThreadLocal
-    
-    style Problem fill:#ffcdd2,stroke:#c62828
-    style Context fill:#fff3e0,stroke:#ef6c00
-```
+![跨线程事务失效原因](./images/跨线程事务失效原因.svg)
 
 **核心问题**：
 
@@ -992,30 +794,7 @@ public class ThreadPoolConfig {
 
 **TTL 工作原理**：
 
-```mermaid
-flowchart LR
-    subgraph MainThread["主线程"]
-        TTL1["TransmittableThreadLocal<br/>存储事务上下文"]
-    end
-    
-    subgraph TTLExecutor["TTL 装饰的线程池"]
-        Capture["任务提交时<br/>捕获父线程上下文"]
-        Restore["任务执行时<br/>恢复上下文到子线程"]
-        Clear["任务完成后<br/>清理子线程上下文"]
-        subgraph SubThread["子线程"]
-            TTL2["继承的事务上下文"]
-        end
-    end
-    
-    TTL1 --> Capture
-    Capture --> Restore
-    Restore --> TTL2
-    TTL2 --> Clear
-    
-    style MainThread fill:#e3f2fd,stroke:#1565c0
-    style TTLExecutor fill:#fff3e0,stroke:#ef6c00
-    style SubThread fill:#c8e6c9,stroke:#2e7d32
-```
+![TTL 上下文传递机制](./images/TTL上下文传递机制.svg)
 
 ### 8.6 方案四：独立事务 + 补偿机制
 
@@ -1023,32 +802,7 @@ flowchart LR
 
 #### 补偿机制工作流程
 
-```mermaid
-flowchart TB
-    subgraph Process["业务处理流程"]
-        A["创建订单"] --> B{"是否成功?"}
-        B -->|"成功"| C["事务提交<br/>订单保存成功"]
-        B -->|"失败"| D["捕获异常"]
-        D --> E["记录补偿日志"]
-        E --> F["事务提交<br/>补偿日志保存成功"]
-    end
-    
-    subgraph Compensate["补偿处理流程"]
-        G["定时任务扫描"] --> H["查询 PENDING 状态日志"]
-        H --> I["重试创建订单"]
-        I --> J{"重试是否成功?"}
-        J -->|"成功"| K["更新日志状态为 SUCCESS"]
-        J -->|"失败"| L["重试次数 +1"]
-        L --> M{"超过最大重试次数?"}
-        M -->|"是"| N["状态改为 FAILED<br/>人工处理"]
-        M -->|"否"| O["等待下次重试"]
-    end
-    
-    F --> G
-    
-    style Process fill:#e3f2fd,stroke:#1565c0
-    style Compensate fill:#c8e6c9,stroke:#2e7d32
-```
+![补偿机制工作流程](./images/补偿机制工作流程.svg)
 
 #### 代码实现
 
@@ -1149,38 +903,7 @@ public class CompensateTask {
 
 使用分布式事务框架（如 Seata）实现跨线程、跨服务的事务一致性。
 
-```mermaid
-flowchart TB
-    subgraph Application["应用程序"]
-        MainService["主服务"]
-    end
-    
-    subgraph Seata["Seata 分布式事务"]
-        TC["Transaction Coordinator<br/>事务协调器"]
-        TM["Transaction Manager<br/>事务管理器"]
-        RM1["Resource Manager 1<br/>资源管理器"]
-        RM2["Resource Manager 2<br/>资源管理器"]
-    end
-    
-    subgraph Databases["数据库"]
-        DB1["数据库 1"]
-        DB2["数据库 2"]
-    end
-    
-    MainService --> TM
-    TM -->|"1. 开启全局事务"| TC
-    TC -->|"2. 注册分支事务"| RM1
-    TC -->|"2. 注册分支事务"| RM2
-    RM1 --> DB1
-    RM2 --> DB2
-    RM1 -->|"3. 上报状态"| TC
-    RM2 -->|"3. 上报状态"| TC
-    TC -->|"4. 决定提交/回滚"| TM
-    
-    style Application fill:#f3e5f5,stroke:#7b1fa2
-    style Seata fill:#e3f2fd,stroke:#1565c0
-    style Databases fill:#c8e6c9,stroke:#2e7d32
-```
+![Seata 分布式事务架构](./images/Seata分布式事务架构.svg)
 
 #### Seata 配置示例
 

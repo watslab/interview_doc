@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 524" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="504" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1565C0" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">REQUIRED、REQUIRES_NEW 与 NESTED 对比</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">方法 A 调用方法 B 时，三种传播行为的事务组织方式</text>
+
+  <!-- ============ Scenario strip ============ -->
+  <rect x="30" y="90" width="900" height="64" rx="8" fill="#F9F4FB" stroke="#E1BEE7" stroke-width="1"/>
+  <rect x="270" y="100" width="170" height="44" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.8"/>
+  <text x="355" y="122" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#6A1B9A">方法 A（外层事务）</text>
+  <rect x="520" y="100" width="170" height="44" rx="6" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.8"/>
+  <text x="605" y="122" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#6A1B9A">方法 B（内层事务）</text>
+
+  <!-- ============ Column 1: REQUIRED ============ -->
+  <rect x="30" y="186" width="280" height="32" rx="8" fill="#1565C0"/>
+  <text x="170" y="202" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">REQUIRED</text>
+
+  <rect x="60" y="242" width="220" height="98" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8"/>
+  <text x="170" y="258" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#1565C0">事务 T</text>
+  <rect x="75" y="274" width="90" height="40" rx="5" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="120" y="294" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">方法 A</text>
+  <rect x="175" y="274" width="90" height="40" rx="5" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5"/>
+  <text x="220" y="294" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">方法 B</text>
+
+  <rect x="30" y="366" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="170" y="384" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">A 与 B 在同一个事务中</text>
+  <rect x="30" y="412" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="170" y="430" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">B 异常导致 A、B 都回滚</text>
+  <rect x="30" y="458" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="170" y="476" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">A 异常导致 A、B 都回滚</text>
+
+  <!-- ============ Column 2: REQUIRES_NEW ============ -->
+  <rect x="340" y="186" width="280" height="32" rx="8" fill="#2E7D32"/>
+  <text x="480" y="202" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">REQUIRES_NEW</text>
+
+  <rect x="60" y="242" width="100" height="98" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8"/>
+  <text x="110" y="260" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">事务 T1</text>
+  <rect x="70" y="276" width="80" height="40" rx="5" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="110" y="296" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">方法 A</text>
+  <path d="M170,248 V334" stroke="#A5D6A7" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
+  <rect x="180" y="242" width="100" height="98" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8"/>
+  <text x="230" y="260" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#2E7D32">事务 T2</text>
+  <rect x="190" y="276" width="80" height="40" rx="5" fill="#FFFFFF" stroke="#43A047" stroke-width="1.5"/>
+  <text x="230" y="296" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">方法 B</text>
+
+  <rect x="340" y="366" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="480" y="384" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">B 是独立的新事务</text>
+  <rect x="340" y="412" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="480" y="430" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">B 提交后，A 回滚不影响 B</text>
+  <rect x="340" y="458" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="480" y="476" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">A 与 B 完全独立</text>
+
+  <!-- ============ Column 3: NESTED ============ -->
+  <rect x="650" y="186" width="280" height="32" rx="8" fill="#EF6C00"/>
+  <text x="790" y="202" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">NESTED</text>
+
+  <rect x="60" y="242" width="220" height="98" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.8"/>
+  <text x="170" y="258" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#E65100">事务 T</text>
+  <rect x="75" y="274" width="90" height="50" rx="5" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="120" y="299" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">方法 A</text>
+  <rect x="185" y="274" width="90" height="50" rx="5" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <circle cx="230" cy="274" r="5" fill="#F57C00" stroke="#FFFFFF" stroke-width="1.5"/>
+  <text x="230" y="293" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">方法 B</text>
+  <text x="230" y="312" text-anchor="middle" dominant-baseline="central" font-size="8.5" fill="#EF6C00">Savepoint</text>
+
+  <rect x="650" y="366" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="790" y="384" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">B 是 A 的嵌套子事务</text>
+  <rect x="650" y="412" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="790" y="430" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">B 回滚不影响 A</text>
+  <rect x="650" y="458" width="280" height="36" rx="6" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="790" y="476" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#455A64">A 回滚会导致 B 回滚</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M442,122 L516,122" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M170,156 L170,184" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M480,156 L480,184" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M790,156 L790,184" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- ============ Annotations ============ -->
+  <text x="480" y="108" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">调用</text>
+</svg>

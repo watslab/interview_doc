@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 356" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="336" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1565C0" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">三大缓存问题对比</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">穿透、击穿、雪崩的场景、特征与应对方案</text>
+
+  <!-- ============ 缓存穿透 ============ -->
+  <rect x="30" y="90" width="280" height="236" rx="8" fill="#FEF6F6" stroke="#E57373" stroke-width="1"/>
+  <path d="M38,90 H302 Q310,90 310,98 V122 H30 V98 Q30,90 38,90Z" fill="#C62828"/>
+  <text x="170" y="106" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">缓存穿透</text>
+
+  <rect x="40" y="140" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="52" y="154" width="40" height="18" rx="9" fill="#E3F2FD"/>
+  <text x="72" y="163" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#1565C0">场景</text>
+  <text x="104" y="163" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">查询不存在的数据</text>
+
+  <rect x="40" y="200" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="52" y="214" width="40" height="18" rx="9" fill="#FFF3E0"/>
+  <text x="72" y="223" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#E65100">特征</text>
+  <text x="104" y="223" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">缓存和数据库都没有</text>
+
+  <rect x="40" y="260" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="52" y="274" width="40" height="18" rx="9" fill="#E8F5E9"/>
+  <text x="72" y="283" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#2E7D32">方案</text>
+  <text x="104" y="283" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">布隆过滤器、缓存空值</text>
+
+  <!-- ============ 缓存击穿 ============ -->
+  <rect x="340" y="90" width="280" height="236" rx="8" fill="#FFF9F2" stroke="#FFB74D" stroke-width="1"/>
+  <path d="M348,90 H612 Q620,90 620,98 V122 H340 V98 Q340,90 348,90Z" fill="#EF6C00"/>
+  <text x="480" y="106" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">缓存击穿</text>
+
+  <rect x="350" y="140" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="362" y="154" width="40" height="18" rx="9" fill="#E3F2FD"/>
+  <text x="382" y="163" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#1565C0">场景</text>
+  <text x="414" y="163" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">热点 Key 过期</text>
+
+  <rect x="350" y="200" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="362" y="214" width="40" height="18" rx="9" fill="#FFF3E0"/>
+  <text x="382" y="223" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#E65100">特征</text>
+  <text x="414" y="223" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">单点热点，高并发</text>
+
+  <rect x="350" y="260" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="362" y="274" width="40" height="18" rx="9" fill="#E8F5E9"/>
+  <text x="382" y="283" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#2E7D32">方案</text>
+  <text x="414" y="283" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">互斥锁、逻辑过期</text>
+
+  <!-- ============ 缓存雪崩 ============ -->
+  <rect x="650" y="90" width="280" height="236" rx="8" fill="#FAF4FB" stroke="#CE93D8" stroke-width="1"/>
+  <path d="M658,90 H922 Q930,90 930,98 V122 H650 V98 Q650,90 658,90Z" fill="#7B1FA2"/>
+  <text x="790" y="106" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">缓存雪崩</text>
+
+  <rect x="660" y="140" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="672" y="154" width="40" height="18" rx="9" fill="#E3F2FD"/>
+  <text x="692" y="163" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#1565C0">场景</text>
+  <text x="724" y="163" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">大量 Key 同时过期</text>
+
+  <rect x="660" y="200" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="672" y="214" width="40" height="18" rx="9" fill="#FFF3E0"/>
+  <text x="692" y="223" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#E65100">特征</text>
+  <text x="724" y="223" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">大面积失效</text>
+
+  <rect x="660" y="260" width="260" height="46" rx="6" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="672" y="274" width="40" height="18" rx="9" fill="#E8F5E9"/>
+  <text x="692" y="283" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="bold" fill="#2E7D32">方案</text>
+  <text x="724" y="283" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F">随机过期、多级缓存、熔断</text>
+</svg>

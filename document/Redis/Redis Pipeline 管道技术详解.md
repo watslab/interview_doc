@@ -4,30 +4,7 @@
 
 Redis Pipeline（管道）是一种通过一次性发出多个命令而无需等待每个单独命令的响应来提高性能的技术。它可以显著减少网络往返时间（RTT），大幅提升批量操作的性能。
 
-```mermaid
-flowchart TB
-    subgraph Problem["问题：传统模式"]
-        P1["客户端发送命令1"] --> P2["等待响应1"]
-        P2 --> P3["客户端发送命令2"]
-        P3 --> P4["等待响应2"]
-        P4 --> P5["客户端发送命令3"]
-        P5 --> P6["等待响应3"]
-        P6 --> P7["总耗时 = 3 × RTT"]
-    end
-    
-    subgraph Solution["解决方案：Pipeline"]
-        S1["客户端打包发送<br/>命令1 + 命令2 + 命令3"]
-        S2["服务器依次执行"]
-        S3["一次性返回所有响应"]
-        S4["总耗时 ≈ 1 × RTT"]
-        S1 --> S2 --> S3 --> S4
-    end
-    
-    Problem --> Solution
-    
-    style Problem fill:#ffcdd2,stroke:#c62828
-    style Solution fill:#c8e6c9,stroke:#2e7d32
-```
+![传统模式与Pipeline对比](./images/传统模式与Pipeline对比.svg)
 
 ***
 
@@ -70,26 +47,13 @@ sequenceDiagram
 
 ### 2.2 RTT 对性能的影响
 
-```mermaid
-flowchart TB
-    subgraph Impact["RTT 对性能的影响"]
-        L1["本地网络<br/>RTT < 1ms<br/>影响较小"]
-        L2["跨机房网络<br/>RTT ≈ 10-50ms<br/>影响明显"]
-        L3["跨地域网络<br/>RTT > 100ms<br/>性能灾难"]
-    end
-    
-    style L1 fill:#c8e6c9,stroke:#2e7d32
-    style L2 fill:#fff3e0,stroke:#ef6c00
-    style L3 fill:#ffcdd2,stroke:#c62828
-```
-
 **性能对比示例**：
 
-| 场景 | RTT | 1000 条命令耗时 |
-|------|-----|----------------|
-| 本地网络 | 0.5ms | 0.5s |
-| 跨机房 | 10ms | 10s |
-| 跨地域 | 100ms | 100s |
+| 场景 | RTT | 1000 条命令耗时 | 性能影响 |
+|------|-----|----------------|---------|
+| 本地网络 | 0.5ms | 0.5s | 影响较小 |
+| 跨机房 | 10ms | 10s | 影响明显 |
+| 跨地域 | 100ms | 100s | 性能灾难 |
 
 ***
 
@@ -97,38 +61,7 @@ flowchart TB
 
 ### 3.1 核心原理
 
-```mermaid
-flowchart TB
-    subgraph Pipeline["Pipeline 工作流程"]
-        direction TB
-        
-        subgraph Client["客户端"]
-            C1["1. 命令缓冲<br/>将多个命令存入本地缓冲区"]
-            C2["2. 批量发送<br/>达到阈值后一次性发送"]
-            C3["5. 批量接收<br/>统一读取所有响应"]
-        end
-        
-        subgraph Server["服务端"]
-            S1["3. 顺序执行<br/>按顺序执行所有命令"]
-            S2["4. 打包响应<br/>将结果打包返回"]
-        end
-        
-        C1 --> C2 --> S1 --> S2 --> C3
-    end
-    
-    style Pipeline fill:#e3f2fd,stroke:#1565c0
-    style Client fill:#c8e6c9,stroke:#2e7d32
-    style Server fill:#fff3e0,stroke:#ef6c00
-```
-
-**三个关键阶段**：
-
-| 阶段 | 客户端操作 | 服务端操作 |
-|------|-----------|-----------|
-| **缓冲** | 将多个命令存入本地缓冲区 | - |
-| **发送** | 达到阈值后一次性发送到服务端 | 接收命令序列 |
-| **执行** | - | 按顺序执行，打包响应 |
-| **接收** | 统一读取所有响应结果 | - |
+![Pipeline工作流程](./images/Pipeline工作流程.svg)
 
 ### 3.2 协议特性
 
@@ -168,41 +101,7 @@ sequenceDiagram
 
 ### 4.1 Pipeline vs 普通命令 vs 事务 vs Lua 脚本
 
-```mermaid
-flowchart TB
-    subgraph Compare["四种执行方式对比"]
-        direction TB
-        
-        subgraph Normal["普通命令"]
-            N1["逐条发送"]
-            N2["逐条等待响应"]
-            N3["RTT 累积"]
-        end
-        
-        subgraph Pipe["Pipeline"]
-            P1["批量发送"]
-            P2["批量接收响应"]
-            P3["减少 RTT"]
-        end
-        
-        subgraph Tx["事务 MULTI/EXEC"]
-            T1["批量发送"]
-            T2["原子执行"]
-            T3["保证一致性"]
-        end
-        
-        subgraph Lua["Lua 脚本"]
-            L1["单次发送"]
-            L2["原子执行"]
-            L3["复杂逻辑"]
-        end
-    end
-    
-    style Normal fill:#ffcdd2,stroke:#c62828
-    style Pipe fill:#c8e6c9,stroke:#2e7d32
-    style Tx fill:#e3f2fd,stroke:#1565c0
-    style Lua fill:#fff3e0,stroke:#ef6c00
-```
+![四种执行方式对比](./images/四种执行方式对比.svg)
 
 ### 4.2 详细对比表
 
@@ -219,27 +118,7 @@ flowchart TB
 
 ### 4.3 Pipeline 与事务的核心区别
 
-```mermaid
-flowchart TB
-    subgraph PipelineExec["Pipeline 执行过程"]
-        P1["命令1 执行"] --> P2["回到事件循环"]
-        P2 --> P3["可能执行其他客户端命令"]
-        P3 --> P4["命令2 执行"]
-        P4 --> P5["回到事件循环"]
-        P5 --> P6["可能执行其他客户端命令"]
-    end
-    
-    subgraph TransactionExec["事务执行过程"]
-        T1["MULTI 开始"] --> T2["命令1 执行（入队）"]
-        T2 --> T3["命令2 执行（入队）"]
-        T3 --> T4["EXEC 触发"]
-        T4 --> T5["原子执行所有命令"]
-        T5 --> T6["其他命令才能插入"]
-    end
-    
-    style PipelineExec fill:#e3f2fd,stroke:#1565c0
-    style TransactionExec fill:#c8e6c9,stroke:#2e7d32
-```
+![Pipeline与事务执行过程对比](./images/Pipeline与事务执行过程对比.svg)
 
 **关键区别**：
 
@@ -255,17 +134,7 @@ flowchart TB
 
 ### 5.1 适用场景
 
-```mermaid
-flowchart TB
-    subgraph Suitable["适用场景"]
-        S1["批量数据写入<br/>如：批量插入缓存数据"]
-        S2["批量数据读取<br/>如：批量获取多个 Key"]
-        S3["数据初始化<br/>如：系统启动时预热缓存"]
-        S4["数据迁移<br/>如：从数据库批量导入 Redis"]
-    end
-    
-    style Suitable fill:#c8e6c9,stroke:#2e7d32
-```
+Pipeline 适用于以下批量操作场景：
 
 | 场景 | 说明 | 示例 |
 |------|------|------|
@@ -276,17 +145,7 @@ flowchart TB
 
 ### 5.2 不适用场景
 
-```mermaid
-flowchart TB
-    subgraph Unsuitable["不适用场景"]
-        U1["需要原子性保证<br/>应使用事务或 Lua 脚本"]
-        U2["命令间有依赖关系<br/>后续命令依赖前序结果"]
-        U3["实时性要求高<br/>单命令响应更快"]
-        U4["数据量过大<br/>可能导致内存溢出"]
-    end
-    
-    style Unsuitable fill:#ffcdd2,stroke:#c62828
-```
+以下场景不适合使用 Pipeline：
 
 | 场景 | 原因 | 替代方案 |
 |------|------|---------|
@@ -364,12 +223,20 @@ public class RedissonPipelineExample {
     }
     
     public void batchWithTimeout() {
-        RBatch batch = redisson.createBatch();
-        
+        BatchOptions options = BatchOptions.defaults()
+            // 等待批量响应的总超时时间
+            .responseTimeout(3, TimeUnit.SECONDS)
+            // 发送失败后的重试次数
+            .retryAttempts(2)
+            // 两次重试之间的等待间隔
+            .retryInterval(1, TimeUnit.SECONDS);
+
+        RBatch batch = redisson.createBatch(options);
+
         batch.getMap("cache").fastPutAsync("key1", "value1");
         batch.getMap("cache").fastPutAsync("key2", "value2");
         batch.getMap("cache").getAsync("key1");
-        
+
         BatchResult<?> result = batch.execute();
         System.out.println("响应数量: " + result.getResponses().size());
     }
@@ -453,20 +320,7 @@ def pipeline_with_transaction():
 
 ### 7.1 批量大小选择
 
-```mermaid
-flowchart TB
-    subgraph BatchSize["批量大小选择"]
-        B1["批量过小<br/>RTT 优化不明显"]
-        B2["批量适中<br/>推荐 100-1000 条"]
-        B3["批量过大<br/>内存压力、响应延迟"]
-    end
-    
-    B1 --> B2 --> B3
-    
-    style B1 fill:#ffcdd2,stroke:#c62828
-    style B2 fill:#c8e6c9,stroke:#2e7d32
-    style B3 fill:#fff3e0,stroke:#ef6c00
-```
+批量大小需在 RTT 优化收益与内存占用之间权衡：
 
 | 批量大小 | 优点 | 缺点 | 建议 |
 |---------|------|------|------|
@@ -503,18 +357,13 @@ public void batchInsert(List<User> users) {
 
 ### 7.4 性能测试对比
 
-```mermaid
-flowchart LR
-    subgraph Test["性能测试结果（10000 条命令）"]
-        T1["普通模式<br/>RTT=1ms<br/>耗时 ≈ 10s"]
-        T2["Pipeline<br/>批量=100<br/>耗时 ≈ 0.1s"]
-        T3["Pipeline<br/>批量=1000<br/>耗时 ≈ 0.01s"]
-    end
-    
-    style T1 fill:#ffcdd2,stroke:#c62828
-    style T2 fill:#fff3e0,stroke:#ef6c00
-    style T3 fill:#c8e6c9,stroke:#2e7d32
-```
+以 10000 条命令、RTT = 1ms 为例：
+
+| 模式 | 批量大小 | 总耗时 |
+|------|---------|--------|
+| 普通模式 | - | ≈ 10s |
+| Pipeline | 100 | ≈ 0.1s |
+| Pipeline | 1000 | ≈ 0.01s |
 
 ***
 
@@ -522,16 +371,7 @@ flowchart LR
 
 ### 8.1 Pipeline 是否原子执行？
 
-```mermaid
-flowchart TB
-    subgraph Answer["答案：不是"]
-        A1["Pipeline 只是批量发送命令"]
-        A2["执行过程中可能被其他客户端命令穿插"]
-        A3["如需原子性，请使用事务或 Lua 脚本"]
-    end
-    
-    style Answer fill:#fff3e0,stroke:#ef6c00
-```
+**答案：不是。** Pipeline 仅批量发送命令，执行过程中可能被其他客户端的命令穿插；如需原子性保证，应使用事务或 Lua 脚本。
 
 **示例说明**：
 
@@ -586,36 +426,7 @@ public void handleErrors() {
 
 ## 九、最佳实践总结
 
-```mermaid
-flowchart TB
-    subgraph BestPractice["Pipeline 最佳实践"]
-        direction TB
-        
-        subgraph Use["推荐使用"]
-            U1["批量写入场景"]
-            U2["批量读取场景"]
-            U3["缓存预热"]
-            U4["数据迁移"]
-        end
-        
-        subgraph Avoid["避免使用"]
-            A1["需要原子性的场景"]
-            A2["命令间有依赖"]
-            A3["超大批量（> 10000）"]
-        end
-        
-        subgraph Tips["优化建议"]
-            T1["批量大小: 100-1000"]
-            T2["分批处理大数据"]
-            T3["检查每条命令结果"]
-            T4["合理设置超时"]
-        end
-    end
-    
-    style Use fill:#c8e6c9,stroke:#2e7d32
-    style Avoid fill:#ffcdd2,stroke:#c62828
-    style Tips fill:#e3f2fd,stroke:#1565c0
-```
+![Pipeline最佳实践](./images/Pipeline最佳实践.svg)
 
 ### 9.1 使用建议清单
 

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 330" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="310" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#C62828" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">事务失效场景汇总</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">八类常见失效场景及其直接成因</text>
+
+  <!-- ============ Row 1 ============ -->
+  <rect x="30" y="100" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="56" cy="130" r="11" fill="#C62828"/>
+  <text x="56" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="76" y="130" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">方法访问权限非 public</text>
+  <text x="45" y="162" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">Spring AOP 仅代理 public 方法</text>
+
+  <rect x="260" y="100" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="286" cy="130" r="11" fill="#C62828"/>
+  <text x="286" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="306" y="130" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">同类内部方法自调用</text>
+  <text x="275" y="162" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">内部调用走 this 引用，绕过代理</text>
+
+  <rect x="490" y="100" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="516" cy="130" r="11" fill="#C62828"/>
+  <text x="516" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="536" y="130" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">异常被 try-catch 捕获</text>
+  <text x="505" y="162" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">异常未抛出，方法被视为正常完成</text>
+
+  <rect x="720" y="100" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="746" cy="130" r="11" fill="#C62828"/>
+  <text x="746" y="130" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">4</text>
+  <text x="766" y="130" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">异常类型不匹配</text>
+  <text x="735" y="162" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">checked 异常默认不触发回滚</text>
+
+  <!-- ============ Row 2 ============ -->
+  <rect x="30" y="212" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="56" cy="242" r="11" fill="#C62828"/>
+  <text x="56" y="242" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">5</text>
+  <text x="76" y="242" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">数据库引擎不支持事务</text>
+  <text x="45" y="274" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">MyISAM 引擎不支持事务</text>
+
+  <rect x="260" y="212" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="286" cy="242" r="11" fill="#C62828"/>
+  <text x="286" y="242" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">6</text>
+  <text x="306" y="242" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">未配置事务管理器</text>
+  <text x="275" y="274" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">缺少事务管理器 Bean</text>
+
+  <rect x="490" y="212" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="516" cy="242" r="11" fill="#C62828"/>
+  <text x="516" y="242" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">7</text>
+  <text x="536" y="242" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">传播行为配置错误</text>
+  <text x="505" y="274" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">NOT_SUPPORTED 以非事务执行</text>
+
+  <rect x="720" y="212" width="210" height="92" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.2" filter="url(#s1)"/>
+  <circle cx="746" cy="242" r="11" fill="#C62828"/>
+  <text x="746" y="242" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">8</text>
+  <text x="766" y="242" text-anchor="start" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">多数据源未指定事务管理器</text>
+  <text x="735" y="274" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#78909C">未通过 value 指定事务管理器</text>
+</svg>

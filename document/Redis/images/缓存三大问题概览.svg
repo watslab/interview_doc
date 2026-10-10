@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 410" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#B0BEC5"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="390" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1565C0" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">缓存三大问题概览</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">穿透、击穿、雪崩的发生过程与影响范围</text>
+
+  <!-- ============ Column 1: 缓存穿透 ============ -->
+  <rect x="30" y="90" width="280" height="290" rx="8" fill="#FEF6F6" stroke="#E57373" stroke-width="1"/>
+  <path d="M38,90 H302 Q310,90 310,98 V128 H30 V98 Q30,90 38,90Z" fill="#C62828"/>
+  <text x="170" y="109" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">缓存穿透 · Penetration</text>
+
+  <rect x="45" y="150" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#E57373" stroke-width="1.5"/>
+  <text x="170" y="176" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">查询不存在的数据</text>
+
+  <rect x="45" y="234" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#E57373" stroke-width="1.5"/>
+  <text x="170" y="260" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">绕过缓存直接打库</text>
+
+  <rect x="45" y="318" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#E57373" stroke-width="1.5"/>
+  <text x="170" y="344" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">影响范围：中</text>
+
+  <!-- ============ Column 2: 缓存击穿 ============ -->
+  <rect x="340" y="90" width="280" height="290" rx="8" fill="#FFF9F2" stroke="#FFB74D" stroke-width="1"/>
+  <path d="M348,90 H612 Q620,90 620,98 V128 H340 V98 Q340,90 348,90Z" fill="#EF6C00"/>
+  <text x="480" y="109" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">缓存击穿 · Breakdown</text>
+
+  <rect x="355" y="150" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="480" y="176" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">热点 Key 过期</text>
+
+  <rect x="355" y="234" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="480" y="260" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">大量并发请求打库</text>
+
+  <rect x="355" y="318" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#FFB74D" stroke-width="1.5"/>
+  <text x="480" y="344" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">影响范围：中高</text>
+
+  <!-- ============ Column 3: 缓存雪崩 ============ -->
+  <rect x="650" y="90" width="280" height="290" rx="8" fill="#FAF4FB" stroke="#CE93D8" stroke-width="1"/>
+  <path d="M658,90 H922 Q930,90 930,98 V128 H650 V98 Q650,90 658,90Z" fill="#7B1FA2"/>
+  <text x="790" y="109" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">缓存雪崩 · Avalanche</text>
+
+  <rect x="665" y="150" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="790" y="165" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">大量 Key 同时过期</text>
+  <text x="790" y="187" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">或 Redis 宕机</text>
+
+  <rect x="665" y="234" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="790" y="260" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">所有请求穿透到数据库</text>
+
+  <rect x="665" y="318" width="250" height="52" rx="6" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5"/>
+  <text x="790" y="344" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#37474F">影响范围：最高</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M170,204 L170,232" stroke="#B0BEC5" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M170,288 L170,316" stroke="#B0BEC5" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M480,204 L480,232" stroke="#B0BEC5" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M480,288 L480,316" stroke="#B0BEC5" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M790,204 L790,232" stroke="#B0BEC5" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M790,288 L790,316" stroke="#B0BEC5" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+</svg>

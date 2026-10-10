@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 376" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="356" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#F57C00" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">TTL 上下文传递机制</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">任务提交时捕获、执行时恢复、完成后清理，实现跨线程上下文传递</text>
+
+  <!-- ============ 主线程 ============ -->
+  <rect x="40" y="110" width="250" height="170" rx="8" fill="#F5F7F8" stroke="#B0BEC5" stroke-width="1"/>
+  <rect x="60" y="120" width="90" height="22" rx="11" fill="#546E7A"/>
+  <text x="105" y="131" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#FFFFFF">主线程</text>
+
+  <rect x="60" y="156" width="210" height="100" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.8"/>
+  <text x="165" y="196" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#1565C0">TransmittableThreadLocal</text>
+  <text x="165" y="222" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">存储事务上下文</text>
+
+  <!-- ============ TTL 装饰的线程池 ============ -->
+  <rect x="370" y="90" width="550" height="266" rx="8" fill="#FFF9F2" stroke="#FFCC80" stroke-width="1"/>
+  <rect x="390" y="100" width="150" height="24" rx="12" fill="#F57C00"/>
+  <text x="465" y="112" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">TTL 装饰的线程池</text>
+
+  <rect x="390" y="150" width="150" height="84" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <circle cx="410" cy="172" r="9" fill="#F57C00"/>
+  <text x="410" y="172" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="426" y="172" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#37474F">任务提交时</text>
+  <text x="465" y="206" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">捕获父线程上下文</text>
+
+  <rect x="570" y="150" width="150" height="84" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <circle cx="590" cy="172" r="9" fill="#F57C00"/>
+  <text x="590" y="172" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="606" y="172" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#37474F">任务执行时</text>
+  <text x="645" y="206" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">恢复上下文到子线程</text>
+
+  <rect x="750" y="150" width="150" height="84" rx="6" fill="#FFFFFF" stroke="#F57C00" stroke-width="1.5"/>
+  <circle cx="770" cy="172" r="9" fill="#F57C00"/>
+  <text x="770" y="172" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="786" y="172" text-anchor="start" dominant-baseline="central" font-size="11" font-weight="bold" fill="#37474F">任务完成后</text>
+  <text x="825" y="206" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">清理子线程上下文</text>
+
+  <rect x="570" y="272" width="150" height="64" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.8"/>
+  <text x="645" y="296" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="bold" fill="#2E7D32">子线程</text>
+  <text x="645" y="318" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">继承的事务上下文</text>
+
+  <!-- ============ Connection lines (drawn last) ============ -->
+  <path d="M273,206 C330,206 350,192 386,192" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M542,192 L568,192" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M722,192 L748,192" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M645,236 L645,270" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <path d="M722,304 C780,304 825,290 825,237" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- ============ Annotations ============ -->
+  <text x="330" y="189" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">提交任务</text>
+</svg>

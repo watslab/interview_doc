@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ar" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E57373"/></marker>
+    <marker id="ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="940" height="400" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <path d="M40,20 H920 Q930,20 930,30 V62 H30 V30 Q30,20 40,20Z" fill="#1E88E5" filter="url(#s1)"/>
+  <text x="480" y="41" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="bold" fill="#FFFFFF">过期时间随机化</text>
+  <text x="480" y="74" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#757575">相同过期时间导致集中失效，加入随机偏移使过期时间点分散</text>
+
+  <!-- ============ 左：问题 · 相同过期时间 ============ -->
+  <rect x="30" y="90" width="430" height="290" rx="8" fill="#FEF6F6" stroke="#E57373" stroke-width="1"/>
+  <rect x="45" y="100" width="160" height="24" rx="12" fill="#C62828"/>
+  <text x="125" y="112" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">问题 · 相同过期时间</text>
+
+  <rect x="55" y="140" width="110" height="36" rx="6" fill="#FFEBEE" stroke="#E57373" stroke-width="1.2"/>
+  <text x="110" y="158" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key1 · 3600s</text>
+  <rect x="55" y="186" width="110" height="36" rx="6" fill="#FFEBEE" stroke="#E57373" stroke-width="1.2"/>
+  <text x="110" y="204" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key2 · 3600s</text>
+  <rect x="55" y="232" width="110" height="36" rx="6" fill="#FFEBEE" stroke="#E57373" stroke-width="1.2"/>
+  <text x="110" y="250" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key3 · 3600s</text>
+  <rect x="55" y="278" width="110" height="36" rx="6" fill="#FFEBEE" stroke="#E57373" stroke-width="1.2"/>
+  <text x="110" y="296" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key4 · 3600s</text>
+
+  <path d="M380,140 L380,328" stroke="#E57373" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <path d="M372,227 L388,227" stroke="#C62828" stroke-width="2"/>
+  <path d="M167,158 C240,158 330,200 374,225" stroke="#E57373" stroke-width="1.2" fill="none" marker-end="url(#ar)"/>
+  <path d="M167,204 C240,204 330,213 374,226" stroke="#E57373" stroke-width="1.2" fill="none" marker-end="url(#ar)"/>
+  <path d="M167,250 C240,250 330,241 374,228" stroke="#E57373" stroke-width="1.2" fill="none" marker-end="url(#ar)"/>
+  <path d="M167,296 C240,296 330,254 374,229" stroke="#E57373" stroke-width="1.2" fill="none" marker-end="url(#ar)"/>
+
+  <text x="380" y="348" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#C62828">T = 3600s</text>
+  <text x="200" y="362" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#C62828">同一时刻过期</text>
+
+  <!-- ============ 中间转换箭头 ============ -->
+  <path d="M462,235 L516,235" stroke="#90A4AE" stroke-width="1.5" fill="none" marker-end="url(#ah)"/>
+  <text x="490" y="221" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#757575">随机偏移</text>
+
+  <!-- ============ 右：解决 · 随机过期时间 ============ -->
+  <rect x="520" y="90" width="410" height="290" rx="8" fill="#F4FAF5" stroke="#C8E6C9" stroke-width="1"/>
+  <rect x="535" y="100" width="160" height="24" rx="12" fill="#43A047"/>
+  <text x="615" y="112" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#FFFFFF">解决 · 随机过期时间</text>
+
+  <rect x="545" y="140" width="110" height="36" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="158" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key1 · 3600s</text>
+  <rect x="545" y="186" width="110" height="36" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="204" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key2 · 3700s</text>
+  <rect x="545" y="232" width="110" height="36" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="250" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key3 · 3500s</text>
+  <rect x="545" y="278" width="110" height="36" rx="6" fill="#E8F5E9" stroke="#43A047" stroke-width="1.2"/>
+  <text x="600" y="296" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">Key4 · 3800s</text>
+
+  <path d="M880,140 L880,328" stroke="#43A047" stroke-width="1.5" fill="none" marker-end="url(#ag)"/>
+  <path d="M874,170 L886,170 M874,210 L886,210 M874,250 L886,250 M874,290 L886,290" stroke="#2E7D32" stroke-width="1.5"/>
+  <path d="M657,158 C720,158 820,206 870,209" stroke="#43A047" stroke-width="1.2" fill="none" marker-end="url(#ag)"/>
+  <path d="M657,204 C720,204 820,244 870,248" stroke="#43A047" stroke-width="1.2" fill="none" marker-end="url(#ag)"/>
+  <path d="M657,250 C720,250 820,166 870,170" stroke="#43A047" stroke-width="1.2" fill="none" marker-end="url(#ag)"/>
+  <path d="M657,296 C720,296 820,287 870,289" stroke="#43A047" stroke-width="1.2" fill="none" marker-end="url(#ag)"/>
+
+  <text x="894" y="170" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#2E7D32">3500s</text>
+  <text x="894" y="210" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#2E7D32">3600s</text>
+  <text x="894" y="250" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#2E7D32">3700s</text>
+  <text x="894" y="290" text-anchor="start" dominant-baseline="central" font-size="9.5" fill="#2E7D32">3800s</text>
+  <text x="725" y="362" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="bold" fill="#2E7D32">过期时间点分散</text>
+</svg>
