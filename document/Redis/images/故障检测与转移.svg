@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E57373"/></marker>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#81C784"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="900" height="450" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 左栏：故障检测 -->
+  <rect x="30" y="40" width="420" height="384" rx="10" fill="#FDF0F0" stroke="#E57373" stroke-width="1.5"/>
+  <path d="M40,40 H440 Q450,40 450,50 V76 H30 V50 Q30,40 40,40Z" fill="#E53935"/>
+  <text x="240" y="63" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">故障检测：从 PFAIL 到 FAIL</text>
+
+  <rect x="54" y="100" width="372" height="56" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="78" cy="128" r="11" fill="#E53935"/>
+  <text x="78" y="132" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="252" y="132" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">节点 B 超过 cluster-node-timeout 未响应 PING</text>
+
+  <rect x="54" y="182" width="372" height="56" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="78" cy="210" r="11" fill="#E53935"/>
+  <text x="78" y="214" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="252" y="214" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">标记 B 为主观下线（PFAIL）</text>
+
+  <rect x="54" y="264" width="372" height="56" rx="8" fill="#FFFFFF" stroke="#E57373" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="78" cy="292" r="11" fill="#E53935"/>
+  <text x="78" y="296" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="252" y="296" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">PFAIL 状态随 Gossip 心跳扩散</text>
+
+  <rect x="54" y="346" width="372" height="56" rx="8" fill="#C62828" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="78" cy="374" r="11" fill="#FFFFFF"/>
+  <text x="78" y="378" text-anchor="middle" font-size="11" font-weight="bold" fill="#C62828">4</text>
+  <text x="252" y="378" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#FFFFFF">过半主节点确认，B 进入客观下线（FAIL）</text>
+
+  <!-- 右栏：故障转移 -->
+  <rect x="470" y="40" width="420" height="384" rx="10" fill="#F2FAF2" stroke="#81C784" stroke-width="1.5"/>
+  <path d="M480,40 H880 Q890,40 890,50 V76 H470 V50 Q470,40 480,40Z" fill="#43A047"/>
+  <text x="680" y="63" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">故障转移：从节点接替</text>
+
+  <rect x="494" y="100" width="372" height="56" rx="8" fill="#FFFFFF" stroke="#81C784" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="518" cy="128" r="11" fill="#43A047"/>
+  <text x="518" y="132" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">5</text>
+  <text x="692" y="132" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">从节点 B1 延迟发起选举（数据越新越早）</text>
+
+  <rect x="494" y="182" width="372" height="56" rx="8" fill="#FFFFFF" stroke="#81C784" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="518" cy="210" r="11" fill="#43A047"/>
+  <text x="518" y="214" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">6</text>
+  <text x="692" y="214" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">各主节点投票，每个纪元（epoch）仅一票</text>
+
+  <rect x="494" y="264" width="372" height="56" rx="8" fill="#FFFFFF" stroke="#81C784" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="518" cy="292" r="11" fill="#43A047"/>
+  <text x="518" y="296" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">7</text>
+  <text x="692" y="296" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">获得过半主节点选票，选举胜出</text>
+
+  <rect x="494" y="346" width="372" height="56" rx="8" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <circle cx="518" cy="374" r="11" fill="#FFFFFF"/>
+  <text x="518" y="378" text-anchor="middle" font-size="11" font-weight="bold" fill="#2E7D32">8</text>
+  <text x="692" y="378" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#FFFFFF">B1 升级为主节点，接管槽 5501 - 11000</text>
+
+  <!-- 连接线 -->
+  <line x1="240" y1="156" x2="240" y2="181" stroke="#E57373" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <line x1="240" y1="238" x2="240" y2="263" stroke="#E57373" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <line x1="240" y1="320" x2="240" y2="345" stroke="#E57373" stroke-width="1.5" marker-end="url(#ahr)"/>
+
+  <line x1="680" y1="156" x2="680" y2="181" stroke="#81C784" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <line x1="680" y1="238" x2="680" y2="263" stroke="#81C784" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <line x1="680" y1="320" x2="680" y2="345" stroke="#81C784" stroke-width="1.5" marker-end="url(#ahg)"/>
+</svg>

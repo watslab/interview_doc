@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="900" height="340" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 计算管线 -->
+  <rect x="50" y="60" width="140" height="52" rx="8" fill="#FFFFFF" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="120" y="90" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">键 "123456789"</text>
+
+  <rect x="220" y="60" width="140" height="52" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="290" y="90" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">CRC16 哈希</text>
+
+  <rect x="390" y="60" width="140" height="52" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="90" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">mod 16384</text>
+
+  <rect x="560" y="60" width="140" height="52" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="630" y="90" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">槽 12739</text>
+
+  <rect x="730" y="60" width="140" height="52" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="800" y="80" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">节点 C</text>
+  <text x="800" y="100" text-anchor="middle" font-size="10.5" fill="#888888">槽 11001 - 16383</text>
+
+  <!-- 槽位条 -->
+  <rect x="50" y="180" width="276" height="40" fill="#90CAF9" stroke="#1E88E5" stroke-width="1"/>
+  <rect x="326" y="180" width="275" height="40" fill="#A5D6A7" stroke="#43A047" stroke-width="1"/>
+  <rect x="601" y="180" width="269" height="40" fill="#FFCC80" stroke="#F57C00" stroke-width="1"/>
+  <text x="188" y="204" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1A237E">槽 0 - 5500（节点 A）</text>
+  <text x="463" y="204" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1B5E20">槽 5501 - 11000（节点 B）</text>
+  <text x="735" y="204" text-anchor="middle" font-size="11.5" font-weight="600" fill="#4E2A00">槽 11001 - 16383（节点 C）</text>
+
+  <!-- 示例槽定位 -->
+  <text x="688" y="124" text-anchor="middle" font-size="10.5" fill="#757575">槽 12739</text>
+  <line x1="688" y1="128" x2="688" y2="180" stroke="#7B1FA2" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+  <!-- 公式 -->
+  <rect x="310" y="290" width="300" height="44" rx="8" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="316" text-anchor="middle" font-size="13" font-weight="600" fill="#4A148C" font-family="Consolas,'Courier New',monospace">HASH_SLOT = CRC16(key) mod 16384</text>
+
+  <!-- 管线连接 -->
+  <line x1="190" y1="86" x2="219" y2="86" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="360" y1="86" x2="389" y2="86" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="530" y1="86" x2="559" y2="86" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="700" y1="86" x2="729" y2="86" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+</svg>

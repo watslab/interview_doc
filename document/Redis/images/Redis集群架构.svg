@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="900" height="450" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 客户端 -->
+  <rect x="390" y="36" width="140" height="48" rx="8" fill="#FFFFFF" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="460" y="55" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">客户端</text>
+  <text x="460" y="74" text-anchor="middle" font-size="10.5" fill="#888888">应用程序</text>
+
+  <!-- 集群总线环 -->
+  <rect x="80" y="172" width="760" height="108" rx="14" fill="none" stroke="#F57C00" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="325" y="270" text-anchor="middle" font-size="11" font-weight="600" fill="#B26A00">集群总线（端口 +10000，Gossip 协议）</text>
+
+  <!-- 主节点 -->
+  <rect x="100" y="192" width="180" height="56" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="190" y="214" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">节点 A（主）</text>
+  <text x="190" y="234" text-anchor="middle" font-size="10.5" fill="#777777">槽 0 - 5500</text>
+
+  <rect x="370" y="192" width="180" height="56" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="214" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">节点 B（主）</text>
+  <text x="460" y="234" text-anchor="middle" font-size="10.5" fill="#777777">槽 5501 - 11000</text>
+
+  <rect x="640" y="192" width="180" height="56" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="730" y="214" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">节点 C（主）</text>
+  <text x="730" y="234" text-anchor="middle" font-size="10.5" fill="#777777">槽 11001 - 16383</text>
+
+  <!-- 从节点 -->
+  <rect x="100" y="326" width="180" height="56" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="190" y="348" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">节点 A1（从）</text>
+  <text x="190" y="368" text-anchor="middle" font-size="10.5" fill="#888888">复制节点 A</text>
+
+  <rect x="370" y="326" width="180" height="56" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="348" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">节点 B1（从）</text>
+  <text x="460" y="368" text-anchor="middle" font-size="10.5" fill="#888888">复制节点 B</text>
+
+  <rect x="640" y="326" width="180" height="56" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="730" y="348" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">节点 C1（从）</text>
+  <text x="730" y="368" text-anchor="middle" font-size="10.5" fill="#888888">复制节点 C</text>
+
+  <!-- 客户端直连箭头 -->
+  <line x1="415" y1="84" x2="190" y2="191" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+  <line x1="460" y1="84" x2="460" y2="191" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+  <line x1="505" y1="84" x2="730" y2="191" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+
+  <!-- 主从复制箭头 -->
+  <line x1="190" y1="248" x2="190" y2="325" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="460" y1="248" x2="460" y2="325" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="730" y1="248" x2="730" y2="325" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- 底部说明 -->
+  <text x="460" y="424" text-anchor="middle" font-size="10.5" fill="#757575">客户端无需代理，可直连集群任意节点</text>
+  <text x="460" y="444" text-anchor="middle" font-size="10.5" fill="#757575">任一主节点故障时，其从节点自动接替并接管对应槽位</text>
+</svg>
