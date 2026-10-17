@@ -8,31 +8,31 @@
 
   <!-- 阶段一：单机 -->
   <rect x="60" y="70" width="170" height="120" rx="10" fill="#FFFFFF" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="145" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">单机架构</text>
-  <text x="145" y="116" text-anchor="middle" font-size="10" fill="#888888">单节点承载全部读写</text>
-  <text x="145" y="134" text-anchor="middle" font-size="10" fill="#888888">无数据冗余</text>
-  <text x="145" y="152" text-anchor="middle" font-size="10" fill="#C62828">故障即服务中断</text>
+  <text x="145" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">单机架构</text>
+  <text x="145" y="127" text-anchor="middle" font-size="10" fill="#888888">单节点承载全部读写</text>
+  <text x="145" y="145" text-anchor="middle" font-size="10" fill="#888888">无数据冗余</text>
+  <text x="145" y="163" text-anchor="middle" font-size="10" fill="#C62828">故障即服务中断</text>
 
   <!-- 阶段二：主从复制 -->
   <rect x="270" y="70" width="170" height="120" rx="10" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="355" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">主从复制架构</text>
-  <text x="355" y="116" text-anchor="middle" font-size="10" fill="#888888">读写分离与数据冗余</text>
-  <text x="355" y="134" text-anchor="middle" font-size="10" fill="#888888">读能力可水平扩展</text>
-  <text x="355" y="152" text-anchor="middle" font-size="10" fill="#C62828">主故障需人工切换</text>
+  <text x="355" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">主从复制架构</text>
+  <text x="355" y="127" text-anchor="middle" font-size="10" fill="#888888">读写分离与数据冗余</text>
+  <text x="355" y="145" text-anchor="middle" font-size="10" fill="#888888">读能力可水平扩展</text>
+  <text x="355" y="163" text-anchor="middle" font-size="10" fill="#C62828">主故障需人工切换</text>
 
   <!-- 阶段三：哨兵 -->
   <rect x="480" y="70" width="170" height="120" rx="10" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="565" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">哨兵架构</text>
-  <text x="565" y="116" text-anchor="middle" font-size="10" fill="#888888">主从复制 + 自动故障转移</text>
-  <text x="565" y="134" text-anchor="middle" font-size="10" fill="#888888">客户端经哨兵获取主地址</text>
-  <text x="565" y="152" text-anchor="middle" font-size="10" fill="#C62828">容量与写入仍受单主限制</text>
+  <text x="565" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">哨兵架构</text>
+  <text x="565" y="127" text-anchor="middle" font-size="10" fill="#888888">主从复制 + 自动故障转移</text>
+  <text x="565" y="145" text-anchor="middle" font-size="10" fill="#888888">客户端经哨兵获取主地址</text>
+  <text x="565" y="163" text-anchor="middle" font-size="10" fill="#C62828">容量与写入仍受单主限制</text>
 
   <!-- 阶段四：Cluster -->
   <rect x="690" y="70" width="170" height="120" rx="10" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="775" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Cluster 架构</text>
-  <text x="775" y="116" text-anchor="middle" font-size="10" fill="#888888">哈希槽分片 + 内置高可用</text>
-  <text x="775" y="134" text-anchor="middle" font-size="10" fill="#888888">容量与写入线性扩展</text>
-  <text x="775" y="152" text-anchor="middle" font-size="10" fill="#C62828">多键操作限同槽</text>
+  <text x="775" y="105" text-anchor="middle" font-size="13" font-weight="bold" fill="#333333">Cluster 架构</text>
+  <text x="775" y="127" text-anchor="middle" font-size="10" fill="#888888">哈希槽分片 + 内置高可用</text>
+  <text x="775" y="145" text-anchor="middle" font-size="10" fill="#888888">容量与写入线性扩展</text>
+  <text x="775" y="163" text-anchor="middle" font-size="10" fill="#C62828">多键操作限同槽</text>
 
   <!-- 演进箭头 -->
   <line x1="230" y1="130" x2="269" y2="130" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>

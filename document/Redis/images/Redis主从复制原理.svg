@@ -19,7 +19,7 @@
   <!-- 判定 -->
   <polygon points="460,210 610,290 460,370 310,290" fill="#FFF8E1" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
   <text x="460" y="284" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">主节点判定：replid 一致</text>
-  <text x="460" y="302" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">且 offset 仍在积压缓冲区内？</text>
+  <text x="460" y="302" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">且 offset 仍在复制积压缓冲区内？</text>
 
   <!-- 分支标签 -->
   <text x="268" y="342" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">否</text>
@@ -34,8 +34,8 @@
   <!-- 部分重同步 -->
   <rect x="590" y="404" width="260" height="68" rx="8" fill="#E8F5E9" stroke="#81C784" stroke-width="1.5" filter="url(#s1)"/>
   <text x="720" y="426" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2E7D32">部分重同步</text>
-  <text x="720" y="444" text-anchor="middle" font-size="10" fill="#888888">仅补发积压缓冲区内缺失的写命令</text>
-  <text x="720" y="460" text-anchor="middle" font-size="10" fill="#888888">缓冲区容量由 repl-backlog-size 调整（默认 1MB）</text>
+  <text x="720" y="444" text-anchor="middle" font-size="10" fill="#888888">仅补发复制积压缓冲区内缺失的写命令</text>
+  <text x="720" y="460" text-anchor="middle" font-size="10" fill="#888888">容量由 repl-backlog-size 调整（默认 1MB）</text>
 
   <!-- 命令传播 -->
   <rect x="230" y="500" width="460" height="52" rx="8" fill="#F0F7FF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
