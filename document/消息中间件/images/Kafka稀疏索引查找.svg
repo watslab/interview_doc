@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 592" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahO" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#E65100"/></marker>
+    <marker id="ahG" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#B0BEC5"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="1140" height="572" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 标题与查找目标 -->
+  <text x="580" y="40" text-anchor="middle" font-size="16" font-weight="bold" fill="#333333">日志段文件组成与稀疏索引查找</text>
+  <rect x="488" y="52" width="184" height="27" rx="13.5" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/>
+  <text x="580" y="70" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#E65100">查找目标：偏移量 3527</text>
+  <text x="580" y="103" text-anchor="middle" font-size="11.5" fill="#888888">示例：基础偏移量为 3520 的段（段文件以基础偏移量命名）</text>
+
+  <!-- 数据文件面板 -->
+  <rect x="40" y="120" width="1080" height="200" rx="10" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="60" y="148" font-size="13" font-weight="600" fill="#1E88E5">数据文件（.log）：消息按物理位置连续存储</text>
+
+  <!-- 消息盒 3520-3530 -->
+  <rect x="102" y="164" width="76" height="52" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="140" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#E65100">3520</text>
+  <rect x="190" y="164" width="76" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="228" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E88E5">3521</text>
+  <rect x="278" y="164" width="76" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="316" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E88E5">3522</text>
+  <rect x="366" y="164" width="76" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="404" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E88E5">3523</text>
+  <rect x="454" y="164" width="76" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="492" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E88E5">3524</text>
+  <rect x="542" y="164" width="76" height="52" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="580" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#E65100">3525</text>
+  <rect x="630" y="164" width="76" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="668" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E88E5">3526</text>
+  <rect x="718" y="164" width="76" height="52" rx="8" fill="#E8F5E9" stroke="#43A047" stroke-width="2.2" filter="url(#s1)"/>
+  <text x="756" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#2E7D32">3527</text>
+  <rect x="806" y="164" width="76" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="844" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E88E5">3528</text>
+  <rect x="894" y="164" width="76" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="932" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E88E5">3529</text>
+  <rect x="982" y="164" width="76" height="52" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1020" y="195" text-anchor="middle" font-size="15" font-weight="bold" fill="#E65100">3530</text>
+
+  <!-- 步骤③ 标签 -->
+  <circle cx="604" cy="284" r="10" fill="#E65100"/>
+  <text x="604" y="288" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">3</text>
+  <text x="620" y="288" font-size="12" fill="#E65100">顺序扫描至目标 3527</text>
+
+  <!-- 步骤② 标签 -->
+  <circle cx="604" cy="348" r="10" fill="#E65100"/>
+  <text x="604" y="352" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">2</text>
+  <text x="620" y="352" font-size="12" fill="#E65100">按物理位置定位</text>
+
+  <!-- 偏移量索引面板 -->
+  <rect x="40" y="376" width="1080" height="170" rx="10" fill="#FBF7FC" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="60" y="406" font-size="13" font-weight="600" fill="#7B1FA2">偏移量索引（.index）：每写入 4KB 消息添加一个索引项</text>
+
+  <!-- 步骤① 标签 -->
+  <circle cx="604" cy="430" r="10" fill="#E65100"/>
+  <text x="604" y="434" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">1</text>
+  <text x="620" y="434" font-size="12" fill="#E65100">二分查找，命中不大于 3527 的最大索引项 3525</text>
+
+  <!-- 索引项盒 -->
+  <rect x="65" y="448" width="150" height="56" rx="8" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="140" y="481" text-anchor="middle" font-size="13.5" font-weight="600" fill="#546E7A">3520 → 0</text>
+  <rect x="505" y="448" width="150" height="56" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="2" filter="url(#s1)"/>
+  <text x="580" y="481" text-anchor="middle" font-size="13.5" font-weight="600" fill="#E65100">3525 → 4096</text>
+  <rect x="945" y="448" width="150" height="56" rx="8" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1020" y="481" text-anchor="middle" font-size="13.5" font-weight="600" fill="#546E7A">3530 → 8192</text>
+
+  <!-- 注释 -->
+  <text x="60" y="528" font-size="11" fill="#888888">索引项记录偏移量到物理位置的映射（灰色虚线示出对应消息）</text>
+
+  <!-- 连接线 -->
+  <line x1="140" y1="448" x2="140" y2="218" stroke="#B0BEC5" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#ahG)"/>
+  <line x1="1020" y1="448" x2="1020" y2="218" stroke="#B0BEC5" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#ahG)"/>
+  <line x1="580" y1="448" x2="580" y2="218" stroke="#E65100" stroke-width="1.8" marker-end="url(#ahO)"/>
+  <path d="M580,224 C580,256 756,256 756,240 L756,218" fill="none" stroke="#E65100" stroke-width="1.8" marker-end="url(#ahO)"/>
+</svg>

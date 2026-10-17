@@ -75,6 +75,9 @@
 
 | 文档 | 概述 |
 |------|------|
+| [Redis 集群架构详解](./document/Redis/Redis%20集群架构详解.md) | 系统梳理 Redis 集群架构体系，包括主从复制、哨兵与 Redis Cluster 三种架构的演进脉络、工作原理细节（同步机制、故障判定、哈希槽分片、Gossip 通信、请求路由）与选型对比 |
+| [Redis 主从复制集群配置流程详解](./document/Redis/Redis%20主从复制集群配置流程详解.md) | 讲解主从复制与哨兵架构的完整配置流程：节点拓扑规划、主从与哨兵参数配置、服务启动验证、故障转移演练与常见问题排查 |
+| [Redis Cluster 集群配置流程详解](./document/Redis/Redis%20Cluster%20集群配置流程详解.md) | 讲解 Redis Cluster 集群的完整配置流程：节点规划与集群参数配置、集群创建与状态验证、扩缩容与故障转移演练、常见问题排查 |
 | [Redis HyperLogLog 详解](./document/Redis/Redis%20HyperLogLog%20详解.md) | 深入解析 Redis HyperLogLog 基数估计算法，包括原理、误差分析、命令详解与使用场景 |
 | [Redis 批量数据原子性操作解决方案](./document/Redis/Redis%20批量数据原子性操作解决方案.md) | Redis 批量数据操作的原子性保证方案，包括 Pipeline、Lua 脚本、事务等技术的应用 |
 | [Redis Pipeline 管道技术详解](./document/Redis/Redis%20Pipeline%20管道技术详解.md) | Redis Pipeline 管道技术详解 |
@@ -86,6 +89,7 @@
 |------|------|
 | [消息中间件 MQ 对比详情](./document/消息中间件/消息中间件%20MQ%20对比详情.md) | 全面对比 ActiveMQ、RabbitMQ、Kafka、RocketMQ、Pulsar 五大消息中间件，包括架构图、工作流程、性能指标、功能对比与选型建议 |
 | [RocketMQ 消息中间件详解](./document/消息中间件/RocketMQ%20消息中间件详解.md) | 深入解析 RocketMQ 核心架构、消息模型、消息发送与消费流程、顺序消息、事务消息、延迟消息等高级特性与最佳实践 |
+| [Kafka 消息中间件详解](./document/消息中间件/Kafka%20消息中间件详解.md) | 深入解析 Kafka 消息中间件，包括事件结构与数据模型、KRaft 整体架构、分区日志存储设计、生产者可靠性与事务、消费组与偏移量管理、副本机制与 ISR、投递语义与典型应用场景 |
 
 ### 微服务架构
 
@@ -227,13 +231,17 @@ document/
 │   ├── ElasticSearch 集群管理完全指南.md
 │   └── ElasticSearch 集群部署最佳实践.md
 ├── Redis/
+│   ├── Redis 集群架构详解.md
+│   ├── Redis 主从复制集群配置流程详解.md
+│   ├── Redis Cluster 集群配置流程详解.md
 │   ├── Redis HyperLogLog 详解.md
 │   ├── Redis Pipeline 管道技术详解.md
 │   ├── Redis 批量数据原子性操作解决方案.md
 │   └── Redis 缓存穿透击穿雪崩详解.md
 ├── 消息中间件/
 │   ├── 消息中间件 MQ 对比详情.md
-│   └── RocketMQ 消息中间件详解.md
+│   ├── RocketMQ 消息中间件详解.md
+│   └── Kafka 消息中间件详解.md
 ├── 微服务架构/
 │   ├── Seata 分布式事务详解.md
 │   ├── Nacos 注册配置中心详解.md
