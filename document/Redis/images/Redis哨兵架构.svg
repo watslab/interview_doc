@@ -34,16 +34,16 @@
   <!-- 主节点 -->
   <rect x="370" y="228" width="180" height="56" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
   <text x="460" y="250" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">主节点 M（读写）</text>
-  <text x="460" y="270" text-anchor="middle" font-size="10.5" fill="#888888">127.0.0.1:6379</text>
+  <text x="460" y="270" text-anchor="middle" font-size="10.5" fill="#888888">端口 6379</text>
 
   <!-- 从节点 -->
   <rect x="100" y="376" width="180" height="56" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
   <text x="190" y="398" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">从节点 R1（只读）</text>
-  <text x="190" y="418" text-anchor="middle" font-size="10.5" fill="#888888">127.0.0.1:6380</text>
+  <text x="190" y="418" text-anchor="middle" font-size="10.5" fill="#888888">端口 6379</text>
 
   <rect x="640" y="376" width="180" height="56" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
   <text x="730" y="398" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">从节点 R2（只读）</text>
-  <text x="730" y="418" text-anchor="middle" font-size="10.5" fill="#888888">127.0.0.1:6381</text>
+  <text x="730" y="418" text-anchor="middle" font-size="10.5" fill="#888888">端口 6379</text>
 
   <!-- 复制箭头 -->
   <line x1="392" y1="284" x2="193" y2="373" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
