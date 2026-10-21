@@ -4,9 +4,9 @@
     <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
   </defs>
 
-  <rect x="10" y="10" width="900" height="460" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="10" y="10" width="900" height="468" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
 
-  <text x="460" y="44" text-anchor="middle" font-size="10.5" fill="#757575">哨兵之间自动发现：订阅主节点 __sentinel__:hello 频道，无需手工登记</text>
+  <text x="460" y="37" text-anchor="middle" font-size="10.5" fill="#757575">哨兵之间自动发现：订阅主节点 __sentinel__:hello 频道，无需手工登记</text>
 
   <!-- 哨兵 -->
   <rect x="100" y="56" width="170" height="52" rx="8" fill="#F3E5F5" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
@@ -51,5 +51,5 @@
   <text x="255" y="336" text-anchor="middle" font-size="10" fill="#757575">复制</text>
   <text x="665" y="336" text-anchor="middle" font-size="10" fill="#757575">复制</text>
 
-  <text x="460" y="458" text-anchor="middle" font-size="10.5" fill="#757575">哨兵同时监控从节点；主节点故障时经多数派哨兵选出 Leader，执行故障转移</text>
+  <text x="460" y="459" text-anchor="middle" font-size="10.5" fill="#757575">哨兵同时监控从节点；主节点故障时经多数派哨兵选出 Leader，执行故障转移</text>
 </svg>

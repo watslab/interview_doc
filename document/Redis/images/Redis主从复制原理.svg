@@ -1,52 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 580" font-family="'Segoe UI',Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 538" font-family="'Segoe UI',Arial,sans-serif">
   <defs>
     <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
     <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
   </defs>
 
-  <rect x="10" y="10" width="900" height="560" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+  <rect x="10" y="10" width="900" height="518" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
 
   <!-- 触发 -->
-  <rect x="360" y="48" width="200" height="52" rx="8" fill="#FFFFFF" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="460" y="68" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">从节点启动</text>
-  <text x="460" y="88" text-anchor="middle" font-size="10.5" fill="#888888">或与主节点的连接中断</text>
+  <rect x="340" y="36" width="240" height="52" rx="8" fill="#FFFFFF" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="56" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">从节点启动</text>
+  <text x="460" y="76" text-anchor="middle" font-size="10.5" fill="#888888">或与主节点的连接中断</text>
 
   <!-- PSYNC -->
-  <rect x="330" y="126" width="260" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="460" y="146" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">向主节点发送 PSYNC 命令</text>
-  <text x="460" y="166" text-anchor="middle" font-size="10.5" fill="#888888">携带 replid 与 offset（首次为 ? -1）</text>
+  <rect x="310" y="116" width="300" height="52" rx="8" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="136" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">向主节点发送 PSYNC 命令</text>
+  <text x="460" y="156" text-anchor="middle" font-size="10.5" fill="#888888">携带 replid 与 offset（首次为 ? 与 -1）</text>
 
   <!-- 判定 -->
-  <polygon points="460,210 610,290 460,370 310,290" fill="#FFF8E1" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="460" y="284" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">主节点判定：replid 一致</text>
-  <text x="460" y="302" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">且 offset 仍在复制积压缓冲区内？</text>
+  <polygon points="460,196 620,248 460,300 300,248" fill="#FFF8E1" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="243" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">主节点判定：replid 一致</text>
+  <text x="460" y="261" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">且 offset 仍在复制积压缓冲区内？</text>
 
   <!-- 分支标签 -->
-  <text x="268" y="342" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">否</text>
-  <text x="656" y="342" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E7D32">是</text>
+  <text x="222" y="288" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">否</text>
+  <text x="698" y="288" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E7D32">是</text>
 
   <!-- 全量同步 -->
-  <rect x="70" y="404" width="260" height="68" rx="8" fill="#FFEBEE" stroke="#E57373" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="200" y="426" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#C62828">全量同步</text>
-  <text x="200" y="444" text-anchor="middle" font-size="10" fill="#888888">bgsave 生成 RDB 并传输，从节点清空后加载</text>
-  <text x="200" y="460" text-anchor="middle" font-size="10" fill="#888888">期间的写命令暂存复制缓冲区，加载后补发</text>
+  <rect x="70" y="324" width="260" height="68" rx="8" fill="#FFEBEE" stroke="#E57373" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="200" y="345" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#C62828">全量同步</text>
+  <text x="200" y="363" text-anchor="middle" font-size="10" fill="#888888">bgsave 生成 RDB 并传输，从节点清空后加载</text>
+  <text x="200" y="379" text-anchor="middle" font-size="10" fill="#888888">期间的写命令暂存复制缓冲区，加载后补发</text>
 
   <!-- 部分重同步 -->
-  <rect x="590" y="404" width="260" height="68" rx="8" fill="#E8F5E9" stroke="#81C784" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="720" y="426" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2E7D32">部分重同步</text>
-  <text x="720" y="444" text-anchor="middle" font-size="10" fill="#888888">仅补发复制积压缓冲区内缺失的写命令</text>
-  <text x="720" y="460" text-anchor="middle" font-size="10" fill="#888888">容量由 repl-backlog-size 调整（默认 1MB）</text>
+  <rect x="590" y="324" width="260" height="68" rx="8" fill="#E8F5E9" stroke="#81C784" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="720" y="345" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2E7D32">部分重同步</text>
+  <text x="720" y="363" text-anchor="middle" font-size="10" fill="#888888">仅补发复制积压缓冲区内缺失的写命令</text>
+  <text x="720" y="379" text-anchor="middle" font-size="10" fill="#888888">容量由 repl-backlog-size 调整（默认 1MB）</text>
 
   <!-- 命令传播 -->
-  <rect x="230" y="500" width="460" height="52" rx="8" fill="#F0F7FF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
-  <text x="460" y="520" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1E88E5">命令传播阶段</text>
-  <text x="460" y="540" text-anchor="middle" font-size="10" fill="#888888">主节点异步持续发送写命令，从节点周期性上报复制偏移量</text>
+  <rect x="250" y="450" width="420" height="52" rx="8" fill="#F0F7FF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="470" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1E88E5">命令传播阶段</text>
+  <text x="460" y="490" text-anchor="middle" font-size="10" fill="#888888">主节点异步持续发送写命令，从节点周期性上报复制偏移量</text>
 
   <!-- 连接线 -->
-  <line x1="460" y1="100" x2="460" y2="123" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <line x1="460" y1="178" x2="460" y2="207" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <line x1="310" y1="290" x2="200" y2="401" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <line x1="610" y1="290" x2="720" y2="401" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <line x1="265" y1="472" x2="345" y2="499" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
-  <line x1="715" y1="472" x2="575" y2="499" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="460" y1="88" x2="460" y2="113" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="460" y1="168" x2="460" y2="193" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="300" y1="248" x2="200" y2="321" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="620" y1="248" x2="720" y2="321" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="265" y1="392" x2="345" y2="447" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="655" y1="392" x2="575" y2="447" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
 </svg>
