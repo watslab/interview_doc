@@ -58,6 +58,6 @@
   <text x="670" y="114" text-anchor="middle" font-size="10" fill="#757575">拉取</text>
   <text x="670" y="265" text-anchor="middle" font-size="10" fill="#757575">拉取</text>
 
-  <text x="460" y="372" text-anchor="middle" font-size="10.5" fill="#757575">同一消费组内：分区在实例间负载均衡，一个分区同一时刻只被组内一个实例消费</text>
-  <text x="460" y="392" text-anchor="middle" font-size="10.5" fill="#757575">不同消费组之间：各自独立消费全量数据（广播），互不影响</text>
+  <text x="460" y="354" text-anchor="middle" font-size="10.5" fill="#757575">同一消费组内：分区在实例间负载均衡，一个分区同一时刻只被组内一个实例消费</text>
+  <text x="460" y="374" text-anchor="middle" font-size="10.5" fill="#757575">不同消费组之间：各自独立消费全量数据（广播），互不影响</text>
 </svg>
