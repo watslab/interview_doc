@@ -8,33 +8,7 @@ Docker 是一种开源的容器化平台，允许开发者将应用程序及其�
 
 ### 1.2 Docker 与虚拟机的区别
 
-```mermaid
-flowchart TB
-    subgraph VM["虚拟机架构"]
-        App1["App 1"] --> Guest1["Guest OS"]
-        App2["App 2"] --> Guest2["Guest OS"]
-        App3["App 3"] --> Guest3["Guest OS"]
-        Guest1 --> Hypervisor["Hypervisor"]
-        Guest2 --> Hypervisor
-        Guest3 --> Hypervisor
-        Hypervisor --> HostOS["Host OS"]
-        HostOS --> Hardware["硬件"]
-    end
-    
-    subgraph Docker["Docker 架构"]
-        App4["App 1"] --> Lib1["Libs"]
-        App5["App 2"] --> Lib2["Libs"]
-        App6["App 3"] --> Lib3["Libs"]
-        Lib1 --> Engine["Docker Engine"]
-        Lib2 --> Engine
-        Lib3 --> Engine
-        Engine --> HostOS2["Host OS"]
-        HostOS2 --> Hardware2["硬件"]
-    end
-    
-    style VM fill:#ffcdd2,stroke:#c62828
-    style Docker fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-与虚拟机架构对比](./images/Docker-与虚拟机架构对比.svg)
 
 | 对比项 | 虚拟机 | Docker 容器 |
 |--------|--------|-------------|
@@ -61,103 +35,21 @@ flowchart TB
 
 ### 2.1 核心组件架构
 
-```mermaid
-flowchart TB
-    CLI["docker CLI"] -->|"docker命令"| D["Docker Daemon<br/>dockerd"]
-    API["Docker API"] -->|"REST API"| D
-    
-    D --> I1["Image 1"]
-    D --> I2["Image 2"]
-    D --> C1["Container 1"]
-    D --> C2["Container 2"]
-    D --> V1["Volume"]
-    
-    D <-->|"push/pull"| Hub["Docker Hub"]
-    D <-->|"push/pull"| Private["私有仓库"]
-    
-    subgraph Client["Docker 客户端"]
-        CLI
-        API
-    end
-    
-    subgraph Registry["镜像仓库"]
-        Hub
-        Private
-    end
-    
-    style Client fill:#e3f2fd,stroke:#1565c0
-    style Registry fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-核心组件架构](./images/Docker-核心组件架构.svg)
 
 ### 2.2 三大核心概念
 
-```mermaid
-flowchart LR
-    subgraph Image["镜像（Image）"]
-        L1["Layer 1: 基础层"]
-        L2["Layer 2: 依赖层"]
-        L3["Layer 3: 应用层"]
-    end
-    
-    subgraph Container["容器（Container）"]
-        RW["可写层"]
-        R1["Layer 3"]
-        R2["Layer 2"]
-        R3["Layer 1"]
-    end
-    
-    subgraph Registry["仓库（Registry）"]
-        Repo1["Repository"]
-        Tag1["Tag: v1.0"]
-        Tag2["Tag: v2.0"]
-    end
-    
-    Image -->|"docker run"| Container
-    Registry -->|"docker pull"| Image
-    
-    style Image fill:#e3f2fd,stroke:#1565c0
-    style Container fill:#c8e6c9,stroke:#2e7d32
-    style Registry fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-三大核心概念关系](./images/Docker-三大核心概念关系.svg)
 
 | 概念 | 说明 | 类比 |
 |------|------|------|
-| **镜像（Image）** | 只读模板，包含运行应用所需的所有内容 | APP 安装包 |
-| **容器（Container）** | 镜像的运行实例，可读写 | 运行中的 APP |
-| **仓库（Registry）** | 存储和分发镜像的场所 | 应用商店 |
+| **镜像（Image）​** | 只读模板，包含运行应用所需的所有内容 | APP 安装包 |
+| **容器（Container）​** | 镜像的运行实例，可读写 | 运行中的 APP |
+| **仓库（Registry）​** | 存储和分发镜像的场所 | 应用商店 |
 
 ### 2.3 镜像分层原理
 
-```mermaid
-flowchart TB
-    subgraph Base["基础镜像层"]
-        B["ubuntu:22.04<br/>≈ 70MB"]
-    end
-    
-    subgraph Deps["依赖层"]
-        D["安装依赖<br/>apt-get install"]
-    end
-    
-    subgraph App["应用层"]
-        A["复制应用代码<br/>COPY . /app"]
-    end
-    
-    subgraph Config["配置层"]
-        C["暴露端口/启动命令<br/>EXPOSE/CMD"]
-    end
-    
-    subgraph Container["容器运行时"]
-        RW["可写层<br/>容器修改数据"]
-    end
-    
-    Base --> Deps --> App --> Config --> Container
-    
-    style Base fill:#e3f2fd,stroke:#1565c0
-    style Deps fill:#c8e6c9,stroke:#2e7d32
-    style App fill:#fff3e0,stroke:#ef6c00
-    style Config fill:#f3e5f5,stroke:#7b1fa2
-    style Container fill:#fce4ec,stroke:#c2185b
-```
+![Docker-镜像分层原理](./images/Docker-镜像分层原理.svg)
 
 **分层优势**：
 - **资源共享**：相同层只存储一份，节省空间
@@ -170,50 +62,7 @@ flowchart TB
 
 ### 3.1 宿主机与容器关系架构
 
-```mermaid
-flowchart TB
-    subgraph Host["宿主机"]
-        subgraph Hardware["硬件层"]
-            CPU["CPU"]
-            MEM["内存"]
-            DISK["磁盘"]
-            NIC["网卡"]
-        end
-        
-        subgraph OS["操作系统"]
-            Kernel["Linux Kernel"]
-        end
-        
-        subgraph DockerEngine["Docker Engine"]
-            Daemon["Docker Daemon"]
-            CLI["Docker CLI"]
-        end
-        
-        subgraph Containers["容器层"]
-            subgraph C1["容器 1"]
-                App1["App"]
-                Lib1["Libs"]
-            end
-            subgraph C2["容器 2"]
-                App2["App"]
-                Lib2["Libs"]
-            end
-            subgraph C3["容器 3"]
-                App3["App"]
-                Lib3["Libs"]
-            end
-        end
-    end
-    
-    Hardware --> OS
-    OS --> DockerEngine
-    DockerEngine --> Containers
-    
-    style Hardware fill:#ffcdd2,stroke:#c62828
-    style OS fill:#fff3e0,stroke:#ef6c00
-    style DockerEngine fill:#e3f2fd,stroke:#1565c0
-    style Containers fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-宿主机与容器架构](./images/Docker-宿主机与容器架构.svg)
 
 **架构说明**：
 
@@ -235,42 +84,7 @@ flowchart TB
 
 Docker 容器的实现依赖于 Linux 内核的三项核心技术：Namespace（命名空间）、Cgroups（控制组）和 UnionFS（联合文件系统）。
 
-```mermaid
-flowchart TB
-    subgraph Container["Docker 容器"]
-        App["应用程序"]
-    end
-    
-    subgraph Namespaces["Namespace 命名空间（隔离）"]
-        PID["PID<br/>进程隔离"]
-        NET["NET<br/>网络隔离"]
-        MNT["MNT<br/>文件系统隔离"]
-        UTS["UTS<br/>主机名隔离"]
-        IPC["IPC<br/>进程通信隔离"]
-        USER["USER<br/>用户隔离"]
-    end
-    
-    subgraph Cgroups["Cgroups 控制组（资源限制）"]
-        CPU["CPU 限制"]
-        MEM["内存限制"]
-        DISK["磁盘 I/O 限制"]
-        NET_BW["网络带宽限制"]
-    end
-    
-    subgraph UnionFS["UnionFS 联合文件系统"]
-        Overlay["Overlay2"]
-        AUFS["AUFS"]
-    end
-    
-    App --> Namespaces
-    App --> Cgroups
-    Namespaces --> UnionFS
-    
-    style Container fill:#f3e5f5,stroke:#7b1fa2
-    style Namespaces fill:#e3f2fd,stroke:#1565c0
-    style Cgroups fill:#c8e6c9,stroke:#2e7d32
-    style UnionFS fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-核心技术构成](./images/Docker-核心技术构成.svg)
 
 #### 3.2.1 Namespace 隔离机制
 
@@ -287,33 +101,7 @@ Namespace 是 Linux 内核用来隔离系统资源的技术，让容器拥有独
 
 **Namespace 工作原理**：
 
-```mermaid
-flowchart LR
-    subgraph Host["宿主机"]
-        H_PID["PID: 1, 2, 3..."]
-        H_NET["eth0, lo"]
-        H_MNT["/, /home..."]
-    end
-    
-    subgraph Container1["容器 1"]
-        C1_PID["PID: 1, 2, 3..."]
-        C1_NET["eth0, lo"]
-        C1_MNT["/, /app..."]
-    end
-    
-    subgraph Container2["容器 2"]
-        C2_PID["PID: 1, 2, 3..."]
-        C2_NET["eth0, lo"]
-        C2_MNT["/, /data..."]
-    end
-    
-    Host -.->|"Namespace 隔离"| Container1
-    Host -.->|"Namespace 隔离"| Container2
-    
-    style Host fill:#e3f2fd,stroke:#1565c0
-    style Container1 fill:#c8e6c9,stroke:#2e7d32
-    style Container2 fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-Namespace隔离视图](./images/Docker-Namespace隔离视图.svg)
 
 #### 3.2.2 Cgroups 资源限制
 
@@ -331,25 +119,7 @@ Cgroups（Control Groups）是 Linux 内核用来限制、记录和隔离进程�
 
 **Cgroups 工作原理**：
 
-```mermaid
-flowchart TB
-    subgraph Host["宿主机资源"]
-        CPU_All["CPU: 8 核"]
-        MEM_All["内存: 16GB"]
-        DISK_All["磁盘: 500GB"]
-    end
-    
-    subgraph Cgroups["Cgroups 资源分配"]
-        CG1["容器 A: 2 核 CPU, 4GB 内存"]
-        CG2["容器 B: 1.5 核 CPU, 2GB 内存"]
-        CG3["容器 C: 1 核 CPU, 1GB 内存"]
-    end
-    
-    Host --> Cgroups
-    
-    style Host fill:#e3f2fd,stroke:#1565c0
-    style Cgroups fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-Cgroups资源分配](./images/Docker-Cgroups资源分配.svg)
 
 **资源限制示例**：
 
@@ -374,36 +144,13 @@ UnionFS（Union File System，联合文件系统）是 Docker 镜像分层存储
 |------|------|
 | **分层存储** | 镜像由多个只读层组成，每层代表一次文件系统变更 |
 | **联合挂载** | 将多个目录层叠加挂载到同一个挂载点，形成统一视图 |
-| **写时复制（CoW）** | 修改文件时先复制到可写层，只读层保持不变 |
+| **写时复制（CoW）​** | 修改文件时先复制到可写层，只读层保持不变 |
 
 **Overlay2 存储驱动**：
 
 Docker 目前默认使用 Overlay2 作为存储驱动，它是 OverlayFS 的改进版本。
 
-```mermaid
-flowchart TB
-    subgraph Container["容器文件系统视图"]
-        Merged["Merged<br/>合并视图<br/>容器看到的完整文件系统"]
-    end
-    
-    subgraph Layers["分层结构"]
-        Upper["Upper Dir<br/>可写层<br/>容器运行时修改"]
-        Lower3["Lower Dir 3<br/>只读层<br/>应用层"]
-        Lower2["Lower Dir 2<br/>只读层<br/>依赖层"]
-        Lower1["Lower Dir 1<br/>只读层<br/>基础镜像"]
-    end
-    
-    Merged --> Upper
-    Upper --> Lower3
-    Lower3 --> Lower2
-    Lower2 --> Lower1
-    
-    style Container fill:#c8e6c9,stroke:#2e7d32
-    style Upper fill:#fff3e0,stroke:#ef6c00
-    style Lower3 fill:#e3f2fd,stroke:#1565c0
-    style Lower2 fill:#e3f2fd,stroke:#1565c0
-    style Lower1 fill:#e3f2fd,stroke:#1565c0
-```
+![Docker-Overlay2分层结构](./images/Docker-Overlay2分层结构.svg)
 
 **Overlay2 目录结构**：
 
@@ -416,28 +163,9 @@ flowchart TB
 
 **文件读写机制**：
 
-```mermaid
-flowchart TB
-    subgraph Read["读取文件"]
-        R1["检查 Upper Dir"] -->|"文件存在"| R2["直接读取"]
-        R1 -->|"文件不存在"| R3["从 Lower Dir 读取"]
-    end
-    
-    subgraph Write["修改文件"]
-        W1["检查 Lower Dir"] -->|"文件存在"| W2["复制到 Upper Dir<br/>Copy-on-Write"]
-        W2 --> W3["在 Upper Dir 修改"]
-        W1 -->|"文件不存在"| W4["直接在 Upper Dir 创建"]
-    end
-    
-    subgraph Delete["删除文件"]
-        D1["文件在 Upper Dir"] -->|"是"| D2["直接删除"]
-        D1 -->|"否"| D3["在 Upper Dir 创建<br/>whiteout 文件"]
-    end
-    
-    style Read fill:#e3f2fd,stroke:#1565c0
-    style Write fill:#c8e6c9,stroke:#2e7d32
-    style Delete fill:#ffcdd2,stroke:#c62828
-```
+![Docker-Overlay2文件读写机制](./images/Docker-Overlay2文件读写机制.svg)
+
+> **为什么删除文件要创建 whiteout 文件**：Lower 层是只读镜像层，其中的文件在物理上不可删除。OverlayFS 的做法是：在 Upper Dir 中创建一个与被删除文件**同名的 whiteout 文件**（一种主次设备号为 0:0 的字符设备文件），联合挂载时该标记会遮蔽 Lower 层中的同名文件——容器在合并视图中将"看不到"它，效果等同于删除。整个过程中 Lower 层原文件保持不变，这正是"所有变更只发生在 Upper Dir"这一原则的体现。
 
 **写时复制（Copy-on-Write）流程**：
 
@@ -485,9 +213,9 @@ Docker 网络是容器间通信和容器与外部世界交互的基础，理解�
 | 概念 | 说明 |
 |------|------|
 | **Network Namespace** | Linux 内核提供的网络隔离机制，每个容器拥有独立的网络命名空间（IP 地址、端口、路由表、iptables 规则等） |
-| **Bridge（网桥）** | Linux 中的二层虚拟网络设备，类似于物理交换机，用于连接多个网络接口 |
+| **Bridge（网桥）​** | Linux 中的二层虚拟网络设备，类似于物理交换机，用于连接多个网络接口 |
 | **veth pair** | 虚拟以太网设备对，成对出现，一端发送的数据会从另一端接收，如同一条虚拟网线 |
-| **iptables/NAT** | Linux 防火墙规则，实现地址转换和端口映射 |
+| **iptables NAT** | Linux 防火墙规则，实现地址转换和端口映射 |
 
 #### 3.3.2 Bridge 网络
 
@@ -509,31 +237,7 @@ docker run -d --name web --network bridge nginx
 
 Docker 服务启动时，会在宿主机上创建一个名为 `docker0` 的虚拟网桥，这个网桥是**全局唯一**的，所有使用默认 bridge 模式的容器都连接到这同一个 docker0 网桥上。
 
-```mermaid
-flowchart TB
-    subgraph Host["宿主机"]
-        Docker0["docker0 网桥<br/>172.17.0.1/16"]
-        
-        subgraph NS1["容器 1 --network bridge（默认）"]
-            Eth1["eth0<br/>172.17.0.2"]
-        end
-        subgraph NS2["容器 2 --network bridge（默认）"]
-            Eth2["eth0<br/>172.17.0.3"]
-        end
-        subgraph NS3["容器 3 --network bridge（默认）"]
-            Eth3["eth0<br/>172.17.0.4"]
-        end
-    end
-    
-    Docker0 -->|"veth pair"| Eth1
-    Docker0 -->|"veth pair"| Eth2
-    Docker0 -->|"veth pair"| Eth3
-    
-    style Docker0 fill:#ffcdd2,stroke:#c62828
-    style NS1 fill:#e3f2fd,stroke:#1565c0
-    style NS2 fill:#c8e6c9,stroke:#2e7d32
-    style NS3 fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-默认Bridge网络](./images/Docker-默认Bridge网络.svg)
 
 **docker0 网桥的作用**：
 
@@ -547,9 +251,15 @@ flowchart TB
 
 | 局限性 | 说明 |
 |--------|------|
-| **无 DNS 解析** | 容器之间只能通过 IP 地址通信，无法使用容器名 |
+| **无 DNS 解析** | 不提供 DNS 解析，容器之间只能通过 IP 地址通信，无法使用容器名 |
 | **无网络隔离** | 所有使用默认 bridge 的容器都在同一网络，无法隔离 |
 | **不支持动态连接** | 容器创建后无法动态连接或断开网络 |
+
+> **"只能通过 IP 地址通信"的含义**：在网络层，通信目标由 IP 地址标识，应用以容器名访问其他容器时，需要先由 DNS 将容器名解析为 IP 地址。默认 bridge 网络不提供 DNS 解析，容器名无法解析为 IP，因此容器间通信只能直接使用对方的 IP 地址（如 `172.17.0.3`），无法使用容器名。自定义 Bridge 网络提供内置 DNS，容器名可自动解析为 IP 地址，支持容器名通信。
+
+> **"内置 DNS"的含义**：每个节点的 Docker Engine 内置一个 DNS 服务器，本节点所有容器统一通过固定地址 `127.0.0.11` 访问，各种网络复用同一个服务器进程。Docker 为每个自定义网络单独维护一份"容器名/别名 → IP 地址"的名称注册表，DNS 服务器只按发起查询的容器所接入网络的作用域应答，因此不同网络的容器名互不可见，解析彼此隔离。所谓"自定义 Bridge 网络提供内置 DNS"，是在逻辑上把这份按网络隔离的解析能力归到各个网络名下；默认 bridge 网络不在其列——Docker 不为其注册容器名，接入该网络的容器自然无法用容器名完成解析。
+
+> **"动态连接"的含义**：动态连接指在容器**运行期间**将其加入或移出某个网络，而无需停止并重建容器，对应命令为 `docker network connect`（加入）与 `docker network disconnect`（移出）。默认 bridge 网络不支持该操作：容器是否接入默认 bridge 只能在创建时通过 `--network` 指定，创建后无法动态变更；若要变更网络（例如将容器迁入某个自定义网络），只能停止并删除容器，再以新的网络参数重建。自定义 Bridge 网络支持动态连接/断开，运行中的容器可随时加入或移出网络，也可同时接入多个网络。
 
 ##### 自定义 Bridge 网络
 
@@ -557,40 +267,7 @@ flowchart TB
 
 自定义 Bridge 网络**不使用 docker0 网桥**，而是创建独立的网桥。每创建一个自定义 bridge 网络，Docker 会在宿主机上创建一个新的网桥设备，名称格式为 `br-<network_id前12位>`。
 
-```mermaid
-flowchart TB
-    subgraph Host["宿主机"]
-        Docker0["docker0<br/>172.17.0.1/16<br/>默认 bridge 网络"]
-        BrMynet["br-8a7f6e3c9d2b<br/>mynet 网络<br/>172.20.0.1/16"]
-        BrAppnet["br-5b3c9f2e1a4d<br/>appnet 网络<br/>172.30.0.1/16"]
-    end
-    
-    subgraph DefaultNet["默认 bridge 网络"]
-        D1["容器 A<br/>172.17.0.2"]
-        D2["容器 B<br/>172.17.0.3"]
-    end
-    
-    subgraph MynetNet["自定义 bridge 网络"]
-        M1["web<br/>172.20.0.2"]
-        M2["api<br/>172.20.0.3"]
-    end
-    
-    subgraph AppnetNet["自定义 bridge 网络"]
-        A1["app1<br/>172.30.0.2"]
-        A2["app2<br/>172.30.0.3"]
-    end
-    
-    Docker0 --> D1
-    Docker0 --> D2
-    BrMynet --> M1
-    BrMynet --> M2
-    BrAppnet --> A1
-    BrAppnet --> A2
-    
-    style Docker0 fill:#ffcdd2,stroke:#c62828
-    style BrMynet fill:#c8e6c9,stroke:#2e7d32
-    style BrAppnet fill:#e3f2fd,stroke:#1565c0
-```
+![Docker-自定义Bridge网络隔离](./images/Docker-自定义Bridge网络隔离.svg)
 
 **网络隔离原理**：
 
@@ -681,55 +358,11 @@ veth pair（Virtual Ethernet Pair）是 Docker 网络的核心技术，理解其
 
 veth pair 是一对虚拟网络设备接口，它们像一根虚拟网线一样连接在一起。从一端进入的数据包会立即从另一端出来，反之亦然。
 
-```mermaid
-flowchart LR
-    subgraph VethPair["veth pair（虚拟网线）"]
-        VethA["veth 端点 A"]
-        VethB["veth 端点 B"]
-    end
-    
-    VethA <-->|"数据包双向传输"| VethB
-    
-    style VethPair fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-veth-pair双向传输](./images/Docker-veth-pair双向传输.svg)
 
 **Docker 中 veth pair 的连接方式**：
 
-```mermaid
-flowchart TB
-    subgraph Host["宿主机网络命名空间"]
-        Docker0["docker0 网桥"]
-        VethHost1["veth780a161<br/>宿主机端"]
-        VethHost2["veth5b3c9f2<br/>宿主机端"]
-    end
-    
-    subgraph Container1["容器 1 网络命名空间"]
-        Eth1["eth0<br/>172.17.0.2"]
-    end
-    
-    subgraph Container2["容器 2 网络命名空间"]
-        Eth2["eth0<br/>172.17.0.3"]
-    end
-    
-    Docker0 -->|"挂载"| VethHost1
-    Docker0 -->|"挂载"| VethHost2
-    
-    VethHost1 <-->|"veth pair"| Eth1
-    VethHost2 <-->|"veth pair"| Eth2
-    
-    style Host fill:#e3f2fd,stroke:#1565c0
-    style Container1 fill:#c8e6c9,stroke:#2e7d32
-    style Container2 fill:#fff3e0,stroke:#ef6c00
-```
-
-**veth pair 工作流程**：
-
-| 步骤 | 操作 | 说明 |
-|------|------|------|
-| 1 | 创建 veth pair | Docker 创建一对虚拟网卡（如 veth0 和 veth1） |
-| 2 | 分配到命名空间 | 将 veth0 移动到容器的网络命名空间，重命名为 eth0 |
-| 3 | 连接网桥 | 将 veth1 保留在宿主机命名空间，挂载到 docker0 网桥 |
-| 4 | 分配 IP | 为容器的 eth0 分配 IP 地址，设置 docker0 为默认网关 |
+![Docker-veth-pair连接方式](./images/Docker-veth-pair连接方式.svg)
 
 **验证命令**：
 
@@ -741,27 +374,22 @@ ip link show
 brctl show
 
 # 输出示例：
-# bridge name    bridge id        STP enabled    interfaces
-# docker0        8000.02422aa0385a    no         veth780a161
-#                                              veth5b3c9f2
+# bridge name    bridge id            STP enabled    interfaces
+# docker0        8000.02422aa0385a    no             veth780a161
+#                                                    veth5b3c9f2
 ```
 
 #### 3.3.4 容器创建时的网络配置流程
 
-```mermaid
-flowchart TB
-    Start["创建容器"] --> A["1. 创建网络命名空间"]
-    A --> B["2. 创建 veth pair"]
-    B --> C["3. 将 veth 一端移入容器<br/>命名为 eth0"]
-    C --> D["4. 将 veth 另一端挂载到 docker0"]
-    D --> E["5. 从 docker0 子网分配 IP 给 eth0"]
-    E --> F["6. 设置 docker0 为默认网关"]
-    F --> G["7. 配置 DNS 和路由"]
-    G --> Done["容器网络就绪"]
-    
-    style Start fill:#f3e5f5,stroke:#7b1fa2
-    style Done fill:#c8e6c9,stroke:#2e7d32
-```
+| 操作步骤            | 说明（基于自定义 Bridge 网络模式）                          |
+| ------------------- | ----------------------------------------------------------- |
+| 1. 创建网络命名空间    | Docker 为容器创建专属的网络命名空间                         |
+| 2. 创建 veth pair      | Docker 创建一对虚拟网卡（如 veth0 和 veth1）                |
+| 3. 分配到命名空间      | 将 veth0 移动到容器的网络命名空间，重命名为 eth0            |
+| 4. 连接网桥            | 将 veth1 保留在宿主机网络命名空间，挂载到 br-xxx 自定义网桥 |
+| 5. 分配 IP             | 为容器的 eth0 分配 IP 地址，设置 br-xxx 为默认网关          |
+| 6. 配置 DNS 解析和路由 | 为 br-xxx 自定义网桥配置 DNS 解析规则和 iptables 路由规则   |
+| 7. 容器网络就绪        | 容器基于特定子网进行通信                                    |
 
 #### 3.3.5 五种网络模式详解
 
@@ -775,42 +403,9 @@ Docker 提供五种网络模式，满足不同场景的网络需求：
 | **container** | 共享指定容器的网络命名空间 | 共享隔离 | 高 | Sidecar 模式 |
 | **overlay** | 跨主机网络 | 完全隔离 | 较低 | Swarm/K8s 集群 |
 
-**1. Bridge 模式（默认）**
+**1. Bridge 模式（默认）​**
 
-```mermaid
-flowchart TB
-    subgraph HostNS["宿主机网络命名空间"]
-        Eth0["eth0<br/>192.168.1.100"]
-        Docker0["docker0 网桥<br/>172.17.0.1"]
-        Veth1["vethxxx"]
-        Veth2["vethyyy"]
-        NAT["iptables NAT"]
-    end
-    
-    subgraph C1NS["容器 1 网络命名空间"]
-        CE1["eth0<br/>172.17.0.2"]
-        App1["应用进程"]
-    end
-    
-    subgraph C2NS["容器 2 网络命名空间"]
-        CE2["eth0<br/>172.17.0.3"]
-        App2["应用进程"]
-    end
-    
-    External["外部网络"]
-    
-    App1 --> CE1
-    App2 --> CE2
-    CE1 <-->|"veth pair"| Veth1
-    CE2 <-->|"veth pair"| Veth2
-    Veth1 --> Docker0
-    Veth2 --> Docker0
-    Docker0 --> NAT --> Eth0 --> External
-    
-    style HostNS fill:#e3f2fd,stroke:#1565c0
-    style C1NS fill:#c8e6c9,stroke:#2e7d32
-    style C2NS fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-Bridge模式架构](./images/Docker-Bridge模式架构.svg)
 
 **Bridge 模式特点**：
 
@@ -834,23 +429,7 @@ docker exec web ip addr
 
 **2. Host 模式**
 
-```mermaid
-flowchart TB
-    subgraph HostNS["宿主机网络命名空间（共享）"]
-        Eth0["eth0<br/>192.168.1.100"]
-        Docker0["docker0<br/>172.17.0.1"]
-        
-        subgraph Container["容器进程"]
-            App["应用进程<br/>直接使用宿主机端口"]
-        end
-    end
-    
-    External["外部网络"] <--> Eth0
-    App -->|"直接绑定"| Eth0
-    
-    style HostNS fill:#e3f2fd,stroke:#1565c0
-    style Container fill:#ffcdd2,stroke:#c62828
-```
+![Docker-Host模式架构](./images/Docker-Host模式架构.svg)
 
 **Host 模式特点**：
 
@@ -874,17 +453,7 @@ docker exec web ip addr
 
 **3. None 模式**
 
-```mermaid
-flowchart TB
-    subgraph ContainerNS["容器网络命名空间"]
-        Lo["lo<br/>127.0.0.1<br/>仅回环接口"]
-        App["应用进程"]
-    end
-    
-    App --> Lo
-    
-    style ContainerNS fill:#ffcdd2,stroke:#c62828
-```
+![Docker-None模式架构](./images/Docker-None模式架构.svg)
 
 **None 模式特点**：
 
@@ -907,33 +476,7 @@ docker exec isolated ip addr
 
 **4. Container 模式**
 
-```mermaid
-flowchart TB
-    subgraph HostNS["宿主机网络命名空间"]
-        Docker0["docker0 网桥"]
-        Veth["vethxxx"]
-    end
-    
-    subgraph MainContainer["主容器网络命名空间"]
-        Eth["eth0<br/>172.17.0.2"]
-        App1["主应用"]
-    end
-    
-    subgraph SidecarContainer["Sidecar 容器"]
-        App2["Sidecar 进程<br/>共享网络栈"]
-    end
-    
-    External["外部网络"]
-    
-    App1 --> Eth
-    App2 -->|"共享"| Eth
-    Eth <-->|"veth pair"| Veth
-    Veth --> Docker0 --> External
-    
-    style HostNS fill:#e3f2fd,stroke:#1565c0
-    style MainContainer fill:#c8e6c9,stroke:#2e7d32
-    style SidecarContainer fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-Container模式架构](./images/Docker-Container模式架构.svg)
 
 **Container 模式特点**：
 
@@ -959,134 +502,65 @@ docker exec sidecar wget -qO- http://localhost:80
 
 **5. Overlay 模式**
 
-```mermaid
-flowchart TB
-    subgraph Host1["宿主机 1"]
-        DockerD1["Docker Daemon"]
-        Overlay1["Overlay 网络<br/>vxlan0"]
-        subgraph C1["容器 A"]
-            E1["eth0<br/>10.0.0.2"]
-        end
-    end
-    
-    subgraph Host2["宿主机 2"]
-        DockerD2["Docker Daemon"]
-        Overlay2["Overlay 网络<br/>vxlan0"]
-        subgraph C2["容器 B"]
-            E2["eth0<br/>10.0.0.3"]
-        end
-    end
-    
-    E1 --> Overlay1
-    E2 --> Overlay2
-    Overlay1 <-->|"VXLAN 隧道<br/>封装在 UDP 中"| Overlay2
-    
-    style Host1 fill:#e3f2fd,stroke:#1565c0
-    style Host2 fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-Overlay模式架构](./images/Docker-Overlay模式架构.svg)
 
 **Overlay 模式特点**：
 
 | 特点 | 说明 |
 |------|------|
 | **跨主机通信** | 不同宿主机的容器可以直接通信 |
-| **VXLAN 封装** | 使用 VXLAN 技术在物理网络上建立虚拟网络 |
+| **VXLAN 封装** | 使用 VXLAN 隧道技术在物理网络上建立虚拟网络（VXLAN 相关概念的详细说明见 7.6.1 节） |
 | **统一 IP 管理** | 容器 IP 由集群统一管理，跨主机不冲突 |
 | **需要 KV 存储** | 需要 etcd 或 Consul 等存储网络状态信息 |
 
+**使用示例**：
+
+```bash
+# 初始化 Swarm 集群（使用 overlay 网络的前提）
+docker swarm init --advertise-addr 192.168.1.100
+
+# 创建 overlay 网络
+docker network create --driver overlay mynet
+
+# 在 overlay 网络中部署服务，副本可调度到集群内不同主机
+docker service create --name web --network mynet -p 8080:80 nginx
+
+# 跨主机的服务副本通过 overlay 网络直接通信
+```
+
 #### 3.3.6 网络通信流程
 
-**1. 容器访问外部网络（SNAT）**
+**1. 容器访问外部网络（SNAT）​**
 
 容器访问外部网络时，数据包需要经过 SNAT（源地址转换），将容器 IP 转换为宿主机 IP。
 
-```mermaid
-flowchart TB
-    subgraph Container["容器网络命名空间"]
-        App["应用进程"]
-        CEth["eth0<br/>172.17.0.2"]
-    end
-    
-    subgraph Host["宿主机网络命名空间"]
-        Docker0["docker0 网桥<br/>172.17.0.1"]
-        Route["路由判断<br/>目标非本机网段"]
-        SNAT["iptables SNAT<br/>源地址转换<br/>172.17.0.2 → 192.168.1.100"]
-        HEth["eth0<br/>192.168.1.100"]
-    end
-    
-    subgraph External["外部网络"]
-        Server["目标服务器<br/>8.8.8.8:80"]
-    end
-    
-    App -->|"发送请求<br/>源: 172.17.0.2:随机端口<br/>目标: 8.8.8.8:80"| CEth
-    CEth -->|"veth pair"| Docker0
-    Docker0 --> Route
-    Route --> SNAT
-    SNAT -->|"转发请求<br/>源: 192.168.1.100:随机端口<br/>目标: 8.8.8.8:80"| HEth
-    HEth -->|"物理网络"| Server
-    
-    style Container fill:#e3f2fd,stroke:#1565c0
-    style Host fill:#c8e6c9,stroke:#2e7d32
-    style External fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-SNAT出站访问流程](./images/Docker-SNAT出站访问流程.svg)
 
 **通信过程详解**：
 
-| 步骤 | 阶段 | 数据包变化 | 说明 |
-|------|------|------------|------|
-| 1 | 容器发送 | 源: 172.17.0.2:随机端口 → 目标: 8.8.8.8:80 | 应用进程发起请求 |
-| 2 | 通过 veth | 无变化 | 数据包通过 veth pair 到达 docker0 |
-| 3 | 路由判断 | 无变化 | docker0 判断目标 IP 不在本机网段 |
-| 4 | SNAT 转换 | 源: 192.168.1.100:随机端口 → 目标: 8.8.8.8:80 | iptables 修改源地址 |
-| 5 | 发出请求 | 无变化 | 数据包从 eth0 发出到物理网络 |
+| 阶段         | 数据包变化                               | 说明                              |
+| ------------ | ---------------------------------------- | --------------------------------- |
+| 应用进程请求 | 源：172.17.0.2:80；目标：8.8.8.8:80      | 应用进程发起请求                  |
+| 到达网桥     | 无变化                                   | 数据包通过 veth pair 到达 docker0 |
+| 路由判断     | 无变化                                   | docker0 判断目标 IP 不在本机网段  |
+| SNAT 处理    | 源：192.168.1.100:8080；目标：8.8.8.8:80 | iptables 修改源地址               |
+| 客户端接收   | 无变化                                   | 数据包从 eth0 发出到客户端        |
 
-**2. 外部访问容器（DNAT）**
+**2. 外部访问容器（DNAT）​**
 
 外部访问容器时，数据包需要经过 DNAT（目标地址转换），将宿主机端口映射到容器端口。
 
-```mermaid
-flowchart TB
-    subgraph External["外部客户端"]
-        Client["用户浏览器"]
-    end
-    
-    subgraph Host["宿主机网络命名空间"]
-        HEth["eth0<br/>192.168.1.100"]
-        DNAT["iptables DNAT<br/>目标地址转换<br/>192.168.1.100:8080 → 172.17.0.2:80"]
-        Docker0["docker0 网桥<br/>172.17.0.1"]
-    end
-    
-    subgraph Container["容器网络命名空间"]
-        CEth["eth0<br/>172.17.0.2"]
-        Nginx["Nginx 服务<br/>监听 80 端口"]
-    end
-    
-    Client -->|"发起请求<br/>目标: 192.168.1.100:8080"| HEth
-    HEth --> DNAT
-    DNAT -->|"转发请求<br/>目标: 172.17.0.2:80"| Docker0
-    Docker0 -->|"veth pair"| CEth
-    CEth --> Nginx
-    
-    Nginx -.->|"响应"| CEth
-    CEth -.->|"veth pair"| Docker0
-    Docker0 -.->|"反向 NAT"| HEth
-    HEth -.->|"返回响应"| Client
-    
-    style External fill:#fff3e0,stroke:#ef6c00
-    style Host fill:#e3f2fd,stroke:#1565c0
-    style Container fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-DNAT端口映射流程](./images/Docker-DNAT端口映射流程.svg)
 
 **端口映射过程详解**：
 
-| 步骤 | 阶段 | 数据包变化 | 说明 |
-|------|------|------------|------|
-| 1 | 客户端请求 | 目标: 192.168.1.100:8080 | 外部用户访问宿主机端口 |
-| 2 | DNAT 转换 | 目标: 172.17.0.2:80 | iptables 修改目标地址 |
-| 3 | 路由转发 | 无变化 | 根据路由表转发到 docker0 |
-| 4 | 到达容器 | 无变化 | 数据包通过 veth pair 到达容器 |
-| 5 | 响应返回 | 源: 172.17.0.2:80 | 容器响应请求 |
-| 6 | 反向 NAT | 源: 192.168.1.100:8080 | 自动转换源地址返回客户端 |
+| 阶段         | 数据包变化               | 说明                           |
+| ------------ | ------------------------ | ------------------------------ |
+| 客户端请求   | 目标：192.168.1.100:8080 | 外部客户端访问宿主机 eth0      |
+| DNAT 转换    | 目标：172.17.0.2:80      | iptables 修改目标地址          |
+| 路由判断     | 无变化                   | 根据路由表转发到 docker0       |
+| 到达容器     | 无变化                   | 数据包通过 veth pair 到达容器  |
+| 应用进程接收 | 无变化                   | 数据包通过 eth0 转发至应用进程 |
 
 **端口映射规则**：
 
@@ -1105,36 +579,7 @@ iptables -t nat -vnL
 
 同一网桥上的容器可以通过 IP 地址直接进行二层通信，无需 NAT 转换。
 
-```mermaid
-flowchart TB
-    subgraph Bridge["docker0 网桥 (172.17.0.0/16)"]
-        Docker0["docker0<br/>172.17.0.1<br/>二层交换机"]
-        
-        subgraph Container1["容器 1 (172.17.0.2)"]
-            C1Eth["eth0"]
-            C1App["Web 应用"]
-        end
-        
-        subgraph Container2["容器 2 (172.17.0.3)"]
-            C2Eth["eth0"]
-            C2App["API 服务<br/>监听 8080 端口"]
-        end
-    end
-    
-    C1App -->|"发起请求<br/>目标: 172.17.0.3:8080"| C1Eth
-    C1Eth -->|"veth pair"| Docker0
-    Docker0 -->|"二层转发"| C2Eth
-    C2Eth --> C2App
-    
-    C2App -.->|"响应数据"| C2Eth
-    C2Eth -.->|"veth pair"| Docker0
-    Docker0 -.->|"二层转发"| C1Eth
-    C1Eth -.-> C1App
-    
-    style Bridge fill:#e3f2fd,stroke:#1565c0
-    style Container1 fill:#c8e6c9,stroke:#2e7d32
-    style Container2 fill:#fff3e0,stroke:#ef6c00
-```
+![Docker-容器间二层通信流程](./images/Docker-容器间二层通信流程.svg)
 
 **容器间通信过程**：
 
@@ -1177,42 +622,7 @@ Docker 提供了四种重启策略，用于控制容器在退出或 Docker 守�
 
 **always 与 unless-stopped 的关键区别**：
 
-```mermaid
-flowchart TB
-    subgraph Scenario["关键场景"]
-        S1["容器崩溃退出"]
-        S2["容器正常退出<br/>exit 0"]
-        S3["宿主机重启<br/>Docker 守护进程启动"]
-        S4["手动停止容器后<br/>宿主机重启"]
-    end
-    
-    subgraph Always["always 策略"]
-        A1["✅ 自动重启"]
-        A2["✅ 自动重启"]
-        A3["✅ 自动启动"]
-        A4["✅ 自动启动<br/>⚠️ 忽略手动停止"]
-    end
-    
-    subgraph UnlessStopped["unless-stopped 策略"]
-        U1["✅ 自动重启"]
-        U2["✅ 自动重启"]
-        U3["✅ 自动启动"]
-        U4["❌ 保持停止<br/>尊重手动停止"]
-    end
-    
-    S1 --> A1
-    S1 --> U1
-    S2 --> A2
-    S2 --> U2
-    S3 --> A3
-    S3 --> U3
-    S4 --> A4
-    S4 --> U4
-    
-    style Scenario fill:#f3e5f5,stroke:#7b1fa2
-    style Always fill:#ffcdd2,stroke:#c62828
-    style UnlessStopped fill:#c8e6c9,stroke:#2e7d32
-```
+两类策略在多数场景下行为一致，差异集中于下表所列的各触发场景：
 
 **核心差异说明**：
 
@@ -1227,7 +637,7 @@ flowchart TB
 
 #### 3.4.3 on-failure 策略详解
 
-`on-failure` 策略仅在容器异常退出时触发重启，适用于可能正常退出的服务。
+`on-failure` 策略仅在容器异常退出时触发重启，适用于关注异常退出的服务（如批处理任务，正常完成后无需重启，异常退出时自动重试）。
 
 **常见退出码含义**：
 
@@ -1256,72 +666,11 @@ docker run -d --name app --restart=on-failure:5 myapp:latest
 
 #### 3.4.4 完整行为对比表
 
-```mermaid
-flowchart LR
-    subgraph Events["触发事件"]
-        E1["容器崩溃<br/>exit 1"]
-        E2["正常退出<br/>exit 0"]
-        E3["宿主机重启<br/>容器之前运行"]
-        E4["宿主机重启<br/>容器之前手动停止"]
-    end
-    
-    subgraph No["no"]
-        N1["❌"]
-        N2["❌"]
-        N3["❌"]
-        N4["❌"]
-    end
-    
-    subgraph OnFailure["on-failure"]
-        O1["✅"]
-        O2["❌"]
-        O3["❌"]
-        O4["❌"]
-    end
-    
-    subgraph Always["always"]
-        A1["✅"]
-        A2["✅"]
-        A3["✅"]
-        A4["✅"]
-    end
-    
-    subgraph UnlessStopped["unless-stopped"]
-        U1["✅"]
-        U2["✅"]
-        U3["✅"]
-        U4["❌"]
-    end
-    
-    E1 --> N1
-    E1 --> O1
-    E1 --> A1
-    E1 --> U1
-    
-    E2 --> N2
-    E2 --> O2
-    E2 --> A2
-    E2 --> U2
-    
-    E3 --> N3
-    E3 --> O3
-    E3 --> A3
-    E3 --> U3
-    
-    E4 --> N4
-    E4 --> O4
-    E4 --> A4
-    E4 --> U4
-    
-    style No fill:#ffcdd2,stroke:#c62828
-    style OnFailure fill:#fff3e0,stroke:#ef6c00
-    style Always fill:#e3f2fd,stroke:#1565c0
-    style UnlessStopped fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-重启策略行为对比](./images/Docker-重启策略行为对比.svg)
 
 #### 3.4.5 使用示例
 
-**1. no 策略（默认）**
+**1. no 策略（默认）​**
 
 ```bash
 docker run -d --name temp-task --restart=no alpine echo "Hello"
@@ -1337,7 +686,7 @@ docker run -d \
   nginx:latest
 ```
 
-**3. on-failure 策略（指定最大重试次数）**
+**3. on-failure 策略（指定最大重试次数）​**
 
 ```bash
 docker run -d \
@@ -1346,7 +695,7 @@ docker run -d \
   myapp:latest
 ```
 
-**4. unless-stopped 策略（推荐用于生产环境）**
+**4. unless-stopped 策略（推荐用于生产环境）​**
 
 ```bash
 docker run -d \
@@ -1365,24 +714,7 @@ docker update --restart=unless-stopped mycontainer
 
 #### 3.4.7 重启策略选择指南
 
-```mermaid
-flowchart TD
-    Start["选择重启策略"] --> Q1{"容器是否需要<br/>长期运行？"}
-    Q1 -->|"否"| No["no"]
-    Q1 -->|"是"| Q2{"容器可能<br/>正常退出吗？"}
-    Q2 -->|"是"| Q3{"宿主机重启后<br/>是否自动启动？"}
-    Q2 -->|"否"| Q4{"手动停止后<br/>宿主机重启是否启动？"}
-    Q3 -->|"是"| OnFailure["on-failure"]
-    Q3 -->|"否"| No
-    Q4 -->|"是"| Always["always"]
-    Q4 -->|"否"| UnlessStopped["unless-stopped<br/>（推荐）"]
-    
-    style Start fill:#f3e5f5,stroke:#7b1fa2
-    style No fill:#ffcdd2,stroke:#c62828
-    style Always fill:#e3f2fd,stroke:#1565c0
-    style OnFailure fill:#fff3e0,stroke:#ef6c00
-    style UnlessStopped fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-重启策略选择流程](./images/Docker-重启策略选择流程.svg)
 
 | 场景 | 推荐策略 | 原因 |
 |------|----------|------|
@@ -1407,24 +739,9 @@ flowchart TD
 
 ### 4.1 镜像操作命令
 
-```mermaid
-flowchart LR
-    Search["docker search<br/>搜索镜像"] --> Pull["docker pull<br/>拉取镜像"]
-    Pull --> List["docker images<br/>查看镜像"]
-    List --> Build["docker build<br/>构建镜像"]
-    Build --> Tag["docker tag<br/>标记镜像"]
-    Tag --> Push["docker push<br/>推送镜像"]
-    List --> Rmi["docker rmi<br/>删除镜像"]
-    List --> Save["docker save<br/>导出镜像"]
-    Save --> Load["docker load<br/>导入镜像"]
-    
-    style Search fill:#e3f2fd,stroke:#1565c0
-    style Pull fill:#c8e6c9,stroke:#2e7d32
-    style List fill:#fff3e0,stroke:#ef6c00
-    style Build fill:#f3e5f5,stroke:#7b1fa2
-    style Push fill:#fce4ec,stroke:#c2185b
-    style Rmi fill:#ffcdd2,stroke:#c62828
-```
+镜像操作命令以本地镜像为枢纽，形成获取、构建、发布的主链路与删除、离线迁移两类分支操作：
+
+![Docker-镜像操作命令流程](./images/Docker-镜像操作命令流程.svg)
 
 | 命令 | 说明 | 示例 |
 |------|------|------|
@@ -1440,35 +757,9 @@ flowchart LR
 
 ### 4.2 容器操作命令
 
-```mermaid
-flowchart TB
-    subgraph Lifecycle["生命周期管理"]
-        Run["docker run<br/>创建并启动容器"]
-        Start["docker start<br/>启动已停止容器"]
-        Stop["docker stop<br/>优雅停止容器"]
-        Kill["docker kill<br/>强制停止容器"]
-        Restart["docker restart<br/>重启容器"]
-        Rm["docker rm<br/>删除容器"]
-    end
-    
-    subgraph Info["信息查看"]
-        Ps["docker ps<br/>查看运行容器"]
-        Logs["docker logs<br/>查看容器日志"]
-        Inspect["docker inspect<br/>查看容器详情"]
-        Stats["docker stats<br/>查看资源统计"]
-        Port["docker port<br/>查看端口映射"]
-    end
-    
-    subgraph ExecGroup["容器操作"]
-        Exec["docker exec<br/>执行命令"]
-        Cp["docker cp<br/>复制文件"]
-        Attach["docker attach<br/>连接容器"]
-    end
-    
-    style Lifecycle fill:#e3f2fd,stroke:#1565c0
-    style Info fill:#c8e6c9,stroke:#2e7d32
-    style ExecGroup fill:#fff3e0,stroke:#ef6c00
-```
+容器操作命令按用途分为生命周期管理、信息查看与容器操作三类：
+
+![Docker-容器操作命令](./images/Docker-容器操作命令.svg)
 
 | 命令 | 说明 | 示例 |
 |------|------|------|
@@ -1493,7 +784,7 @@ flowchart TB
 docker run [OPTIONS] IMAGE [COMMAND]
 ```
 
-| 参数 | 说明 | 示例 |
+| 选项参数 | 说明 | 示例 |
 |------|------|------|
 | `-d` | 后台运行 | `docker run -d nginx` |
 | `--name` | 指定容器名 | `docker run --name web nginx` |
@@ -1649,6 +940,7 @@ docker run myimage
 docker run myimage "Hello Docker"
 # 输出: Hello Docker
 
+# docker run 参数会追加到 ENTRYPOINT 后面（-n 是 echo 的选项，表示不输出末尾换行符）
 docker run myimage -n "Hello Docker"
 # 输出: Hello Docker
 ```
@@ -1734,34 +1026,7 @@ Docker 构建镜像时会利用缓存机制加速构建过程，理解缓存原�
 
 #### 5.4.1 缓存工作原理
 
-```mermaid
-flowchart TB
-    subgraph Dockerfile["Dockerfile"]
-        F1["FROM ubuntu:22.04"]
-        F2["RUN apt-get update"]
-        F3["RUN apt-get install -y python3"]
-        F4["COPY . /app"]
-        F5["RUN pip install -r requirements.txt"]
-        F6["CMD python3 app.py"]
-    end
-    
-    subgraph Cache["缓存检查流程"]
-        C1["检查基础镜像缓存"]
-        C2["检查 RUN 指令缓存"]
-        C3["检查 COPY 文件变化"]
-        C4["缓存失效，重新构建"]
-        C5["使用缓存"]
-    end
-    
-    F1 --> C1
-    C1 --> C2
-    C2 --> C3
-    C3 -->|"文件变化"| C4
-    C3 -->|"文件未变"| C5
-    
-    style Dockerfile fill:#e3f2fd,stroke:#1565c0
-    style Cache fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-构建缓存检查流程](./images/Docker-构建缓存检查流程.svg)
 
 **缓存规则**：
 
@@ -1774,26 +1039,7 @@ flowchart TB
 
 #### 5.4.2 缓存命中判断
 
-```mermaid
-flowchart LR
-    subgraph Hit["缓存命中"]
-        H1["指令相同"]
-        H2["父层相同"]
-        H3["文件内容相同"]
-    end
-    
-    subgraph Miss["缓存失效"]
-        M1["指令变化"]
-        M2["文件变化"]
-        M3["父层缓存失效"]
-    end
-    
-    Hit -->|"全部满足"| Use["使用缓存"]
-    Miss -->|"任一触发"| Rebuild["重新构建"]
-    
-    style Hit fill:#c8e6c9,stroke:#2e7d32
-    style Miss fill:#ffcdd2,stroke:#c62828
-```
+![Docker-缓存命中判断](./images/Docker-缓存命中判断.svg)
 
 **各指令缓存判断**：
 
@@ -1833,22 +1079,7 @@ CMD ["python", "app.py"]
 
 **优化效果对比**：
 
-```mermaid
-flowchart TB
-    subgraph Before["优化前"]
-        B1["COPY . ."] --> B2["RUN pip install"]
-        B2 --> B3["代码变化触发重新安装"]
-    end
-    
-    subgraph After["优化后"]
-        A1["COPY requirements.txt"] --> A2["RUN pip install"]
-        A2 --> A3["COPY . ."]
-        A3 --> A4["代码变化不影响依赖安装"]
-    end
-    
-    style Before fill:#ffcdd2,stroke:#c62828
-    style After fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-构建缓存优化对比](./images/Docker-构建缓存优化对比.svg)
 
 #### 5.4.4 缓存控制参数
 
@@ -1890,7 +1121,7 @@ CMD ["node", "src/index.js"]
 
 多阶段构建是 Docker 17.05 引入的特性，允许在一个 Dockerfile 中使用多个 FROM 指令，每个 FROM 开始一个新的构建阶段，可以选择性地从之前的阶段复制文件。
 
-#### 5.4.1 为什么需要多阶段构建
+#### 5.5.1 为什么需要多阶段构建
 
 **传统构建的问题**：
 
@@ -1907,29 +1138,11 @@ CMD ["./myapp"]
 - 源代码留在镜像中，存在安全风险
 - 构建依赖和运行依赖混在一起
 
-#### 5.4.2 多阶段构建原理
+#### 5.5.2 多阶段构建原理
 
-```mermaid
-flowchart LR
-    subgraph Stage1["阶段1: 构建阶段"]
-        B1["FROM golang:1.21 AS builder"]
-        C1["COPY . ."]
-        R1["RUN go build"]
-    end
-    
-    subgraph Stage2["阶段2: 运行阶段"]
-        B2["FROM alpine:3.19"]
-        C2["COPY --from=builder"]
-        R2["CMD ['./myapp']"]
-    end
-    
-    Stage1 -->|"只复制编译产物"| Stage2
-    
-    style Stage1 fill:#e3f2fd,stroke:#1565c0
-    style Stage2 fill:#c8e6c9,stroke:#2e7d32
-```
+![Docker-多阶段构建原理](./images/Docker-多阶段构建原理.svg)
 
-#### 5.4.3 多阶段构建示例
+#### 5.5.3 多阶段构建示例
 
 **示例1：Go 应用**
 
@@ -2013,7 +1226,7 @@ EXPOSE 8000
 CMD ["python", "app.py"]
 ```
 
-#### 5.4.4 多阶段构建技巧
+#### 5.5.4 多阶段构建技巧
 
 | 技巧 | 说明 |
 |------|------|
@@ -2024,11 +1237,11 @@ CMD ["python", "app.py"]
 
 ---
 
-### 5.5 .dockerignore 文件
+### 5.6 .dockerignore 文件
 
 .dockerignore 文件用于排除不需要发送到 Docker 守护进程的文件和目录，减少构建上下文大小，加快构建速度。
 
-#### 5.5.1 文件位置
+#### 5.6.1 文件位置
 
 .dockerignore 文件必须放在**构建上下文的根目录**下，与 Dockerfile 同级：
 
@@ -2060,14 +1273,14 @@ docker build -t myimage ./app
 docker build -t myimage -f ./docker/Dockerfile .
 ```
 
-#### 5.5.2 为什么需要 .dockerignore
+#### 5.6.2 为什么需要 .dockerignore
 
 Docker 构建时会将上下文目录的所有文件发送给 Docker 守护进程。如果不排除不需要的文件，会导致：
 - 构建上下文过大，传输慢
 - 构建缓存失效
 - 敏感信息泄露
 
-#### 5.5.3 .dockerignore 语法
+#### 5.6.3 .dockerignore 语法
 
 ```text
 # 注释
@@ -2077,7 +1290,7 @@ Docker 构建时会将上下文目录的所有文件发送给 Docker 守护进�
 !               # 排除例外
 ```
 
-#### 5.5.4 .dockerignore 示例
+#### 5.6.4 .dockerignore 示例
 
 **Node.js 项目**：
 
@@ -2195,7 +1408,7 @@ htmlcov/
 *.swo
 ```
 
-#### 5.5.5 .dockerignore 最佳实践
+#### 5.6.5 .dockerignore 最佳实践
 
 | 实践 | 说明 |
 |------|------|
@@ -2206,17 +1419,19 @@ htmlcov/
 | **排除构建产物** | 排除 `dist`、`build` 等 |
 | **保持更新** | 项目结构变化时及时更新 |
 
-#### 5.5.6 验证 .dockerignore 效果
+#### 5.6.6 验证 .dockerignore 效果
 
 ```bash
-# 查看构建上下文大小
+# 查看构建上下文大小（对比添加忽略规则前后的体积变化）
 docker build -t myimage . 2>&1 | grep "Sending build context"
 
-# 使用 dry-run 检查哪些文件会被包含
+# 列出上下文目录的候选文件（tar 不会应用 .dockerignore）
 tar -cf - . | tar -tf - | head -20
 ```
 
-#### 5.5.7 .dockerignore 用法案例
+> **注意**：`docker build` 发送构建上下文时使用 tar 打包格式，因此可用 tar 模拟列出候选文件；但 tar 本身不识别 `.dockerignore`，第二条命令列出的是目录全量文件，用于排查"哪些文件可能被纳入上下文"，忽略规则是否真正生效，以第一条命令的上下文体积变化为准。
+
+#### 5.6.7 .dockerignore 用法案例
 
 **案例1：Node.js 项目构建优化**
 
@@ -2308,7 +1523,7 @@ tests/
 
 ---
 
-### 5.6 Dockerfile 最佳实践
+### 5.7 Dockerfile 最佳实践
 
 | 实践 | 说明 |
 |------|------|
@@ -2327,7 +1542,7 @@ tests/
 
 ### 6.1 Docker Compose 简介
 
-Docker Compose 是用于定义和运行多容器 Docker 应用程序的工具，通过 YAML 文件配置应用程序服务，一键启动所有关联容器。
+Docker Compose 是用于定义和运行多容器 Docker 应用程序的工具，通过 YAML 文件配置应用程序服务，一键启动所有关联容器。Compose 在单台 Docker Engine 上工作，编排范围限于本机容器；跨多台机器的集群编排由 Docker Swarm 提供（见第七章 7.1.4）。
 
 ### 6.2 docker-compose.yml 结构
 
@@ -2414,98 +1629,43 @@ services:
 
 ## 七、Docker Swarm 集群管理
 
-Docker Swarm 是 Docker 官方提供的容器集群管理和编排工具，它允许将多个 Docker 主机组成一个虚拟的整体，实现容器的集群化部署和管理。Docker 1.12 版本后，Swarm mode 已内嵌到 Docker 引擎中。
+Docker Swarm 是 Docker 官方提供的容器编排工具，它将多个运行 Docker Engine 的机器组成一个集群，实现容器的集群化部署、调度和管理。Docker 1.12 版本后，Swarm mode 已内嵌到 Docker Engine 中，无需额外安装独立组件。
 
 ### 7.1 Swarm 核心概念
 
 #### 7.1.1 概念层级关系
 
-Swarm 中的核心概念存在明确的层级关系，从应用到底层容器依次为：
+从应用定义到底层容器，各概念按部署链路形成如下层级（集群侧的 Swarm 与 Node 两个物理概念见 7.1.2 的维度划分）：
 
-```mermaid
-flowchart TB
-    subgraph AppLevel["应用层"]
-        App["应用程序<br/>（Application）"]
-    end
-    
-    subgraph StackLevel["Stack 层"]
-        Stack["Stack（栈）<br/>一组相关服务的集合<br/>通过 docker-compose.yml 定义"]
-    end
-    
-    subgraph ServiceLevel["Service 层"]
-        S1["Service A<br/>服务定义<br/>镜像、端口、副本数"]
-        S2["Service B<br/>服务定义"]
-    end
-    
-    subgraph TaskLevel["Task 层"]
-        T1["Task 1"]
-        T2["Task 2"]
-        T3["Task 3"]
-        T4["Task 4"]
-    end
-    
-    subgraph ContainerLevel["Container 层"]
-        C1["Container<br/>容器实例"]
-        C2["Container<br/>容器实例"]
-        C3["Container<br/>容器实例"]
-        C4["Container<br/>容器实例"]
-    end
-    
-    App --> Stack
-    Stack --> S1
-    Stack --> S2
-    S1 --> T1
-    S1 --> T2
-    S2 --> T3
-    S2 --> T4
-    T1 --> C1
-    T2 --> C2
-    T3 --> C3
-    T4 --> C4
-    
-    style AppLevel fill:#f3e5f5,stroke:#7b1fa2
-    style StackLevel fill:#e8eaf6,stroke:#3f51b5
-    style ServiceLevel fill:#e3f2fd,stroke:#1565c0
-    style TaskLevel fill:#c8e6c9,stroke:#2e7d32
-    style ContainerLevel fill:#fff3e0,stroke:#ef6c00
-```
+![Swarm-概念层级关系](./images/Swarm-概念层级关系.svg)
 
 #### 7.1.2 核心概念详解
 
-| 概念 | 说明 | 对应关系 |
-|------|------|----------|
-| **Swarm** | 由多个 Docker 节点组成的集群，作为一个整体对外提供服务 | 集群级别 |
-| **Node（节点）** | Swarm 集群中的单个 Docker 引擎实例，可以是物理机或虚拟机 | 集群组成单元 |
-| **Stack（栈）** | 一组相关服务的集合，通过 docker-compose.yml 文件定义，用于部署完整应用 | Stack : Service = 1 : N |
-| **Service（服务）** | 在 Swarm 上运行的任务定义，指定镜像、端口、副本数等参数 | Service : Task = 1 : N（副本数） |
-| **Task（任务）** | Swarm 调度的最小单元，每个 Task 对应一个容器实例 | Task : Container = 1 : 1 |
-| **Container（容器）** | 实际运行的容器实例，由 Task 启动和管理 | 最小执行单元 |
+Swarm 的核心概念分属两个维度：**物理（运行）维度**描述集群由什么组成、容器在哪里运行；**逻辑（编排）维度**描述应用由什么组成、要运行什么。
+
+![Swarm-概念双维度关系](./images/Swarm-概念双维度关系.svg)
+
+**物理（运行）维度**：
+
+- **Swarm**：集群本身，由多个 Node（节点）组成，作为一个整体对外提供服务。
+- **Node（节点）​**：集群的组成单元，是一台运行 Docker Engine 的物理机或虚拟机，一个节点对应一个 Docker Engine 实例；单台节点可运行多个容器（Node : Container = 1 : N）。
+- **Container（容器）​**：最小执行单元，是运行在某个节点上的容器实例，由该节点的 Docker Engine 启动和管理。
+
+**逻辑（编排）维度**：
+
+- **Stack（栈）​**：一组相关 Service 的集合，通过 docker-compose.yml 文件定义，用于部署完整应用（Stack : Service = 1 : N）。
+- **Service（服务）​**：服务的期望状态定义，声明镜像、端口、副本数等运行参数（Service : Task = 1 : N，N 即副本数）。
+- **Task（任务）​**：Swarm 调度的最小单元，代表一次容器运行指派，随容器生命周期在 RUNNING、FAILED 等状态间转换。
+
+**两个维度的衔接**：
+
+- **调度过程**：Service 按副本数生成 N 个 Task → 调度器为每个 Task 选择一个 Node → 该节点上的 Docker Engine 按 Task 携带的定义启动对应的 Container。
+- **对应关系**：逻辑维度的终点是 Task（调度指令），物理维度的终点是 Container（运行实例），二者一一对应（Task : Container = 1 : 1）。
+- **期望状态协调**：Manager 持续对比实际状态与 Service 声明的期望状态；节点故障导致容器消失时，Manager 生成新的 Task 并调度到其他节点启动，使实际副本数恢复为期望值。
 
 #### 7.1.3 Service 与 Stack 的关系
 
-```mermaid
-flowchart LR
-    subgraph StackFile["docker-compose.yml"]
-        Code["services:<br/>  web:<br/>    image: nginx<br/>    replicas: 3<br/>  db:<br/>    image: mysql<br/>    replicas: 1<br/>  redis:<br/>    image: redis<br/>    replicas: 2"]
-    end
-    
-    subgraph Deploy["docker stack deploy"]
-        CMD["部署命令"]
-    end
-    
-    subgraph Stack["myapp Stack"]
-        Web["web Service<br/>3 副本"]
-        DB["db Service<br/>1 副本"]
-        Redis["redis Service<br/>2 副本"]
-    end
-    
-    StackFile --> Deploy
-    Deploy --> Stack
-    
-    style StackFile fill:#f3e5f5,stroke:#7b1fa2
-    style Deploy fill:#e8eaf6,stroke:#3f51b5
-    style Stack fill:#e3f2fd,stroke:#1565c0
-```
+![Swarm-Stack部署流程](./images/Swarm-Stack部署流程.svg)
 
 **Service 与 Stack 关系说明**：
 
@@ -2515,83 +1675,33 @@ flowchart LR
 | **管理粒度** | 单个服务 | 多个相关服务的集合 |
 | **部署命令** | `docker service create` | `docker stack deploy -c docker-compose.yml` |
 | **适用场景** | 单一服务部署、快速测试 | 完整应用部署、微服务架构 |
-| **服务发现** | 服务名访问 | 服务名访问，同一 Stack 内服务互通 |
-| **依赖管理** | 不支持服务依赖 | 支持 depends_on 定义服务启动顺序 |
+| **服务发现** | 服务名访问（内置 DNS） | 服务名访问（内置 DNS）；服务间能否互通取决于是否接入同一 overlay 网络 |
+| **依赖管理** | 不涉及服务依赖 | 可在 Compose 文件中书写 depends_on，但 `docker stack deploy` 会忽略它，不保证服务启动顺序 |
 
-**总结**：Stack 是一组 Service 的逻辑集合，用于部署完整的多服务应用。一个 Stack 可以包含多个 Service，每个 Service 可以有多个副本（Task/Container）。
+**总结**：Stack 是一组 Service 的逻辑集合，用于部署完整的多服务应用。一个 Stack 可以包含多个 Service，每个 Service 可以有多个副本（每个副本对应一个 Task 及其 Container）。
+
+#### 7.1.4 Docker Compose 与 Docker Swarm 的区别
+
+Compose（第六章）与 Swarm 都能依据 docker-compose.yml 文件一键部署多容器应用，职能上容易混淆。二者的核心区别在于**编排范围**：Compose 面向单台 Docker Engine，Swarm 面向多节点集群。
+
+| 对比项 | Docker Compose | Docker Swarm |
+|--------|---------------|--------------|
+| **定位** | 单机多容器编排工具 | 多节点集群编排工具 |
+| **管理范围** | 一台 Docker Engine 上的容器组 | 由多个 Node（节点）组成的集群 |
+| **跨节点调度** | 不支持，所有容器只能运行在同一台机器上 | 支持，Task 按调度策略分布到不同节点 |
+| **故障自愈** | 依赖容器重启策略（restart），且仅在本机生效；机器宕机则应用整体不可用 | 基于期望状态协调，节点故障后 Task 自动迁移到其他节点重启容器 |
+| **滚动更新** | 无原生支持，需手动重建容器 | 原生支持（update_config：分批替换、失败自动回滚） |
+| **负载均衡** | 无内置负载均衡与路由网格 | 内置 DNS 服务发现、VIP/IPVS 负载均衡与 Ingress 路由网格 |
+| **高可用** | 无 | 多 Manager 基于 Raft 共识容错 |
+| **典型场景** | 本地开发、测试环境 | 中小规模集群的生产部署 |
+
+**二者的联系**：Swarm 复用了 Compose 的文件格式——`docker stack deploy -c docker-compose.yml` 直接读取 Compose 文件部署 Stack，并在 deploy: 字段上扩展了副本数、更新策略、放置约束等集群专属配置。但二者对字段的支持存在差异：Compose 会忽略 deploy 中的部分集群字段，Swarm 则会忽略 depends_on（见 7.1.3）。典型工作流是：开发阶段用 Compose 在单机验证应用定义，部署阶段用 Swarm 集群运行同一份定义。
 
 ### 7.2 集群架构
 
 #### 7.2.1 整体架构图
 
-```mermaid
-flowchart TB
-    subgraph External["外部访问"]
-        User["用户/客户端"]
-    end
-    
-    subgraph SwarmCluster["Docker Swarm 集群"]
-        subgraph Managers["Manager 节点组（Raft 集群）"]
-            M1["Manager 1<br/>Leader<br/>调度器 + API"]
-            M2["Manager 2<br/>Follower"]
-            M3["Manager 3<br/>Follower"]
-            
-            M1 <-->|"Raft 共识<br/>日志复制"| M2
-            M1 <-->|"Raft 共识<br/>日志复制"| M3
-            M2 <-->|"Raft 共识"| M3
-        end
-        
-        subgraph Workers["Worker 节点组"]
-            W1["Worker 1"]
-            W2["Worker 2"]
-            W3["Worker 3"]
-        end
-        
-        subgraph Containers["容器实例"]
-            subgraph W1Containers["Worker 1 上的容器"]
-                WC1["web-1<br/>容器"]
-                WC2["db-1<br/>容器"]
-            end
-            subgraph W2Containers["Worker 2 上的容器"]
-                WC3["web-2<br/>容器"]
-                WC4["redis-1<br/>容器"]
-            end
-            subgraph W3Containers["Worker 3 上的容器"]
-                WC5["web-3<br/>容器"]
-                WC6["redis-2<br/>容器"]
-            end
-        end
-        
-        subgraph OverlayNet["Overlay 网络"]
-            ONet["跨主机容器通信网络<br/>VXLAN 隧道"]
-        end
-    end
-    
-    User -->|"HTTP 请求<br/>端口 80"| M1
-    M1 -->|"调度 Task"| W1
-    M1 -->|"调度 Task"| W2
-    M1 -->|"调度 Task"| W3
-    
-    W1 --> WC1
-    W1 --> WC2
-    W2 --> WC3
-    W2 --> WC4
-    W3 --> WC5
-    W3 --> WC6
-    
-    WC1 <--> ONet
-    WC2 <--> ONet
-    WC3 <--> ONet
-    WC4 <--> ONet
-    WC5 <--> ONet
-    WC6 <--> ONet
-    
-    style External fill:#fce4ec,stroke:#c2185b
-    style Managers fill:#e3f2fd,stroke:#1565c0
-    style Workers fill:#c8e6c9,stroke:#2e7d32
-    style Containers fill:#fff3e0,stroke:#ef6c00
-    style OverlayNet fill:#f3e5f5,stroke:#7b1fa2
-```
+![Docker-Swarm集群架构](./images/Docker-Swarm集群架构.svg)
 
 #### 7.2.2 集群工作流程
 
@@ -2626,6 +1736,8 @@ sequenceDiagram
     Manager-->>User: 服务创建完成，2/2 副本运行
 ```
 
+**说明**：`docker service create` 与 `docker stack deploy` 均为 Swarm 集群管理命令，仅在 Swarm 模式下可用（单机对应的命令是 `docker run`）。本图选用单条 `docker service create` 作示例，以聚焦一个 Service 从定义到 Task 调度的完整流程；`docker stack deploy` 则将 Compose 文件中的每个 services 条目逐一创建为 Service（见 7.1.3），随后每个 Service 同样经历本图所示的调度过程。
+
 ### 7.3 节点类型
 
 #### 7.3.1 节点角色对比
@@ -2637,40 +1749,7 @@ sequenceDiagram
 
 #### 7.3.2 Manager 节点核心组件
 
-```mermaid
-flowchart TB
-    subgraph ManagerNode["Manager 节点"]
-        subgraph API["API 层"]
-            DockerAPI["Docker API<br/>接收客户端请求"]
-        end
-        
-        subgraph Orchestration["编排层"]
-            Scheduler["调度器<br/>分配 Task 到节点"]
-            Orchestrator["编排器<br/>管理服务期望状态"]
-        end
-        
-        subgraph RaftLayer["Raft 共识层"]
-            RaftNode["Raft 节点<br/>Leader/Follower"]
-            LogStore["日志存储<br/>集群状态日志"]
-        end
-        
-        subgraph Dispatcher["分发器"]
-            TaskDispatch["Task 分发<br/>向 Worker 分配任务"]
-        end
-    end
-    
-    DockerAPI --> Orchestrator
-    Orchestrator --> Scheduler
-    Scheduler --> TaskDispatch
-    Orchestrator <--> RaftNode
-    RaftNode <--> LogStore
-    TaskDispatch -->|"gRPC"| Workers["Worker 节点"]
-    
-    style API fill:#e3f2fd,stroke:#1565c0
-    style Orchestration fill:#c8e6c9,stroke:#2e7d32
-    style RaftLayer fill:#ffcdd2,stroke:#c62828
-    style Dispatcher fill:#fff3e0,stroke:#ef6c00
-```
+![Swarm-Manager节点组件](./images/Swarm-Manager节点组件.svg)
 
 **Manager 节点职责详解**：
 
@@ -2684,22 +1763,7 @@ flowchart TB
 
 #### 7.3.3 Worker 节点工作流程
 
-```mermaid
-flowchart LR
-    subgraph WorkerNode["Worker 节点"]
-        WorkerAgent["Worker Agent<br/>与 Manager 通信"]
-        DockerEngine["Docker Engine<br/>执行容器操作"]
-        ContainerRuntime["容器运行时<br/>containerd"]
-    end
-    
-    Manager["Manager 节点"] -->|"分配 Task"| WorkerAgent
-    WorkerAgent -->|"创建容器"| DockerEngine
-    DockerEngine -->|"运行容器"| ContainerRuntime
-    ContainerRuntime -->|"状态上报"| WorkerAgent
-    WorkerAgent -->|"心跳 + 状态"| Manager
-    
-    style WorkerNode fill:#c8e6c9,stroke:#2e7d32
-```
+![Swarm-Worker节点工作流程](./images/Swarm-Worker节点工作流程.svg)
 
 ### 7.4 Raft 共识算法
 
@@ -2707,35 +1771,7 @@ flowchart LR
 
 Swarm 使用 Raft 算法实现 Manager 节点间的高可用和数据一致性。Raft 是一种分布式共识算法，确保在部分节点故障时集群仍能正常工作。
 
-```mermaid
-stateDiagram-v2
-    [*] --> Follower: 节点启动
-    
-    Follower --> Candidate: 选举超时<br/>未收到 Leader 心跳
-    Candidate --> Leader: 获得多数票
-    Candidate --> Follower: 收到更高任期消息<br/>或选举失败
-    
-    Leader --> Follower: 发现更高任期<br/>或网络分区
-    
-    state Follower {
-        [*] --> 接收日志
-        接收日志 --> 响应心跳
-        响应心跳 --> [*]
-    }
-    
-    state Leader {
-        [*] --> 发送心跳
-        发送心跳 --> 日志复制
-        日志复制 --> 提交日志
-        提交日志 --> [*]
-    }
-    
-    state Candidate {
-        [*] --> 发起选举
-        发起选举 --> 等待投票
-        等待投票 --> [*]
-    }
-```
+![Swarm-Raft角色状态转换](./images/Swarm-Raft角色状态转换.svg)
 
 #### 7.4.2 Raft 日志复制流程
 
@@ -2783,80 +1819,18 @@ sequenceDiagram
 
 #### 7.4.4 高可用配置建议
 
-```mermaid
-flowchart LR
-    subgraph Cluster["Manager 节点数量"]
-        N3["3 个节点<br/>容忍 1 个故障"]
-        N5["5 个节点<br/>容忍 2 个故障"]
-        N7["7 个节点<br/>容忍 3 个故障"]
-    end
-    
-    subgraph Formula["计算公式"]
-        F["容忍故障数 = (n-1)/2<br/>n 为 Manager 节点数"]
-    end
-    
-    Cluster --> Formula
-    
-    style N3 fill:#c8e6c9,stroke:#2e7d32
-    style N5 fill:#fff3e0,stroke:#ef6c00
-    style N7 fill:#ffcdd2,stroke:#c62828
-```
+![Swarm-Manager节点数量与容错](./images/Swarm-Manager节点数量与容错.svg)
 
 **推荐配置**：
 - 生产环境：3 或 5 个 Manager 节点
 - 最大容忍故障：`(n-1)/2` 个节点
-- 节点数量必须为奇数，避免选举平票
+- Manager 节点数量建议为奇数：偶数个 Manager 的容错能力与少一台的奇数相同（同为 `(n-1)/2`），多出的机器不提升容错，且选举时更容易出现平票、触发重新选举
 
 ### 7.5 服务调度机制
 
 #### 7.5.1 服务创建与调度流程
 
-```mermaid
-flowchart TB
-    subgraph Request["1. 请求阶段"]
-        A["docker service create<br/>--name web --replicas 3 nginx"] --> B["Manager API 接收请求"]
-    end
-    
-    subgraph Orchestration["2. 编排阶段"]
-        B --> C["Orchestrator 创建服务对象"]
-        C --> D["生成期望状态<br/>3 个 Task"]
-        D --> E["写入 Raft 日志"]
-        E --> F["Raft 多数确认"]
-    end
-    
-    subgraph Scheduling["3. 调度阶段"]
-        F --> G["Scheduler 获取待调度 Task"]
-        G --> H["评估所有可用节点"]
-        H --> I["应用调度策略和约束"]
-        I --> J["选择最优节点"]
-    end
-    
-    subgraph Dispatch["4. 分发阶段"]
-        J --> K["Dispatcher 发送 Task 到 Worker"]
-        K --> L["Worker 接收 Task"]
-    end
-    
-    subgraph Execution["5. 执行阶段"]
-        L --> M["拉取镜像"]
-        M --> N["创建容器"]
-        N --> O["启动容器"]
-        O --> P["上报状态到 Manager"]
-    end
-    
-    subgraph Reconcile["6. 调谐阶段"]
-        P --> Q["Manager 更新集群状态"]
-        Q --> R{"实际状态 == 期望状态?"}
-        R -->|"否"| G
-        R -->|"是"| S["服务就绪"]
-    end
-    
-    style Request fill:#f3e5f5,stroke:#7b1fa2
-    style Orchestration fill:#e3f2fd,stroke:#1565c0
-    style Scheduling fill:#c8e6c9,stroke:#2e7d32
-    style Dispatch fill:#fff3e0,stroke:#ef6c00
-    style Execution fill:#fce4ec,stroke:#c2185b
-    style Reconcile fill:#e0e0e0,stroke:#616161
-```
+![Swarm-服务创建与调度流程](./images/Swarm-服务创建与调度流程.svg)
 
 #### 7.5.2 调度策略详解
 
@@ -2868,90 +1842,44 @@ flowchart TB
 
 #### 7.5.3 调度约束
 
-```mermaid
-flowchart LR
-    subgraph Constraints["调度约束类型"]
-        NodeID["node.id<br/>指定节点 ID"]
-        NodeName["node.hostname<br/>指定主机名"]
-        NodeLabel["node.labels<br/>节点标签"]
-        EngineLabel["engine.labels<br/>引擎标签"]
-    end
-    
-    subgraph Examples["示例"]
-        E1["--constraint 'node.role==worker'<br/>只在 Worker 节点运行"]
-        E2["--constraint 'node.labels.zone==us-east'<br/>在特定区域运行"]
-        E3["--constraint 'node.hostname!=node1'<br/>排除特定节点"]
-    end
-    
-    Constraints --> Examples
-    
-    style Constraints fill:#e3f2fd,stroke:#1565c0
-    style Examples fill:#c8e6c9,stroke:#2e7d32
-```
+![Swarm-调度约束类型与示例](./images/Swarm-调度约束类型与示例.svg)
 
 ### 7.6 Overlay 网络
 
 #### 7.6.1 Overlay 网络架构
 
-Overlay 网络通过 VXLAN 技术实现跨主机的容器通信，在物理网络之上构建虚拟的二层网络。
+**为什么需要 Overlay 网络**
 
-```mermaid
-flowchart TB
-    subgraph Host1["主机 1 (192.168.1.10)"]
-        subgraph NS1["容器网络命名空间"]
-            C1["容器 A<br/>eth0: 10.0.0.2"]
-        end
-        Veth1["veth pair"]
-        Br1["br0 网桥"]
-        VTEP1["VTEP<br/>VXLAN 隧道端点"]
-    end
-    
-    subgraph Host2["主机 2 (192.168.1.11)"]
-        subgraph NS2["容器网络命名空间"]
-            C2["容器 B<br/>eth0: 10.0.0.3"]
-        end
-        Veth2["veth pair"]
-        Br2["br0 网桥"]
-        VTEP2["VTEP<br/>VXLAN 隧道端点"]
-    end
-    
-    subgraph Underlay["底层物理网络"]
-        Physical["物理交换机/路由器"]
-    end
-    
-    subgraph ControlPlane["控制平面"]
-        Manager["Swarm Manager<br/>网络信息分发"]
-    end
-    
-    C1 -->|"同一子网"| Veth1
-    Veth1 --> Br1
-    Br1 <--> VTEP1
-    
-    C2 -->|"同一子网"| Veth2
-    Veth2 --> Br2
-    Br2 <--> VTEP2
-    
-    VTEP1 <-->|"VXLAN 隧道<br/>UDP 4789"| VTEP2
-    VTEP1 --> Physical
-    VTEP2 --> Physical
-    
-    Manager -->|"分发网络配置"| VTEP1
-    Manager -->|"分发网络配置"| VTEP2
-    
-    style Host1 fill:#e3f2fd,stroke:#1565c0
-    style Host2 fill:#c8e6c9,stroke:#2e7d32
-    style Underlay fill:#fff3e0,stroke:#ef6c00
-    style ControlPlane fill:#f3e5f5,stroke:#7b1fa2
-```
+Bridge 网络只能连通同一台宿主机上的容器。当集群把同一个服务的多个副本调度到不同节点后，各节点上会创建网段相同的容器网络（如 10.0.0.0/24），这些地址属于私有地址，物理网络（三层路由）既不认识它们，也无法让两个节点处于同一广播域，因此跨节点的容器无法直接进行二层通信。Overlay 网络正是为解决这一问题而生：它在三层物理网络之上"叠加"一个虚拟的二层网络，让不同节点上的容器如同接入同一台虚拟交换机。
+
+**核心概念**
+
+理解 Overlay 网络需要先掌握以下四个概念，它们之间存在层层依赖的关系：
+
+- **Overlay 网络（叠加网络）​**：建立在现有三层物理网络之上的虚拟二层网络。容器眼中的"同一网段"只是逻辑视图——报文真正在物理网络中传输时，是以宿主机 IP 进行三层路由转发，物理设备既看不见也不理解容器 IP。
+
+- **VXLAN（Virtual eXtensible LAN）​**：实现 Overlay 网络的主流隧道技术。它把容器发出的二层以太网帧整体封装进一个 UDP 报文再传输，到达对端后解封装还原，相当于"把二层帧装进三层信封跨网邮寄"。上一段提到的"叠加"，正是靠这层封装实现的。
+
+- **VTEP（VXLAN Tunnel Endpoint）​**：VXLAN 隧道的端点，负责报文的封装与解封装——发信时"装信封"，收信时"拆信封"。Docker 中由宿主机内核创建的 `vxlan0` 接口充当，每个参与该网络的节点各有一个；容器只与本节点的 VTEP 交互，感知不到隧道的存在。
+
+- **VNI（VXLAN Network Identifier）​**：VXLAN 报文头中携带的 24 位网络标识符，用于区分不同的 Overlay 网络。每个 Overlay 网络分配一个 VNI，接收方据此识别报文归属的网络，并丢弃属于其他网络的报文——这正是 7.6.3 节"网络隔离"特性的实现基础。
+
+**一条跨节点报文的完整路径**（对应下图中的东西向流量，即容器互访）：
+
+容器 A（10.0.0.2）发出二层帧 → 经本节点的 Overlay 接入网桥 `br-xxx` 汇入 `vxlan0`（VTEP）→ VTEP 为报文打上 VNI 并封装为 UDP 报文（目的端口 4789，VXLAN 标准端口）→ 物理网络以宿主机 IP（192.168.1.10 → 192.168.1.11）路由转发 → 对端 VTEP 校验 VNI 后解封装 → 经 `br-yyy` 网桥送达容器 B（10.0.0.3）。整个过程对容器透明，容器感知到的仍是一次普通的二层通信。
+
+其中，VNI、子网与各节点 VTEP 地址的映射关系由 Swarm Manager（控制平面）统一分配并同步到所有节点，各节点据此知道"某个 VNI 的报文应发往哪些远端 VTEP"。另外，容器访问外部网络的南北向流量不经过 Overlay 封装，而是经由 `docker_gwbridge` 网桥由宿主机 NAT 转发出网。
+
+![Swarm-Overlay网络架构](./images/Swarm-Overlay网络架构.svg)
 
 #### 7.6.2 VXLAN 封装过程
 
 ```mermaid
 sequenceDiagram
     participant CA as 容器 A (10.0.0.2)
-    participant VTEP1 as VTEP 主机1
+    participant VTEP1 as VTEP 节点1
     participant Network as 物理网络
-    participant VTEP2 as VTEP 主机2
+    participant VTEP2 as VTEP 节点2
     participant CB as 容器 B (10.0.0.3)
     
     CA->>VTEP1: 原始数据包<br/>Src: 10.0.0.2, Dst: 10.0.0.3
@@ -2967,7 +1895,7 @@ sequenceDiagram
 
 | 特点 | 说明 |
 |------|------|
-| **跨主机通信** | 不同主机上的容器可以直接通信，如同在同一二层网络 |
+| **跨节点通信** | 不同节点上的容器可以直接通信，如同在同一二层网络 |
 | **服务发现** | 内置 DNS，容器可通过服务名访问其他服务 |
 | **负载均衡** | 自动实现服务的负载均衡 |
 | **加密传输** | 支持 `--opt encrypted` 加密跨节点通信 |
@@ -2979,153 +1907,35 @@ sequenceDiagram
 
 Swarm 通过内置 DNS 服务器实现服务发现，每个服务自动注册到 DNS 中。
 
-```mermaid
-flowchart TB
-    subgraph ClientContainer["客户端容器"]
-        App["应用程序"]
-        DNSClient["DNS 客户端"]
-    end
-    
-    subgraph SwarmDNS["Swarm 内置 DNS"]
-        DNSResolver["DNS 解析器"]
-        ServiceRegistry["服务注册表<br/>web → VIP: 10.0.0.100<br/>db → VIP: 10.0.0.101"]
-    end
-    
-    subgraph Services["服务实例"]
-        subgraph WebService["web 服务"]
-            WebVIP["VIP: 10.0.0.100"]
-            Web1["Task 1<br/>10.0.0.2"]
-            Web2["Task 2<br/>10.0.0.3"]
-        end
-        
-        subgraph DBService["db 服务"]
-            DBVIP["VIP: 10.0.0.101"]
-            DB1["Task 1<br/>10.0.0.4"]
-        end
-    end
-    
-    App -->|"访问 web"| DNSClient
-    DNSClient -->|"DNS 查询: web"| DNSResolver
-    DNSResolver -->|"查询"| ServiceRegistry
-    ServiceRegistry -->|"返回 VIP"| DNSResolver
-    DNSResolver -->|"10.0.0.100"| DNSClient
-    DNSClient -->|"连接 VIP"| WebVIP
-    WebVIP -->|"负载均衡"| Web1
-    WebVIP -->|"负载均衡"| Web2
-    
-    style ClientContainer fill:#e3f2fd,stroke:#1565c0
-    style SwarmDNS fill:#f3e5f5,stroke:#7b1fa2
-    style Services fill:#c8e6c9,stroke:#2e7d32
-```
+![Swarm-服务发现机制](./images/Swarm-服务发现机制.svg)
 
 #### 7.7.2 负载均衡方式
 
+Swarm 为服务副本间的流量分发提供两种内置方式，通过 `--endpoint-mode` 参数指定，默认为 VIP。
+
 **方式一：VIP（虚拟 IP）- 默认方式**
 
-```mermaid
-flowchart LR
-    subgraph Client["客户端"]
-        Request["请求 web 服务"]
-    end
-    
-    subgraph VIP["VIP 负载均衡"]
-        DNS["DNS 解析<br/>web → 10.0.0.100"]
-        IPVS["IPVS 负载均衡器<br/>内核级转发"]
-    end
-    
-    subgraph Backends["后端容器"]
-        T1["Task 1<br/>10.0.0.2"]
-        T2["Task 2<br/>10.0.0.3"]
-        T3["Task 3<br/>10.0.0.4"]
-    end
-    
-    Request --> DNS
-    DNS -->|"VIP"| IPVS
-    IPVS -->|"Round-Robin"| T1
-    IPVS -->|"Round-Robin"| T2
-    IPVS -->|"Round-Robin"| T3
-    
-    style Client fill:#fff3e0,stroke:#ef6c00
-    style VIP fill:#e3f2fd,stroke:#1565c0
-    style Backends fill:#c8e6c9,stroke:#2e7d32
-```
+创建服务时，Swarm 会为服务分配一个固定的虚拟 IP（VIP），并让内置 DNS 把服务名解析为这个 VIP，而不是任何具体容器的地址。客户端的一次请求分三步处理，**其中前两步都发生在客户端容器所在的节点**（对应下图编号）：
 
-**方式二：DNSRR（DNS 轮询）**
+1. **DNS 解析（客户端所在节点）**：容器内 `/etc/resolv.conf` 固定指向 `127.0.0.11`（本节点 Docker 内置 DNS），客户端向其查询服务名，解析得到 VIP——该地址与任何具体容器无关。
+2. **IPVS 拦截改写（客户端所在节点内核）**：客户端发出目的地址为 VIP 的数据包。Docker 会在每个接入该 overlay 网络的节点内核中维护一个持有 VIP 的负载均衡沙箱（IPVS，IP Virtual Server，内核级四层负载均衡器），因此该包**尚未离开本节点**就被其拦截，按策略（默认轮询）选中一个健康副本（Task），并把目的地址（VIP）改写为该 Task 的 IP。
+3. **VXLAN 跨网传输（overlay 网络）**：改写后的数据包经 VXLAN 封装，以宿主机 IP 通过 overlay 网络到达目标节点，送达选中的 Task。
 
-```mermaid
-flowchart LR
-    subgraph Client["客户端"]
-        Request["请求 web 服务"]
-    end
-    
-    subgraph DNSRound["DNS 轮询"]
-        DNS["DNS 解析<br/>轮询返回所有 IP"]
-    end
-    
-    subgraph Backends["后端容器"]
-        T1["Task 1<br/>10.0.0.2"]
-        T2["Task 2<br/>10.0.0.3"]
-        T3["Task 3<br/>10.0.0.4"]
-    end
-    
-    Request --> DNS
-    DNS -->|"返回 10.0.0.2"| T1
-    DNS -.->|"下次返回 10.0.0.3"| T2
-    DNS -.->|"下次返回 10.0.0.4"| T3
-    
-    style Client fill:#fff3e0,stroke:#ef6c00
-    style DNSRound fill:#e3f2fd,stroke:#1565c0
-    style Backends fill:#c8e6c9,stroke:#2e7d32
-```
+**关键点**：VIP 与服务绑定，恒定不变——副本的扩缩容或故障重建只会更新 IPVS 维护的后端列表，客户端解析到的 VIP 始终不变，对后端变化完全无感知。
+
+![Swarm-VIP负载均衡](./images/Swarm-VIP负载均衡.svg)
+
+**方式二：DNSRR（DNS 轮询）​**
+
+DNSRR 不引入任何转发层：客户端查询服务名时，内置 DNS 一次性返回该服务全部副本的 IP 列表，并按轮询方式在多次查询之间轮换列表顺序；客户端直接连接列表中的副本 IP（通常取首项），与后端容器建立点到点通信，省去了 VIP → IPVS 的转发一跳，性能开销更低。其代价是 DNS 应答会被客户端缓存：在缓存过期（TTL）之前客户端不会重新解析，副本的增减或故障无法被即时感知，负载分担效果依赖客户端遵循 DNS 缓存刷新机制。
+
+![Swarm-DNSRR负载均衡](./images/Swarm-DNSRR负载均衡.svg)
 
 #### 7.7.3 Ingress 路由网格
 
 Ingress 路由网格实现外部流量到服务的负载均衡，任何 Swarm 节点都可以接收外部请求并转发到服务副本。
 
-```mermaid
-flowchart TB
-    subgraph External["外部流量"]
-        User["用户请求<br/>端口 8080"]
-    end
-    
-    subgraph SwarmCluster["Swarm 集群"]
-        subgraph Node1["节点 1"]
-            Ingress1["Ingress 网格<br/>监听 8080"]
-            Web1["web.1<br/>容器"]
-        end
-        
-        subgraph Node2["节点 2"]
-            Ingress2["Ingress 网格<br/>监听 8080"]
-            Web2["web.2<br/>容器"]
-        end
-        
-        subgraph Node3["节点 3"]
-            Ingress3["Ingress 网格<br/>监听 8080"]
-            Web3["web.3<br/>容器"]
-        end
-    end
-    
-    User -->|"访问任意节点"| Ingress1
-    User -.->|"或"| Ingress2
-    User -.->|"或"| Ingress3
-    
-    Ingress1 -->|"转发"| Web1
-    Ingress1 -.->|"转发"| Web2
-    Ingress1 -.->|"转发"| Web3
-    
-    Ingress2 -->|"转发"| Web2
-    Ingress2 -.->|"转发"| Web1
-    Ingress2 -.->|"转发"| Web3
-    
-    Ingress3 -->|"转发"| Web3
-    Ingress3 -.->|"转发"| Web1
-    Ingress3 -.->|"转发"| Web2
-    
-    style External fill:#fce4ec,stroke:#c2185b
-    style Node1 fill:#e3f2fd,stroke:#1565c0
-    style Node2 fill:#c8e6c9,stroke:#2e7d32
-    style Node3 fill:#fff3e0,stroke:#ef6c00
-```
+![Swarm-Ingress路由网格](./images/Swarm-Ingress路由网格.svg)
 
 #### 7.7.4 负载均衡方式对比
 
@@ -3281,7 +2091,7 @@ docker stack services myapp
 | **部署难度** | 低，Docker 内置 | 高，需要额外部署 |
 | **架构复杂度** | 简单，Manager-Worker | 复杂，多组件 |
 | **服务发现** | 内置 DNS | 内置 DNS + Service |
-| **负载均衡** | 内置 | 需要 Ingress |
+| **负载均衡** | 内置（VIP/IPVS + 路由网格） | Service 四层内置，外部七层访问需 Ingress |
 | **存储管理** | 简单 | PVC/PV 机制完善 |
 | **配置管理** | Config/Secret | ConfigMap/Secret |
 | **滚动更新** | 支持 | 支持更灵活 |
@@ -3292,7 +2102,7 @@ docker stack services myapp
 
 | 场景 | 推荐方案 |
 |------|----------|
-| **中小规模（<100 节点）** | Docker Swarm |
+| **中小规模（<100 节点）​** | Docker Swarm |
 | **快速原型开发** | Docker Swarm |
 | **大规模生产环境** | Kubernetes |
 | **复杂微服务架构** | Kubernetes |
@@ -3417,11 +2227,11 @@ docker system prune -a --volumes
 
 | 清理命令 | 说明 |
 |----------|------|
-| `docker system prune` | 清理未使用的容器、网络、镜像 |
-| `docker system prune -a` | 清理所有未使用的镜像 |
-| `docker system prune --volumes` | 清理未使用的数据卷 |
-| `docker image prune` | 清理悬空镜像 |
-| `docker container prune` | 清理已停止容器 |
+| `docker system prune` | 清理已停止容器、未使用网络、悬空镜像及构建缓存（不含数据卷） |
+| `docker system prune -a` | 在上述基础上，将镜像清理范围扩大为所有未使用的镜像（含带标签镜像） |
+| `docker system prune --volumes` | 在上述基础上，额外清理未使用的数据卷 |
+| `docker image prune` | 清理悬空镜像（加 `-a` 则清理所有未使用镜像） |
+| `docker container prune` | 清理已停止的容器 |
 
 ### 9.3 镜像加速配置
 

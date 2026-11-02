@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 608" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="588" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 行 1：读取文件 -->
+  <rect x="40" y="93" width="100" height="50" rx="24" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="90" y="122" text-anchor="middle" font-size="12" font-weight="600" fill="#1565C0">读取文件</text>
+  <line x1="142" y1="118" x2="169" y2="118" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="172" y="92" width="190" height="52" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="267" y="122" text-anchor="middle" font-size="11" font-weight="600" fill="#333333">文件在 Upper Dir 中？</text>
+  <path d="M362,118 L390,118 L390,66 L418,66" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="386" y="95" text-anchor="end" font-size="10.5" font-weight="600" fill="#2E7D32">是</text>
+  <path d="M362,118 L390,118 L390,170 L418,170" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="386" y="147" text-anchor="end" font-size="10.5" font-weight="600" fill="#C62828">否</text>
+  <rect x="420" y="40" width="230" height="52" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="535" y="70" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">直接读取</text>
+  <rect x="420" y="144" width="230" height="52" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="535" y="170" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">从 Lower Dir 读取</text>
+
+  <!-- 行 2：修改文件 -->
+  <rect x="40" y="279" width="100" height="50" rx="24" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="90" y="308" text-anchor="middle" font-size="12" font-weight="600" fill="#2E7D32">修改文件</text>
+  <line x1="142" y1="304" x2="169" y2="304" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="172" y="278" width="190" height="52" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="267" y="308" text-anchor="middle" font-size="11" font-weight="600" fill="#333333">文件在 Lower Dir 中？</text>
+  <path d="M362,304 L390,304 L390,252 L418,252" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="386" y="281" text-anchor="end" font-size="10.5" font-weight="600" fill="#2E7D32">是</text>
+  <path d="M362,304 L390,304 L390,356 L418,356" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="386" y="333" text-anchor="end" font-size="10.5" font-weight="600" fill="#C62828">否</text>
+  <rect x="420" y="226" width="230" height="52" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="535" y="256" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">复制到 Upper Dir（CoW）</text>
+  <line x1="652" y1="252" x2="688" y2="252" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="690" y="226" width="230" height="52" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="805" y="256" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">在 Upper Dir 修改</text>
+  <rect x="420" y="330" width="230" height="52" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="535" y="360" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">直接在 Upper Dir 创建</text>
+
+  <!-- 行 3：删除文件 -->
+  <rect x="40" y="465" width="100" height="50" rx="24" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="90" y="494" text-anchor="middle" font-size="12" font-weight="600" fill="#C62828">删除文件</text>
+  <line x1="142" y1="490" x2="169" y2="490" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <rect x="172" y="464" width="190" height="52" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="267" y="494" text-anchor="middle" font-size="11" font-weight="600" fill="#333333">文件在 Upper Dir 中？</text>
+  <path d="M362,490 L390,490 L390,438 L418,438" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="386" y="467" text-anchor="end" font-size="10.5" font-weight="600" fill="#2E7D32">是</text>
+  <path d="M362,490 L390,490 L390,542 L418,542" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="386" y="519" text-anchor="end" font-size="10.5" font-weight="600" fill="#C62828">否</text>
+  <rect x="420" y="412" width="230" height="52" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="535" y="442" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">直接删除</text>
+  <rect x="420" y="516" width="230" height="52" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="535" y="535" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">在 Upper Dir 创建</text>
+  <text x="535" y="553" text-anchor="middle" font-size="9.5" fill="#888888">whiteout 文件</text>
+
+  <!-- 底部说明 -->
+  <text x="480" y="587" text-anchor="middle" font-size="10.5" fill="#757575">三种操作的变更均只发生在 Upper Dir，Lower 只读层始终保持不变</text>
+</svg>

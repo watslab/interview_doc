@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 760" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahv" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
+    <marker id="ahvr" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#7B1FA2"/></marker>
+    <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#EF6C00"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="1040" height="740" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 控制平面：Swarm Manager -->
+  <rect x="330" y="34" width="400" height="88" rx="10" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="530" y="64" text-anchor="middle" font-size="13" font-weight="bold" fill="#6A1B9A">Swarm Manager（控制平面）</text>
+  <text x="530" y="82" text-anchor="middle" font-size="10.5" fill="#8E24AA">Raft 强一致性 · Gossip 网络状态同步</text>
+  <text x="530" y="100.5" text-anchor="middle" font-size="10" fill="#8E24AA">管理 Overlay 网络：VNI · 子网 · VTEP 映射</text>
+
+  <!-- 节点 1 -->
+  <rect x="30" y="176" width="445" height="400" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="252" y="202" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">节点 1（192.168.1.10）</text>
+
+  <rect x="60" y="220" width="280" height="94" rx="10" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="76" y="243" text-anchor="start" font-size="11" font-weight="600" fill="#1565C0">容器 A（Task · 独立网络沙箱）</text>
+  <rect x="100" y="258" width="200" height="42" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="200" y="275" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">eth0</text>
+  <text x="200" y="290" text-anchor="middle" font-size="10" fill="#666666">10.0.0.2/24</text>
+
+  <rect x="60" y="356" width="280" height="48" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="200" y="376" text-anchor="middle" font-size="12" font-weight="600" fill="#B71C1C">br-xxx 网桥</text>
+  <text x="200" y="392" text-anchor="middle" font-size="9.5" fill="#C62828">Overlay 网络接入网桥 · 10.0.0.0/24</text>
+
+  <rect x="60" y="432" width="280" height="52" rx="8" fill="#EDE7F6" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="200" y="454" text-anchor="middle" font-size="12.5" font-weight="600" fill="#4527A0">vxlan0 接口</text>
+  <text x="200" y="471" text-anchor="middle" font-size="10" fill="#7B1FA2">VXLAN 隧道端点（VTEP）</text>
+
+  <rect x="356" y="300" width="100" height="64" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="406" y="320" text-anchor="middle" font-size="9.2" font-weight="600" fill="#B26A00">docker_gwbridge</text>
+  <text x="406" y="335" text-anchor="middle" font-size="9" fill="#EF6C00">外部访问网桥</text>
+  <text x="406" y="350" text-anchor="middle" font-size="8.5" fill="#EF6C00">（南北向 NAT）</text>
+
+  <rect x="90" y="516" width="220" height="40" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="200" y="532" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="200" y="548" text-anchor="middle" font-size="10" fill="#666666">192.168.1.10</text>
+
+  <!-- 节点 2 -->
+  <rect x="585" y="176" width="445" height="400" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="807" y="202" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B5E20">节点 2（192.168.1.11）</text>
+
+  <rect x="720" y="220" width="280" height="94" rx="10" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="736" y="243" text-anchor="start" font-size="11" font-weight="600" fill="#1B5E20">容器 B（Task · 独立网络沙箱）</text>
+  <rect x="760" y="258" width="200" height="42" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="860" y="275" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">eth0</text>
+  <text x="860" y="290" text-anchor="middle" font-size="10" fill="#666666">10.0.0.3/24</text>
+
+  <rect x="720" y="356" width="280" height="48" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="860" y="376" text-anchor="middle" font-size="12" font-weight="600" fill="#B71C1C">br-yyy 网桥</text>
+  <text x="860" y="392" text-anchor="middle" font-size="9.5" fill="#C62828">Overlay 网络接入网桥 · 10.0.0.0/24</text>
+
+  <rect x="720" y="432" width="280" height="52" rx="8" fill="#EDE7F6" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="860" y="454" text-anchor="middle" font-size="12.5" font-weight="600" fill="#4527A0">vxlan0 接口</text>
+  <text x="860" y="471" text-anchor="middle" font-size="10" fill="#7B1FA2">VXLAN 隧道端点（VTEP）</text>
+
+  <rect x="604" y="300" width="100" height="64" rx="8" fill="#FFF8E1" stroke="#F9A825" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="654" y="320" text-anchor="middle" font-size="9.2" font-weight="600" fill="#B26A00">docker_gwbridge</text>
+  <text x="654" y="335" text-anchor="middle" font-size="9" fill="#EF6C00">外部访问网桥</text>
+  <text x="654" y="350" text-anchor="middle" font-size="8.5" fill="#EF6C00">（南北向 NAT）</text>
+
+  <rect x="750" y="516" width="220" height="40" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="860" y="532" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="860" y="548" text-anchor="middle" font-size="10" fill="#666666">192.168.1.11</text>
+
+  <!-- 底层物理网络 -->
+  <rect x="150" y="610" width="760" height="60" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="530" y="645" text-anchor="middle" font-size="12.5" font-weight="600" fill="#E65100">底层物理网络（物理交换机 / 路由器）</text>
+
+  <!-- 连接线（容器之后绘制，保证在最上层） -->
+  <path d="M420,124 C420,140 254,144 254,158 L254,175" fill="none" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ahv)"/>
+  <path d="M640,124 C640,140 806,144 806,158 L806,175" fill="none" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ahv)"/>
+  <text x="530" y="154" text-anchor="middle" font-size="10" fill="#8E24AA">分发网络配置</text>
+
+  <line x1="180" y1="316" x2="180" y2="354" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <line x1="220" y1="354" x2="220" y2="316" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="236" y="339" text-anchor="start" font-size="10" fill="#757575">veth pair</text>
+  <line x1="840" y1="316" x2="840" y2="354" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <line x1="880" y1="354" x2="880" y2="316" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="824" y="339" text-anchor="end" font-size="10" fill="#757575">veth pair</text>
+
+  <line x1="200" y1="406" x2="200" y2="430" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="212" y="422" text-anchor="start" font-size="10" fill="#757575">挂载</text>
+  <line x1="860" y1="406" x2="860" y2="430" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="872" y="422" text-anchor="start" font-size="10" fill="#757575">挂载</text>
+
+  <line x1="200" y1="486" x2="200" y2="514" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="212" y="504" text-anchor="start" font-size="9.5" fill="#757575">封装 Encap</text>
+  <line x1="860" y1="514" x2="860" y2="486" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="872" y="504" text-anchor="start" font-size="9.5" fill="#757575">解封装 Decap</text>
+
+  <line x1="200" y1="558" x2="200" y2="609" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <line x1="860" y1="609" x2="860" y2="558" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="212" y="587" text-anchor="start" font-size="9.5" fill="#757575">VXLAN 报文</text>
+  <text x="872" y="587" text-anchor="start" font-size="9.5" fill="#757575">VXLAN 报文</text>
+
+  <!-- 容器 → docker_gwbridge -->
+  <path d="M342,267 L406,267 L406,299" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <path d="M718,267 L654,267 L654,299" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- VXLAN 隧道 -->
+  <line x1="360" y1="458" x2="719" y2="458" stroke="#7B1FA2" stroke-width="2.5" stroke-dasharray="8,5" marker-start="url(#ahvr)" marker-end="url(#ahv)"/>
+  <text x="530" y="450" text-anchor="middle" font-size="10.5" font-weight="600" fill="#6A1B9A">VXLAN 隧道 · UDP 4789 · VNI 隔离</text>
+
+  <!-- docker_gwbridge → 宿主机 eth0（白色衬底实现跨线跳越） -->
+  <path d="M406,366 L406,536 L311,536" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+  <path d="M406,366 L406,536 L311,536" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <text x="416" y="415" text-anchor="start" font-size="9.5" fill="#EF6C00">NAT 出网</text>
+  <path d="M654,366 L654,536 L749,536" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+  <path d="M654,366 L654,536 L749,536" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <text x="664" y="415" text-anchor="start" font-size="9.5" fill="#EF6C00">NAT 出网</text>
+
+  <!-- 底部说明 -->
+  <text x="530" y="704" text-anchor="middle" font-size="10" fill="#757575">东西向流量（容器互访）：经 br-xxx 网桥汇入 vxlan0，封装 VXLAN（VNI）后以节点 IP 跨网传输</text>
+  <text x="530" y="722" text-anchor="middle" font-size="10" fill="#757575">南北向流量（访问外部）：经 docker_gwbridge 由宿主机 NAT 出网，不经过 Overlay 封装</text>
+</svg>

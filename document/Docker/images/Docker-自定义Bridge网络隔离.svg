@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 616" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="596" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 宿主机 -->
+  <rect x="40" y="69" width="880" height="478" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="80" y="99" text-anchor="start" font-size="13" font-weight="bold" fill="#1565C0">宿主机</text>
+
+  <!-- 列 1：默认 bridge 网络 -->
+  <rect x="70" y="133" width="260" height="350" rx="10" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="200" y="161" text-anchor="middle" font-size="12" font-weight="bold" fill="#C62828">默认 bridge 网络</text>
+  <text x="200" y="179" text-anchor="middle" font-size="9.5" fill="#C62828">docker0 · 172.17.0.1/16</text>
+  <rect x="90" y="199" width="220" height="48" rx="6" fill="#FFCDD2" stroke="#C62828" stroke-width="1.2"/>
+  <text x="200" y="228" text-anchor="middle" font-size="12" font-weight="600" fill="#B71C1C">docker0</text>
+  <line x1="140" y1="249" x2="140" y2="297" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <line x1="260" y1="249" x2="260" y2="297" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="268" y="275" text-anchor="start" font-size="9.5" fill="#757575">veth pair</text>
+  <rect x="90" y="303" width="220" height="56" rx="6" fill="#FFFFFF" stroke="#90A4AE" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="200" y="328" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">容器 A</text>
+  <text x="200" y="346" text-anchor="middle" font-size="9.5" fill="#888888">172.17.0.2</text>
+  <rect x="90" y="375" width="220" height="56" rx="6" fill="#FFFFFF" stroke="#90A4AE" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="200" y="400" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">容器 B</text>
+  <text x="200" y="418" text-anchor="middle" font-size="9.5" fill="#888888">172.17.0.3</text>
+  <text x="200" y="455" text-anchor="middle" font-size="9.5" fill="#C62828">仅 IP 通信 · 无 DNS 解析</text>
+
+  <!-- 隔离虚线 1 -->
+  <line x1="340" y1="143" x2="340" y2="473" stroke="#E53935" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- 列 2：mynet 自定义网络 -->
+  <rect x="350" y="133" width="260" height="350" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="161" text-anchor="middle" font-size="12" font-weight="bold" fill="#2E7D32">自定义 bridge 网络</text>
+  <text x="480" y="179" text-anchor="middle" font-size="9.5" fill="#2E7D32">br-8a7f6e3c9d2b · 172.20.0.1/16</text>
+  <rect x="370" y="199" width="220" height="48" rx="6" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.2"/>
+  <text x="480" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1B5E20">br-8a7f6e3c9d2b</text>
+  <line x1="420" y1="249" x2="420" y2="297" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <line x1="540" y1="249" x2="540" y2="297" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="548" y="275" text-anchor="start" font-size="9.5" fill="#757575">veth pair</text>
+  <rect x="370" y="303" width="220" height="56" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="328" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">web</text>
+  <text x="480" y="346" text-anchor="middle" font-size="9.5" fill="#888888">172.20.0.2</text>
+  <rect x="370" y="375" width="220" height="56" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="400" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">api</text>
+  <text x="480" y="418" text-anchor="middle" font-size="9.5" fill="#888888">172.20.0.3</text>
+  <text x="480" y="455" text-anchor="middle" font-size="9.5" fill="#2E7D32">容器名 DNS 解析互通</text>
+
+  <!-- 隔离虚线 2 -->
+  <line x1="620" y1="143" x2="620" y2="473" stroke="#E53935" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- 列 3：appnet 自定义网络 -->
+  <rect x="630" y="133" width="260" height="350" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="760" y="161" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">自定义 bridge 网络</text>
+  <text x="760" y="179" text-anchor="middle" font-size="9.5" fill="#1565C0">br-5b3c9f2e1a4d · 172.30.0.1/16</text>
+  <rect x="650" y="199" width="220" height="48" rx="6" fill="#BBDEFB" stroke="#1565C0" stroke-width="1.2"/>
+  <text x="760" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#0D47A1">br-5b3c9f2e1a4d</text>
+  <line x1="700" y1="249" x2="700" y2="297" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <line x1="820" y1="249" x2="820" y2="297" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="828" y="275" text-anchor="start" font-size="9.5" fill="#757575">veth pair</text>
+  <rect x="650" y="303" width="220" height="56" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="760" y="328" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">app1</text>
+  <text x="760" y="346" text-anchor="middle" font-size="9.5" fill="#888888">172.30.0.2</text>
+  <rect x="650" y="375" width="220" height="56" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="760" y="400" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">app2</text>
+  <text x="760" y="418" text-anchor="middle" font-size="9.5" fill="#888888">172.30.0.3</text>
+  <text x="760" y="455" text-anchor="middle" font-size="9.5" fill="#1565C0">容器名 DNS 解析互通</text>
+
+  <!-- 底部说明 -->
+  <text x="480" y="579" text-anchor="middle" font-size="10.5" fill="#757575">红色虚线为网络隔离边界：每个网络使用独立网桥与独立子网，不同网络的容器二层不通、默认相互不可达</text>
+</svg>

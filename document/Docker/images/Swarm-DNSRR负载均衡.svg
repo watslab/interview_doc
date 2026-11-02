@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 375" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#EF6C00"/></marker>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1565C0"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="355" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- DNSRR 机制面板（左） -->
+  <rect x="50" y="43" width="320" height="240" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="66" y="67.5" text-anchor="start" font-size="12.5" font-weight="bold" fill="#1565C0">DNSRR 方式（DNS 轮询）</text>
+  <rect x="80" y="91" width="260" height="56" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="210" y="116.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">DNS 轮询解析</text>
+  <text x="210" y="130.5" text-anchor="middle" font-size="9.5" fill="#888888">一次返回全部后端 IP 列表</text>
+  <rect x="80" y="183" width="260" height="64" rx="6" fill="none" stroke="#90A4AE" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <text x="210" y="212.5" text-anchor="middle" font-size="12" font-weight="600" fill="#90A4AE">（无 IPVS 转发层）</text>
+  <text x="210" y="226.5" text-anchor="middle" font-size="9.5" fill="#B0BEC5">客户端直连后端 Task</text>
+
+  <!-- 客户端（中） -->
+  <rect x="445" y="128" width="170" height="70" rx="8" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="530" y="160.7" text-anchor="middle" font-size="12.5" font-weight="600" fill="#E65100">客户端</text>
+  <text x="530" y="174.8" text-anchor="middle" font-size="9.5" fill="#EF6C00">请求 web 服务</text>
+
+  <!-- 后端容器（右） -->
+  <rect x="690" y="43" width="220" height="240" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="706" y="67.5" text-anchor="start" font-size="12.5" font-weight="bold" fill="#1B5E20">后端容器</text>
+  <rect x="710" y="91" width="180" height="48" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="800" y="113.3" text-anchor="middle" font-size="11" font-weight="600" fill="#333333">Task 1</text>
+  <text x="800" y="124.7" text-anchor="middle" font-size="9.5" fill="#666666">10.0.0.2</text>
+  <rect x="710" y="151" width="180" height="48" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="800" y="173.3" text-anchor="middle" font-size="11" font-weight="600" fill="#333333">Task 2</text>
+  <text x="800" y="184.7" text-anchor="middle" font-size="9.5" fill="#666666">10.0.0.3</text>
+  <rect x="710" y="211" width="180" height="48" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="800" y="233.3" text-anchor="middle" font-size="11" font-weight="600" fill="#333333">Task 3</text>
+  <text x="800" y="244.7" text-anchor="middle" font-size="9.5" fill="#666666">10.0.0.4</text>
+
+  <!-- 流程标注 -->
+  <text x="407.5" y="149" text-anchor="middle" font-size="10" fill="#E65100">DNS 查询</text>
+  <text x="407.5" y="186" text-anchor="middle" font-size="10" fill="#1565C0">返回 IP 列表</text>
+  <text x="652" y="105" text-anchor="middle" font-size="10" fill="#E65100">本次直连</text>
+  <text x="652" y="250" text-anchor="middle" font-size="10" fill="#E65100">后续轮换</text>
+
+  <!-- 连接线（最后绘制，保证顶层） -->
+  <!-- 查询 / 应答（客户端 ↔ DNS） -->
+  <line x1="444.25" y1="155" x2="370.75" y2="155" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <line x1="370.75" y1="171" x2="444.25" y2="171" stroke="#1565C0" stroke-width="1.5" marker-end="url(#ahb)"/>
+
+  <!-- 客户端 → Task 1（本次解析结果直连，实线） -->
+  <path d="M615.75,147 C649.75,147 652,115 686,115 L709.25,115" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- 客户端 → Task 2 / Task 3（缓存到期后轮换访问，虚线） -->
+  <path d="M615.75,163 C649.75,163 652,175 686,175 L709.25,175" fill="none" stroke="#EF6C00" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#aho)"/>
+  <path d="M615.75,179 C649.75,179 652,235 686,235 L709.25,235" fill="none" stroke="#EF6C00" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#aho)"/>
+
+  <!-- 底部说明 -->
+  <text x="480" y="329" text-anchor="middle" font-size="10.5" fill="#757575">DNS 一次返回全部后端 IP，客户端取列表首项直连（无额外转发层）；缓存到期重新解析后列表顺序轮换，实现流量分担</text>
+</svg>

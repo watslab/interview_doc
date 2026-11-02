@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 592" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="572" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 宿主机 -->
+  <rect x="40" y="88" width="880" height="416" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="80" y="118" text-anchor="start" font-size="13" font-weight="bold" fill="#1565C0">宿主机</text>
+
+  <!-- docker0 网桥 -->
+  <rect x="100" y="152" width="760" height="64" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="480" y="180" text-anchor="middle" font-size="13" font-weight="600" fill="#B71C1C">docker0 网桥</text>
+  <text x="480" y="199" text-anchor="middle" font-size="10" fill="#C62828">172.17.0.1/16 · 全局唯一 · 容器默认网关</text>
+
+  <!-- veth 连线 -->
+  <line x1="220" y1="218" x2="220" y2="300" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="480" y1="218" x2="480" y2="300" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="740" y1="218" x2="740" y2="300" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="495" y="262" text-anchor="start" font-size="10" fill="#757575">veth pair（成对虚拟网线，一端接入网桥）</text>
+
+  <!-- 容器 1 -->
+  <rect x="100" y="304" width="240" height="136" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="220" y="332" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">容器 1</text>
+  <rect x="130" y="348" width="180" height="64" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="220" y="377" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="220" y="395" text-anchor="middle" font-size="10" fill="#666666">172.17.0.2</text>
+
+  <!-- 容器 2 -->
+  <rect x="360" y="304" width="240" height="136" rx="8" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="332" text-anchor="middle" font-size="12" font-weight="bold" fill="#1B5E20">容器 2</text>
+  <rect x="390" y="348" width="180" height="64" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="377" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="480" y="395" text-anchor="middle" font-size="10" fill="#666666">172.17.0.3</text>
+
+  <!-- 容器 3 -->
+  <rect x="620" y="304" width="240" height="136" rx="8" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="740" y="332" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">容器 3</text>
+  <rect x="650" y="348" width="180" height="64" rx="6" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="740" y="377" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="740" y="395" text-anchor="middle" font-size="10" fill="#666666">172.17.0.4</text>
+
+  <!-- 底部说明 -->
+  <text x="480" y="536" text-anchor="middle" font-size="10.5" fill="#757575">docker0 全局唯一，所有默认 bridge 容器均接入该网桥，同网段互通</text>
+  <text x="480" y="555" text-anchor="middle" font-size="10.5" fill="#E65100">默认 bridge 不提供 DNS 解析，容器间仅能通过 IP 地址互访，无法使用容器名</text>
+</svg>

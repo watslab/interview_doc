@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1220 540" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1565C0"/></marker>
+    <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#EF6C00"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#C62828"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="1200" height="520" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- ===== 复合状态容器（等宽等高，上下边距约 30px、左右约 40px） ===== -->
+  <!-- Follower -->
+  <rect x="149" y="124" width="260" height="336" rx="10" fill="#F3F8FE" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="167" y="150" text-anchor="start" font-size="14" font-weight="bold" fill="#0D47A1">Follower（跟随者）</text>
+  <circle cx="279" cy="174" r="5.5" fill="#1565C0"/>
+  <rect x="184" y="208" width="190" height="56" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="279" y="233.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0D47A1">接收日志</text>
+  <text x="279" y="247.5" text-anchor="middle" font-size="9.5" fill="#1E88E5">AppendEntries 追加</text>
+  <rect x="184" y="292" width="190" height="56" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="279" y="317.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0D47A1">响应心跳</text>
+  <text x="279" y="331.5" text-anchor="middle" font-size="9.5" fill="#1E88E5">重置选举计时器</text>
+  <rect x="184" y="376" width="190" height="56" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="279" y="401.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0D47A1">响应投票</text>
+  <text x="279" y="415.5" text-anchor="middle" font-size="9.5" fill="#1E88E5">授予选票给 Candidate</text>
+
+  <!-- Candidate -->
+  <rect x="529" y="124" width="260" height="336" rx="10" fill="#FFF8F0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="547" y="150" text-anchor="start" font-size="14" font-weight="bold" fill="#E65100">Candidate（候选者）</text>
+  <circle cx="659" cy="174" r="5.5" fill="#EF6C00"/>
+  <rect x="564" y="208" width="190" height="56" rx="8" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="659" y="233.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#E65100">发起选举</text>
+  <text x="659" y="247.5" text-anchor="middle" font-size="9.5" fill="#F57C00">并行发送 RequestVote</text>
+  <rect x="564" y="292" width="190" height="56" rx="8" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="659" y="317.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#E65100">等待投票</text>
+  <text x="659" y="331.5" text-anchor="middle" font-size="9.5" fill="#F57C00">统计多数派选票</text>
+  <rect x="564" y="376" width="190" height="56" rx="8" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="659" y="401.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#E65100">超时重选</text>
+  <text x="659" y="415.5" text-anchor="middle" font-size="9.5" fill="#F57C00">未获多数则 Term+1 重试</text>
+
+  <!-- Leader -->
+  <rect x="909" y="124" width="260" height="336" rx="10" fill="#FEF3F3" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="927" y="150" text-anchor="start" font-size="14" font-weight="bold" fill="#B71C1C">Leader（领导者）</text>
+  <circle cx="1039" cy="174" r="5.5" fill="#C62828"/>
+  <rect x="944" y="208" width="190" height="56" rx="8" fill="#FFCDD2" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1039" y="233.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#B71C1C">发送心跳</text>
+  <text x="1039" y="247.5" text-anchor="middle" font-size="9.5" fill="#C62828">维持领导地位</text>
+  <rect x="944" y="292" width="190" height="56" rx="8" fill="#FFCDD2" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1039" y="317.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#B71C1C">日志复制</text>
+  <text x="1039" y="331.5" text-anchor="middle" font-size="9.5" fill="#C62828">并行 AppendEntries</text>
+  <rect x="944" y="376" width="190" height="56" rx="8" fill="#FFCDD2" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="1039" y="401.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#B71C1C">提交日志</text>
+  <text x="1039" y="415.5" text-anchor="middle" font-size="9.5" fill="#C62828">多数确认后 apply</text>
+
+  <!-- ===== 初始伪状态 ===== -->
+  <circle cx="71" cy="292" r="6" fill="#546E7A"/>
+  <text x="71" y="276" text-anchor="middle" font-size="10.5" fill="#616161">节点启动</text>
+
+  <!-- ===== 角色转换标注 ===== -->
+  <text x="469" y="215" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1565C0">选举超时</text>
+  <text x="469" y="229" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1565C0">未收到 Leader 心跳</text>
+  <text x="469" y="335" text-anchor="middle" font-size="10.5" font-weight="600" fill="#E65100">收到更高任期消息</text>
+  <text x="849" y="229" text-anchor="middle" font-size="10.5" font-weight="600" fill="#E65100">获得多数票</text>
+  <text x="659" y="49" text-anchor="middle" font-size="10.5" font-weight="600" fill="#C62828">发现更高任期或网络分区</text>
+
+  <!-- ===== 连接线（最后绘制，保证顶层） ===== -->
+  <!-- 节点启动 → Follower -->
+  <line x1="77" y1="292" x2="148.25" y2="292" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ahg)"/>
+
+  <!-- Follower 内部循环 -->
+  <line x1="279" y1="179.5" x2="279" y2="207.25" stroke="#1565C0" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="279" y1="264.75" x2="279" y2="291.25" stroke="#1565C0" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="279" y1="348.75" x2="279" y2="375.25" stroke="#1565C0" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <path d="M374.75,404 H387 Q394,404 394,397 V243 Q394,236 387,236 H374.75" fill="none" stroke="#1565C0" stroke-width="1.5" marker-end="url(#ahb)"/>
+
+  <!-- Candidate 内部循环 -->
+  <line x1="659" y1="179.5" x2="659" y2="207.25" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <line x1="659" y1="264.75" x2="659" y2="291.25" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <line x1="659" y1="348.75" x2="659" y2="375.25" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+  <path d="M754.75,404 H767 Q774,404 774,397 V243 Q774,236 767,236 H754.75" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- Leader 内部循环 -->
+  <line x1="1039" y1="179.5" x2="1039" y2="207.25" stroke="#C62828" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <line x1="1039" y1="264.75" x2="1039" y2="291.25" stroke="#C62828" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <line x1="1039" y1="348.75" x2="1039" y2="375.25" stroke="#C62828" stroke-width="1.5" marker-end="url(#ahr)"/>
+  <path d="M1134.75,404 H1147 Q1154,404 1154,397 V243 Q1154,236 1147,236 H1134.75" fill="none" stroke="#C62828" stroke-width="1.5" marker-end="url(#ahr)"/>
+
+  <!-- Follower → Candidate（晋升上线） -->
+  <line x1="409.75" y1="236" x2="528.25" y2="236" stroke="#1565C0" stroke-width="1.5" marker-end="url(#ahb)"/>
+
+  <!-- Candidate → Follower（降级下线） -->
+  <line x1="528.25" y1="320" x2="409.75" y2="320" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- Candidate → Leader（晋升上线） -->
+  <line x1="789.75" y1="236" x2="908.25" y2="236" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
+
+  <!-- Leader → Follower（顶部回退路径） -->
+  <path d="M1039,123.25 V66 Q1039,56 1029,56 H289 Q279,56 279,66 V123.25" fill="none" stroke="#C62828" stroke-width="1.5" marker-end="url(#ahr)"/>
+
+  <!-- 底部说明（在底部条带内垂直居中，水平居中于卡片中线） -->
+  <text x="610" y="499" text-anchor="middle" font-size="10.5" fill="#757575">实心圆点为各角色内部流程入口；灰色实线为节点启动流程；其余实线为角色转换路径（按发起方着色）；框内为该角色持续执行的内部循环</text>
+</svg>

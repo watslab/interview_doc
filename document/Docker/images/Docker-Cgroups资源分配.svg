@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="520" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 宿主机资源 -->
+  <rect x="80" y="50" width="800" height="150" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="480" y="80" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">宿主机资源</text>
+  <rect x="110" y="100" width="230" height="76" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="225" y="133" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">CPU</text>
+  <text x="225" y="152" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1565C0">8 核</text>
+  <rect x="365" y="100" width="230" height="76" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="133" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">内存</text>
+  <text x="480" y="152" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1565C0">16 GB</text>
+  <rect x="620" y="100" width="230" height="76" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="735" y="133" text-anchor="middle" font-size="13" font-weight="600" fill="#333333">磁盘</text>
+  <text x="735" y="152" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1565C0">500 GB</text>
+
+  <!-- 分配箭头 -->
+  <line x1="480" y1="202" x2="480" y2="264" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Cgroups 资源分配 -->
+  <rect x="80" y="268" width="800" height="220" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="480" y="298" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E7D32">Cgroups 资源分配</text>
+  <rect x="110" y="318" width="230" height="140" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="225" y="356" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">容器 A</text>
+  <text x="132" y="394" text-anchor="start" font-size="10" fill="#888888">CPU</text>
+  <text x="318" y="394" text-anchor="end" font-size="11.5" font-weight="600" fill="#333333">2 核</text>
+  <text x="132" y="430" text-anchor="start" font-size="10" fill="#888888">内存</text>
+  <text x="318" y="430" text-anchor="end" font-size="11.5" font-weight="600" fill="#333333">4 GB</text>
+  <rect x="365" y="318" width="230" height="140" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="356" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">容器 B</text>
+  <text x="387" y="394" text-anchor="start" font-size="10" fill="#888888">CPU</text>
+  <text x="573" y="394" text-anchor="end" font-size="11.5" font-weight="600" fill="#333333">1.5 核</text>
+  <text x="387" y="430" text-anchor="start" font-size="10" fill="#888888">内存</text>
+  <text x="573" y="430" text-anchor="end" font-size="11.5" font-weight="600" fill="#333333">2 GB</text>
+  <rect x="620" y="318" width="230" height="140" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="735" y="356" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">容器 C</text>
+  <text x="642" y="394" text-anchor="start" font-size="10" fill="#888888">CPU</text>
+  <text x="828" y="394" text-anchor="end" font-size="11.5" font-weight="600" fill="#333333">1 核</text>
+  <text x="642" y="430" text-anchor="start" font-size="10" fill="#888888">内存</text>
+  <text x="828" y="430" text-anchor="end" font-size="11.5" font-weight="600" fill="#333333">1 GB</text>
+
+  <!-- 底部说明 -->
+  <text x="480" y="513" text-anchor="middle" font-size="10.5" fill="#757575">Cgroups 按配额将宿主机资源划分给各容器，容器的资源用量受配额上限约束</text>
+</svg>

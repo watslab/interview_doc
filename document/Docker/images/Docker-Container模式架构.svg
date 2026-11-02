@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 544" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="524" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 外部网络 -->
+  <rect x="370" y="34" width="220" height="44" rx="8" fill="#FFFFFF" stroke="#90A4AE" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <text x="480" y="60" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">外部网络</text>
+
+  <!-- 宿主机网络命名空间 -->
+  <rect x="60" y="118" width="840" height="172" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="90" y="148" text-anchor="start" font-size="13" font-weight="bold" fill="#1565C0">宿主机网络命名空间</text>
+
+  <rect x="230" y="152" width="500" height="44" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="172" text-anchor="middle" font-size="12" font-weight="600" fill="#B71C1C">docker0 网桥</text>
+  <text x="480" y="184" text-anchor="middle" font-size="10" fill="#C62828">172.17.0.1</text>
+
+  <rect x="200" y="236" width="130" height="28" rx="6" fill="#FFFFFF" stroke="#90A4AE" stroke-width="1.2"/>
+  <text x="265" y="254" text-anchor="middle" font-size="10.5" font-weight="600" fill="#333333">vethxxx</text>
+
+  <!-- 主容器网络命名空间 -->
+  <rect x="100" y="326" width="330" height="160" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="115" y="352" text-anchor="start" font-size="11" font-weight="600" fill="#1B5E20">主容器网络命名空间</text>
+  <rect x="165" y="370" width="200" height="34" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="265" y="386" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">eth0</text>
+  <text x="265" y="396" text-anchor="middle" font-size="10" fill="#666666">172.17.0.2</text>
+  <rect x="165" y="438" width="200" height="32" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="265" y="458" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">主应用</text>
+
+  <!-- Sidecar 容器（共享主容器网络栈，无独立 eth0） -->
+  <rect x="530" y="326" width="330" height="160" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="545" y="352" text-anchor="start" font-size="11" font-weight="600" fill="#E65100">Sidecar 容器</text>
+  <rect x="595" y="386" width="200" height="40" rx="6" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="695" y="410" text-anchor="middle" font-size="11.5" font-weight="600" fill="#333333">Sidecar 进程</text>
+
+  <!-- 连接箭头（最后绘制，保证在最上层；出站流量统一向上） -->
+  <line x1="480" y1="151" x2="480" y2="79" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="265" y1="197" x2="265" y2="235" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="279" y="220" font-size="10" fill="#757575">挂载</text>
+  <line x1="257" y1="369" x2="257" y2="265" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="273" y1="265" x2="273" y2="369" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="265" y1="437" x2="265" y2="405" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="431" y1="406" x2="594" y2="406" stroke="#90A4AE" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="295" y="312" text-anchor="start" font-size="10" fill="#757575">veth pair</text>
+  <text x="480" y="402" text-anchor="middle" font-size="10" fill="#757575">共享网络栈</text>
+
+  <!-- 底部说明 -->
+  <text x="480" y="514" text-anchor="middle" font-size="10.5" fill="#757575">Sidecar 容器与主容器共享同一网络栈（相同 eth0 与 IP），可通过 localhost 互相访问</text>
+</svg>

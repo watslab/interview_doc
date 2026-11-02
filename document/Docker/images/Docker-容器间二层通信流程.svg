@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="460" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 宿主机（包含 docker0 与两个容器） -->
+  <rect x="60" y="30" width="840" height="416" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="90" y="60" text-anchor="start" font-size="13" font-weight="bold" fill="#1565C0">宿主机</text>
+
+  <!-- 容器 1 网络命名空间 -->
+  <rect x="100" y="90" width="330" height="196" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="115" y="118" text-anchor="start" font-size="12" font-weight="bold" fill="#1B5E20">容器 1（172.17.0.2）</text>
+  <rect x="140" y="138" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="265" y="168.3" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Web 应用</text>
+  <rect x="140" y="218" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="265" y="242.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="265" y="254" text-anchor="middle" font-size="10" fill="#666666">172.17.0.2</text>
+
+  <!-- 容器 2 网络命名空间 -->
+  <rect x="530" y="90" width="330" height="196" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="545" y="118" text-anchor="start" font-size="12" font-weight="bold" fill="#E65100">容器 2（172.17.0.3）</text>
+  <rect x="570" y="138" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="695" y="161.3" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">API 服务</text>
+  <text x="695" y="175.9" text-anchor="middle" font-size="10" fill="#888888">监听 8080 端口</text>
+  <rect x="570" y="218" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="695" y="242.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="695" y="254" text-anchor="middle" font-size="10" fill="#666666">172.17.0.3</text>
+
+  <!-- docker0 网桥 -->
+  <rect x="230" y="360" width="500" height="56" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="386.6" text-anchor="middle" font-size="12" font-weight="600" fill="#B71C1C">docker0 网桥</text>
+  <text x="480" y="399.6" text-anchor="middle" font-size="10" fill="#C62828">172.17.0.1 | 二层转发</text>
+
+  <!-- 流程箭头（最后绘制，保证在最上层；灰实线=请求，紫虚线=响应） -->
+  <line x1="257" y1="191" x2="257" y2="217" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="273" y1="217" x2="273" y2="191" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ahb)"/>
+  <text x="249" y="207.6" text-anchor="end" font-size="9.5" fill="#757575">1. 目标 172.17.0.3:8080</text>
+  <line x1="257" y1="271" x2="257" y2="359" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="273" y1="359" x2="273" y2="271" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ahb)"/>
+  <text x="249" y="318.6" text-anchor="end" font-size="9.5" fill="#757575">2. 经 veth pair</text>
+  <line x1="687" y1="359" x2="687" y2="271" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="703" y1="271" x2="703" y2="359" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ahb)"/>
+  <text x="679" y="318.6" text-anchor="end" font-size="9.5" fill="#757575">3. 二层转发至容器 2</text>
+  <line x1="687" y1="217" x2="687" y2="191" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="703" y1="191" x2="703" y2="217" stroke="#7B1FA2" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ahb)"/>
+  <text x="679" y="207.6" text-anchor="end" font-size="9.5" fill="#757575">4. 转发至 API 服务</text>
+
+  <!-- 底部说明 -->
+  <text x="480" y="462" text-anchor="middle" font-size="10.5" fill="#757575">同一网桥上的容器处于同一子网，数据包经网桥二层直接转发、无需 NAT；虚线为响应路径，沿对称路径返回</text>
+</svg>

@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <rect x="10" y="10" width="900" height="500" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 虚拟机面板 -->
+  <rect x="40" y="70" width="400" height="430" rx="10" fill="#FDECEE" stroke="#C62828" stroke-width="1.5"/>
+  <path d="M50,70 H430 Q440,70 440,80 V100 H40 V80 Q40,70 50,70Z" fill="#C62828"/>
+  <text x="240" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">虚拟机架构</text>
+
+  <rect x="56" y="114" width="112" height="50" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="112" y="144" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">App 1</text>
+  <rect x="184" y="114" width="112" height="50" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="240" y="144" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">App 2</text>
+  <rect x="312" y="114" width="112" height="50" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="368" y="144" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">App 3</text>
+
+  <rect x="56" y="192" width="112" height="50" rx="6" fill="#FFCDD2" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="112" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Guest OS</text>
+  <rect x="184" y="192" width="112" height="50" rx="6" fill="#FFCDD2" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="240" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Guest OS</text>
+  <rect x="312" y="192" width="112" height="50" rx="6" fill="#FFCDD2" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="368" y="222" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Guest OS</text>
+
+  <rect x="56" y="270" width="368" height="50" rx="6" fill="#FFAB91" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="240" y="300" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">Hypervisor</text>
+
+  <rect x="56" y="348" width="368" height="50" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="240" y="378" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">Host OS</text>
+
+  <rect x="56" y="426" width="368" height="50" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="240" y="456" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">硬件</text>
+
+  <line x1="112" y1="164" x2="112" y2="192" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="240" y1="164" x2="240" y2="192" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="368" y1="164" x2="368" y2="192" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="112" y1="242" x2="112" y2="270" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="240" y1="242" x2="240" y2="270" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="368" y1="242" x2="368" y2="270" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="112" y1="320" x2="112" y2="348" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="240" y1="320" x2="240" y2="348" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="368" y1="320" x2="368" y2="348" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="112" y1="398" x2="112" y2="426" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="240" y1="398" x2="240" y2="426" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="368" y1="398" x2="368" y2="426" stroke="#B0BEC5" stroke-width="1.2"/>
+
+  <!-- Docker 面板 -->
+  <rect x="480" y="70" width="400" height="430" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5"/>
+  <path d="M490,70 H870 Q880,70 880,80 V100 H480 V80 Q480,70 490,70Z" fill="#2E7D32"/>
+  <text x="680" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Docker 架构</text>
+
+  <rect x="496" y="114" width="112" height="50" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="552" y="136" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">App 1</text>
+  <text x="552" y="154" text-anchor="middle" font-size="10" fill="#888888">Libs</text>
+  <rect x="624" y="114" width="112" height="50" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="680" y="136" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">App 2</text>
+  <text x="680" y="154" text-anchor="middle" font-size="10" fill="#888888">Libs</text>
+  <rect x="752" y="114" width="112" height="50" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="808" y="136" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">App 3</text>
+  <text x="808" y="154" text-anchor="middle" font-size="10" fill="#888888">Libs</text>
+
+  <rect x="496" y="192" width="368" height="50" rx="6" fill="#FAFAFA" stroke="#90A4AE" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="680" y="222" text-anchor="middle" font-size="10.5" font-style="italic" fill="#757575">共享宿主内核，无需 Guest OS</text>
+
+  <rect x="496" y="270" width="368" height="50" rx="6" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="680" y="300" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">Docker Engine</text>
+
+  <rect x="496" y="348" width="368" height="50" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="680" y="378" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">Host OS</text>
+
+  <rect x="496" y="426" width="368" height="50" rx="6" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="680" y="456" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">硬件</text>
+
+  <line x1="552" y1="164" x2="552" y2="192" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="680" y1="164" x2="680" y2="192" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="808" y1="164" x2="808" y2="192" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="552" y1="242" x2="552" y2="270" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="680" y1="242" x2="680" y2="270" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="808" y1="242" x2="808" y2="270" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="552" y1="320" x2="552" y2="348" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="680" y1="320" x2="680" y2="348" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="808" y1="320" x2="808" y2="348" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="552" y1="398" x2="552" y2="426" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="680" y1="398" x2="680" y2="426" stroke="#B0BEC5" stroke-width="1.2"/>
+  <line x1="808" y1="398" x2="808" y2="426" stroke="#B0BEC5" stroke-width="1.2"/>
+</svg>

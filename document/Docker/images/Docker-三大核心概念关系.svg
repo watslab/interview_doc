@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="450" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 仓库 -->
+  <rect x="40" y="70" width="250" height="360" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="165" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#EF6C00">仓库（Registry）</text>
+  <rect x="65" y="134" width="200" height="64" rx="6" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="165" y="164" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">Repository</text>
+  <text x="165" y="186" text-anchor="middle" font-size="10" fill="#888888">镜像的存储单元</text>
+  <rect x="65" y="226" width="200" height="64" rx="6" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="165" y="262" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">Tag: v1.0</text>
+  <rect x="65" y="318" width="200" height="64" rx="6" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="165" y="354" text-anchor="middle" font-size="12.5" font-weight="600" fill="#333333">Tag: v2.0</text>
+
+  <!-- 仓库 → 镜像 -->
+  <line x1="290" y1="250" x2="353" y2="250" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="322" y="232" text-anchor="middle" font-size="10.5" fill="#757575">docker pull</text>
+  <text x="322" y="270" text-anchor="middle" font-size="10.5" fill="#757575">拉取镜像</text>
+
+  <!-- 镜像 -->
+  <rect x="355" y="70" width="250" height="360" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="480" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">镜像（Image）</text>
+  <text x="480" y="116" text-anchor="middle" font-size="10" fill="#546E7A">只读分层模板</text>
+  <rect x="380" y="134" width="200" height="64" rx="6" fill="#90CAF9" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="170" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0D47A1">应用层（Layer 3）</text>
+  <rect x="380" y="226" width="200" height="64" rx="6" fill="#BBDEFB" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="262" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0D47A1">依赖层（Layer 2）</text>
+  <rect x="380" y="318" width="200" height="64" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="354" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0D47A1">基础层（Layer 1）</text>
+  <text x="480" y="410" text-anchor="middle" font-size="10" fill="#757575">自下而上依次叠加 · 相同层可跨镜像共享</text>
+
+  <!-- 镜像 → 容器 -->
+  <line x1="605" y1="250" x2="668" y2="250" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="637" y="232" text-anchor="middle" font-size="10.5" fill="#757575">docker run</text>
+  <text x="637" y="270" text-anchor="middle" font-size="10.5" fill="#757575">实例化运行</text>
+
+  <!-- 容器 -->
+  <rect x="670" y="70" width="250" height="360" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="795" y="100" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E7D32">容器（Container）</text>
+  <text x="795" y="116" text-anchor="middle" font-size="10" fill="#546E7A">镜像的运行实例</text>
+  <rect x="695" y="134" width="200" height="56" rx="6" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="795" y="166" text-anchor="middle" font-size="11.5" font-weight="600" fill="#1B5E20">可写层（读写）</text>
+  <rect x="695" y="198" width="200" height="56" rx="6" fill="#90CAF9" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="795" y="230" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0D47A1">应用层（Layer 3）</text>
+  <rect x="695" y="262" width="200" height="56" rx="6" fill="#BBDEFB" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="795" y="294" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0D47A1">依赖层（Layer 2）</text>
+  <rect x="695" y="326" width="200" height="56" rx="6" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="795" y="358" text-anchor="middle" font-size="11.5" font-weight="600" fill="#0D47A1">基础层（Layer 1）</text>
+  <text x="795" y="404" text-anchor="middle" font-size="9.5" fill="#757575">可写层之下直接共享镜像的只读层</text>
+  <text x="795" y="420" text-anchor="middle" font-size="9.5" fill="#757575">文件修改通过写时复制（CoW）写入可写层</text>
+</svg>

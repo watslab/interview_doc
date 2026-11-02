@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="980" height="660" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 起点 -->
+  <rect x="390" y="46" width="220" height="52" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="500" y="76.5" text-anchor="middle" font-size="12.5" font-weight="600" fill="#6A1B9A">选择重启策略</text>
+  <line x1="500" y1="98" x2="500" y2="132.6" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- Q1 -->
+  <polygon points="500,133 640,185 500,237 360,185" fill="#FFF8E1" stroke="#F57F17" stroke-width="1.5"/>
+  <text x="500" y="189.3" text-anchor="middle" font-size="12" font-weight="600" fill="#795548">容器需要长期运行？</text>
+  <line x1="640" y1="185" x2="680" y2="185" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="660" y="179.7" text-anchor="middle" font-size="11" fill="#C62828">否</text>
+  <line x1="500" y1="237" x2="500" y2="284" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="515" y="264.1" text-anchor="start" font-size="11" fill="#2E7D32">是</text>
+
+  <!-- no（与 Q1 水平对齐） -->
+  <rect x="681" y="159" width="174" height="52" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="768" y="190" text-anchor="middle" font-size="13" font-weight="bold" fill="#C62828">no</text>
+
+  <!-- Q2 -->
+  <polygon points="500,284 640,336 500,388 360,336" fill="#FFF8E1" stroke="#F57F17" stroke-width="1.5"/>
+  <text x="500" y="340.3" text-anchor="middle" font-size="12" font-weight="600" fill="#795548">仅关注异常退出？</text>
+  <line x1="360" y1="336" x2="320" y2="336" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="340" y="330.7" text-anchor="middle" font-size="11" fill="#2E7D32">是</text>
+  <line x1="500" y1="388" x2="500" y2="434.6" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="515" y="414.9" text-anchor="start" font-size="11" fill="#C62828">否</text>
+
+  <!-- on-failure（与 Q2 水平对齐） -->
+  <rect x="160" y="310" width="160" height="52" rx="8" fill="#EFEBE9" stroke="#795548" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="240" y="340.7" text-anchor="middle" font-size="13" font-weight="bold" fill="#5D4037">on-failure</text>
+
+  <!-- Q3 -->
+  <polygon points="500,435 640,487 500,539 360,487" fill="#FFF8E1" stroke="#F57F17" stroke-width="1.5"/>
+  <text x="500" y="483.3" text-anchor="middle" font-size="11.5" font-weight="600" fill="#795548">手动停止后</text>
+  <text x="500" y="499.1" text-anchor="middle" font-size="11.5" font-weight="600" fill="#795548">宿主机重启需启动？</text>
+  <path d="M500,539 C500,565 360,558 360,573 L360,585" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="430" y="575.5" text-anchor="middle" font-size="11" fill="#2E7D32">是</text>
+  <path d="M500,539 C500,565 640,558 640,573 L640,585" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="570" y="575.5" text-anchor="middle" font-size="11" fill="#C62828">否</text>
+
+  <!-- always / unless-stopped（关于中轴镜像） -->
+  <rect x="280" y="586" width="160" height="52" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="360" y="616.7" text-anchor="middle" font-size="13" font-weight="bold" fill="#2E7D32">always</text>
+  <rect x="540" y="586" width="200" height="52" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="640" y="610.1" text-anchor="middle" font-size="13" font-weight="bold" fill="#0D47A1">unless-stopped</text>
+  <text x="640" y="624.2" text-anchor="middle" font-size="9.5" fill="#1565C0">（推荐）</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 762" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="742" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 容器网络命名空间 -->
+  <rect x="40" y="34" width="880" height="120" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="80" y="50" text-anchor="start" font-size="13" font-weight="bold" fill="#1B5E20">容器网络命名空间</text>
+  <rect x="130" y="68" width="180" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="138" y="81" text-anchor="start" font-size="10" font-weight="600" fill="#2E7D32">应用进程</text>
+  <text x="220" y="91.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Nginx 服务</text>
+  <text x="220" y="104.5" text-anchor="middle" font-size="10" fill="#666666">监听 80 端口</text>
+  <rect x="370" y="68" width="220" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="91.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="480" y="104.5" text-anchor="middle" font-size="10" fill="#666666">172.17.0.2</text>
+  <text x="610" y="91.5" text-anchor="start" font-size="9.5" fill="#757575">源: 172.17.0.2:80</text>
+  <text x="610" y="104.5" text-anchor="start" font-size="9.5" fill="#757575">目标: 8.8.8.8:80</text>
+
+  <!-- 宿主机网络命名空间 -->
+  <rect x="40" y="180" width="880" height="394" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="80" y="202" text-anchor="start" font-size="13" font-weight="bold" fill="#1565C0">宿主机网络命名空间</text>
+  <rect x="320" y="208" width="320" height="52" rx="6" fill="#FFEBEE" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="231.5" text-anchor="middle" font-size="12" font-weight="600" fill="#B71C1C">docker0 网桥</text>
+  <text x="480" y="244.5" text-anchor="middle" font-size="10" fill="#C62828">172.17.0.1</text>
+  <rect x="320" y="303" width="320" height="52" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="326.4" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">路由判断</text>
+  <text x="480" y="339.4" text-anchor="middle" font-size="9.5" fill="#888888">目标 8.8.8.8 非本机网段，经默认路由转发</text>
+  <rect x="320" y="398" width="320" height="52" rx="6" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="480" y="421.5" text-anchor="middle" font-size="12" font-weight="600" fill="#1B5E20">iptables SNAT 源地址转换</text>
+  <text x="480" y="434.5" text-anchor="middle" font-size="10" fill="#2E7D32">172.17.0.2:80 → 192.168.1.100:8080</text>
+  <rect x="320" y="493" width="320" height="52" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="480" y="516.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="480" y="529.5" text-anchor="middle" font-size="10" fill="#666666">192.168.1.100</text>
+
+  <!-- 外部网络 -->
+  <rect x="40" y="602" width="880" height="106" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="80" y="615" text-anchor="start" font-size="13" font-weight="bold" fill="#EF6C00">外部网络</text>
+  <rect x="340" y="629" width="280" height="52" rx="8" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="348" y="642" text-anchor="start" font-size="10" font-weight="600" fill="#EF6C00">客户端</text>
+  <text x="480" y="652.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">目标服务器</text>
+  <text x="480" y="665.5" text-anchor="middle" font-size="10" fill="#888888">8.8.8.8:80</text>
+
+  <!-- 连接箭头（最后绘制，保证在最上层；出站流量自上而下） -->
+  <line x1="311" y1="94" x2="369" y2="94" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="480" y1="121" x2="480" y2="207" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="495" y="170" text-anchor="start" font-size="10" fill="#757575">veth pair</text>
+  <line x1="480" y1="261" x2="480" y2="302" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="480" y1="356" x2="480" y2="397" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="480" y1="451" x2="480" y2="492" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="480" y1="546" x2="480" y2="628" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="495" y="591.5" text-anchor="start" font-size="10" fill="#757575">发往物理网络（源地址已转换）</text>
+
+  <!-- 底部说明 -->
+  <text x="480" y="734" text-anchor="middle" font-size="10.5" fill="#757575">容器访问外网的出站流量经 SNAT 将源地址转换为宿主机 IP；入站的响应报文依据连接跟踪表自动反向转换地址（DNAT）后返回给应用进程</text>
+</svg>

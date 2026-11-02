@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 646" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="900" height="626" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 外部访问 -->
+  <rect x="370" y="30" width="180" height="44" rx="8" fill="#FCE4EC" stroke="#C2185B" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="56.3" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">用户 / 客户端</text>
+
+  <line x1="460" y1="74" x2="460" y2="106.9" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="474" y="94.5" text-anchor="start" font-size="10" fill="#757575">HTTP 请求 | 端口 80</text>
+
+  <!-- Swarm 集群框 -->
+  <rect x="40" y="108" width="840" height="508" rx="10" fill="#FFFFFF" stroke="#1565C0" stroke-width="2" filter="url(#s1)"/>
+  <text x="60" y="134.5" text-anchor="start" font-size="13" font-weight="bold" fill="#1565C0">Docker Swarm 集群</text>
+
+  <!-- Manager 节点组 -->
+  <rect x="60" y="152" width="800" height="120" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.2"/>
+  <text x="76" y="173" text-anchor="start" font-size="11" font-weight="bold" fill="#1565C0">Manager 节点组（Raft 集群）</text>
+  <rect x="80" y="186" width="230" height="58" rx="6" fill="#BBDEFB" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="195" y="212.2" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Manager 1</text>
+  <text x="195" y="225.2" text-anchor="middle" font-size="10" fill="#555555">Leader | 调度器 + API</text>
+  <rect x="345" y="186" width="230" height="58" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="460" y="212.2" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Manager 2</text>
+  <text x="460" y="225.2" text-anchor="middle" font-size="10" fill="#888888">Follower</text>
+  <rect x="610" y="186" width="230" height="58" rx="6" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="725" y="212.2" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Manager 3</text>
+  <text x="725" y="225.2" text-anchor="middle" font-size="10" fill="#888888">Follower</text>
+  <line x1="310" y1="215" x2="345" y2="215" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+  <line x1="575" y1="215" x2="610" y2="215" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+  <text x="460" y="261.5" text-anchor="middle" font-size="9.5" fill="#757575">节点间两两直连，Raft 共识复制集群状态日志</text>
+
+  <!-- 调度：Leader 单主干分枝（Worker 1 正下方直落，Worker 2/3 圆角正交分枝） -->
+  <path d="M195,272 L195,316.9" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <path d="M195,272 L195,286 Q195,294 203,294 L452,294 Q460,294 460,302 L460,316.9" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <path d="M195,272 L195,286 Q195,294 203,294 L717,294 Q725,294 725,302 L725,316.9" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="330" y="289" text-anchor="middle" font-size="10" fill="#757575">调度 Task</text>
+
+  <!-- Worker 节点组 -->
+  <rect x="60" y="318" width="800" height="108" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.2"/>
+  <text x="76" y="339" text-anchor="start" font-size="11" font-weight="bold" fill="#2E7D32">Worker 节点组</text>
+  <rect x="80" y="352" width="230" height="58" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="195" y="385.3" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Worker 1</text>
+  <rect x="345" y="352" width="230" height="58" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="460" y="385.3" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Worker 2</text>
+  <rect x="610" y="352" width="230" height="58" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="725" y="385.3" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">Worker 3</text>
+
+  <!-- Worker → 容器（垂直落至各容器顶边中心） -->
+  <line x1="132" y1="426" x2="132" y2="468.9" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="258" y1="426" x2="258" y2="468.9" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="397" y1="426" x2="397" y2="468.9" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="523" y1="426" x2="523" y2="468.9" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="662" y1="426" x2="662" y2="468.9" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <line x1="788" y1="426" x2="788" y2="468.9" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="327.5" y="452" text-anchor="middle" font-size="10.5" font-weight="600" fill="#555555">容器实例（Task 启动）</text>
+
+  <!-- 容器（每个 Worker 两两成组） -->
+  <rect x="77" y="470" width="110" height="46" rx="6" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="132" y="497" text-anchor="middle" font-size="11" fill="#333333">web-1</text>
+  <rect x="203" y="470" width="110" height="46" rx="6" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="258" y="497" text-anchor="middle" font-size="11" fill="#333333">db-1</text>
+  <rect x="342" y="470" width="110" height="46" rx="6" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="397" y="497" text-anchor="middle" font-size="11" fill="#333333">web-2</text>
+  <rect x="468" y="470" width="110" height="46" rx="6" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="523" y="497" text-anchor="middle" font-size="11" fill="#333333">redis-1</text>
+  <rect x="607" y="470" width="110" height="46" rx="6" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="662" y="497" text-anchor="middle" font-size="11" fill="#333333">web-3</text>
+  <rect x="733" y="470" width="110" height="46" rx="6" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="788" y="497" text-anchor="middle" font-size="11" fill="#333333">redis-2</text>
+
+  <!-- 容器 ↔ Overlay（双向，精确落至 Overlay 顶边） -->
+  <line x1="132" y1="516" x2="132" y2="550.9" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+  <line x1="258" y1="516" x2="258" y2="550.9" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+  <line x1="397" y1="516" x2="397" y2="550.9" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+  <line x1="523" y1="516" x2="523" y2="550.9" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+  <line x1="662" y1="516" x2="662" y2="550.9" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+  <line x1="788" y1="516" x2="788" y2="550.9" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)" marker-start="url(#ahr)"/>
+
+  <!-- Overlay 网络 -->
+  <rect x="60" y="552" width="800" height="44" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="460" y="578.3" text-anchor="middle" font-size="12" font-weight="600" fill="#6A1B9A">Overlay 网络 | 跨节点容器通信（VXLAN 隧道）</text>
+</svg>

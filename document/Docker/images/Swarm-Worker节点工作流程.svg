@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 440" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#EF6C00"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="1060" height="420" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Manager 节点 -->
+  <rect x="40" y="155" width="170" height="70" rx="8" fill="#ECEFF1" stroke="#546E7A" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="125" y="195" text-anchor="middle" font-size="12.5" font-weight="600" fill="#37474F">Manager 节点</text>
+
+  <!-- Worker 节点容器 -->
+  <rect x="300" y="50" width="740" height="310" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="316" y="80" text-anchor="start" font-size="14" font-weight="bold" fill="#1B5E20">Worker 节点</text>
+
+  <!-- Worker Agent：与 Manager 通信（蓝 · 中间件/通信） -->
+  <rect x="340" y="155" width="180" height="70" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="430" y="186" text-anchor="middle" font-size="12" font-weight="600" fill="#0D47A1">Worker Agent</text>
+  <text x="430" y="202" text-anchor="middle" font-size="9.5" fill="#1565C0">与 Manager 通信</text>
+
+  <!-- Docker Engine（青 · 引擎执行） -->
+  <rect x="580" y="155" width="180" height="70" rx="8" fill="#E0F7FA" stroke="#00838F" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="670" y="186" text-anchor="middle" font-size="12" font-weight="600" fill="#006064">Docker Engine</text>
+  <text x="670" y="202" text-anchor="middle" font-size="9.5" fill="#00838F">执行容器操作</text>
+
+  <!-- 容器运行时（紫 · 底层运行时） -->
+  <rect x="820" y="155" width="180" height="70" rx="8" fill="#EDE7F6" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="910" y="186" text-anchor="middle" font-size="12" font-weight="600" fill="#4527A0">容器运行时</text>
+  <text x="910" y="202" text-anchor="middle" font-size="9.5" fill="#7B1FA2">containerd</text>
+
+  <!-- 连接箭头（最后绘制，保证置于顶层） -->
+  <line x1="212" y1="170" x2="338" y2="170" stroke="#EF6C00" stroke-width="2" marker-end="url(#aho)"/>
+  <text x="262" y="166" text-anchor="middle" font-size="10.5" font-weight="600" fill="#E65100">分配 Task</text>
+
+  <line x1="338" y1="210" x2="212" y2="210" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="262" y="222" text-anchor="middle" font-size="10" fill="#757575">心跳 + 状态</text>
+
+  <line x1="522" y1="190" x2="578" y2="190" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="550" y="186" text-anchor="middle" font-size="10" fill="#757575">创建容器</text>
+
+  <line x1="762" y1="190" x2="818" y2="190" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="790" y="186" text-anchor="middle" font-size="10" fill="#757575">运行容器</text>
+
+  <path d="M910,227 L910,275 L430,275 L430,227" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah)"/>
+  <text x="670" y="287" text-anchor="middle" font-size="10" fill="#757575">状态上报</text>
+
+  <!-- 底部说明：水平居中于画布中线（x=540），垂直居中于下边距带（360..430，中线 y=395） -->
+  <text x="540" y="399" text-anchor="middle" font-size="10.5" fill="#757575">Manager 经 gRPC 将 Task 分配给 Worker Agent；Agent 调用 Docker Engine 创建容器，Engine 交由容器运行时（containerd）运行容器；容器状态由 Agent 通过心跳上报至 Manager</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 582" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <rect x="10" y="10" width="980" height="562" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 生命周期管理 -->
+  <rect x="40" y="50" width="290" height="492" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="55" y="80" text-anchor="start" font-size="12" font-weight="bold" fill="#0D47A1">生命周期管理</text>
+  <rect x="60" y="94" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="185" y="117.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker run</text>
+  <text x="185" y="130.5" text-anchor="middle" font-size="10" fill="#888888">创建并启动容器</text>
+  <rect x="60" y="170" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="185" y="193.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker start</text>
+  <text x="185" y="206.5" text-anchor="middle" font-size="10" fill="#888888">启动已停止容器</text>
+  <rect x="60" y="246" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="185" y="269.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker stop</text>
+  <text x="185" y="282.5" text-anchor="middle" font-size="10" fill="#888888">优雅停止容器</text>
+  <rect x="60" y="322" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="185" y="345.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker kill</text>
+  <text x="185" y="358.5" text-anchor="middle" font-size="10" fill="#888888">强制停止容器</text>
+  <rect x="60" y="398" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="185" y="421.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker restart</text>
+  <text x="185" y="434.5" text-anchor="middle" font-size="10" fill="#888888">重启容器</text>
+  <rect x="60" y="474" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#1565C0" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="185" y="497.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker rm</text>
+  <text x="185" y="510.5" text-anchor="middle" font-size="10" fill="#888888">删除容器</text>
+
+  <!-- 信息查看 -->
+  <rect x="355" y="50" width="290" height="416" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="370" y="80" text-anchor="start" font-size="12" font-weight="bold" fill="#1B5E20">信息查看</text>
+  <rect x="375" y="94" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="500" y="117.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker ps</text>
+  <text x="500" y="130.5" text-anchor="middle" font-size="10" fill="#888888">查看运行容器</text>
+  <rect x="375" y="170" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="500" y="193.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker logs</text>
+  <text x="500" y="206.5" text-anchor="middle" font-size="10" fill="#888888">查看容器日志</text>
+  <rect x="375" y="246" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="500" y="269.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker inspect</text>
+  <text x="500" y="282.5" text-anchor="middle" font-size="10" fill="#888888">查看容器详情</text>
+  <rect x="375" y="322" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="500" y="345.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker stats</text>
+  <text x="500" y="358.5" text-anchor="middle" font-size="10" fill="#888888">查看资源统计</text>
+  <rect x="375" y="398" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="500" y="421.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker port</text>
+  <text x="500" y="434.5" text-anchor="middle" font-size="10" fill="#888888">查看端口映射</text>
+
+  <!-- 容器操作 -->
+  <rect x="670" y="50" width="290" height="264" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="685" y="80" text-anchor="start" font-size="12" font-weight="bold" fill="#E65100">容器操作</text>
+  <rect x="690" y="94" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="815" y="117.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker exec</text>
+  <text x="815" y="130.5" text-anchor="middle" font-size="10" fill="#888888">执行命令</text>
+  <rect x="690" y="170" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="815" y="193.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker cp</text>
+  <text x="815" y="206.5" text-anchor="middle" font-size="10" fill="#888888">复制文件</text>
+  <rect x="690" y="246" width="250" height="52" rx="8" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="815" y="269.5" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">docker attach</text>
+  <text x="815" y="282.5" text-anchor="middle" font-size="10" fill="#888888">连接容器</text>
+</svg>

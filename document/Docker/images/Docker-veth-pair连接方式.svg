@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 298" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+    <marker id="ahr" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="940" height="278" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 宿主机网络命名空间（中央面板） -->
+  <rect x="290" y="24" width="380" height="218" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="480" y="52" text-anchor="middle" font-size="13" font-weight="bold" fill="#1565C0">宿主机网络命名空间</text>
+
+  <rect x="310" y="74" width="340" height="52" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="480" y="104" text-anchor="middle" font-size="12.5" font-weight="600" fill="#B71C1C">docker0 网桥</text>
+
+  <!-- 挂载连线（docker0 → veth 设备） -->
+  <line x1="385" y1="127" x2="385" y2="159" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <line x1="575" y1="127" x2="575" y2="159" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
+  <text x="399" y="147" font-size="10" fill="#757575">挂载</text>
+  <text x="589" y="147" font-size="10" fill="#757575">挂载</text>
+
+  <rect x="310" y="160" width="150" height="64" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="385" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">veth780a161</text>
+  <text x="385" y="201" text-anchor="middle" font-size="9.5" fill="#888888">宿主机端 | 挂载于 docker0</text>
+
+  <rect x="500" y="160" width="150" height="64" rx="6" fill="#FFFFFF" stroke="#C62828" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="575" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">veth5b3c9f2</text>
+  <text x="575" y="201" text-anchor="middle" font-size="9.5" fill="#888888">宿主机端 | 挂载于 docker0</text>
+
+  <!-- 容器 1 网络命名空间（左侧面板） -->
+  <rect x="24" y="112" width="210" height="130" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="129" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#1B5E20">容器 1 网络命名空间</text>
+  <rect x="44" y="160" width="170" height="64" rx="6" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="129" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="129" y="202" text-anchor="middle" font-size="10" fill="#666666">172.17.0.2</text>
+
+  <!-- 容器 2 网络命名空间（右侧面板） -->
+  <rect x="726" y="112" width="210" height="130" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="831" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">容器 2 网络命名空间</text>
+  <rect x="746" y="160" width="170" height="64" rx="6" fill="#FFFFFF" stroke="#EF6C00" stroke-width="1.2" filter="url(#s1)"/>
+  <text x="831" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#333333">eth0</text>
+  <text x="831" y="202" text-anchor="middle" font-size="10" fill="#666666">172.17.0.3</text>
+
+  <!-- veth pair 连线（双向，最后绘制保证置顶） -->
+  <line x1="215" y1="192" x2="309" y2="192" stroke="#90A4AE" stroke-width="1.5" marker-start="url(#ahr)" marker-end="url(#ah)"/>
+  <line x1="651" y1="192" x2="745" y2="192" stroke="#90A4AE" stroke-width="1.5" marker-start="url(#ahr)" marker-end="url(#ah)"/>
+  <text x="262" y="185" text-anchor="middle" font-size="10.5" fill="#757575">veth pair</text>
+  <text x="698" y="185" text-anchor="middle" font-size="10.5" fill="#757575">veth pair</text>
+
+  <text x="480" y="269" text-anchor="middle" font-size="10.5" fill="#757575">veth pair 一端为容器内 eth0，另一端为宿主机中的 veth 设备并挂载到 docker0，两端如同一条跨命名空间的虚拟网线</text>
+</svg>
