@@ -3,7 +3,8 @@
     <filter id="s1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
     <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
     <marker id="ahv" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
-    <marker id="ahvr" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#7B1FA2"/></marker>
+    <marker id="ahvr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M8,0 L0,3 L8,6Z" fill="#7B1FA2"/></marker>
+    <marker id="ahv0" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
     <marker id="aho" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#EF6C00"/></marker>
   </defs>
 
@@ -88,24 +89,24 @@
   <line x1="200" y1="406" x2="200" y2="430" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
   <text x="212" y="422" text-anchor="start" font-size="10" fill="#757575">挂载</text>
   <line x1="860" y1="406" x2="860" y2="430" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
-  <text x="872" y="422" text-anchor="start" font-size="10" fill="#757575">挂载</text>
+  <text x="848" y="422" text-anchor="end" font-size="10" fill="#757575">挂载</text>
 
   <line x1="200" y1="486" x2="200" y2="514" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
   <text x="212" y="504" text-anchor="start" font-size="9.5" fill="#757575">封装 Encap</text>
   <line x1="860" y1="514" x2="860" y2="486" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
-  <text x="872" y="504" text-anchor="start" font-size="9.5" fill="#757575">解封装 Decap</text>
+  <text x="848" y="504" text-anchor="end" font-size="9.5" fill="#757575">解封装 Decap</text>
 
   <line x1="200" y1="558" x2="200" y2="609" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
   <line x1="860" y1="609" x2="860" y2="558" stroke="#90A4AE" stroke-width="1.2" marker-end="url(#ah)"/>
   <text x="212" y="587" text-anchor="start" font-size="9.5" fill="#757575">VXLAN 报文</text>
-  <text x="872" y="587" text-anchor="start" font-size="9.5" fill="#757575">VXLAN 报文</text>
+  <text x="848" y="587" text-anchor="end" font-size="9.5" fill="#757575">VXLAN 报文</text>
 
   <!-- 容器 → docker_gwbridge -->
   <path d="M342,267 L406,267 L406,299" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
   <path d="M718,267 L654,267 L654,299" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
 
   <!-- VXLAN 隧道 -->
-  <line x1="360" y1="458" x2="719" y2="458" stroke="#7B1FA2" stroke-width="2.5" stroke-dasharray="8,5" marker-start="url(#ahvr)" marker-end="url(#ahv)"/>
+  <line x1="360" y1="458" x2="700" y2="458" stroke="#7B1FA2" stroke-width="2.5" stroke-dasharray="8,5" marker-start="url(#ahvr)" marker-end="url(#ahv0)"/>
   <text x="530" y="450" text-anchor="middle" font-size="10.5" font-weight="600" fill="#6A1B9A">VXLAN 隧道 · UDP 4789 · VNI 隔离</text>
 
   <!-- docker_gwbridge → 宿主机 eth0（白色衬底实现跨线跳越） -->
@@ -114,7 +115,7 @@
   <text x="416" y="415" text-anchor="start" font-size="9.5" fill="#EF6C00">NAT 出网</text>
   <path d="M654,366 L654,536 L749,536" fill="none" stroke="#FFFFFF" stroke-width="5"/>
   <path d="M654,366 L654,536 L749,536" fill="none" stroke="#EF6C00" stroke-width="1.5" marker-end="url(#aho)"/>
-  <text x="664" y="415" text-anchor="start" font-size="9.5" fill="#EF6C00">NAT 出网</text>
+  <text x="644" y="415" text-anchor="end" font-size="9.5" fill="#EF6C00">NAT 出网</text>
 
   <!-- 底部说明 -->
   <text x="530" y="704" text-anchor="middle" font-size="10" fill="#757575">东西向流量（容器互访）：经 br-xxx 网桥汇入 vxlan0，封装 VXLAN（VNI）后以节点 IP 跨网传输</text>

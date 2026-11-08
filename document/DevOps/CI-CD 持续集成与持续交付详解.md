@@ -1,14 +1,14 @@
-# CI/CD 持续集成与持续交付详解
+# CI / CD 持续集成与持续交付详解
 
-> 本文系统梳理现代 CI/CD 技术体系，涵盖核心概念、演进历程、主流工具对比、GitOps 部署范式、DevSecOps 安全实践、DORA 效能度量及未来趋势。文档分为七个部分：一、概述；二、技术演进历程；三、主流工具对比；四、GitOps 部署范式；五、DevSecOps 安全实践；六、DORA 效能度量；七、未来展望。
+> 本文系统梳理现代 CI / CD 技术体系，涵盖核心概念、演进历程、主流工具对比、GitOps 部署范式、DevSecOps 安全实践、DORA 效能度量及未来趋势。文档分为七个部分：一、概述；二、技术演进历程；三、主流工具对比；四、GitOps 部署范式；五、DevSecOps 安全实践；六、DORA 效能度量；七、未来展望。
 
 ---
 
 ## 一、概述
 
-### 1.1 CI/CD 的定义
+### 1.1 CI / CD 的定义
 
-CI/CD 是持续集成（Continuous Integration）、持续交付（Continuous Delivery）和持续部署（Continuous Deployment）的统称，是现代软件工程中实现自动化交付的核心实践。三者构成逐层递进的交付链路：
+CI / CD 是持续集成（Continuous Integration）、持续交付（Continuous Delivery）和持续部署（Continuous Deployment）的统称，是现代软件工程中实现自动化交付的核心实践。三者构成逐层递进的交付链路：
 
 | 实践 | 全称 | 核心目标 | 触发方式 | 关键环节 |
 |------|------|----------|----------|----------|
@@ -20,9 +20,9 @@ CI/CD 是持续集成（Continuous Integration）、持续交付（Continuous De
 
 ### 1.2 核心价值
 
-CI/CD 通过自动化软件交付流程，为团队带来以下核心价值：
+CI / CD 通过自动化软件交付流程，为团队带来以下核心价值：
 
-| 维度 | 传统手动流程 | CI/CD 自动化流程 |
+| 维度 | 传统手动流程 | CI / CD 自动化流程 |
 |------|-------------|------------------|
 | 交付周期 | 周/月级 | 分钟/小时级 |
 | 人为错误 | 高（手动操作多） | 低（自动化执行） |
@@ -31,7 +31,7 @@ CI/CD 通过自动化软件交付流程，为团队带来以下核心价值：
 | 回滚能力 | 复杂且不可靠 | 一键回滚（Git revert） |
 | 可审计性 | 弱（操作记录分散） | 强（全流程留痕） |
 
-根据 Google DORA 团队的研究，实施成熟 CI/CD 实践的团队在部署频率、交付周期、变更失败率和恢复时间上显著优于传统团队。
+根据 Google DORA 团队的研究，实施成熟 CI / CD 实践的团队在部署频率、交付周期、变更失败率和恢复时间上显著优于传统团队。
 
 ### 1.3 核心概念
 
@@ -40,7 +40,7 @@ CI/CD 通过自动化软件交付流程，为团队带来以下核心价值：
 | 流水线（Pipeline） | 由多个阶段（Stage）串联组成的自动化流程，定义从代码提交到部署的完整路径 |
 | 制品（Artifact） | 构建过程的输出物，如 JAR 包、Docker 镜像、二进制文件 |
 | 不可变制品（Immutable Artifact） | 同一制品在开发、测试、生产环境中保持不变，环境差异通过配置注入 |
-| 基础设施即代码（IaC） | 使用代码声明式定义基础设施，如 Terraform、Ansible |
+| 基础设施即代码（IaC） | 使用代码声明式定义基础设施，如 Terraform、Pulumi |
 | 质量门禁（Quality Gate） | 流水线中的检查点，未通过则阻断后续流程 |
 | 蓝绿部署（Blue-Green） | 维护两套环境，切换流量实现零停机部署 |
 | 金丝雀发布（Canary） | 小比例流量验证新版本，逐步扩大范围 |
@@ -51,9 +51,9 @@ CI/CD 通过自动化软件交付流程，为团队带来以下核心价值：
 
 ### 2.1 演进概述
 
-CI/CD 技术经历了从手动部署到智能化的五个发展阶段，每个阶段都以前一阶段的瓶颈为驱动，在自动化程度、交付速度和可靠性上实现代际提升。
+CI / CD 技术经历了从手动部署到智能化的五个发展阶段，每个阶段都以前一阶段的瓶颈为驱动，在自动化程度、交付速度和可靠性上实现代际提升。
 
-![CI/CD 技术演进历程](./images/CI-CD技术演进历程.svg)
+![CI / CD 技术演进历程](./images/CI-CD技术演进历程.svg)
 
 ### 2.2 手动部署时代（2000 年以前）
 
@@ -76,7 +76,9 @@ CI/CD 技术经历了从手动部署到智能化的五个发展阶段，每个�
 | Martin Fowler 发表 CI 文章 | 2001 | 确立 CI 理论基础 |
 | Hudson（Jenkins 前身）发布 | 2004 | 首个主流 CI 服务器 |
 | CruiseControl 开源 | 2001 | 早期 CI 框架 |
-| Jez Humble 出版《持续交付》 | 2010 | 系统阐述 CD 理论 |
+| Jez Humble 出版《持续交付》 | 2010 | 系统阐述 CD 理论，标志 CI 向 CD 过渡 |
+
+该阶段以持续集成为主线：CD 建立在 CI 的自动化构建与测试基础之上，2010 年《持续交付》一书的出版为 CD 奠定了理论基础，直接推动了下一阶段 DevOps 与 CD 的兴起。
 
 ### 2.4 DevOps 与 CD 兴起（2011—2015）
 
@@ -86,29 +88,29 @@ CI/CD 技术经历了从手动部署到智能化的五个发展阶段，每个�
 
 | 工具 | 类型 | 说明 |
 |------|------|------|
-| Jenkins | CI/CD 服务器 | 插件生态丰富，成为事实标准 |
-| Chef / Puppet | 配置管理 | 自动化服务器配置 |
+| Jenkins | CI 引擎 | 插件生态丰富，成为事实标准 |
 | Docker | 容器化 | 解决环境一致性问题（2013 年） |
-| Ansible | 配置管理 | 声明式、无代理架构 |
+| Chef / Puppet | 配置管理 | 服务器配置自动化，采用有代理（Agent）架构 |
+| Ansible | 配置管理 | 服务器配置自动化，采用无代理（Agentless）架构 |
 | Terraform | IaC | 声明式基础设施管理 |
 
-### 2.5 云原生 CI/CD（2016—2020）
+### 2.5 云原生 CI / CD（2016—2020）
 
-随着 Kubernetes 成为容器编排标准，CI/CD 向云原生架构演进。流水线以容器为执行单元，动态创建、用完即销。
+随着 Kubernetes 成为容器编排标准，CI / CD 向云原生架构演进。流水线以容器为执行单元，动态创建、用完即销。
 
 **核心技术特征**：容器化构建、Kubernetes 原生、微服务友好。
 
 | 工具 | 类型 | 说明 |
 |------|------|------|
-| GitLab CI | CI/CD 平台 | 与 GitLab 代码托管深度集成 |
-| GitHub Actions | CI/CD 平台 | 与 GitHub 原生集成，2018 年推出 |
-| Tekton | CI/CD 框架 | Kubernetes 原生，CRD 定义流水线 |
+| GitLab CI | CI 引擎 | 与 GitLab 代码托管深度集成 |
+| GitHub Actions | CI 引擎 | 与 GitHub 原生集成，2018 年推出 |
+| Tekton | CI 引擎 | Kubernetes 原生，CRD 定义流水线 |
 | ArgoCD | CD 工具 | GitOps 范式的代表性实现 |
-| Spinnaker | CD 平台 | 多云部署、渐进式交付 |
+| Spinnaker | CD 工具 | 多云部署、渐进式交付 |
 
 ### 2.6 智能化与 GitOps（2021 至今）
 
-CI/CD 进入智能化时代，GitOps 成为云原生部署的事实标准，AI 技术开始融入交付流程。
+CI / CD 进入智能化时代，GitOps 成为云原生部署的事实标准，AI 技术开始融入交付流程。
 
 **核心技术特征**：GitOps 声明式部署、DevSecOps 安全内建、AI 辅助优化。
 
@@ -118,7 +120,7 @@ CI/CD 进入智能化时代，GitOps 成为云原生部署的事实标准，AI �
 | DevSecOps | 安全左移，安全检查内建到流水线 |
 | 渐进式交付 | 金丝雀发布、蓝绿部署自动化 |
 | AI 辅助 | 智能测试选择、风险预测、自动回滚 |
-| 平台工程 | 内部开发者平台，自助式 CI/CD |
+| 平台工程 | 内部开发者平台，自助式 CI / CD |
 
 ---
 
@@ -126,26 +128,26 @@ CI/CD 进入智能化时代，GitOps 成为云原生部署的事实标准，AI �
 
 ### 3.1 工具全景
 
-![CI/CD 工具全景](./images/CI-CD工具全景.svg)
+![CI / CD 工具全景](./images/CI-CD工具全景.svg)
 
-现代 CI/CD 工具按功能定位可分为 CI 引擎、CD 工具和一体化平台三类：
+现代 CI / CD 工具按功能定位可分为 CI 引擎、CD 工具和一体化平台三类：
 
 | 类别 | 工具 | 定位 | 核心特点 |
 |------|------|------|----------|
 | CI 引擎 | Jenkins | 自托管 CI 服务器 | 插件生态庞大（1800+），高度可定制 |
 | CI 引擎 | GitHub Actions | SaaS CI 平台 | GitHub 原生集成，Marketplace 生态 |
-| CI 引擎 | GitLab CI | SaaS + 自托管 | GitLab 一体化 DevOps 平台 |
+| CI 引擎 | GitLab CI | SaaS + 自托管 | 内建于 GitLab 一体化 DevOps 平台 |
 | CI 引擎 | Tekton | Kubernetes 原生 | CRD 定义流水线，无服务器架构 |
 | CI 引擎 | CircleCI | SaaS | 构建速度快，Docker 支持好 |
+| CI 引擎 | Drone | 自托管 | 轻量级，容器原生 |
 | CD 工具 | ArgoCD | GitOps 控制器 | 声明式部署，Kubernetes 深度集成 |
 | CD 工具 | Flux | GitOps 工具包 | 模块化设计，与 ArgoCD 互补 |
 | CD 工具 | Spinnaker | 多云 CD 平台 | 支持多云多环境渐进式交付 |
 | 一体化 | Azure DevOps | SaaS | Microsoft 生态，企业级 |
-| 一体化 | Drone | 自托管 | 轻量级，容器原生 |
 
-### 3.2 三大主流 CI 工具深度对比
+### 3.2 三大主流 CI / CD 工具深度对比
 
-Jenkins、GitLab CI 和 GitHub Actions 是当前企业最广泛使用的三种 CI/CD 方案，以下从多个维度进行系统对比：
+Jenkins、GitLab CI 和 GitHub Actions 是当前企业最广泛使用的三种 CI / CD 工具，以下从多个维度进行系统对比：
 
 | 对比维度 | Jenkins | GitLab CI | GitHub Actions |
 |----------|---------|-----------|----------------|
@@ -164,7 +166,7 @@ Jenkins、GitLab CI 和 GitHub Actions 是当前企业最广泛使用的三种 C
 
 > **配置方式对比**：Jenkins 使用 Groovy 编写 Jenkinsfile，表达力强但学习曲线陡峭；GitLab CI 和 GitHub Actions 均采用 YAML 配置，更易上手。以下是三种工具的流水线定义示例：
 >
-> **Jenkinsfile（Groovy DSL）**：
+> **Jenkinsfile（Groovy DSL）​**：
 > ```groovy
 > pipeline {
 >     agent any
@@ -188,7 +190,7 @@ Jenkins、GitLab CI 和 GitHub Actions 是当前企业最广泛使用的三种 C
 > }
 > ```
 >
-> **GitLab CI（YAML）**：
+> **GitLab CI（YAML）​**：
 > ```yaml
 > stages:
 >   - build
@@ -213,9 +215,9 @@ Jenkins、GitLab CI 和 GitHub Actions 是当前企业最广泛使用的三种 C
 >     - main
 > ```
 >
-> **GitHub Actions（YAML）**：
+> **GitHub Actions（YAML）​**：
 > ```yaml
-> name: CI/CD Pipeline
+> name: CI / CD Pipeline
 > on:
 >   push:
 >     branches: [main]
@@ -285,9 +287,9 @@ GitOps 的四项核心原则：
 
 ### 4.2 Push vs Pull 部署模型
 
-传统 CI/CD 采用推送（Push）模型，GitOps 采用拉取（Pull）模型，两者在安全性和可靠性上有本质区别：
+传统 CI / CD 采用推送（Push）模型，GitOps 采用拉取（Pull）模型，两者在安全性和可靠性上有本质区别：
 
-| 对比维度 | Push 模型（传统 CI/CD） | Pull 模型（GitOps） |
+| 对比维度 | Push 模型（传统 CI / CD） | Pull 模型（GitOps） |
 |----------|------------------------|---------------------|
 | **触发方式** | CI 流水线主动推送至集群 | 集群内 Agent 拉取 Git 变更 |
 | **凭证位置** | CI 系统持有集群凭证 | 凭证留在集群内，不外泄 |
@@ -307,12 +309,12 @@ GitOps 的典型工作流程分为构建和部署两个独立管道：
 
 | 阶段 | 步骤 | 说明 |
 |------|------|------|
-| **构建管道（CI）** | 1. 代码提交 | 开发者推送代码到应用仓库 |
+| **构建管道（CI）​** | 1. 代码提交 | 开发者推送代码到应用仓库 |
 | | 2. 触发 CI | CI 引擎自动触发构建流水线 |
 | | 3. 构建镜像 | 编译代码、构建 Docker 镜像 |
 | | 4. 推送镜像 | 镜像推送到容器镜像仓库 |
 | | 5. 更新清单 | 自动更新配置仓库中的镜像版本 |
-| **部署管道（CD）** | 6. 检测变更 | ArgoCD/Flux 检测到 Git 仓库变更 |
+| **部署管道（CD）​** | 6. 检测变更 | ArgoCD/Flux 检测到 Git 仓库变更 |
 | | 7. 拉取配置 | Agent 从 Git 拉取最新配置 |
 | | 8. 同步集群 | 将期望状态应用到 Kubernetes 集群 |
 | | 9. 健康检查 | 验证应用是否正常运行 |
@@ -355,8 +357,36 @@ GitOps 实践中，仓库结构主要有三种模式：
 │       ├── kustomization.yaml
 │       └── patches.yaml
 └── argocd/
-    └── app.yaml                # ArgoCD Application 定义
+    └── app.yaml                # ArgoCD Application 清单
 ```
+
+**App-of-Apps 模式详解**：三种模式中，单仓库与多仓库的结构可直接由表格理解，App-of-Apps 的嵌套机制需补充说明。该机制涉及两类清单与一个实例概念，先行界定：
+
+> - **Application CRD**（CustomResourceDefinition）：ArgoCD 安装时在集群中创建，用于注册 Application 资源类型并规定其字段结构；由 ArgoCD 项目提供，全集群仅一份，用户无需编写
+> - **Application 清单**：用户在配置仓库中编写的 YAML，每份描述一个 Application 实例，声明其数据来源（Git 路径）与同步目标（集群）
+> - **Application 实例**：Application 清单被提交至集群后形成的资源对象，由 ArgoCD 控制器持续协调
+
+Application CRD 为类型定义；Application 清单与实例构成"描述文件 → 集群对象"的对应关系。该模式的核心思路：Application 实例本身是集群中的资源，同样能够以清单描述并加以管理，因而可被上层 Application 统一编排：
+
+1. **基础单元**：每个 Application 实例对应一个最小部署单元——按其清单声明，将指定 Git 路径下的业务配置（Deployment、Service 等 Kubernetes 清单）持续同步至目标集群
+2. **规模问题**：集群、环境与应用数量增长后，Application 清单数量随之膨胀且分布分散，缺乏统一的管理入口
+3. **嵌套机制**：引入根 Application 解决该问题。根 Application 清单指向的数据源并非业务配置，而是配置仓库中存放子 Application 清单的目录；ArgoCD 同步根实例时，将目录中的子清单应用到集群并生成对应的子 Application 实例，各子实例随即按基础单元的职责继续同步
+4. **递归展开**：子 Application 清单可继续指向更深层的清单目录，形成"根 → 子 → 孙"的树状结构；叶子层实例同步的对象为业务负载，不再生成新的 Application
+
+结合前文多仓库示例，将 `argocd/app.yaml` 扩展为如下结构：
+
+```
+# 根 Application 清单（集群引导时创建一次）
+source: gitops-repo/argocd/apps      # 数据源：子 Application 清单目录
+destination: 管理集群（如 mgmt-cluster）
+
+# gitops-repo/argocd/apps/：子 Application 清单目录
+├── dev.yaml           # 同步 overlays/dev 至 dev 集群
+├── staging.yaml       # 同步 overlays/staging 至 staging 集群
+└── production.yaml    # 同步 overlays/production 至 production 集群
+```
+
+该模式适用于三类场景：集群引导（通过根 Application 清单声明式安装 ArgoCD 自身及基础组件）、按集群或环境批量编排应用、按团队划分独立的子 Application 清单目录。Flux 未提供显式的根应用概念，可通过 Kustomization 的 `dependsOn` 依赖声明实现类似的分层编排。该模式的代价源于层级叠加：配置漂移需逐层下钻排查，对应表格中"复杂度高"的劣势。
 
 ---
 
@@ -364,7 +394,7 @@ GitOps 实践中，仓库结构主要有三种模式：
 
 ### 5.1 安全左移理念
 
-DevSecOps（Development + Security + Operations）是将安全实践深度融入软件开发生命周期（SDLC）的方法论。其核心理念是"安全左移"（Shift-Left Security）——在开发早期阶段引入安全检查，而非等到部署前才进行安全审计。
+DevSecOps（Development + Security + Operations）是将安全实践深度融入软件开发生命周期（Software Development Life Cycle，SDLC）的方法论。其核心理念是"安全左移"（Shift-Left Security）——在开发早期阶段引入安全检查，而非等到部署前才进行安全审计。
 
 ![DevSecOps 安全左移](./images/DevSecOps安全左移.svg)
 
@@ -390,7 +420,7 @@ DevSecOps 在 SDLC 各阶段嵌入不同的安全检查工具：
 
 ### 5.3 安全工具详解
 
-**SAST（静态应用安全测试）**：在不运行代码的情况下，通过分析源代码、字节码或二进制文件检测安全漏洞。适合在代码提交和代码审查阶段使用。
+**SAST（静态应用安全测试，Static Application Security Testing）​**：在不运行代码的情况下，通过分析源代码、字节码或二进制文件检测安全漏洞。适合在代码提交和代码审查阶段使用。
 
 | 工具 | 特点 | 适用场景 |
 |------|------|----------|
@@ -398,7 +428,7 @@ DevSecOps 在 SDLC 各阶段嵌入不同的安全检查工具：
 | Semgrep | 轻量级、规则自定义 | 快速 CI 集成 |
 | CodeQL | GitHub 原生、语义分析 | GitHub 项目深度分析 |
 
-**SCA（软件成分分析）**：分析项目的第三方依赖组件，检测已知漏洞（CVE）和许可证合规问题。
+**SCA（软件成分分析，Software Composition Analysis）​**：分析项目的第三方依赖组件，检测已知漏洞（CVE）和许可证合规问题。
 
 | 工具 | 特点 | 适用场景 |
 |------|------|----------|
@@ -406,7 +436,7 @@ DevSecOps 在 SDLC 各阶段嵌入不同的安全检查工具：
 | Dependabot | GitHub 原生 | GitHub 项目自动修复 |
 | Trivy | 容器镜像 + 文件系统 | 镜像和 IaC 扫描 |
 
-**DAST（动态应用安全测试）**：在应用运行时模拟攻击，检测运行时安全漏洞，如 SQL 注入、XSS 等。
+**DAST（动态应用安全测试，Dynamic Application Security Testing）​**：在应用运行时模拟攻击，检测运行时安全漏洞，如 SQL 注入、XSS 等。
 
 | 工具 | 特点 | 适用场景 |
 |------|------|----------|
@@ -425,7 +455,7 @@ DevSecOps 在 SDLC 各阶段嵌入不同的安全检查工具：
 | 依赖锁定 | 锁定依赖版本 | package-lock.json、go.sum |
 | 可信镜像仓库 | 仅使用经过验证的镜像 | 私有镜像仓库 + 准入控制 |
 
-> **SBOM（Software Bill of Materials）** 是软件组件的完整清单，记录所有依赖及其版本、来源和许可证信息。在 Log4j 漏洞（CVE-2021-44228）事件中，拥有 SBOM 的组织能够在数小时内定位受影响系统，而缺乏 SBOM 的组织则耗时数周排查。SBOM 已被美国行政令 14028 列为政府采购软件的强制要求。
+> **SBOM（Software Bill of Materials）​** 是软件组件的完整清单，记录所有依赖及其版本、来源和许可证信息。在 Log4j 漏洞（CVE-2021-44228）事件中，拥有 SBOM 的组织能够在数小时内定位受影响系统，而缺乏 SBOM 的组织则耗时数周排查。SBOM 已被美国行政令 14028 列为政府采购软件的强制要求。
 
 ---
 
@@ -467,7 +497,7 @@ DORA 指标并非孤立，它们反映了交付系统的两个维度——**吞�
 | 吞吐量 | 部署频率、交付周期 | 衡量交付速度 |
 | 稳定性 | 变更失败率、恢复时间 | 衡量交付质量 |
 
-> **吞吐量与稳定性的关系**：高效能团队并非在速度和稳定性之间取舍，而是同时实现两者。成熟的 CI/CD 实践（自动化测试、渐进式发布、快速回滚）使高频部署与低失败率共存成为可能。低效能团队往往陷入"慢且不稳"的困境——部署频率低但失败率高。
+> **吞吐量与稳定性的关系**：高效能团队并非在速度和稳定性之间取舍，而是同时实现两者。成熟的 CI / CD 实践（自动化测试、渐进式发布、快速回滚）使高频部署与低失败率共存成为可能。低效能团队往往陷入"慢且不稳"的困境——部署频率低但失败率高。
 
 ---
 
@@ -477,40 +507,56 @@ DORA 指标并非孤立，它们反映了交付系统的两个维度——**吞�
 
 | 趋势 | 说明 |
 |------|------|
-| AI 辅助 CI/CD | AI 模型预测高风险变更、智能选择测试用例、自动生成流水线配置 |
-| 平台工程 | 内部开发者平台（IDP）提供自助式 CI/CD，降低开发者认知负荷 |
+| AI 辅助 CI / CD | AI 模型预测高风险变更、智能选择测试用例、自动生成流水线配置 |
+| 平台工程 | 内部开发者平台（IDP）提供自助式 CI / CD，降低开发者认知负荷 |
 | 渐进式交付标准化 | 金丝雀发布、蓝绿部署成为默认能力，集成可观测性指标自动决策 |
 | 供应链安全强化 | SBOM、SLSA 成为强制要求，制品签名验证普及 |
 | 多集群 GitOps | GitOps 扩展至多集群、多云场景，统一配置管理 |
-| Serverless CI/CD | 完全按需分配计算资源，无固定基础设施 |
+| Serverless CI / CD | 完全按需分配计算资源，无固定基础设施 |
 
 ### 7.2 技术演进规律
 
-回顾 CI/CD 二十年的发展历程，可总结出以下演进规律：
+回顾 CI / CD 二十年的发展历程，可总结出以下演进规律：
 
 1. **从手动到自动**：每个阶段都在扩大自动化覆盖范围，从构建到测试到部署到安全
 2. **从推送到拉取**：部署模型从 CI 主动推送演变为集群主动拉取，安全性和可靠性提升
 3. **从割裂到统一**：CI 与 CD 分离又统一，构建与部署解耦但流程贯通
 4. **从经验到度量**：从凭经验判断交付效能到 DORA 指标量化度量
-5. **从工具到文化**：CI/CD 从工具选型上升到 DevOps 文化变革，技术实践与组织文化协同演进
+5. **从工具到文化**：CI / CD 从工具选型上升到 DevOps 文化变革，技术实践与组织文化协同演进
 
-> CI/CD 的每一次演进，都是对前一代系统性瓶颈的突破。Jenkins 被云原生工具挑战是因为单体架构难扩展，Push 模型被 GitOps 取代是因为凭证外泄风险，安全后置被 DevSecOps 替代是因为修复成本指数增长。当软件交付从"手动仪式"演进为"自动化流水线"，CI/CD 正在从"工程实践"演进为"组织能力"。
+> CI / CD 的每一次演进，都是对前一代系统性瓶颈的突破。Jenkins 被云原生工具挑战是因为单体架构难扩展，Push 模型被 GitOps 取代是因为凭证外泄风险，安全后置被 DevSecOps 替代是因为修复成本指数增长。当软件交付从"手动仪式"演进为"自动化流水线"，CI / CD 正在从"工程实践"演进为"组织能力"。
 
 ---
 
 ## 参考资料
 
-- Martin Fowler, Matthew Foemmel. [Continuous Integration](https://martinfowler.com/articles/originalContinuousIntegration.html)
-- Jez Humble, David Farley. 《Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation》
-- Google DORA. [State of DevOps Report 2025](https://dora.dev/research/2025/dora-report/)
-- CNCF. [GitOps in 2025: From Old-School Updates to the Modern Way](https://www.cncf.io/blog/2025/06/09/gitops-in-2025-from-old-school-updates-to-the-modern-way/)
-- CNCF. [Annual Cloud Native Survey 2025](https://www.cncf.io/announcements/2026/01/20/kubernetes-established-as-the-de-facto-operating-system-for-ai-as-production-use-hits-82-in-2025-cncf-annual-cloud-native-survey/)
-- ArgoCD 官方文档. [https://argo-cd.readthedocs.io/](https://argo-cd.readthedocs.io/en/stable/)
-- Flux 官方文档. [https://fluxcd.io/](https://fluxcd.io/)
-- Tekton 官方文档. [https://tekton.dev/](https://tekton.dev/)
-- GitHub Actions 官方文档. [https://docs.github.com/en/actions](https://docs.github.com/en/actions)
-- GitLab CI/CD 官方文档. [https://docs.gitlab.com/ci/](https://docs.gitlab.com/ci/)
-- Jenkins 官方文档. [https://www.jenkins.io/doc/](https://www.jenkins.io/doc/)
-- Microsoft. [Azure DevOps Security (MCSB v2)](https://learn.microsoft.com/security/benchmark/azure/mcsb-v2-devop-security)
-- SLSA Framework. [https://slsa.dev/](https://slsa.dev/)
-- CNCF. [Argo CD as Majority-Adopted GitOps Solution](https://www.cncf.io/announcements/2025/07/24/cncf-end-user-survey-finds-argo-cd-as-majority-adopted-gitops-solution-for-kubernetes/)
+> 以下资料按主题分组排列，组内按文中引用先后排序。
+
+**经典理论**
+
+- [Martin Fowler & Matthew Foemmel：Continuous Integration（2001）](https://martinfowler.com/articles/originalContinuousIntegration.html)
+- [Jez Humble & David Farley：Continuous Delivery（2010）](https://continuousdelivery.com/)
+
+**CI 引擎**
+
+- [Jenkins 官方文档](https://www.jenkins.io/doc/)
+- [GitLab CI / CD 官方文档](https://docs.gitlab.com/ci/)
+- [GitHub Actions 官方文档](https://docs.github.com/en/actions)
+- [Tekton 官方文档](https://tekton.dev/)
+
+**CD 工具**
+
+- [ArgoCD 官方文档](https://argo-cd.readthedocs.io/en/stable/)
+- [Flux 官方文档](https://fluxcd.io/)
+
+**DevSecOps 安全与供应链**
+
+- [Microsoft：Azure DevOps Security（MCSB v2）](https://learn.microsoft.com/security/benchmark/azure/mcsb-v2-devop-security)
+- [SLSA Framework](https://slsa.dev/)
+
+**行业调查与效能研究**
+
+- [Google DORA：State of DevOps Report 2025](https://dora.dev/research/2025/dora-report/)
+- [CNCF：Annual Cloud Native Survey 2025](https://www.cncf.io/announcements/2026/01/20/kubernetes-established-as-the-de-facto-operating-system-for-ai-as-production-use-hits-82-in-2025-cncf-annual-cloud-native-survey/)
+- [CNCF：Argo CD as Majority-Adopted GitOps Solution](https://www.cncf.io/announcements/2025/07/24/cncf-end-user-survey-finds-argo-cd-as-majority-adopted-gitops-solution-for-kubernetes/)
+- [CNCF：GitOps in 2025](https://www.cncf.io/blog/2025/06/09/gitops-in-2025-from-old-school-updates-to-the-modern-way/)
