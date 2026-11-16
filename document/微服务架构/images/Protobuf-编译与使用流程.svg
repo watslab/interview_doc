@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1180" height="640" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="600" y="50" text-anchor="middle" dominant-baseline="central" font-size="22" font-weight="bold" fill="#263238">Protobuf 编译与使用流程</text>
+  <text x="600" y="80" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#78909C">开发期由契约生成代码，运行期完成内存对象与线格式字节流的相互转换</text>
+
+  <!-- Band 1: compile-time -->
+  <rect x="40" y="110" width="1120" height="240" rx="8" fill="#F8FAFD" stroke="#CFD8DC" stroke-width="1"/>
+  <text x="60" y="138" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">定义期（开发阶段）：契约 → 生成代码</text>
+
+  <!-- .proto contract file (shifted +10 to align lane margins) -->
+  <g transform="translate(10 0)">
+  <rect x="70" y="165" width="230" height="160" rx="8" fill="#FFFFFF" stroke="#CE93D8" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M78,165 H292 Q300,165 300,173 V205 H70 V173 Q70,165 78,165Z" fill="#7B1FA2"/>
+  <text x="185" y="185" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">.proto 契约文件</text>
+  <text x="85" y="221" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F" font-family="Consolas,monospace">syntax = "proto3";</text>
+  <text x="85" y="243" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F" font-family="Consolas,monospace">message User {</text>
+  <text x="98" y="265" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F" font-family="Consolas,monospace">string name = 1;</text>
+  <text x="98" y="287" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F" font-family="Consolas,monospace">int32 age = 2;</text>
+  <text x="85" y="309" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#37474F" font-family="Consolas,monospace">}</text>
+  </g>
+
+  <!-- arrow: contract -> protoc -->
+  <line x1="310" y1="245" x2="379" y2="245" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="345" y="230" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#78909C">契约输入</text>
+
+  <!-- protoc compiler (shifted -20 to center between neighbors) -->
+  <g transform="translate(-20 0)">
+  <rect x="400" y="200" width="180" height="90" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M408,200 H572 Q580,200 580,208 V240 H400 V208 Q400,200 408,200Z" fill="#1E88E5"/>
+  <text x="490" y="220" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">protoc 编译器</text>
+  <text x="490" y="266" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#37474F">语法检查 · 代码生成</text>
+  </g>
+
+  <!-- arrow: protoc -> generated code -->
+  <line x1="560" y1="245" x2="629" y2="245" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="595" y="230" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#78909C">生成</text>
+
+  <!-- generated code group (shifted -10 to align lane margins) -->
+  <g transform="translate(-10 0)">
+  <rect x="640" y="165" width="490" height="160" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M648,165 H1122 Q1130,165 1130,173 V205 H640 V173 Q640,165 648,165Z" fill="#43A047"/>
+  <text x="885" y="185" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">各语言生成代码</text>
+  <rect x="660" y="218" width="215" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="767.5" y="238" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32" font-family="Consolas,monospace">user.pb.cc/.h（C++）</text>
+  <rect x="895" y="218" width="215" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="1002.5" y="238" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32" font-family="Consolas,monospace">User.java（Java）</text>
+  <rect x="660" y="272" width="215" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="767.5" y="292" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32" font-family="Consolas,monospace">user_pb2.py（Python）</text>
+  <rect x="895" y="272" width="215" height="40" rx="6" fill="#E8F5E9" stroke="#A5D6A7" stroke-width="1"/>
+  <text x="1002.5" y="292" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2E7D32" font-family="Consolas,monospace">user.pb.go（Go）</text>
+  </g>
+
+  <!-- vertical arrow: band1 -> band2 -->
+  <line x1="600" y1="350" x2="600" y2="404" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <text x="612" y="374" text-anchor="start" dominant-baseline="central" font-size="10.5" fill="#78909C">编译进应用程序</text>
+
+  <!-- Band 2: runtime -->
+  <rect x="40" y="405" width="1120" height="225" rx="8" fill="#F8FBF8" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="60" y="433" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#37474F">运行期（服务运行阶段）：对象 ⇄ 线格式字节流</text>
+
+  <!-- sender app -->
+  <rect x="80" y="460" width="240" height="110" rx="8" fill="#FFFFFF" stroke="#90CAF9" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M88,460 H312 Q320,460 320,468 V500 H80 V468 Q80,460 88,460Z" fill="#1E88E5"/>
+  <text x="200" y="480" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">发送方应用程序</text>
+  <text x="200" y="522" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">内存中的 User 对象</text>
+  <text x="200" y="545" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">调用生成代码的序列化 API</text>
+
+  <!-- arrow: serialize -->
+  <line x1="320" y1="515" x2="479" y2="515" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <text x="400" y="500" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#1565C0">序列化</text>
+  <text x="400" y="533" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">对象 → 字节流</text>
+
+  <!-- wire-format bytes -->
+  <rect x="480" y="460" width="240" height="110" rx="8" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M488,460 H712 Q720,460 720,468 V500 H480 V468 Q480,460 488,460Z" fill="#546E7A"/>
+  <text x="600" y="480" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">线格式字节流</text>
+  <rect x="526" y="514" width="34" height="26" rx="4" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1"/>
+  <text x="543" y="527" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F" font-family="Consolas,monospace">10</text>
+  <rect x="564" y="514" width="34" height="26" rx="4" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1"/>
+  <text x="581" y="527" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F" font-family="Consolas,monospace">96</text>
+  <rect x="602" y="514" width="34" height="26" rx="4" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1"/>
+  <text x="619" y="527" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F" font-family="Consolas,monospace">01</text>
+  <rect x="640" y="514" width="34" height="26" rx="4" fill="#ECEFF1" stroke="#90A4AE" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="657" y="527" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#78909C" font-family="Consolas,monospace">…</text>
+  <text x="600" y="558" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">紧凑二进制，可直接传输 / 存储</text>
+
+  <!-- arrow: transport -->
+  <line x1="720" y1="515" x2="879" y2="515" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ahg)"/>
+  <text x="800" y="500" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="bold" fill="#546E7A">传输 / 存储</text>
+  <text x="800" y="533" text-anchor="middle" dominant-baseline="central" font-size="9.5" fill="#78909C">网络 · 磁盘</text>
+
+  <!-- receiver app -->
+  <rect x="880" y="460" width="240" height="110" rx="8" fill="#FFFFFF" stroke="#A5D6A7" stroke-width="1.5" filter="url(#s1)"/>
+  <path d="M888,460 H1112 Q1120,460 1120,468 V500 H880 V468 Q880,460 888,460Z" fill="#43A047"/>
+  <text x="1000" y="480" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">接收方应用程序</text>
+  <text x="1000" y="522" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#37474F">反序列化：字节流 → 对象</text>
+  <text x="1000" y="545" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#78909C">依据同一份契约解码</text>
+
+  <!-- bottom note -->
+  <text x="600" y="608" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#90A4AE" font-style="italic">两端的 .proto 契约一致（或差异落在兼容规则内），字节流才能被正确还原</text>
+</svg>

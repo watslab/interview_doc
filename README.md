@@ -99,6 +99,7 @@
 | [Nacos 注册配置中心详解](./document/微服务架构/Nacos%20注册配置中心详解.md) | 深入解析 Nacos 注册配置中心，包括三层隔离模型（Namespace/Group/Data ID）、服务注册发现与健康检查机制、配置管理与动态刷新、AP/CP 模式切换、Spring Cloud Alibaba 集成配置 |
 | [SkyWalking 分布式链路追踪详解](./document/微服务架构/SkyWalking%20分布式链路追踪详解.md) | 深入解析 SkyWalking 分布式链路追踪系统，包括核心架构、分布式追踪原理、Java Agent 字节码增强机制、核心功能（服务拓扑、调用链追踪、性能监控、告警）、实战部署与最佳实践 |
 | [Sentinel 流量控制与限流算法详解](./document/微服务架构/Sentinel%20流量控制与限流算法详解.md) | 深入解析 Sentinel 流量控制组件，包括核心概念、责任链工作原理、流量控制策略、熔断降级机制，以及固定窗口、滑动窗口、漏桶、令牌桶四种限流算法详解 |
+| [Protobuf 序列化协议详解](./document/微服务架构/Protobuf%20序列化协议详解.md) | 系统梳理 Protobuf 技术体系，包括背景与发展历程、.proto 定义与编译流程、线格式编码原理（varint/ZigZag/线类型）、与 JSON/XML 对比、兼容性与 Schema 演进、gRPC 集成与工程最佳实践 |
 | [Spring Cloud Alibaba 面试项目推荐方案](./document/微服务架构/Spring%20Cloud%20Alibaba%20面试项目推荐方案.md) | Spring Cloud Alibaba 面试项目推荐方案 |
 
 ### Docker
@@ -247,6 +248,7 @@ document/
 │   ├── Nacos 注册配置中心详解.md
 │   ├── SkyWalking 分布式链路追踪详解.md
 │   ├── Sentinel 流量控制与限流算法详解.md
+│   ├── Protobuf 序列化协议详解.md
 │   └── Spring Cloud Alibaba 面试项目推荐方案.md
 ├── Docker/
 │   └── Docker 容器技术详解.md

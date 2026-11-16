@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 770" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ab" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ag" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="1180" height="750" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="600" y="46" text-anchor="middle" dominant-baseline="central" font-size="22" font-weight="bold" fill="#263238">gRPC 四种通信模式</text>
+  <text x="600" y="74" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#78909C">请求由客户端发出（蓝色），响应由服务端发出（绿色）· 消息体以 Protobuf 线格式编码</text>
+
+  <!-- Quadrant 1: Unary -->
+  <rect x="30" y="100" width="550" height="300" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#s1)"/>
+  <path d="M38,100 H572 Q580,100 580,108 V144 H30 V108 Q30,100 38,100Z" fill="#1E88E5"/>
+  <text x="54" y="122" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">一元调用 Unary</text>
+  <text x="556" y="122" text-anchor="end" dominant-baseline="central" font-size="9.5" fill="#FFFFFF" opacity="0.9" font-family="Consolas,monospace">rpc Get(Req) returns (Resp)</text>
+  <rect x="70" y="170" width="120" height="36" rx="6" fill="#1E88E5"/>
+  <text x="130" y="188" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">客户端</text>
+  <rect x="420" y="170" width="120" height="36" rx="6" fill="#43A047"/>
+  <text x="480" y="188" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">服务端</text>
+  <line x1="130" y1="206" x2="130" y2="330" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="480" y1="206" x2="480" y2="330" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="130" y1="235" x2="480" y2="235" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <text x="305" y="223" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#1565C0">请求 ×1</text>
+  <line x1="480" y1="295" x2="130" y2="295" stroke="#43A047" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="305" y="283" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#2E7D32">响应 ×1</text>
+  <text x="305" y="368" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#78909C">适用：常规请求-响应，如单条记录查询</text>
+
+  <!-- Quadrant 2: Server streaming -->
+  <rect x="600" y="100" width="550" height="300" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#s1)"/>
+  <path d="M608,100 H1142 Q1150,100 1150,108 V144 H600 V108 Q600,100 608,100Z" fill="#43A047"/>
+  <text x="624" y="122" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">服务端流式 Server Streaming</text>
+  <text x="1126" y="122" text-anchor="end" dominant-baseline="central" font-size="9.5" fill="#FFFFFF" opacity="0.9" font-family="Consolas,monospace">rpc Watch(Req) returns (stream Resp)</text>
+  <rect x="640" y="170" width="120" height="36" rx="6" fill="#1E88E5"/>
+  <text x="700" y="188" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">客户端</text>
+  <rect x="990" y="170" width="120" height="36" rx="6" fill="#43A047"/>
+  <text x="1050" y="188" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">服务端</text>
+  <line x1="700" y1="206" x2="700" y2="330" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="1050" y1="206" x2="1050" y2="330" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="700" y1="235" x2="1050" y2="235" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <text x="875" y="223" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#1565C0">请求 ×1</text>
+  <line x1="1050" y1="265" x2="700" y2="265" stroke="#43A047" stroke-width="1.5" marker-end="url(#ag)"/>
+  <line x1="1050" y1="289" x2="700" y2="289" stroke="#43A047" stroke-width="1.5" marker-end="url(#ag)"/>
+  <line x1="1050" y1="313" x2="700" y2="313" stroke="#43A047" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="875" y="253" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#2E7D32">响应 ×N（流）</text>
+  <text x="875" y="368" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#78909C">适用：服务端持续推送，如监控指标、Kubernetes Watch</text>
+
+  <!-- Quadrant 3: Client streaming -->
+  <rect x="30" y="420" width="550" height="300" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#s1)"/>
+  <path d="M38,420 H572 Q580,420 580,428 V464 H30 V428 Q30,420 38,420Z" fill="#F57C00"/>
+  <text x="54" y="442" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">客户端流式 Client Streaming</text>
+  <text x="556" y="442" text-anchor="end" dominant-baseline="central" font-size="9.5" fill="#FFFFFF" opacity="0.9" font-family="Consolas,monospace">rpc Upload(stream Req) returns (Resp)</text>
+  <rect x="70" y="490" width="120" height="36" rx="6" fill="#1E88E5"/>
+  <text x="130" y="508" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">客户端</text>
+  <rect x="420" y="490" width="120" height="36" rx="6" fill="#43A047"/>
+  <text x="480" y="508" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">服务端</text>
+  <line x1="130" y1="526" x2="130" y2="650" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="480" y1="526" x2="480" y2="650" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="130" y1="555" x2="480" y2="555" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <line x1="130" y1="579" x2="480" y2="579" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <line x1="130" y1="603" x2="480" y2="603" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <text x="305" y="543" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#1565C0">请求 ×N（流）</text>
+  <line x1="480" y1="633" x2="130" y2="633" stroke="#43A047" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="305" y="621" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#2E7D32">响应 ×1</text>
+  <text x="305" y="688" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#78909C">适用：客户端批量上报，如日志与指标上传</text>
+
+  <!-- Quadrant 4: Bidirectional streaming -->
+  <rect x="600" y="420" width="550" height="300" rx="8" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" filter="url(#s1)"/>
+  <path d="M608,420 H1142 Q1150,420 1150,428 V464 H600 V428 Q600,420 608,420Z" fill="#7B1FA2"/>
+  <text x="624" y="442" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="bold" fill="#FFFFFF">双向流式 Bidirectional Streaming</text>
+  <text x="1126" y="442" text-anchor="end" dominant-baseline="central" font-size="9.5" fill="#FFFFFF" opacity="0.9" font-family="Consolas,monospace">rpc Chat(stream Msg) returns (stream Msg)</text>
+  <rect x="640" y="490" width="120" height="36" rx="6" fill="#1E88E5"/>
+  <text x="700" y="508" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">客户端</text>
+  <rect x="990" y="490" width="120" height="36" rx="6" fill="#43A047"/>
+  <text x="1050" y="508" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="bold" fill="#FFFFFF">服务端</text>
+  <line x1="700" y1="526" x2="700" y2="650" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="1050" y1="526" x2="1050" y2="650" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="700" y1="555" x2="1050" y2="555" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <text x="875" y="543" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#1565C0">请求流</text>
+  <line x1="1050" y1="585" x2="700" y2="585" stroke="#43A047" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="875" y="573" text-anchor="middle" dominant-baseline="central" font-size="10.5" font-weight="bold" fill="#2E7D32">响应流</text>
+  <line x1="700" y1="615" x2="1050" y2="615" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ab)"/>
+  <line x1="1050" y1="645" x2="700" y2="645" stroke="#43A047" stroke-width="1.5" marker-end="url(#ag)"/>
+  <text x="875" y="688" text-anchor="middle" dominant-baseline="central" font-size="10.5" fill="#78909C">适用：双方实时互发，如在线聊天、双向数据同步</text>
+</svg>
