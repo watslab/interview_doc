@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 270" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahG" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="860" height="260" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <text x="440" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Top-p (Nucleus) 采样</text>
+
+  <!-- 分布图方括号与标注 -->
+  <text x="319.5" y="68" text-anchor="middle" font-size="12" font-weight="600" fill="#333">Token 概率分布</text>
+  <line x1="93" y1="79" x2="546" y2="79" stroke="#B0BEC5" stroke-width="1.5"/>
+  <line x1="93" y1="79" x2="93" y2="86" stroke="#B0BEC5" stroke-width="1.5"/>
+  <line x1="546" y1="79" x2="546" y2="86" stroke="#B0BEC5" stroke-width="1.5"/>
+
+  <g transform="translate(0 -20)">
+
+  <rect x="99.5" y="140" width="44" height="90" fill="#A5D6A7" stroke="#43A047" stroke-width="1.5"/>
+  <rect x="165.5" y="160" width="44" height="70" fill="#A5D6A7" stroke="#43A047" stroke-width="1.5"/>
+  <rect x="231.5" y="175" width="44" height="55" fill="#A5D6A7" stroke="#43A047" stroke-width="1.5"/>
+  <rect x="297.5" y="190" width="44" height="40" fill="#A5D6A7" stroke="#43A047" stroke-width="1.5"/>
+  <rect x="363.5" y="200" width="44" height="30" fill="#B0BEC5" stroke="#90A4AE" stroke-width="1"/>
+  <rect x="429.5" y="208" width="44" height="22" fill="#B0BEC5" stroke="#90A4AE" stroke-width="1"/>
+  <rect x="495.5" y="214" width="44" height="16" fill="#B0BEC5" stroke="#90A4AE" stroke-width="1"/>
+
+  <line x1="93" y1="230" x2="546" y2="230" stroke="#B0BEC5" stroke-width="1.5"/>
+
+  <line x1="94" y1="195" x2="544" y2="195" stroke="#43A047" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="542" y="189" text-anchor="end" font-size="12" font-weight="600" fill="#43A047">累积概率 ≥ p</text>
+
+  <!-- 候选容器：累积概率达 p 的 Token 集合 -->
+  <rect x="91.5" y="127" width="258" height="109" rx="8" fill="none" stroke="#43A047" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <rect x="165" y="120" width="111" height="14" fill="#FAFAFA"/>
+  <text x="220.5" y="127" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="600" fill="#43A047">候选集（动态数量）</text>
+
+  <text x="121.5" y="246" text-anchor="middle" font-size="10" fill="#757575">t1</text>
+  <text x="187.5" y="246" text-anchor="middle" font-size="10" fill="#757575">t2</text>
+  <text x="253.5" y="246" text-anchor="middle" font-size="10" fill="#757575">t3</text>
+  <text x="319.5" y="246" text-anchor="middle" font-size="10" fill="#757575">t4</text>
+  <text x="385.5" y="246" text-anchor="middle" font-size="10" fill="#757575">t5</text>
+  <text x="451.5" y="246" text-anchor="middle" font-size="10" fill="#757575">t6</text>
+  <text x="517.5" y="246" text-anchor="middle" font-size="10" fill="#757575">t7</text>
+  <text x="220.5" y="262" text-anchor="middle" font-size="10" fill="#43A047">已入选</text>
+  <text x="451.5" y="262" text-anchor="middle" font-size="10" fill="#757575">未入选</text>
+
+  <!-- 流程块：整体左移 30 以均衡左右边距 -->
+  <g transform="translate(-30 0)">
+  <rect x="632" y="120" width="150" height="56" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="2" filter="url(#s1)"/>
+  <text x="707" y="142" text-anchor="middle" font-size="13" font-weight="600" fill="#333">归一化概率</text>
+  <text x="707" y="162" text-anchor="middle" font-size="10" fill="#757575">仅在候选集内重新归一</text>
+  <rect x="632" y="206" width="150" height="56" rx="8" fill="#FFFFFF" stroke="#43A047" stroke-width="2" filter="url(#s1)"/>
+  <text x="707" y="228" text-anchor="middle" font-size="13" font-weight="600" fill="#333">随机选择</text>
+  <text x="707" y="248" text-anchor="middle" font-size="10" fill="#757575">按归一化概率抽取</text>
+  <path d="M784,148 C817,171 838.7,195 806,218 L792.8,227.1" fill="none" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahG)"/>
+  </g>
+
+  <line x1="351" y1="148" x2="589" y2="148" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahG)"/>
+  </g>
+</svg>

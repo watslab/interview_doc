@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 220" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahB" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahG" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="860" height="200" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <text x="440" y="50" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">模型微调流程</text>
+
+  <rect x="50" y="80" width="150" height="60" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="125" y="106" text-anchor="middle" font-size="13" font-weight="600" fill="#333">预训练模型</text>
+  <text x="125" y="122" text-anchor="middle" font-size="10" fill="#757575">通用能力基座</text>
+
+  <rect x="260" y="80" width="150" height="60" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="335" y="106" text-anchor="middle" font-size="13" font-weight="600" fill="#333">领域数据</text>
+  <text x="335" y="122" text-anchor="middle" font-size="10" fill="#757575">高质量领域语料</text>
+
+  <rect x="470" y="80" width="150" height="60" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="545" y="106" text-anchor="middle" font-size="13" font-weight="600" fill="#333">微调训练</text>
+  <text x="545" y="122" text-anchor="middle" font-size="10" fill="#757575">针对性训练</text>
+
+  <rect x="680" y="80" width="150" height="60" rx="8" fill="#C8E6C9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="755" y="106" text-anchor="middle" font-size="13" font-weight="600" fill="#1B5E20">专用模型</text>
+  <text x="755" y="122" text-anchor="middle" font-size="10" fill="#757575">领域专用能力</text>
+
+  <line x1="201" y1="110" x2="247.25" y2="110" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahB)"/>
+  <line x1="411" y1="110" x2="457.25" y2="110" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahB)"/>
+  <line x1="621" y1="110" x2="667.25" y2="110" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahG)"/>
+
+  <text x="440" y="182" text-anchor="middle" font-size="10" fill="#757575">微调方法：全参数微调 · LoRA（低秩矩阵）· Prompt Tuning</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 492" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ah2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#90A4AE"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="860" height="472" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <text x="440" y="42" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">类别不平衡时的指标选择</text>
+
+  <polygon points="440,72 525,114 440,156 355,114" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="440" y="119" text-anchor="middle" font-size="13" font-weight="600" fill="#333">数据不平衡?</text>
+
+  <rect x="660" y="86" width="170" height="56" rx="8" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="745" y="110" text-anchor="middle" font-size="13" font-weight="600" fill="#1B5E20">准确率</text>
+  <text x="745" y="127" text-anchor="middle" font-size="10" fill="#757575">正负样本均衡</text>
+
+  <rect x="350" y="192" width="180" height="60" rx="8" fill="#FFEBEE" stroke="#C62828" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="440" y="218" text-anchor="middle" font-size="13" font-weight="600" fill="#C62828">不要使用准确率</text>
+  <text x="440" y="235" text-anchor="middle" font-size="10" fill="#757575">类别不平衡时具有误导性</text>
+
+  <rect x="360" y="288" width="160" height="50" rx="8" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="440" y="318" text-anchor="middle" font-size="13" font-weight="600" fill="#333">选择合适指标</text>
+
+  <rect x="50" y="408" width="170" height="56" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="135" y="432" text-anchor="middle" font-size="13" font-weight="600" fill="#333">F1 分数</text>
+  <text x="135" y="449" text-anchor="middle" font-size="10" fill="#757575">个性化推荐·欺诈检测</text>
+
+  <rect x="355" y="408" width="170" height="56" rx="8" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="440" y="432" text-anchor="middle" font-size="13" font-weight="600" fill="#333">召回率</text>
+  <text x="440" y="449" text-anchor="middle" font-size="10" fill="#757575">疾病诊断·欺诈检测</text>
+
+  <rect x="660" y="408" width="170" height="56" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="745" y="432" text-anchor="middle" font-size="13" font-weight="600" fill="#333">精确率</text>
+  <text x="745" y="449" text-anchor="middle" font-size="10" fill="#757575">垃圾邮件过滤</text>
+
+  <rect x="573" y="87" width="26" height="18" rx="9" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="586" y="100" text-anchor="middle" font-size="11" fill="#757575">否</text>
+
+  <rect x="450" y="158" width="26" height="18" rx="9" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="463" y="171" text-anchor="middle" font-size="11" fill="#757575">是</text>
+
+  <rect x="255" y="373" width="64" height="18" rx="9" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="287" y="386" text-anchor="middle" font-size="11" fill="#757575">需要平衡</text>
+
+  <rect x="561" y="373" width="64" height="18" rx="9" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="593" y="386" text-anchor="middle" font-size="11" fill="#757575">关注误报</text>
+
+  <line x1="525" y1="114" x2="647.25" y2="114" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah2)"/>
+  <line x1="440" y1="156" x2="440" y2="179.25" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah2)"/>
+  <line x1="440" y1="252.75" x2="440" y2="275.25" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah2)"/>
+  <line x1="440" y1="338.75" x2="440" y2="395.25" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah2)"/>
+  <path d="M440,338.75 C440,361 135,361 135,383.25 L135,395.25" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah2)"/>
+  <path d="M440,338.75 C440,361 745,361 745,383.25 L745,395.25" fill="none" stroke="#90A4AE" stroke-width="1.5" marker-end="url(#ah2)"/>
+
+  <rect x="408" y="364" width="64" height="18" rx="9" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="440" y="377" text-anchor="middle" font-size="11" fill="#757575">关注漏报</text>
+</svg>

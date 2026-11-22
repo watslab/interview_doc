@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 260" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+  </defs>
+
+  <rect x="10" y="10" width="860" height="240" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 输入：文本 -->
+  <rect x="90" y="59" width="180" height="64" rx="10" fill="#FFFFFF" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="180" y="86" font-size="13" font-weight="bold" fill="#333333" text-anchor="middle">文本</text>
+  <text x="180" y="105" font-size="11" fill="#757575" text-anchor="middle">如：人工智能</text>
+
+  <!-- 处理：Embedding 模型（圆柱体，中心 x=440 与画布对齐） -->
+  <g filter="url(#s1)">
+    <path d="M360,61 V121 A80,10 0 0,0 520,121 V61" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5"/>
+    <ellipse cx="440" cy="61" rx="80" ry="10" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5"/>
+  </g>
+  <text x="440" y="105" font-size="12" font-weight="600" fill="#0D47A1" text-anchor="middle">Embedding 模型</text>
+
+  <!-- 输出：向量 -->
+  <rect x="610" y="59" width="180" height="64" rx="10" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="700" y="86" font-size="13" font-weight="bold" fill="#0D47A1" text-anchor="middle">向量</text>
+  <text x="700" y="105" font-size="11" fill="#1565C0" text-anchor="middle" font-family="Consolas,'Courier New',monospace">[0.1, -0.3, 0.8, …]</text>
+
+  <!-- 连接线（最后绘制，箭头长度 88px，垂直居中 y=91） -->
+  <line x1="271" y1="91" x2="359" y2="91" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahBlue)"/>
+  <line x1="521" y1="91" x2="609" y2="91" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahBlue)"/>
+
+  <!-- 典型用途（与圆柱体同轴 x=440） -->
+  <text x="440" y="167" font-size="10" fill="#757575" text-anchor="middle">典型用途</text>
+  <rect x="284" y="179" width="88" height="28" rx="14" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="328" y="197" font-size="11" fill="#37474F" text-anchor="middle">语义搜索</text>
+  <rect x="396" y="179" width="88" height="28" rx="14" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="440" y="197" font-size="11" fill="#37474F" text-anchor="middle">文本分类</text>
+  <rect x="508" y="179" width="88" height="28" rx="14" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="552" y="197" font-size="11" fill="#37474F" text-anchor="middle">聚类分析</text>
+</svg>

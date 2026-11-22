@@ -1,4 +1,4 @@
-# AI 开发术语详解
+# AI 开发概念术语详解
 
 ## 一、机器学习评估指标
 
@@ -6,47 +6,20 @@
 
 混淆矩阵是分类模型评估的基础，以二分类问题为例：
 
-```mermaid
-flowchart TB
-    subgraph Matrix["混淆矩阵"]
-        direction LR
-        subgraph Predicted["预测结果"]
-            P1["预测为正类"]
-            P2["预测为负类"]
-        end
-        
-        subgraph Actual["实际结果"]
-            A1["实际为正类"]
-            A2["实际为负类"]
-        end
-        
-        P1 --> A1
-        P1 --> A2
-        P2 --> A1
-        P2 --> A2
-    end
-    
-    style Matrix fill:#e3f2fd,stroke:#1565c0
-```
+![混淆矩阵结构](./images/混淆矩阵结构.svg)
 
 | 术语 | 英文 | 说明 | 示例 |
 |------|------|------|------|
-| **真正例 (TP)** | True Positive | 预测为正，实际为正 | 垃圾邮件识别：正确的垃圾邮件 |
-| **假正例 (FP)** | False Positive | 预测为正，实际为负 | 垃圾邮件识别：正常邮件被误判 |
-| **真负例 (TN)** | True Negative | 预测为负，实际为负 | 垃圾邮件识别：正确的正常邮件 |
-| **假负例 (FN)** | False Negative | 预测为负，实际为正 | 垃圾邮件识别：垃圾邮件漏判 |
+| **真正例 (TP)** | True Positive | 预测为正类，实际为正类 | 垃圾邮件识别：正确的垃圾邮件 |
+| **假正例 (FP)** | False Positive | 预测为正类，实际为负类 | 垃圾邮件识别：正常邮件被误判 |
+| **真负例 (TN)** | True Negative | 预测为负类，实际为负类 | 垃圾邮件识别：正确的正常邮件 |
+| **假负例 (FN)** | False Negative | 预测为负类，实际为正类 | 垃圾邮件识别：垃圾邮件漏判 |
 
 ### 1.2 准确率 (Accuracy)
 
 **定义**：模型预测正确的样本占总样本的比例
 
-```mermaid
-flowchart LR
-    A["全部样本"] --> B["正确预测"]
-    B --> C["准确率 = (TP + TN) / (TP + FP + TN + FN)"]
-    
-    style C fill:#c8e6c9,stroke:#2e7d32
-```
+![准确率计算](./images/准确率计算.svg)
 
 | 特点 | 说明 |
 |------|------|
@@ -64,13 +37,7 @@ flowchart LR
 精确率 = TP / (TP + FP)
 ```
 
-```mermaid
-flowchart LR
-    A["预测为正类"] --> B["真正为正类"]
-    B --> C["精确率 = TP / (TP + FP)"]
-    
-    style C fill:#e3f2fd,stroke:#1565c0
-```
+![精确率计算](./images/精确率计算.svg)
 
 | 特点 | 说明 |
 |------|------|
@@ -88,13 +55,7 @@ flowchart LR
 召回率 = TP / (TP + FN)
 ```
 
-```mermaid
-flowchart LR
-    A["实际为正类"] --> B["正确预测为正类"]
-    B --> C["召回率 = TP / (TP + FN)"]
-    
-    style C fill:#fff3e0,stroke:#ef6c00
-```
+![召回率计算](./images/召回率计算.svg)
 
 | 特点 | 说明 |
 |------|------|
@@ -112,21 +73,7 @@ flowchart LR
 F1 = 2 × (精确率 × 召回率) / (精确率 + 召回率)
 ```
 
-```mermaid
-flowchart TB
-    subgraph F1["F1 分数计算"]
-        F["F1 = 2 × (P × R) / (P + R)"] 
-    end
-    
-    subgraph Balance["调和平均特点"]
-        B["只有 P 和 R 都高时，F1 才高"]
-    end
-    
-    F --> B
-    
-    style F1 fill:#e3f2fd,stroke:#1565c0
-    style Balance fill:#c8e6c9,stroke:#2e7d32
-```
+![F1分数计算](./images/F1分数计算.svg)
 
 | 特点 | 说明 |
 |------|------|
@@ -144,25 +91,15 @@ flowchart TB
 
 ### 1.6 ROC 曲线与 AUC
 
-**ROC 曲线**（Receiver Operating Characteristic）：以 FPR 为横轴，TPR 为纵轴绘制的曲线
+**ROC 曲线**（Receiver Operating Characteristic）：以假正率 FPR 为横轴，真正率 TPR 为纵轴绘制的曲线
 
-```mermaid
-flowchart TB
-    subgraph ROC["ROC 曲线"]
-        direction LR
-        A["(0,0)"] --> B["(0,1)"]
-        B --> C["(1,1)"]
-        C --> D["随机猜测"]
-    end
-    
-    subgraph AUC["AUC 含义"]
-        E["AUC = ROC 曲线下面积"]
-        F["越接近 1 越好"]
-    end
-    
-    style ROC fill:#e3f2fd,stroke:#1565c0
-    style AUC fill:#c8e6c9,stroke:#2e7d32
-```
+**ROC 曲线的作用**：全面评估分类模型在不同判定阈值下的表现。分类模型通常输出"样本为正类的概率"，再由判定阈值得到最终的正类、负类结论，而阈值的选择是一种取舍——阈值定得高，误报少（假正率低）但漏报多（真正率低）；阈值定得低，误报多（假正率高）但漏报少（真正率高）。单看某一个阈值无法判断分类模型本身的好坏；ROC 曲线把每个阈值对应的坐标点（横轴为假正率，纵轴为真正率）连成曲线以覆盖全部阈值，其为选择合适阈值、比较不同分类模型提供完整依据。
+
+> **分类结果是如何产生的**：分类模型对每个样本输出一个"属于正类的概率"（或等价的正类得分）；判定阈值把概率转换为最终的分类结论——概率达到阈值的样本即"预测为正类"，否则即"预测为负类"。阈值判定既可能封装在分类模型接口内部，也可能由调用方代码执行，但无论哪种，阈值都是人为设定的参数，而非模型训练学到的部分。
+
+**ROC 曲线衡量了什么**：分类模型区分正负样本的能力，即"能否把正样本的得分整体排在负样本之前使正样本更能被预测为正样本"，与具体阈值无关。曲线越贴近左上角（真正率高、假正率低），区分能力越强；贴着对角线则等价于随机猜测。AUC 把这一能力量化为曲线下面积：随机取一正、一负两个样本，正样本得分更高的概率。
+
+![ROC曲线与AUC](./images/ROC曲线与AUC.svg)
 
 | 指标 | 说明 |
 |------|------|
@@ -184,15 +121,7 @@ flowchart TB
 
 **定义**：大模型处理文本的基本单位
 
-```mermaid
-flowchart TB
-    subgraph Tokenization["分词示例"]
-        T1["输入文本"] --> T2["Token 序列"]
-        T2 --> T3["模型处理"]
-    end
-    
-    style Tokenization fill:#e3f2fd,stroke:#1565c0
-```
+![Token分词流程](./images/Token分词流程.svg)
 
 | 特点 | 说明 |
 |------|------|
@@ -219,16 +148,7 @@ flowchart TB
 
 **定义**：控制生成随机性的超参数
 
-```mermaid
-flowchart TB
-    subgraph Temp["Temperature 效果"]
-        direction LR
-        L["低温 (0.1-0.3)<br/>确定性强<br/>更保守"] --> M["中温 (0.7-0.9)<br/>平衡"]
-        M --> H["高温 (1.0+)<br/>随机性强<br/>更有创意"]
-    end
-    
-    style Temp fill:#e3f2fd,stroke:#1565c0
-```
+![Temperature效果对比](./images/Temperature效果对比.svg)
 
 | 温度值 | 效果 | 适用场景 |
 |--------|------|---------|
@@ -242,15 +162,7 @@ flowchart TB
 
 **定义**：只从概率最高的 k 个 Token 中随机选择
 
-```mermaid
-flowchart TB
-    subgraph TopK["Top-k 采样"]
-        S["Token 概率分布"] --> K["选取概率最高的 k 个"]
-        K --> R["归一化后随机选择"]
-    end
-    
-    style TopK fill:#fff3e0,stroke:#ef6c00
-```
+![Top-k采样流程](./images/Top-k采样流程.svg)
 
 | k 值 | 效果 |
 |------|------|
@@ -290,15 +202,7 @@ next_token = argmax(P(token | context))
 
 **定义**：从累积概率达到 p 的最小 Token 集合中随机选择
 
-```mermaid
-flowchart TB
-    subgraph TopP["Top-p 采样"]
-        S["Token 概率分布"] --> P["累积概率 ≥ p"]
-        P --> R["归一化后随机选择"]
-    end
-    
-    style TopP fill:#c8e6c9,stroke:#2e7d32
-```
+![Top-p采样流程](./images/Top-p采样流程.svg)
 
 | 特点 | 优势 |
 |------|------|
@@ -323,20 +227,7 @@ flowchart TB
 
 **定义**：结合检索系统和生成模型的架构
 
-```mermaid
-sequenceDiagram
-    participant User as 用户
-    participant RAG as RAG 系统
-    participant VecDB as 向量数据库
-    participant LLM as 大模型
-    
-    User->>RAG: 用户问题
-    RAG->>VecDB: 检索相关文档
-    VecDB-->>RAG: 返回相关片段
-    RAG->>LLM: 问题 + 上下文
-    LLM-->>RAG: 生成答案
-    RAG-->>User: 返回答案
-```
+![RAG检索生成流程](./images/RAG检索生成流程.svg)
 
 | 优势 | 说明 |
 |------|------|
@@ -348,13 +239,7 @@ sequenceDiagram
 
 **定义**：将文本转换为向量表示
 
-```mermaid
-flowchart LR
-    T["文本"] --> E["Embedding 模型"]
-    E --> V["向量 [0.1, -0.3, 0.8, ...]"]
-    
-    style V fill:#e3f2fd,stroke:#1565c0
-```
+![Embedding文本向量化](./images/Embedding文本向量化.svg)
 
 | 用途 | 说明 |
 |------|------|
@@ -380,16 +265,7 @@ flowchart LR
 
 **定义**：在预训练模型基础上进行针对性训练
 
-```mermaid
-flowchart TB
-    subgraph FineTuning["微调流程"]
-        P["预训练模型"] --> T["领域数据"]
-        T --> F["微调训练"]
-        F --> S["专用模型"]
-    end
-    
-    style FineTuning fill:#e3f2fd,stroke:#1565c0
-```
+![模型微调流程](./images/模型微调流程.svg)
 
 | 方法 | 说明 |
 |------|------|
@@ -425,20 +301,7 @@ flowchart TB
 
 ### 3.2 类别不平衡处理
 
-```mermaid
-flowchart TB
-    Start["数据不平衡?"] -->|"是"| NoAcc["不用准确率"]
-    NoAcc --> Choose["选择指标"]
-    Choose -->|"需要平衡"| F1["F1 分数"]
-    Choose -->|"关注漏诊"| Recall["召回率"]
-    Choose -->|"关注误报"| Precision["精确率"]
-    
-    Start -->|"否"| Acc["可使用准确率"]
-    
-    style NoAcc fill:#ffcdd2,stroke:#c62828
-    style Choose fill:#e3f2fd,stroke:#1565c0
-    style Acc fill:#c8e6c9,stroke:#2e7d32
-```
+![类别不平衡指标选择](./images/类别不平衡指标选择.svg)
 
 ### 3.3 指标关系速查表
 

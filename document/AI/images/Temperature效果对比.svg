@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 280" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahb" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="10" y="10" width="860" height="260" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 标题 -->
+  <text x="440" y="53.4" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Temperature：控制生成随机性</text>
+
+  <!-- 低温节点 -->
+  <rect x="84" y="86" width="200" height="110" rx="12" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="184" y="126" text-anchor="middle" font-size="13" font-weight="600" fill="#333">低温 0.1–0.3</text>
+  <text x="184" y="146" text-anchor="middle" font-size="10" fill="#757575">确定性 · 保守</text>
+  <text x="184" y="162" text-anchor="middle" font-size="10" fill="#757575">事实问答 · 代码生成</text>
+
+  <!-- 中温节点 -->
+  <rect x="340" y="86" width="200" height="110" rx="12" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="440" y="126" text-anchor="middle" font-size="13" font-weight="600" fill="#333">中温 0.7–0.9</text>
+  <text x="440" y="146" text-anchor="middle" font-size="10" fill="#757575">平衡多样性</text>
+  <text x="440" y="162" text-anchor="middle" font-size="10" fill="#757575">对话 · 写作</text>
+
+  <!-- 高温节点 -->
+  <rect x="596" y="86" width="200" height="110" rx="12" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="696" y="126" text-anchor="middle" font-size="13" font-weight="600" fill="#333">高温 1.0+</text>
+  <text x="696" y="146" text-anchor="middle" font-size="10" fill="#757575">随机 · 有创意</text>
+  <text x="696" y="162" text-anchor="middle" font-size="10" fill="#757575">创意写作 · 头脑风暴</text>
+
+  <!-- 公式注 -->
+  <rect x="332" y="220" width="216" height="28" rx="14" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="440" y="238" text-anchor="middle" font-size="11" fill="#757575" font-family="Consolas,monospace">softmax(logits / temperature)</text>
+
+  <!-- 连接线（最后绘制） -->
+  <line x1="285" y1="141" x2="339" y2="141" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+  <line x1="541" y1="141" x2="595" y2="141" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahb)"/>
+</svg>

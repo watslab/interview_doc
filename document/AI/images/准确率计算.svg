@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 284" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahGr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#43A047"/></marker>
+    <clipPath id="clipL"><circle cx="192" cy="146" r="78"/></clipPath>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="10" y="10" width="860" height="264" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 全集：全部样本（圆外区域 = TN，正确预测的一部分，绿色高亮） -->
+  <rect x="70" y="40" width="340" height="204" rx="10" fill="#E8F5E9" stroke="#90A4AE" stroke-width="1.25"/>
+  <text x="118" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#546E7A">全部样本</text>
+
+  <!-- 两个集合圆：预测为正类 / 实际为正类 -->
+  <circle cx="192" cy="146" r="78" fill="#FFFFFF"/>
+  <circle cx="288" cy="146" r="78" fill="#FFFFFF"/>
+  <circle cx="288" cy="146" r="78" fill="#A5D6A7" clip-path="url(#clipL)"/>
+
+  <circle cx="192" cy="146" r="78" fill="none" stroke="#90A4AE" stroke-width="1.25"/>
+  <circle cx="288" cy="146" r="78" fill="none" stroke="#90A4AE" stroke-width="1.25"/>
+
+  <text x="192" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#78909C">预测为正类</text>
+  <text x="288" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#78909C">实际为正类</text>
+
+  <!-- 四区域标注 -->
+  <text x="162" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#90A4AE">FP</text>
+  <text x="162" y="161" text-anchor="middle" font-size="10" fill="#90A4AE">误报</text>
+  <text x="240" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#1B5E20">TP</text>
+  <text x="240" y="161" text-anchor="middle" font-size="10" fill="#2E7D32">真正例</text>
+  <text x="318" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#90A4AE">FN</text>
+  <text x="318" y="161" text-anchor="middle" font-size="10" fill="#90A4AE">漏报</text>
+  <text x="240" y="236" text-anchor="middle" font-size="10" fill="#2E7D32">TN 真负例</text>
+
+  <!-- 公式节点 -->
+  <rect x="480" y="118" width="330" height="56" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="645" y="150.7" text-anchor="middle" font-size="13" font-weight="600" fill="#1B5E20">准确率 = (TP + TN) / (TP + FP + TN + FN)</text>
+
+  <!-- 小注（位于下边距带内） -->
+  <text x="240" y="262" text-anchor="middle" font-size="10" fill="#757575">正确预测 = TP（重叠区）+ TN（圆外区域）</text>
+  <text x="645" y="262" text-anchor="middle" font-size="10" fill="#757575">整体正确比例</text>
+
+  <!-- 连接箭头 -->
+  <line x1="411" y1="146" x2="479" y2="146" stroke="#43A047" stroke-width="1.5" marker-end="url(#ahGr)"/>
+</svg>

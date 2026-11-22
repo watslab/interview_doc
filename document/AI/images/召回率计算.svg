@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 284" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahO" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+    <clipPath id="clipL"><circle cx="192" cy="146" r="78"/></clipPath>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="10" y="10" width="860" height="264" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 全集：全部样本 -->
+  <rect x="70" y="40" width="340" height="204" rx="10" fill="#FFFFFF" stroke="#90A4AE" stroke-width="1.25"/>
+  <text x="118" y="58" text-anchor="middle" font-size="12" font-weight="bold" fill="#546E7A">全部样本</text>
+
+  <!-- 分母 = 实际为正类（浅橙），分子 = 重叠区 TP（深橙） -->
+  <circle cx="192" cy="146" r="78" fill="#FFFFFF"/>
+  <circle cx="288" cy="146" r="78" fill="#FFF3E0"/>
+  <circle cx="288" cy="146" r="78" fill="#FFCC80" clip-path="url(#clipL)"/>
+
+  <circle cx="192" cy="146" r="78" fill="none" stroke="#90A4AE" stroke-width="1.25"/>
+  <circle cx="288" cy="146" r="78" fill="none" stroke="#EF6C00" stroke-width="2"/>
+
+  <text x="192" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#78909C">预测为正类</text>
+  <text x="288" y="94" text-anchor="middle" font-size="13" font-weight="600" fill="#EF6C00">实际为正类</text>
+
+  <!-- 四区域标注 -->
+  <text x="162" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#90A4AE">FP</text>
+  <text x="162" y="161" text-anchor="middle" font-size="10" fill="#90A4AE">误报</text>
+  <text x="240" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#E65100">TP</text>
+  <text x="240" y="161" text-anchor="middle" font-size="10" fill="#EF6C00">真正例</text>
+  <text x="318" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="#546E7A">FN</text>
+  <text x="318" y="161" text-anchor="middle" font-size="10" fill="#757575">漏报</text>
+  <text x="240" y="236" text-anchor="middle" font-size="10" fill="#90A4AE">TN 真负例</text>
+
+  <!-- 公式节点 -->
+  <rect x="480" y="118" width="330" height="56" rx="10" fill="#FFF3E0" stroke="#EF6C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="645" y="150.7" text-anchor="middle" font-size="13" font-weight="600" fill="#E65100">召回率 = TP / (TP + FN)</text>
+
+  <!-- 小注（位于下边距带内） -->
+  <text x="240" y="262" text-anchor="middle" font-size="10" fill="#757575">重叠区 = TP（真正例），浅橙圆 = TP + FN（实际为正类）</text>
+  <text x="645" y="262" text-anchor="middle" font-size="10" fill="#757575">找全正类的能力（覆盖率）</text>
+
+  <!-- 连接箭头 -->
+  <line x1="411" y1="146" x2="479" y2="146" stroke="#F57C00" stroke-width="1.5" marker-end="url(#ahO)"/>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 600" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="10" y="10" width="540" height="580" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- 标题 -->
+  <text x="280" y="51" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">混淆矩阵 (Confusion Matrix)</text>
+
+  <!-- 列头：预测结果 -->
+  <rect x="121" y="86" width="180" height="42" rx="8" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1" filter="url(#s1)"/>
+  <text x="211" y="111.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">预测为正类</text>
+  <rect x="317" y="86" width="180" height="42" rx="8" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1" filter="url(#s1)"/>
+  <text x="407" y="111.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">预测为负类</text>
+
+  <!-- 行头：实际结果（竖排文字） -->
+  <rect x="63" y="144" width="42" height="180" rx="8" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1" filter="url(#s1)"/>
+  <text x="84" y="198.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">实</text>
+  <text x="84" y="218.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">际</text>
+  <text x="84" y="238.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">为</text>
+  <text x="84" y="258.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">正</text>
+  <text x="84" y="278.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">类</text>
+  <rect x="63" y="340" width="42" height="180" rx="8" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1" filter="url(#s1)"/>
+  <text x="84" y="384.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">实</text>
+  <text x="84" y="404.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">际</text>
+  <text x="84" y="424.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">为</text>
+  <text x="84" y="444.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">负</text>
+  <text x="84" y="464.7" text-anchor="middle" font-size="13" font-weight="600" fill="#37474F">类</text>
+
+  <!-- TP：预测为正，实际为正 -->
+  <rect x="121" y="144" width="180" height="180" rx="10" fill="#E8F5E9" stroke="#43A047" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="211" y="217.3" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">真正例 (TP)</text>
+  <text x="211" y="239.3" text-anchor="middle" font-size="10" fill="#546E7A">True Positive</text>
+  <text x="211" y="257.3" text-anchor="middle" font-size="10" fill="#757575">预测为正，实际为正</text>
+
+  <!-- FN：预测为负，实际为正 -->
+  <rect x="317" y="144" width="180" height="180" rx="10" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="407" y="217.3" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">假负例 (FN)</text>
+  <text x="407" y="239.3" text-anchor="middle" font-size="10" fill="#546E7A">False Negative</text>
+  <text x="407" y="257.3" text-anchor="middle" font-size="10" fill="#757575">预测为负，实际为正（漏报）</text>
+
+  <!-- FP：预测为正，实际为负 -->
+  <rect x="121" y="340" width="180" height="180" rx="10" fill="#FFEBEE" stroke="#E53935" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="211" y="413.3" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">假正例 (FP)</text>
+  <text x="211" y="435.3" text-anchor="middle" font-size="10" fill="#546E7A">False Positive</text>
+  <text x="211" y="453.3" text-anchor="middle" font-size="10" fill="#757575">预测为正，实际为负（误报）</text>
+
+  <!-- TN：预测为负，实际为负 -->
+  <rect x="317" y="340" width="180" height="180" rx="10" fill="#E3F2FD" stroke="#1E88E5" stroke-width="1.5" filter="url(#s1)"/>
+  <text x="407" y="413.3" text-anchor="middle" font-size="13" font-weight="bold" fill="#333">真负例 (TN)</text>
+  <text x="407" y="435.3" text-anchor="middle" font-size="10" fill="#546E7A">True Negative</text>
+  <text x="407" y="453.3" text-anchor="middle" font-size="10" fill="#757575">预测为负，实际为负</text>
+
+  <!-- 底部注释 -->
+  <text x="280" y="548" text-anchor="middle" font-size="10" fill="#757575">示例——垃圾邮件识别：TP=正确的垃圾邮件，FP=正常邮件被误判，</text>
+  <text x="280" y="566" text-anchor="middle" font-size="10" fill="#757575">FN=垃圾邮件漏判，TN=正确的正常邮件。</text>
+</svg>

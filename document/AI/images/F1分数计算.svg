@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahB" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#1E88E5"/></marker>
+    <marker id="ahO" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#F57C00"/></marker>
+    <marker id="ahP" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#7B1FA2"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="860" height="220" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- Input: Precision -->
+  <rect x="50" y="58" width="130" height="52" rx="10" fill="#FFFFFF" stroke="#1E88E5" stroke-width="2" filter="url(#s1)"/>
+  <text x="115" y="89" text-anchor="middle" font-size="13" font-weight="600" fill="#333">精确率 P</text>
+
+  <!-- Input: Recall -->
+  <rect x="50" y="140" width="130" height="52" rx="10" fill="#FFFFFF" stroke="#F57C00" stroke-width="2" filter="url(#s1)"/>
+  <text x="115" y="171" text-anchor="middle" font-size="13" font-weight="600" fill="#333">召回率 R</text>
+
+  <!-- Formula node (highlighted) -->
+  <rect x="275" y="92" width="280" height="80" rx="12" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="2" filter="url(#s1)"/>
+  <text x="415" y="137" text-anchor="middle" font-size="15" font-weight="bold" fill="#4A148C">F1 = 2 × (P × R) / (P + R)</text>
+
+  <!-- Conclusion node -->
+  <rect x="635" y="97" width="200" height="70" rx="10" fill="#FFFFFF" stroke="#7B1FA2" stroke-width="2" filter="url(#s1)"/>
+  <text x="735" y="118" text-anchor="middle" font-size="12" font-weight="600" fill="#333">调和平均</text>
+  <text x="735" y="136" text-anchor="middle" font-size="11" fill="#757575">只有 P 和 R 都高，F1 才高</text>
+  <text x="735" y="153" text-anchor="middle" font-size="10" fill="#757575">对极端值敏感</text>
+
+  <!-- Curved arrows: P and R converge into formula (drawn last) -->
+  <path d="M181,84 C193,84 240,112 252,112 L262,112" fill="none" stroke="#1E88E5" stroke-width="1.5" marker-end="url(#ahB)"/>
+  <path d="M181,166 C193,166 240,152 252,152 L262,152" fill="none" stroke="#F57C00" stroke-width="1.5" marker-end="url(#ahO)"/>
+  <!-- Straight arrow: formula to conclusion -->
+  <path d="M556,132 L622,132" fill="none" stroke="#7B1FA2" stroke-width="1.5" marker-end="url(#ahP)"/>
+</svg>

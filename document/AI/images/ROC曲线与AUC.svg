@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 452" font-family="'Segoe UI',Arial,sans-serif">
+  <defs>
+    <filter id="s1"><feDropShadow dx="1" dy="2" flood-color="#000" flood-opacity="0.08" stdDeviation="3"/></filter>
+    <marker id="ahAx" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6Z" fill="#757575"/></marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="10" y="10" width="860" height="432" rx="12" fill="#FAFAFA" stroke="#E0E0E0" stroke-width="1"/>
+
+  <!-- ===== Left column: ROC curve ===== -->
+  <text x="265" y="45" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">ROC 曲线</text>
+
+  <!-- Axes -->
+  <path d="M100,383 H430" fill="none" stroke="#757575" stroke-width="1.5" marker-end="url(#ahAx)"/>
+  <path d="M100,383 V83" fill="none" stroke="#757575" stroke-width="1.5" marker-end="url(#ahAx)"/>
+  <!-- Axis tick labels -->
+  <text x="100" y="400" text-anchor="middle" font-size="11" fill="#757575">0</text>
+  <text x="400" y="400" text-anchor="middle" font-size="11" fill="#757575">1</text>
+  <text x="91" y="387" text-anchor="end" font-size="11" fill="#757575">0</text>
+  <text x="91" y="87" text-anchor="end" font-size="11" fill="#757575">1</text>
+  <!-- Axis titles -->
+  <text x="265" y="419" text-anchor="middle" font-size="11" fill="#757575">FPR（假正率）</text>
+  <text x="0" y="0" text-anchor="middle" font-size="11" fill="#757575" transform="translate(68,233) rotate(-90)">TPR（真正率）</text>
+
+  <!-- AUC area under model curve -->
+  <path d="M100,383 C118,190 270,90 400,83 L400,383 Z" fill="#90CAF9" fill-opacity="0.25"/>
+  <!-- Diagonal random-guess line -->
+  <path d="M100,383 L400,83" fill="none" stroke="#B0BEC5" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="280" y="283" text-anchor="middle" font-size="11" fill="#757575">随机猜测 AUC=0.5</text>
+  <!-- Model ROC curve -->
+  <path d="M100,383 C118,190 270,90 400,83" fill="none" stroke="#1E88E5" stroke-width="2.5"/>
+  <text x="330" y="220" text-anchor="middle" font-size="11" fill="#1565C0">AUC = 曲线下面积</text>
+
+  <!-- ===== Right column: AUC meaning ===== -->
+  <text x="655" y="45" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">AUC 含义</text>
+
+  <!-- Card: AUC 含义（主标题 + 副标题，整体下移 3px 作光学补偿） -->
+  <rect x="500" y="85" width="310" height="76" rx="10" fill="#FFFFFF" stroke="#1E88E5" stroke-width="2" filter="url(#s1)"/>
+  <text x="655" y="117" text-anchor="middle" font-size="12" font-weight="600" fill="#333">AUC = ROC 曲线下面积，取值 [0, 1]</text>
+  <text x="655" y="143" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">越接近 1 越好</text>
+
+  <!-- Reference table title -->
+  <text x="655" y="195" text-anchor="middle" font-size="11" fill="#757575">AUC 值参考</text>
+
+  <!-- Row 1: 0.5 random -->
+  <rect x="500" y="215" width="310" height="44" rx="8" fill="#ECEFF1" stroke="#B0BEC5" stroke-width="1"/>
+  <text x="585" y="241" text-anchor="middle" font-size="11" font-weight="600" fill="#546E7A">0.5</text>
+  <text x="715" y="241" text-anchor="middle" font-size="11" font-weight="600" fill="#546E7A">随机猜测</text>
+
+  <!-- Row 2: 0.7-0.9 good -->
+  <rect x="500" y="278" width="310" height="44" rx="8" fill="#FFF3E0" stroke="#FFB74D" stroke-width="1"/>
+  <text x="585" y="304" text-anchor="middle" font-size="11" font-weight="600" fill="#E65100">0.7–0.9</text>
+  <text x="715" y="304" text-anchor="middle" font-size="11" font-weight="600" fill="#E65100">较好</text>
+
+  <!-- Row 3: >0.9 excellent -->
+  <rect x="500" y="341" width="310" height="44" rx="8" fill="#E8F5E9" stroke="#C8E6C9" stroke-width="1"/>
+  <text x="585" y="367" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">&gt;0.9</text>
+  <text x="715" y="367" text-anchor="middle" font-size="11" font-weight="600" fill="#2E7D32">优秀</text>
+</svg>
